@@ -1,0 +1,147 @@
+{
+  "schema_version": "0.1",
+  "id": "m01-pcap-as-dat-0b65d51eff61",
+  "path": "data\\fixtures\\m01-pcap-as-dat.dat",
+  "sha256": "0b65d51eff6117e1a4ad4c9111f9cef9ca6f48d43d13ed5848aec1334dc75e91",
+  "length": 176,
+  "format": "pcap",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-PCAP-VALIDATED",
+      "observation": "complete PCAP global header and record structure; timestamp precision=microseconds; capinfos reports PCAP."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": true,
+    "network_headers": true,
+    "flow_identity": true,
+    "direction": true,
+    "timestamps": true
+  },
+  "status": "ok",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 176,
+      "artifact_ref": "data\\fixtures\\m01-pcap-as-dat.dat"
+    }
+  ],
+  "packets": [
+    {
+      "id": "m01-pcap-as-dat-0b65d51eff61-packet-1",
+      "source_id": "m01-pcap-as-dat-0b65d51eff61",
+      "index": 0,
+      "timestamp_epoch": "1788762557.000001000",
+      "interface_id": null,
+      "captured_length": 60,
+      "original_length": 60,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "198.51.100.10",
+      "src_port": 41000,
+      "dst_ip": "198.51.100.20",
+      "dst_port": 9001,
+      "tcp_seq_raw": 0,
+      "tcp_payload_length": 6,
+      "payload_ref": "payloads/m01-pcap-as-dat-0b65d51eff61-packet-000001.bin",
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-pcap-as-dat-0b65d51eff61-packet-2",
+      "source_id": "m01-pcap-as-dat-0b65d51eff61",
+      "index": 1,
+      "timestamp_epoch": "1788762557.000002000",
+      "interface_id": null,
+      "captured_length": 60,
+      "original_length": 60,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "198.51.100.20",
+      "src_port": 9001,
+      "dst_ip": "198.51.100.10",
+      "dst_port": 41000,
+      "tcp_seq_raw": 0,
+      "tcp_payload_length": 2,
+      "payload_ref": "payloads/m01-pcap-as-dat-0b65d51eff61-packet-000002.bin",
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    }
+  ],
+  "flows": [
+    {
+      "id": "m01-pcap-as-dat-0b65d51eff61-tcp-flow-0",
+      "source_id": "m01-pcap-as-dat-0b65d51eff61",
+      "transport": "tcp",
+      "tcp_stream": 0,
+      "node0": {
+        "ip": "198.51.100.10",
+        "port": 41000
+      },
+      "node1": {
+        "ip": "198.51.100.20",
+        "port": 9001
+      },
+      "packet_ids": [
+        "m01-pcap-as-dat-0b65d51eff61-packet-1",
+        "m01-pcap-as-dat-0b65d51eff61-packet-2"
+      ],
+      "first_timestamp_epoch": "1788762557.000001000",
+      "last_timestamp_epoch": "1788762557.000002000"
+    }
+  ],
+  "streams": [
+    {
+      "id": "m01-pcap-as-dat-0b65d51eff61-tcp-stream-0",
+      "source_id": "m01-pcap-as-dat-0b65d51eff61",
+      "flow_id": "m01-pcap-as-dat-0b65d51eff61-tcp-flow-0",
+      "tcp_stream": 0,
+      "node0": {
+        "ip": "198.51.100.10",
+        "port": 41000
+      },
+      "node1": {
+        "ip": "198.51.100.20",
+        "port": 9001
+      },
+      "packet_ids": [
+        "m01-pcap-as-dat-0b65d51eff61-packet-1",
+        "m01-pcap-as-dat-0b65d51eff61-packet-2"
+      ],
+      "directions": [
+        {
+          "direction": "node0_to_node1",
+          "length": 6,
+          "sha256": "84747dcd831c7131207a1042d74b60ac54fdcc10e7aef9e1f7940dda2c95dcae",
+          "artifact_ref": "streams/m01-pcap-as-dat-0b65d51eff61-tcp-0-node0_to_node1.bin"
+        },
+        {
+          "direction": "node1_to_node0",
+          "length": 2,
+          "sha256": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3",
+          "artifact_ref": "streams/m01-pcap-as-dat-0b65d51eff61-tcp-0-node1_to_node0.bin"
+        }
+      ],
+      "analysis": {
+        "retransmission_packets": 0,
+        "out_of_order_packets": 0,
+        "gap_or_loss_packets": 0,
+        "truncated_packets": 0
+      },
+      "reassembly_status": "complete"
+    }
+  ],
+  "warnings": [
+    "TShark did not populate frame.file_off; packet source offsets are null."
+  ]
+}

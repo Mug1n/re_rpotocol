@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "m01-false-pcapng-e0d022ba4afb",
+  "path": "data\\fixtures\\m01-false-pcapng.dat",
+  "sha256": "e0d022ba4afb75f607f99669e1866dd08efa4e5ef04cc30e6f8f4cc4538db1e7",
+  "length": 16,
+  "format": "raw_bytes",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-PCAPNG-HEADER-TRUNCATED",
+      "observation": "PCAPNG-like signature rejected: section header truncated."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": false,
+    "network_headers": false,
+    "flow_identity": false,
+    "direction": false,
+    "timestamps": false
+  },
+  "status": "ok",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 16,
+      "artifact_ref": "payloads/m01-false-pcapng-e0d022ba4afb.bin"
+    }
+  ],
+  "packets": [],
+  "flows": [],
+  "streams": [],
+  "warnings": [
+    "Capture-like prefix was preserved as raw bytes after validation failed."
+  ]
+}

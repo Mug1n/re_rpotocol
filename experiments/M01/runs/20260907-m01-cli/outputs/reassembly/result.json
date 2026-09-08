@@ -1,0 +1,309 @@
+{
+  "schema_version": "0.1",
+  "id": "m01-reassembly-25d527e07307",
+  "path": "data\\fixtures\\m01-reassembly.pcapng",
+  "sha256": "25d527e07307edbd277f13d3bd37070c1964ca590b952fe33d8dc8627a21c525",
+  "length": 828,
+  "format": "pcapng",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-PCAPNG-VALIDATED",
+      "observation": "validated 1 pcapng section(s) and all block lengths; capinfos reports PCAPNG."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": true,
+    "network_headers": true,
+    "flow_identity": true,
+    "direction": true,
+    "timestamps": true
+  },
+  "status": "ok",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 828,
+      "artifact_ref": "data\\fixtures\\m01-reassembly.pcapng"
+    }
+  ],
+  "packets": [
+    {
+      "id": "m01-reassembly-25d527e07307-packet-1",
+      "source_id": "m01-reassembly-25d527e07307",
+      "index": 0,
+      "timestamp_epoch": "1788762600.000000000",
+      "interface_id": 0,
+      "captured_length": 54,
+      "original_length": 54,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "203.0.113.10",
+      "src_port": 42000,
+      "dst_ip": "203.0.113.20",
+      "dst_port": 9100,
+      "tcp_seq_raw": 1000,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-reassembly-25d527e07307-packet-2",
+      "source_id": "m01-reassembly-25d527e07307",
+      "index": 1,
+      "timestamp_epoch": "1788762600.001000000",
+      "interface_id": 0,
+      "captured_length": 54,
+      "original_length": 54,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "203.0.113.20",
+      "src_port": 9100,
+      "dst_ip": "203.0.113.10",
+      "dst_port": 42000,
+      "tcp_seq_raw": 5000,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-reassembly-25d527e07307-packet-3",
+      "source_id": "m01-reassembly-25d527e07307",
+      "index": 2,
+      "timestamp_epoch": "1788762600.002000000",
+      "interface_id": 0,
+      "captured_length": 54,
+      "original_length": 54,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "203.0.113.10",
+      "src_port": 42000,
+      "dst_ip": "203.0.113.20",
+      "dst_port": 9100,
+      "tcp_seq_raw": 1001,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-reassembly-25d527e07307-packet-4",
+      "source_id": "m01-reassembly-25d527e07307",
+      "index": 3,
+      "timestamp_epoch": "1788762600.003000000",
+      "interface_id": 0,
+      "captured_length": 59,
+      "original_length": 59,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "203.0.113.10",
+      "src_port": 42000,
+      "dst_ip": "203.0.113.20",
+      "dst_port": 9100,
+      "tcp_seq_raw": 1001,
+      "tcp_payload_length": 5,
+      "payload_ref": "payloads/m01-reassembly-25d527e07307-packet-000004.bin",
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-reassembly-25d527e07307-packet-5",
+      "source_id": "m01-reassembly-25d527e07307",
+      "index": 4,
+      "timestamp_epoch": "1788762600.004000000",
+      "interface_id": 0,
+      "captured_length": 55,
+      "original_length": 55,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "203.0.113.10",
+      "src_port": 42000,
+      "dst_ip": "203.0.113.20",
+      "dst_port": 9100,
+      "tcp_seq_raw": 1012,
+      "tcp_payload_length": 1,
+      "payload_ref": "payloads/m01-reassembly-25d527e07307-packet-000005.bin",
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": true
+      }
+    },
+    {
+      "id": "m01-reassembly-25d527e07307-packet-6",
+      "source_id": "m01-reassembly-25d527e07307",
+      "index": 5,
+      "timestamp_epoch": "1788762600.005000000",
+      "interface_id": 0,
+      "captured_length": 60,
+      "original_length": 60,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "203.0.113.10",
+      "src_port": 42000,
+      "dst_ip": "203.0.113.20",
+      "dst_port": 9100,
+      "tcp_seq_raw": 1006,
+      "tcp_payload_length": 6,
+      "payload_ref": "payloads/m01-reassembly-25d527e07307-packet-000006.bin",
+      "analysis": {
+        "retransmission": true,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-reassembly-25d527e07307-packet-7",
+      "source_id": "m01-reassembly-25d527e07307",
+      "index": 6,
+      "timestamp_epoch": "1788762600.006000000",
+      "interface_id": 0,
+      "captured_length": 60,
+      "original_length": 60,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "203.0.113.10",
+      "src_port": 42000,
+      "dst_ip": "203.0.113.20",
+      "dst_port": 9100,
+      "tcp_seq_raw": 1006,
+      "tcp_payload_length": 6,
+      "payload_ref": "payloads/m01-reassembly-25d527e07307-packet-000007.bin",
+      "analysis": {
+        "retransmission": true,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-reassembly-25d527e07307-packet-8",
+      "source_id": "m01-reassembly-25d527e07307",
+      "index": 7,
+      "timestamp_epoch": "1788762600.007000000",
+      "interface_id": 0,
+      "captured_length": 57,
+      "original_length": 57,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "203.0.113.20",
+      "src_port": 9100,
+      "dst_ip": "203.0.113.10",
+      "dst_port": 42000,
+      "tcp_seq_raw": 5001,
+      "tcp_payload_length": 3,
+      "payload_ref": "payloads/m01-reassembly-25d527e07307-packet-000008.bin",
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    }
+  ],
+  "flows": [
+    {
+      "id": "m01-reassembly-25d527e07307-tcp-flow-0",
+      "source_id": "m01-reassembly-25d527e07307",
+      "transport": "tcp",
+      "tcp_stream": 0,
+      "node0": {
+        "ip": "203.0.113.10",
+        "port": 42000
+      },
+      "node1": {
+        "ip": "203.0.113.20",
+        "port": 9100
+      },
+      "packet_ids": [
+        "m01-reassembly-25d527e07307-packet-1",
+        "m01-reassembly-25d527e07307-packet-2",
+        "m01-reassembly-25d527e07307-packet-3",
+        "m01-reassembly-25d527e07307-packet-4",
+        "m01-reassembly-25d527e07307-packet-5",
+        "m01-reassembly-25d527e07307-packet-6",
+        "m01-reassembly-25d527e07307-packet-7",
+        "m01-reassembly-25d527e07307-packet-8"
+      ],
+      "first_timestamp_epoch": "1788762600.000000000",
+      "last_timestamp_epoch": "1788762600.007000000"
+    }
+  ],
+  "streams": [
+    {
+      "id": "m01-reassembly-25d527e07307-tcp-stream-0",
+      "source_id": "m01-reassembly-25d527e07307",
+      "flow_id": "m01-reassembly-25d527e07307-tcp-flow-0",
+      "tcp_stream": 0,
+      "node0": {
+        "ip": "203.0.113.10",
+        "port": 42000
+      },
+      "node1": {
+        "ip": "203.0.113.20",
+        "port": 9100
+      },
+      "packet_ids": [
+        "m01-reassembly-25d527e07307-packet-1",
+        "m01-reassembly-25d527e07307-packet-2",
+        "m01-reassembly-25d527e07307-packet-3",
+        "m01-reassembly-25d527e07307-packet-4",
+        "m01-reassembly-25d527e07307-packet-5",
+        "m01-reassembly-25d527e07307-packet-6",
+        "m01-reassembly-25d527e07307-packet-7",
+        "m01-reassembly-25d527e07307-packet-8"
+      ],
+      "directions": [
+        {
+          "direction": "node0_to_node1",
+          "length": 12,
+          "sha256": "bf96648169ba89c284b3e94108074c7d5e5806c7b9498031aceded5ca139ed69",
+          "artifact_ref": "streams/m01-reassembly-25d527e07307-tcp-0-node0_to_node1.bin"
+        },
+        {
+          "direction": "node1_to_node0",
+          "length": 3,
+          "sha256": "a2f1a6d79bfb0fe6d2fe2f0f08c2f32ce53cc935520e9d8a9f8daa051b4f239b",
+          "artifact_ref": "streams/m01-reassembly-25d527e07307-tcp-0-node1_to_node0.bin"
+        }
+      ],
+      "analysis": {
+        "retransmission_packets": 2,
+        "out_of_order_packets": 0,
+        "gap_or_loss_packets": 1,
+        "truncated_packets": 0
+      },
+      "reassembly_status": "complete"
+    }
+  ],
+  "warnings": [
+    "TShark did not populate frame.file_off; packet source offsets are null."
+  ]
+}

@@ -1,0 +1,11 @@
+# Local Python environments and caches
+**/.venv/
+**/__pycache__/
+*.py[cod]
+
+# Temporary render and scratch output
+tmp/
+
+# Third-party checkouts are pinned and documented separately
+third_party/*
+!third_party/.gitkeep

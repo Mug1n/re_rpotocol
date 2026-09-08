@@ -1,0 +1,51 @@
+{
+  "schema_version": "0.1",
+  "fixtures": {
+    "m01-raw.dat": {
+      "kind": "continuous_bytes",
+      "payload_hex": "48454c4c4f20574f524c44210a",
+      "network_metadata_available": false
+    },
+    "m01-raw.bin": {
+      "kind": "continuous_bytes",
+      "payload_hex": "42494e4152592d464958545552452d30310a",
+      "network_metadata_available": false
+    },
+    "m01-empty.dat": {
+      "kind": "continuous_bytes",
+      "payload_hex": "",
+      "expected_probe_reason": "empty_input",
+      "network_metadata_available": false
+    },
+    "m01-false-pcap.dat": {
+      "kind": "continuous_bytes",
+      "payload_hex": "d4c3b2a102000400",
+      "expected_probe_reason": "pcap_signature_but_global_header_truncated",
+      "network_metadata_available": false
+    },
+    "m01-false-pcapng.dat": {
+      "kind": "continuous_bytes",
+      "payload_hex": "0a0d0d0a000000001a2b3c4d4a554e4b",
+      "expected_probe_reason": "pcapng_signature_but_header_truncated",
+      "network_metadata_available": false
+    },
+    "m01-truncated-pcapng-header.dat": {
+      "kind": "continuous_bytes",
+      "payload_hex": "0a0d0d0a1c0000004d3c2b1a",
+      "expected_probe_reason": "pcapng_signature_but_header_truncated",
+      "network_metadata_available": false
+    },
+    "stream_a": {
+      "client_to_server_hex": "48454c4c4f20574f524c4421",
+      "server_to_client_hex": "41434b",
+      "client_segments": 3,
+      "server_segments": 1
+    },
+    "stream_b": {
+      "client_to_server_hex": "5345434f4e44",
+      "server_to_client_hex": "4f4b",
+      "client_segments": 1,
+      "server_segments": 1
+    }
+  }
+}

@@ -1,0 +1,66 @@
+TShark version: 4.6.6 (v4.6.6-0-g3a22c3ef473d)
+
+Generated fixtures:
+- m01-stream-a.pcapng: 4 packets, pcapng
+- m01-stream-b.pcap: 2 packets, pcap
+- m01-multi-flow.pcapng: 6 packets, 2 interfaces, 2 TCP streams
+- m01-truncated.pcapng: 6 packets, inferred capture length 50
+
+TShark multi-flow packet observations:
+1 interface=1 stream=0 seq=1 len=6 payload=5345434f4e44
+2 interface=0 stream=1 seq=1 len=5 payload=48454c4c4f
+3 interface=1 stream=0 seq=1 len=2 payload=4f4b
+4 interface=0 stream=1 seq=6 len=6 payload=20574f524c44
+5 interface=0 stream=1 seq=1 len=3 payload=41434b
+6 interface=0 stream=1 seq=12 len=1 payload=21
+
+Follow stream 0:
+client_to_server=5345434f4e44
+server_to_client=4f4b
+
+Follow stream 1:
+client_to_server=48454c4c4f20574f524c4421
+server_to_client=41434b
+
+Reassembly fixture:
+- capinfos verified actual file type pcapng after editcap conversion
+- frame 5: tcp.analysis.lost_segment=1
+- frames 6 and 7: tcp.analysis.retransmission=1
+- reconstructed client_to_server=48454c4c4f20574f524c4421
+- reconstructed server_to_client=41434b
+
+Truncated fixture:
+- all 6 packets: frame.cap_len=50, frame.len=60
+- tcp.len remained available
+- tcp.payload unavailable because capture ended before the payload
+
+Scapy 2.7.0:
+- pcap packet count=2
+- mixed pcapng packet count=6
+- all per-packet payload values matched ground truth
+
+PyShark 0.6:
+- mixed pcapng packet count=6
+- tcp.stream, tcp.len and tcp.payload matched direct TShark output
+
+dpkt 1.9.8:
+- pcap packet count and payload matched
+- single-interface pcapng timestamps matched
+- mixed-interface pcapng interface 1 timestamps were 1788762.557..., while TShark reported 1788762557...; factor-1000 error observed
+
+DAT-first content probe:
+- m01-raw.dat, header=48454c4c4f20574f524c4421 -> raw_bytes
+- m01-pcap-as-dat.dat, header=d4c3b2a10200040000000000 -> pcap; capinfos confirmed 2 packets
+- m01-pcapng-as-dat.dat, header=0a0d0d0afc0000004d3c2b1a -> pcapng; capinfos confirmed 4 packets
+
+False-magic and empty-input probe:
+- m01-empty.dat -> raw_bytes / empty_input; capinfos heuristically reported ERF with exit 0
+- m01-false-pcap.dat -> raw_bytes / pcap_signature_but_global_header_truncated; capinfos exit 2
+- m01-false-pcapng.dat -> raw_bytes / pcapng_signature_but_header_truncated; capinfos heuristically reported MIME with exit 0
+- m01-truncated-pcapng-header.dat -> raw_bytes / pcapng_signature_but_header_truncated; capinfos heuristically reported MIME with exit 0
+
+InputArtifact schema:
+- Draft 2020-12 schema passed jsonschema.check_schema
+- empty-dat.expected.json passed validation
+- pcap-as-dat.expected.json passed validation
+- raw-dat.expected.json passed validation

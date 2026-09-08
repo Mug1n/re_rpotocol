@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1",
+  "run_id": "20260907-m01-smoke",
+  "tools": {
+    "tshark": "4.6.6",
+    "scapy": "2.7.0",
+    "dpkt": "1.9.8",
+    "pyshark": "0.6"
+  },
+  "checks": {
+    "pcap_read": true,
+    "pcapng_read": true,
+    "multi_flow_count_expected": 2,
+    "multi_flow_count_observed": 2,
+    "normal_reassembly_exact": true,
+    "retransmission_duplicate_suppressed": true,
+    "gap_or_loss_signaled": true,
+    "truncation_traceable": true,
+    "raw_dat_supported_by_tshark": false,
+    "raw_bin_supported_by_tshark": false,
+    "dat_raw_content_probe_correct": true,
+    "dat_pcap_content_probe_correct": true,
+    "dat_pcapng_content_probe_correct": true,
+    "dat_capture_strict_open_correct": true,
+    "empty_dat_conservative_classification": true,
+    "false_pcap_magic_rejected": true,
+    "false_pcapng_magic_rejected": true,
+    "tool_exit_zero_treated_as_insufficient_evidence": true,
+    "input_artifact_schema_valid": true,
+    "expected_contract_examples_valid": 3,
+    "dpkt_mixed_interface_timestamp_exact": false,
+    "source_file_offset_available_from_tshark_field": false
+  },
+  "expected_streams": {
+    "stream_a_client_to_server_hex": "48454c4c4f20574f524c4421",
+    "stream_a_server_to_client_hex": "41434b",
+    "stream_b_client_to_server_hex": "5345434f4e44",
+    "stream_b_server_to_client_hex": "4f4b"
+  },
+  "observed_streams": {
+    "stream_a_client_to_server_hex": "48454c4c4f20574f524c4421",
+    "stream_a_server_to_client_hex": "41434b",
+    "stream_b_client_to_server_hex": "5345434f4e44",
+    "stream_b_server_to_client_hex": "4f4b"
+  }
+}

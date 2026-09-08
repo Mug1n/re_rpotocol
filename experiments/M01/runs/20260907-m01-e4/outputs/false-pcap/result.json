@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "m01-false-pcap-3208fb2a03cb",
+  "path": "data\\fixtures\\m01-false-pcap.dat",
+  "sha256": "3208fb2a03cb103c081a512558eeabb68412bcea9e57eec93c3bd294230d52af",
+  "length": 8,
+  "format": "raw_bytes",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-PCAP-GLOBAL-HEADER-TRUNCATED",
+      "observation": "PCAP-like signature rejected: global header truncated."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": false,
+    "network_headers": false,
+    "flow_identity": false,
+    "direction": false,
+    "timestamps": false
+  },
+  "status": "ok",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 8,
+      "artifact_ref": "payloads/m01-false-pcap-3208fb2a03cb.bin"
+    }
+  ],
+  "packets": [],
+  "flows": [],
+  "streams": [],
+  "warnings": [
+    "Capture-like prefix was preserved as raw bytes after validation failed."
+  ]
+}

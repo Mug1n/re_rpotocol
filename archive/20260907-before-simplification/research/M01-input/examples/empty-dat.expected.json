@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "id": "m01-empty-dat",
+  "path": "data/fixtures/m01-empty.dat",
+  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "length": 0,
+  "format": "raw_bytes",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-EMPTY",
+      "observation": "Input is zero-length; external format heuristics are not accepted."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": false,
+    "network_headers": false,
+    "flow_identity": false,
+    "direction": false,
+    "timestamps": false
+  },
+  "status": "empty",
+  "byte_ranges": [],
+  "packets": [],
+  "flows": [],
+  "streams": [],
+  "warnings": [
+    "Input contains no bytes."
+  ]
+}

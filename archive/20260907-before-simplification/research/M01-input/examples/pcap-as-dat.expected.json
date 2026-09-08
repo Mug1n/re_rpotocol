@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "m01-pcap-as-dat",
+  "path": "data/fixtures/m01-pcap-as-dat.dat",
+  "sha256": "0b65d51eff6117e1a4ad4c9111f9cef9ca6f48d43d13ed5848aec1334dc75e91",
+  "length": 176,
+  "format": "pcap",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-PCAP-VALIDATED",
+      "observation": "Magic d4c3b2a1, complete global header, version 2.4, and capinfos reports PCAP."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": true,
+    "network_headers": true,
+    "flow_identity": true,
+    "direction": true,
+    "timestamps": true
+  },
+  "status": "ok",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 176,
+      "artifact_ref": "data/fixtures/m01-pcap-as-dat.dat"
+    }
+  ],
+  "packets": [],
+  "flows": [],
+  "streams": [],
+  "warnings": [
+    "The .dat suffix conflicts with the validated PCAP content; content evidence takes precedence."
+  ]
+}

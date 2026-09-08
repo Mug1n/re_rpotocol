@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "m01-raw-dat",
+  "path": "data/fixtures/m01-raw.dat",
+  "sha256": "dae9bb3c36d9740225f197e361c56e9b6f783347ddf2fddc9d8abe0805b543f7",
+  "length": 13,
+  "format": "raw_bytes",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-NO-KNOWN-MAGIC",
+      "observation": "No validated capture/container signature; .dat suffix ignored."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": false,
+    "network_headers": false,
+    "flow_identity": false,
+    "direction": false,
+    "timestamps": false
+  },
+  "status": "ok",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 13,
+      "artifact_ref": "data/fixtures/m01-raw.dat"
+    }
+  ],
+  "packets": [],
+  "flows": [],
+  "streams": [],
+  "warnings": [
+    "File extension .dat does not define the internal format."
+  ]
+}

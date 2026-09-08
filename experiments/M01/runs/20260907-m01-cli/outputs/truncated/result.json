@@ -1,0 +1,285 @@
+{
+  "schema_version": "0.1",
+  "id": "m01-truncated-0fc6737ff5e8",
+  "path": "data\\fixtures\\m01-truncated.pcapng",
+  "sha256": "0fc6737ff5e80bf130ecaaa2716aa1e474e3044a5772204fd9f2a6ac286e16a8",
+  "length": 936,
+  "format": "pcapng",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-PCAPNG-VALIDATED",
+      "observation": "validated 1 pcapng section(s) and all block lengths; capinfos reports PCAPNG."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": true,
+    "network_headers": true,
+    "flow_identity": true,
+    "direction": true,
+    "timestamps": true
+  },
+  "status": "partial",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 936,
+      "artifact_ref": "data\\fixtures\\m01-truncated.pcapng"
+    }
+  ],
+  "packets": [
+    {
+      "id": "m01-truncated-0fc6737ff5e8-packet-1",
+      "source_id": "m01-truncated-0fc6737ff5e8",
+      "index": 0,
+      "timestamp_epoch": "1788762557.000001000",
+      "interface_id": 1,
+      "captured_length": 50,
+      "original_length": 60,
+      "truncated": true,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "198.51.100.10",
+      "src_port": 41000,
+      "dst_ip": "198.51.100.20",
+      "dst_port": 9001,
+      "tcp_seq_raw": 0,
+      "tcp_payload_length": 6,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-truncated-0fc6737ff5e8-packet-2",
+      "source_id": "m01-truncated-0fc6737ff5e8",
+      "index": 1,
+      "timestamp_epoch": "1788762557.000001000",
+      "interface_id": 0,
+      "captured_length": 50,
+      "original_length": 60,
+      "truncated": true,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 1,
+      "src_ip": "192.0.2.10",
+      "src_port": 40000,
+      "dst_ip": "192.0.2.20",
+      "dst_port": 9000,
+      "tcp_seq_raw": 0,
+      "tcp_payload_length": 5,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-truncated-0fc6737ff5e8-packet-3",
+      "source_id": "m01-truncated-0fc6737ff5e8",
+      "index": 2,
+      "timestamp_epoch": "1788762557.000002000",
+      "interface_id": 1,
+      "captured_length": 50,
+      "original_length": 60,
+      "truncated": true,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "198.51.100.20",
+      "src_port": 9001,
+      "dst_ip": "198.51.100.10",
+      "dst_port": 41000,
+      "tcp_seq_raw": 0,
+      "tcp_payload_length": 2,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-truncated-0fc6737ff5e8-packet-4",
+      "source_id": "m01-truncated-0fc6737ff5e8",
+      "index": 3,
+      "timestamp_epoch": "1788762557.000002000",
+      "interface_id": 0,
+      "captured_length": 50,
+      "original_length": 60,
+      "truncated": true,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 1,
+      "src_ip": "192.0.2.10",
+      "src_port": 40000,
+      "dst_ip": "192.0.2.20",
+      "dst_port": 9000,
+      "tcp_seq_raw": 5,
+      "tcp_payload_length": 6,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-truncated-0fc6737ff5e8-packet-5",
+      "source_id": "m01-truncated-0fc6737ff5e8",
+      "index": 4,
+      "timestamp_epoch": "1788762557.000003000",
+      "interface_id": 0,
+      "captured_length": 50,
+      "original_length": 60,
+      "truncated": true,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 1,
+      "src_ip": "192.0.2.20",
+      "src_port": 9000,
+      "dst_ip": "192.0.2.10",
+      "dst_port": 40000,
+      "tcp_seq_raw": 0,
+      "tcp_payload_length": 3,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "m01-truncated-0fc6737ff5e8-packet-6",
+      "source_id": "m01-truncated-0fc6737ff5e8",
+      "index": 5,
+      "timestamp_epoch": "1788762557.000004000",
+      "interface_id": 0,
+      "captured_length": 50,
+      "original_length": 60,
+      "truncated": true,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 1,
+      "src_ip": "192.0.2.10",
+      "src_port": 40000,
+      "dst_ip": "192.0.2.20",
+      "dst_port": 9000,
+      "tcp_seq_raw": 11,
+      "tcp_payload_length": 1,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    }
+  ],
+  "flows": [
+    {
+      "id": "m01-truncated-0fc6737ff5e8-tcp-flow-0",
+      "source_id": "m01-truncated-0fc6737ff5e8",
+      "transport": "tcp",
+      "tcp_stream": 0,
+      "node0": {
+        "ip": "198.51.100.10",
+        "port": 41000
+      },
+      "node1": {
+        "ip": "198.51.100.20",
+        "port": 9001
+      },
+      "packet_ids": [
+        "m01-truncated-0fc6737ff5e8-packet-1",
+        "m01-truncated-0fc6737ff5e8-packet-3"
+      ],
+      "first_timestamp_epoch": "1788762557.000001000",
+      "last_timestamp_epoch": "1788762557.000002000"
+    },
+    {
+      "id": "m01-truncated-0fc6737ff5e8-tcp-flow-1",
+      "source_id": "m01-truncated-0fc6737ff5e8",
+      "transport": "tcp",
+      "tcp_stream": 1,
+      "node0": {
+        "ip": "192.0.2.10",
+        "port": 40000
+      },
+      "node1": {
+        "ip": "192.0.2.20",
+        "port": 9000
+      },
+      "packet_ids": [
+        "m01-truncated-0fc6737ff5e8-packet-2",
+        "m01-truncated-0fc6737ff5e8-packet-4",
+        "m01-truncated-0fc6737ff5e8-packet-5",
+        "m01-truncated-0fc6737ff5e8-packet-6"
+      ],
+      "first_timestamp_epoch": "1788762557.000001000",
+      "last_timestamp_epoch": "1788762557.000004000"
+    }
+  ],
+  "streams": [
+    {
+      "id": "m01-truncated-0fc6737ff5e8-tcp-stream-0",
+      "source_id": "m01-truncated-0fc6737ff5e8",
+      "flow_id": "m01-truncated-0fc6737ff5e8-tcp-flow-0",
+      "tcp_stream": 0,
+      "node0": {
+        "ip": "198.51.100.10",
+        "port": 41000
+      },
+      "node1": {
+        "ip": "198.51.100.20",
+        "port": 9001
+      },
+      "packet_ids": [
+        "m01-truncated-0fc6737ff5e8-packet-1",
+        "m01-truncated-0fc6737ff5e8-packet-3"
+      ],
+      "directions": [],
+      "analysis": {
+        "retransmission_packets": 0,
+        "out_of_order_packets": 0,
+        "gap_or_loss_packets": 0,
+        "truncated_packets": 2
+      },
+      "reassembly_status": "partial"
+    },
+    {
+      "id": "m01-truncated-0fc6737ff5e8-tcp-stream-1",
+      "source_id": "m01-truncated-0fc6737ff5e8",
+      "flow_id": "m01-truncated-0fc6737ff5e8-tcp-flow-1",
+      "tcp_stream": 1,
+      "node0": {
+        "ip": "192.0.2.10",
+        "port": 40000
+      },
+      "node1": {
+        "ip": "192.0.2.20",
+        "port": 9000
+      },
+      "packet_ids": [
+        "m01-truncated-0fc6737ff5e8-packet-2",
+        "m01-truncated-0fc6737ff5e8-packet-4",
+        "m01-truncated-0fc6737ff5e8-packet-5",
+        "m01-truncated-0fc6737ff5e8-packet-6"
+      ],
+      "directions": [],
+      "analysis": {
+        "retransmission_packets": 0,
+        "out_of_order_packets": 0,
+        "gap_or_loss_packets": 0,
+        "truncated_packets": 4
+      },
+      "reassembly_status": "partial"
+    }
+  ],
+  "warnings": [
+    "One or more captured packets are shorter than their original length.",
+    "TShark did not populate frame.file_off; packet source offsets are null."
+  ]
+}

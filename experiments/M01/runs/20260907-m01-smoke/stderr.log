@@ -1,0 +1,16 @@
+Initial web search attempt:
+connection failed: error sending request
+Outcome: transient; retry succeeded.
+
+Initial pip install inside default sandbox:
+WinError 10013: an attempt was made to access a socket in a way forbidden by its access permissions.
+Outcome: rerun with approved external network access succeeded via https://mirrors.aliyun.com/pypi/simple/.
+
+TShark raw .dat:
+The file "data\fixtures\m01-raw.dat" isn't a capture file in a format TShark understands.
+exit_code=3
+
+TShark raw .bin:
+The file "data\fixtures\m01-raw.bin" isn't a capture file in a format TShark understands.
+exit_code=3
+
