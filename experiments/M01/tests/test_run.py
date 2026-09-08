@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -15,8 +16,9 @@ ROOT = Path(__file__).resolve().parents[3]
 MODULE_PATH = ROOT / "experiments" / "M01" / "run.py"
 FIXTURES = ROOT / "data" / "fixtures"
 SCHEMA_PATH = ROOT / "research" / "M01-input" / "input-artifact.schema.json"
-TSHARK = Path(r"C:\Program Files\Wireshark\tshark.exe")
-CAPINFOS = Path(r"C:\Program Files\Wireshark\capinfos.exe")
+WIRESHARK_HOME = Path(os.environ.get("WIRESHARK_HOME", r"C:\Program Files\Wireshark"))
+TSHARK = WIRESHARK_HOME / "tshark.exe"
+CAPINFOS = WIRESHARK_HOME / "capinfos.exe"
 
 
 def load_module():
@@ -60,11 +62,13 @@ class ProbeFormatTests(unittest.TestCase):
         self.assertEqual("raw_bytes", result.format)
         self.assertIn("HEADER-TRUNCATED", result.rule_id)
 
+    @unittest.skipUnless(CAPINFOS.exists(), "capinfos unavailable")
     def test_pcap_content_wins_over_dat_suffix(self):
         result = self.probe("m01-pcap-as-dat.dat")
         self.assertEqual("pcap", result.format)
         self.assertEqual("M01-FMT-PCAP-VALIDATED", result.rule_id)
 
+    @unittest.skipUnless(CAPINFOS.exists(), "capinfos unavailable")
     def test_pcapng_content_wins_over_dat_suffix(self):
         result = self.probe("m01-pcapng-as-dat.dat")
         self.assertEqual("pcapng", result.format)
@@ -189,3 +193,4 @@ class AnalyzeInputTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
