@@ -36,7 +36,7 @@ python -B -m unittest discover -s experiments\M06\tests -v
 python -B -m unittest discover -s experiments\tests -v
 ```
 
-当前环境共运行 58 项：54 项通过，M01 的 4 项抓包测试因未安装 Wireshark CLI 而明确跳过。M02～M06 的运行代码只依赖 Python 标准库；Schema 测试需要当前开发环境已有的 `jsonschema`。
+当前环境共运行 80 项并全部通过，其中 M01 的抓包测试和 M07 真实 TShark 4.6.6 冒烟均已执行。M02～M06 的运行代码只依赖 Python 标准库；M07 运行时依赖可选 TShark，M01/M04～M08/M12 的 Schema 测试需要当前开发环境已有的 `jsonschema`。
 
 ## 协作约定与已知限制
 
@@ -49,11 +49,11 @@ python -B -m unittest discover -s experiments\tests -v
 - 当前机器缺少 Wireshark/TShark，因此 M01 抓包路径尚未在本轮环境复测；不要把历史运行记录表述为当前复测结果。
 - 开始新模块前先读 `agent.md` 和 `research/progress.md`；修改模块接口时同步更新下游测试、Schema、根 README 和真实验证记录。
 
-## 建议分工入口
+## 当前开发分工与交接
 
-- M07：标准协议识别；需要恢复 Wireshark/TShark 后验证抓包路径。
-- M08：可见文本、编码与压缩恢复；必须区分编码、压缩和加密。
-- M09～M11：只有输入保留包边界、时间戳、方向和标签时才能进行相应流量与分类分析。
-- M12：只解释结构化证据，不替代解析器或捏造协议语义。
+- 开发者 A 已完成 M01 契约收紧、M07、M08、M12 的 A 线实现和两条 A 线集成测试；当前 TShark 4.6.6 真实冒烟成功。
+- 开发者 B 仍负责 M09～M11；只有输入保留包边界、时间戳、方向和标签时才能进行相应流量与分类分析。
+- M12 当前对 M01/M07/M08 使用细粒度适配器；M09～M11 的适配器必须等其 Schema 和 fixture 冻结后接入，不能提前猜字段。
+- 完整 U8 仍需开发者 B 审核行为与分类证据，并通过双线端到端测试；当前报告中的缺失模块会明确列入“无法判断”。
 
 合并本分支前，建议先运行上述全套测试，并重点审阅 `data/external/validation.md` 中公开样本与课程最终 DAT 的边界说明。
