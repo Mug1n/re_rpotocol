@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/schemas/m01-input-artifact.schema.json",
+  "title": "M1 InputArtifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "path",
+    "sha256",
+    "length",
+    "format",
+    "format_evidence",
+    "metadata_availability",
+    "status",
+    "byte_ranges",
+    "packets",
+    "flows",
+    "streams",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "id": {"type": "string", "minLength": 1},
+    "path": {"type": "string", "minLength": 1},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "length": {"type": "integer", "minimum": 0},
+    "format": {"enum": ["raw_bytes", "pcap", "pcapng", "unknown_container"]},
+    "format_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rule_id", "observation"],
+        "properties": {
+          "rule_id": {"type": "string", "minLength": 1},
+          "observation": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "metadata_availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["packet_boundaries", "network_headers", "flow_identity", "direction", "timestamps"],
+      "properties": {
+        "packet_boundaries": {"$ref": "#/$defs/availability"},
+        "network_headers": {"$ref": "#/$defs/availability"},
+        "flow_identity": {"$ref": "#/$defs/availability"},
+        "direction": {"$ref": "#/$defs/availability"},
+        "timestamps": {"$ref": "#/$defs/availability"}
+      }
+    },
+    "status": {"enum": ["ok", "empty", "partial", "invalid"]},
+    "byte_ranges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["start", "end", "artifact_ref"],
+        "properties": {
+          "start": {"type": "integer", "minimum": 0},
+          "end": {"type": "integer", "minimum": 0},
+          "artifact_ref": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "packets": {"type": "array", "items": {"type": "object"}},
+    "flows": {"type": "array", "items": {"type": "object"}},
+    "streams": {"type": "array", "items": {"type": "object"}},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "availability": {"enum": [true, false, "partial"]}
+  }
+}

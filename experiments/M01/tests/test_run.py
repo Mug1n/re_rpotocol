@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[3]
 MODULE_PATH = ROOT / "experiments" / "M01" / "run.py"
 FIXTURES = ROOT / "data" / "fixtures"
 SCHEMA_PATH = ROOT / "research" / "M01-input" / "input-artifact.schema.json"
+GROUND_TRUTH_PATH = ROOT / "data" / "ground-truth" / "m01-ground-truth.json"
 TSHARK = Path(r"C:\Program Files\Wireshark\tshark.exe")
 CAPINFOS = Path(r"C:\Program Files\Wireshark\capinfos.exe")
 
@@ -37,7 +38,7 @@ class ProbeFormatTests(unittest.TestCase):
     def probe(self, name: str):
         return self.module.probe_format(
             FIXTURES / name,
-            capinfos_path=CAPINFOS,
+            capinfos_path=CAPINFOS if CAPINFOS.exists() else None,
         )
 
     def test_raw_dat_is_not_promoted_to_capture(self):
@@ -69,6 +70,15 @@ class ProbeFormatTests(unittest.TestCase):
         result = self.probe("m01-pcapng-as-dat.dat")
         self.assertEqual("pcapng", result.format)
         self.assertEqual("M01-FMT-PCAPNG-VALIDATED", result.rule_id)
+
+    def test_raw_fixture_bytes_match_declared_ground_truth(self):
+        truth = json.loads(GROUND_TRUTH_PATH.read_text(encoding="utf-8"))["fixtures"]
+        for name in ("m01-raw.dat", "m01-raw.bin"):
+            with self.subTest(name=name):
+                self.assertEqual(
+                    bytes.fromhex(truth[name]["payload_hex"]),
+                    (FIXTURES / name).read_bytes(),
+                )
 
 
 class AnalyzeInputTests(unittest.TestCase):

@@ -98,8 +98,13 @@ def _capinfos_reports(
     path: Path,
     expected: str,
     capinfos_path: str | Path | None,
-) -> tuple[bool, str]:
-    tool = _find_tool(capinfos_path, "capinfos", WINDOWS_CAPINFOS)
+) -> tuple[bool | None, str]:
+    try:
+        tool = _find_tool(capinfos_path, "capinfos", WINDOWS_CAPINFOS)
+    except FileNotFoundError:
+        if capinfos_path is not None:
+            raise
+        return None, "capinfos is unavailable; internal structure validation only"
     completed = _run_tool([tool, "-t", path])
     output = f"{completed.stdout}\n{completed.stderr}".strip()
     if completed.returncode != 0:
@@ -226,17 +231,20 @@ def probe_format(
                 ("Capture-like prefix was preserved as raw bytes after validation failed.",),
             )
         reported, report = _capinfos_reports(source, "pcapng", capinfos_path)
-        if not reported:
+        if reported is False:
             return ProbeResult(
                 "raw_bytes",
                 "M01-FMT-PCAPNG-TOOL-MISMATCH",
                 f"PCAPNG structure passed but capinfos did not report PCAPNG: {report}",
                 ("Conflicting format evidence; input preserved as raw bytes.",),
             )
+        warnings = () if reported else (report,)
         return ProbeResult(
             "pcapng",
             "M01-FMT-PCAPNG-VALIDATED",
-            f"{detail}; capinfos reports PCAPNG.",
+            f"{detail}; "
+            + ("capinfos reports PCAPNG." if reported else report + "."),
+            warnings,
         )
     if magic in PCAP_MAGICS:
         endian, precision = PCAP_MAGICS[magic]
@@ -254,17 +262,20 @@ def probe_format(
                 ("Capture-like prefix was preserved as raw bytes after validation failed.",),
             )
         reported, report = _capinfos_reports(source, "pcap", capinfos_path)
-        if not reported:
+        if reported is False:
             return ProbeResult(
                 "raw_bytes",
                 "M01-FMT-PCAP-TOOL-MISMATCH",
                 f"PCAP structure passed but capinfos did not report PCAP: {report}",
                 ("Conflicting format evidence; input preserved as raw bytes.",),
             )
+        warnings = () if reported else (report,)
         return ProbeResult(
             "pcap",
             "M01-FMT-PCAP-VALIDATED",
-            f"{detail}; timestamp precision={precision}; capinfos reports PCAP.",
+            f"{detail}; timestamp precision={precision}; "
+            + ("capinfos reports PCAP." if reported else report + "."),
+            warnings,
         )
     return ProbeResult(
         "raw_bytes",

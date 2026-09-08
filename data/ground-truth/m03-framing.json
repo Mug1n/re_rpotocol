@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "description": "Synthetic binary stream with prefix noise, two adjacent frames, embedded magic, an invalid length candidate, one valid frame, and a truncated tail.",
+  "cases": {
+    "length_prefixed": {
+      "stream_hex": "9988cafe010003414243eecafe02000458cafe59eecafe0300ff0077cafe0400015aeecafe0500045152",
+      "parameters": {
+        "magic_hex": "cafe",
+        "length_offset": 3,
+        "length_width": 2,
+        "byteorder": "big",
+        "length_mode": "payload",
+        "header_size": 5,
+        "trailer_size": 1,
+        "max_frame_length": 32
+      },
+      "expected_messages": [[2, 11], [11, 21], [28, 35]],
+      "expected_unparsed": [[0, 2], [21, 28], [35, 42]],
+      "evaluation": {
+        "exclude_stream_outer_boundaries": true,
+        "expected_boundary_precision": 1.0,
+        "expected_boundary_recall": 1.0,
+        "expected_boundary_f1": 1.0,
+        "expected_complete_message_match_rate": 1.0
+      }
+    }
+  }
+}

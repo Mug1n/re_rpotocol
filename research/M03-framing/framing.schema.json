@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/schemas/m03-framing.schema.json",
+  "title": "M3 FramingResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source",
+    "status",
+    "rule",
+    "parameters",
+    "messages",
+    "unparsed_ranges",
+    "diagnostics",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "path", "sha256", "length"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "length": {"type": "integer", "minimum": 0}
+      }
+    },
+    "status": {"enum": ["complete", "partial", "unframed", "empty"]},
+    "rule": {"enum": ["length", "delimiter", "fixed"]},
+    "parameters": {"type": "object"},
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "stream_id",
+          "start",
+          "end",
+          "length",
+          "complete",
+          "framing_evidence",
+          "artifact_ref"
+        ],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "stream_id": {"type": "string", "minLength": 1},
+          "start": {"type": "integer", "minimum": 0},
+          "end": {"type": "integer", "minimum": 0},
+          "length": {"type": "integer", "minimum": 1},
+          "complete": {"const": true},
+          "framing_evidence": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+          "artifact_ref": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "unparsed_ranges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["start", "end", "length", "reason"],
+        "properties": {
+          "start": {"type": "integer", "minimum": 0},
+          "end": {"type": "integer", "minimum": 0},
+          "length": {"type": "integer", "minimum": 1},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "diagnostics": {"type": "array", "items": {"type": "object"}},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  }
+}

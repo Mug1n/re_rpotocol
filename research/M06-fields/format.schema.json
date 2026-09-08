@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/schemas/m06-format.schema.json",
+  "title": "M6 FormatInferenceResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source", "status", "parameters", "cluster_formats", "unaligned_messages", "metrics", "warnings"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alignments_path", "alignments_sha256", "stream_id", "message_count", "aligned_message_count"],
+      "properties": {
+        "alignments_path": {"type": "string", "minLength": 1},
+        "alignments_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "stream_id": {"type": ["string", "null"]},
+        "message_count": {"type": "integer", "minimum": 0},
+        "aligned_message_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "status": {"enum": ["ok", "empty"]},
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "min_cluster_samples", "min_presence_ratio", "length_widths", "min_relation_samples", "max_length_overhead"],
+      "properties": {
+        "method": {"const": "aligned_column_statistics"},
+        "min_cluster_samples": {"type": "integer", "minimum": 1},
+        "min_presence_ratio": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "length_widths": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": [1, 2, 4, 8]}},
+        "min_relation_samples": {"type": "integer", "minimum": 1},
+        "max_length_overhead": {"type": "integer", "minimum": 0}
+      }
+    },
+    "cluster_formats": {"type": "array", "items": {"$ref": "#/$defs/clusterFormat"}},
+    "unaligned_messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["message_id", "reason"],
+        "properties": {
+          "message_id": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["analyzed_cluster_count", "analyzed_message_count", "field_candidate_count", "boundary_candidate_count", "length_hypothesis_count"],
+      "properties": {
+        "analyzed_cluster_count": {"type": "integer", "minimum": 0},
+        "analyzed_message_count": {"type": "integer", "minimum": 0},
+        "field_candidate_count": {"type": "integer", "minimum": 0},
+        "boundary_candidate_count": {"type": "integer", "minimum": 0},
+        "length_hypothesis_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "columnStatistic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["column_index", "source_kind", "reference_offset", "insertion_anchor", "insertion_ordinal", "classification", "sample_count", "support_count", "gap_count", "presence_ratio", "distinct_value_count", "entropy_bits", "most_common_byte", "most_common_ratio"],
+      "properties": {
+        "column_index": {"type": "integer", "minimum": 0},
+        "source_kind": {"enum": ["reference", "insertion"]},
+        "reference_offset": {"type": ["integer", "null"], "minimum": 0},
+        "insertion_anchor": {"type": "integer", "minimum": 0},
+        "insertion_ordinal": {"type": ["integer", "null"], "minimum": 0},
+        "classification": {"enum": ["fixed", "variable", "optional_fixed", "optional_variable", "sparse", "insufficient_samples"]},
+        "sample_count": {"type": "integer", "minimum": 0},
+        "support_count": {"type": "integer", "minimum": 0},
+        "gap_count": {"type": "integer", "minimum": 0},
+        "presence_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "distinct_value_count": {"type": "integer", "minimum": 0},
+        "entropy_bits": {"type": "number", "minimum": 0, "maximum": 8},
+        "most_common_byte": {"type": ["integer", "null"], "minimum": 0, "maximum": 255},
+        "most_common_ratio": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+      }
+    },
+    "fieldCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field_id", "alignment_start", "alignment_end", "width_columns", "source_kind", "classification", "reference_offset_start", "reference_offset_end", "min_presence_ratio", "max_presence_ratio", "mean_entropy_bits", "max_entropy_bits"],
+      "properties": {
+        "field_id": {"type": "string", "pattern": "^field-[0-9]{4}$"},
+        "alignment_start": {"type": "integer", "minimum": 0},
+        "alignment_end": {"type": "integer", "minimum": 0},
+        "width_columns": {"type": "integer", "minimum": 1},
+        "source_kind": {"enum": ["reference", "insertion"]},
+        "classification": {"enum": ["fixed", "variable", "optional_fixed", "optional_variable", "sparse", "insufficient_samples"]},
+        "reference_offset_start": {"type": ["integer", "null"], "minimum": 0},
+        "reference_offset_end": {"type": ["integer", "null"], "minimum": 0},
+        "min_presence_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "max_presence_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "mean_entropy_bits": {"type": "number", "minimum": 0, "maximum": 8},
+        "max_entropy_bits": {"type": "number", "minimum": 0, "maximum": 8}
+      }
+    },
+    "boundaryCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alignment_column", "left_field_id", "right_field_id", "reasons", "entropy_jump_bits"],
+      "properties": {
+        "alignment_column": {"type": "integer", "minimum": 1},
+        "left_field_id": {"type": "string"},
+        "right_field_id": {"type": "string"},
+        "reasons": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["column_class_change", "reference_insertion_transition", "entropy_change"]}},
+        "entropy_jump_bits": {"type": "number", "minimum": 0, "maximum": 8}
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["message_id", "original_offset_start", "original_offset_end", "raw_hex", "decoded_value", "message_length"],
+      "properties": {
+        "message_id": {"type": "string", "minLength": 1},
+        "original_offset_start": {"type": "integer", "minimum": 0},
+        "original_offset_end": {"type": "integer", "minimum": 1},
+        "raw_hex": {"type": "string", "pattern": "^[0-9a-f]+$"},
+        "decoded_value": {"type": "integer", "minimum": 0},
+        "message_length": {"type": "integer", "minimum": 0}
+      }
+    },
+    "lengthHypothesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hypothesis_id", "alignment_start", "alignment_end", "width_bytes", "byteorder", "relation", "constant", "sample_count", "distinct_decoded_values", "exact_match_ratio", "observations"],
+      "properties": {
+        "hypothesis_id": {"type": "string", "pattern": "^length-[0-9]{4}$"},
+        "alignment_start": {"type": "integer", "minimum": 0},
+        "alignment_end": {"type": "integer", "minimum": 1},
+        "width_bytes": {"enum": [1, 2, 4, 8]},
+        "byteorder": {"enum": ["little", "big"]},
+        "relation": {"enum": ["message_length", "remaining_bytes_after_field", "message_length_minus_constant"]},
+        "constant": {"type": ["integer", "null"], "minimum": 0},
+        "sample_count": {"type": "integer", "minimum": 1},
+        "distinct_decoded_values": {"type": "integer", "minimum": 2},
+        "exact_match_ratio": {"const": 1.0},
+        "observations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/observation"}}
+      }
+    },
+    "clusterFormat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cluster_id", "message_count", "alignment_column_count", "column_statistics", "field_candidates", "boundary_candidates", "length_hypotheses"],
+      "properties": {
+        "cluster_id": {"type": "integer", "minimum": 0},
+        "message_count": {"type": "integer", "minimum": 1},
+        "alignment_column_count": {"type": "integer", "minimum": 0},
+        "column_statistics": {"type": "array", "items": {"$ref": "#/$defs/columnStatistic"}},
+        "field_candidates": {"type": "array", "items": {"$ref": "#/$defs/fieldCandidate"}},
+        "boundary_candidates": {"type": "array", "items": {"$ref": "#/$defs/boundaryCandidate"}},
+        "length_hypotheses": {"type": "array", "items": {"$ref": "#/$defs/lengthHypothesis"}}
+      }
+    }
+  }
+}

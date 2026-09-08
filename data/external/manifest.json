@@ -1,0 +1,64 @@
+{
+  "schema_version": "0.1",
+  "updated_at": "2026-09-08",
+  "artifacts": [
+    {
+      "dataset_id": "audiobeat-octapro-8-2-reverse",
+      "artifact_id": "audiobeat-dsp-m2-us002",
+      "path": "raw/audiobeat-octapro/dsp_m2.dat",
+      "source_repository": "https://github.com/nikakoy131/audiobeat-octapro-8-2-reverse",
+      "source_file_url": "https://github.com/nikakoy131/audiobeat-octapro-8-2-reverse/blob/9d06aeb2bf7cb9c4589f4968dafae3d32913448d/dsp_m2.dat",
+      "source_commit": "9d06aeb2bf7cb9c4589f4968dafae3d32913448d",
+      "retrieved_at": "2026-09-08",
+      "license": "MIT",
+      "license_file": "licenses/audiobeat-octapro-MIT.txt",
+      "sha256": "9a0ef3bbe8885449f8caf6e02e1fb243676eb7e1ebd14d845323a7e794a125ce",
+      "byte_size": 2387,
+      "container": "US002 binary preset",
+      "protocol": "Audiobeat OctaPro 8.2 / SP601 DSP preset and channel-block format",
+      "capture_scope": "Exported by the vendor application from a real device configuration",
+      "message_count": 10,
+      "message_count_basis": "US002 magic + ten 238-byte channel blocks + two-byte footer",
+      "timestamp_available": false,
+      "direction_available": false,
+      "ground_truth_source": [
+        "upstream docs/findings/DAT.md",
+        "upstream src/octapro/protocol/dat.py",
+        "upstream offline parser tests"
+      ],
+      "sensitive_content": "No personal identifiers observed; device tuning configuration only",
+      "allowed_use": "MIT-licensed educational and software use with license notice retained",
+      "derivation": null,
+      "parent_artifact_id": null
+    },
+    {
+      "dataset_id": "watchpat",
+      "artifact_id": "watchpat-testdata-15-packets",
+      "path": "raw/watchpat/testdata.dat",
+      "source_repository": "https://github.com/dakahler/watchpat",
+      "source_file_url": "https://github.com/dakahler/watchpat/blob/5f5b6dd1e06883d096b23fe51030d1ad86a86332/tests/testdata.dat",
+      "source_commit": "5f5b6dd1e06883d096b23fe51030d1ad86a86332",
+      "retrieved_at": "2026-09-08",
+      "license": "MIT",
+      "license_file": "licenses/watchpat-MIT.txt",
+      "sha256": "a3503a1b55c0cb67507bf28b552b2006f7ec8eb2f007c646723e3207c76426cc",
+      "byte_size": 8469,
+      "container": "Repeated four-byte little-endian length followed by a full proprietary packet",
+      "protocol": "WatchPAT ONE application packets transported over BLE Nordic UART Service",
+      "capture_scope": "Fifteen DATA_PACKET records published as the upstream parser test fixture",
+      "message_count": 15,
+      "message_count_basis": "All length-prefixed records parse exactly to end of file; upstream tests describe all 15 as DATA_PACKET",
+      "timestamp_available": "inside proprietary packet header",
+      "direction_available": "collection scope indicates device-to-client DATA_PACKET records; no per-record direction field",
+      "ground_truth_source": [
+        "upstream README protocol and DAT format",
+        "upstream tests/test_protocol.py",
+        "upstream watchpat_protocol.py CRC and record parser"
+      ],
+      "sensitive_content": "Physiological sensor values may originate from a person; no name, device serial number or BLE address was observed in the DAT record format",
+      "allowed_use": "Offline protocol-structure testing only; do not use for identity or clinical interpretation; retain MIT notice",
+      "derivation": null,
+      "parent_artifact_id": null
+    }
+  ]
+}

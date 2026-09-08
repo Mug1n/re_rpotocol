@@ -1,0 +1,11 @@
+# Network captures and binary-analysis fixtures must remain byte-for-byte stable.
+*.dat -text
+*.bin -text
+*.pcap -text
+*.pcapng -text
+
+# Source and documentation use repository-normalized LF line endings.
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
