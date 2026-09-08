@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import importlib.util
+import copy
+import hashlib
 import json
 import subprocess
 import sys
@@ -16,6 +18,7 @@ MODULE_PATH = ROOT / "experiments" / "M01" / "run.py"
 FIXTURES = ROOT / "data" / "fixtures"
 SCHEMA_PATH = ROOT / "research" / "M01-input" / "input-artifact.schema.json"
 GROUND_TRUTH_PATH = ROOT / "data" / "ground-truth" / "m01-ground-truth.json"
+CONTRACT_FIXTURES = ROOT / "experiments" / "tests" / "fixtures" / "contracts"
 TSHARK = Path(r"C:\Program Files\Wireshark\tshark.exe")
 CAPINFOS = Path(r"C:\Program Files\Wireshark\capinfos.exe")
 
@@ -195,6 +198,57 @@ class AnalyzeInputTests(unittest.TestCase):
                     capinfos_path=CAPINFOS,
                 )
             self.assertFalse(output_dir.exists())
+
+
+class InputArtifactContractTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+        cls.complete = json.loads(
+            (CONTRACT_FIXTURES / "m01-complete.json").read_text(encoding="utf-8")
+        )
+
+    def test_frozen_contract_fixtures_validate(self):
+        for name in ("m01-complete.json", "m01-partial.json", "m01-raw.json"):
+            with self.subTest(name=name):
+                artifact = json.loads(
+                    (CONTRACT_FIXTURES / name).read_text(encoding="utf-8")
+                )
+                jsonschema.validate(artifact, self.schema)
+
+    def test_packet_without_source_offset_reason_is_rejected(self):
+        artifact = copy.deepcopy(self.complete)
+        artifact["packets"][0]["source_offset_reason"] = None
+        artifact["packets"][0]["source_file_offset"] = None
+        with self.assertRaises(jsonschema.ValidationError):
+            jsonschema.validate(artifact, self.schema)
+
+    def test_unknown_packet_reference_is_rejected_semantically(self):
+        spec = importlib.util.spec_from_file_location(
+            "artifact_contracts", ROOT / "experiments" / "artifact_contracts.py"
+        )
+        self.assertIsNotNone(spec)
+        self.assertIsNotNone(spec.loader)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        artifact = copy.deepcopy(self.complete)
+        artifact["flows"][0]["packet_ids"].append("missing-packet")
+        with self.assertRaisesRegex(ValueError, "unknown packet"):
+            module.validate_m01_references(artifact)
+
+    def test_artifact_hash_mismatch_is_rejected(self):
+        spec = importlib.util.spec_from_file_location(
+            "artifact_contracts", ROOT / "experiments" / "artifact_contracts.py"
+        )
+        self.assertIsNotNone(spec)
+        self.assertIsNotNone(spec.loader)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        path = CONTRACT_FIXTURES / "m01-complete.json"
+        actual = hashlib.sha256(path.read_bytes()).hexdigest()
+        self.assertNotEqual("0" * 64, actual)
+        with self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
+            module.load_json_artifact(path, expected_sha256="0" * 64)
 
 
 if __name__ == "__main__":

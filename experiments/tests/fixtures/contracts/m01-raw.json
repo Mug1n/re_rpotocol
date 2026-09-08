@@ -1,0 +1,8 @@
+{
+  "schema_version": "0.1", "id": "fixture-raw", "path": "input.dat",
+  "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "length": 4,
+  "format": "raw_bytes", "format_evidence": [{"rule_id": "fixture", "observation": "no capture container"}],
+  "metadata_availability": {"packet_boundaries": false, "network_headers": false, "flow_identity": false, "direction": false, "timestamps": false},
+  "status": "ok", "byte_ranges": [{"start": 0, "end": 4, "artifact_ref": "payloads/input.bin"}],
+  "packets": [], "flows": [], "streams": [], "warnings": []
+}

@@ -66,12 +66,118 @@
         }
       }
     },
-    "packets": {"type": "array", "items": {"type": "object"}},
-    "flows": {"type": "array", "items": {"type": "object"}},
-    "streams": {"type": "array", "items": {"type": "object"}},
+    "packets": {"type": "array", "items": {"$ref": "#/$defs/packet"}},
+    "flows": {"type": "array", "items": {"$ref": "#/$defs/flow"}},
+    "streams": {"type": "array", "items": {"$ref": "#/$defs/stream"}},
     "warnings": {"type": "array", "items": {"type": "string"}}
   },
   "$defs": {
-    "availability": {"enum": [true, false, "partial"]}
+    "availability": {"enum": [true, false, "partial"]},
+    "nullableString": {"type": ["string", "null"]},
+    "nullableInteger": {"type": ["integer", "null"]},
+    "endpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ip", "port"],
+      "properties": {
+        "ip": {"$ref": "#/$defs/nullableString"},
+        "port": {"$ref": "#/$defs/nullableInteger"}
+      }
+    },
+    "packetAnalysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["retransmission", "out_of_order", "gap_or_loss"],
+      "properties": {
+        "retransmission": {"type": "boolean"},
+        "out_of_order": {"type": "boolean"},
+        "gap_or_loss": {"type": "boolean"}
+      }
+    },
+    "packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source_id", "index", "timestamp_epoch", "interface_id", "captured_length", "original_length", "truncated", "source_file_offset", "source_offset_reason", "tcp_stream", "src_ip", "src_port", "dst_ip", "dst_port", "tcp_seq_raw", "tcp_payload_length", "payload_ref", "analysis"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "source_id": {"type": "string", "minLength": 1},
+        "index": {"type": "integer", "minimum": 0},
+        "timestamp_epoch": {"$ref": "#/$defs/nullableString"},
+        "interface_id": {"$ref": "#/$defs/nullableInteger"},
+        "captured_length": {"type": ["integer", "null"], "minimum": 0},
+        "original_length": {"type": ["integer", "null"], "minimum": 0},
+        "truncated": {"type": "boolean"},
+        "source_file_offset": {"type": ["integer", "null"], "minimum": 0},
+        "source_offset_reason": {"type": ["string", "null"]},
+        "tcp_stream": {"type": ["integer", "null"], "minimum": 0},
+        "src_ip": {"$ref": "#/$defs/nullableString"},
+        "src_port": {"type": ["integer", "null"], "minimum": 0, "maximum": 65535},
+        "dst_ip": {"$ref": "#/$defs/nullableString"},
+        "dst_port": {"type": ["integer", "null"], "minimum": 0, "maximum": 65535},
+        "tcp_seq_raw": {"type": ["integer", "null"], "minimum": 0},
+        "tcp_payload_length": {"type": ["integer", "null"], "minimum": 0},
+        "payload_ref": {"type": ["string", "null"], "minLength": 1},
+        "analysis": {"$ref": "#/$defs/packetAnalysis"}
+      },
+      "allOf": [{
+        "if": {"properties": {"source_file_offset": {"type": "null"}}, "required": ["source_file_offset"]},
+        "then": {"properties": {"source_offset_reason": {"type": "string", "minLength": 1}}}
+      }]
+    },
+    "flow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source_id", "transport", "tcp_stream", "node0", "node1", "packet_ids", "first_timestamp_epoch", "last_timestamp_epoch"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "source_id": {"type": "string", "minLength": 1},
+        "transport": {"const": "tcp"},
+        "tcp_stream": {"type": "integer", "minimum": 0},
+        "node0": {"$ref": "#/$defs/endpoint"},
+        "node1": {"$ref": "#/$defs/endpoint"},
+        "packet_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "first_timestamp_epoch": {"$ref": "#/$defs/nullableString"},
+        "last_timestamp_epoch": {"$ref": "#/$defs/nullableString"}
+      }
+    },
+    "streamDirection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["direction", "length", "sha256", "artifact_ref"],
+      "properties": {
+        "direction": {"enum": ["node0_to_node1", "node1_to_node0"]},
+        "length": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "artifact_ref": {"type": "string", "minLength": 1}
+      }
+    },
+    "streamAnalysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["retransmission_packets", "out_of_order_packets", "gap_or_loss_packets", "truncated_packets"],
+      "properties": {
+        "retransmission_packets": {"type": "integer", "minimum": 0},
+        "out_of_order_packets": {"type": "integer", "minimum": 0},
+        "gap_or_loss_packets": {"type": "integer", "minimum": 0},
+        "truncated_packets": {"type": "integer", "minimum": 0}
+      }
+    },
+    "stream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source_id", "flow_id", "tcp_stream", "node0", "node1", "packet_ids", "directions", "analysis", "reassembly_status"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "source_id": {"type": "string", "minLength": 1},
+        "flow_id": {"type": "string", "minLength": 1},
+        "tcp_stream": {"type": "integer", "minimum": 0},
+        "node0": {"$ref": "#/$defs/endpoint"},
+        "node1": {"$ref": "#/$defs/endpoint"},
+        "packet_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "directions": {"type": "array", "maxItems": 2, "items": {"$ref": "#/$defs/streamDirection"}},
+        "analysis": {"$ref": "#/$defs/streamAnalysis"},
+        "reassembly_status": {"enum": ["complete", "partial"]}
+      }
+    }
   }
 }

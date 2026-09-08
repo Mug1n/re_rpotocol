@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1", "id": "fixture-partial", "path": "partial.pcapng",
+  "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "length": 32,
+  "format": "pcapng", "format_evidence": [{"rule_id": "fixture", "observation": "truncated packet fixture"}],
+  "metadata_availability": {"packet_boundaries": true, "network_headers": "partial", "flow_identity": "partial", "direction": "partial", "timestamps": true},
+  "status": "partial", "byte_ranges": [],
+  "packets": [{"id": "packet-1", "source_id": "fixture-partial", "index": 0, "timestamp_epoch": "1.0", "interface_id": null, "captured_length": 32, "original_length": 64, "truncated": true, "source_file_offset": null, "source_offset_reason": "offset unavailable", "tcp_stream": null, "src_ip": null, "src_port": null, "dst_ip": null, "dst_port": null, "tcp_seq_raw": null, "tcp_payload_length": null, "payload_ref": null, "analysis": {"retransmission": false, "out_of_order": false, "gap_or_loss": false}}],
+  "flows": [], "streams": [], "warnings": ["truncated fixture"]
+}

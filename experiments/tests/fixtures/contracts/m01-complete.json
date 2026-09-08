@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "fixture-capture",
+  "path": "capture.pcapng",
+  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "length": 64,
+  "format": "pcapng",
+  "format_evidence": [{"rule_id": "fixture", "observation": "validated capture fixture"}],
+  "metadata_availability": {"packet_boundaries": true, "network_headers": true, "flow_identity": true, "direction": true, "timestamps": true},
+  "status": "ok",
+  "byte_ranges": [],
+  "packets": [{
+    "id": "packet-1", "source_id": "fixture-capture", "index": 0,
+    "timestamp_epoch": "1.000000000", "interface_id": 0,
+    "captured_length": 64, "original_length": 64, "truncated": false,
+    "source_file_offset": 0, "source_offset_reason": null, "tcp_stream": 0,
+    "src_ip": "192.0.2.1", "src_port": 1234, "dst_ip": "192.0.2.2", "dst_port": 443,
+    "tcp_seq_raw": 1, "tcp_payload_length": 4, "payload_ref": "payloads/packet-1.bin",
+    "analysis": {"retransmission": false, "out_of_order": false, "gap_or_loss": false}
+  }],
+  "flows": [{
+    "id": "flow-0", "source_id": "fixture-capture", "transport": "tcp", "tcp_stream": 0,
+    "node0": {"ip": "192.0.2.1", "port": 1234}, "node1": {"ip": "192.0.2.2", "port": 443},
+    "packet_ids": ["packet-1"], "first_timestamp_epoch": "1.000000000", "last_timestamp_epoch": "1.000000000"
+  }],
+  "streams": [{
+    "id": "stream-0", "source_id": "fixture-capture", "flow_id": "flow-0", "tcp_stream": 0,
+    "node0": {"ip": "192.0.2.1", "port": 1234}, "node1": {"ip": "192.0.2.2", "port": 443},
+    "packet_ids": ["packet-1"],
+    "directions": [{"direction": "node0_to_node1", "length": 4, "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "artifact_ref": "streams/stream-0.bin"}],
+    "analysis": {"retransmission_packets": 0, "out_of_order_packets": 0, "gap_or_loss_packets": 0, "truncated_packets": 0},
+    "reassembly_status": "complete"
+  }],
+  "warnings": []
+}
