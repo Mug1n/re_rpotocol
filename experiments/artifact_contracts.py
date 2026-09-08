@@ -20,21 +20,30 @@ def sha256_file(path: str | Path) -> str:
 def load_json_artifact(
     path: str | Path, *, expected_sha256: str | None = None
 ) -> dict[str, Any]:
+    value, _ = load_json_artifact_with_sha256(path, expected_sha256=expected_sha256)
+    return value
+
+
+def load_json_artifact_with_sha256(
+    path: str | Path, *, expected_sha256: str | None = None
+) -> tuple[dict[str, Any], str]:
     source = Path(path)
-    if not source.is_file():
+    try:
+        raw = source.read_bytes()
+    except FileNotFoundError:
         raise FileNotFoundError(f"artifact does not exist: {source}")
-    actual_sha256 = sha256_file(source)
+    actual_sha256 = hashlib.sha256(raw).hexdigest()
     if expected_sha256 is not None and actual_sha256 != expected_sha256:
         raise ValueError(
             f"artifact SHA-256 mismatch: expected {expected_sha256}, got {actual_sha256}"
         )
     try:
-        value = json.loads(source.read_text(encoding="utf-8"))
+        value = json.loads(raw.decode("utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise ValueError(f"artifact is not valid UTF-8 JSON: {source}") from exc
     if not isinstance(value, dict):
         raise ValueError(f"artifact root must be an object: {source}")
-    return value
+    return value, actual_sha256
 
 
 def validate_m01_references(artifact: dict[str, Any]) -> None:

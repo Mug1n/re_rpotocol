@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import shutil
 import subprocess
@@ -142,7 +141,7 @@ def analyze_protocols(
         raise RuntimeError(f"tshark version check failed: {version_result.stderr.strip()}")
     result["tool"] = {"path": str(executable), "version": version_result.stdout.splitlines()[0].strip()}
     command = [str(executable), "-r", str(source), "-T", "json"]
-    for field in ("frame.number", "frame.protocols", "tcp.stream", *[item for fields in PROTOCOL_FIELDS.values() for item in fields]):
+    for field in ("frame.number", "frame.protocols", *[item for fields in PROTOCOL_FIELDS.values() for item in fields]):
         command.extend(["-e", field])
     for rule in normalized_decode_as:
         command.extend(["-d", rule])
@@ -171,11 +170,11 @@ def analyze_protocols(
             raise RuntimeError(f"tshark frame {frame_number} has no M01 packet reference")
         hierarchy = str(_first(layers, "frame.protocols") or "").split(":")
         for protocol in sorted(set(hierarchy) & PROTOCOL_FIELDS.keys()):
-            evidence = [
-                {"field": field, "value": str(_first(layers, field))}
-                for field in PROTOCOL_FIELDS[protocol]
-                if _first(layers, field) is not None
-            ]
+            evidence = []
+            for field in PROTOCOL_FIELDS[protocol]:
+                value = _first(layers, field)
+                if value is not None:
+                    evidence.append({"field": field, "value": str(value)})
             if not evidence:
                 continue
             encrypted = protocol in ("tls", "ssh")

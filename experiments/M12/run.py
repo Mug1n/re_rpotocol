@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from experiments.artifact_contracts import load_json_artifact, sha256_file
+from experiments.artifact_contracts import load_json_artifact_with_sha256, sha256_file
 
 
 SCHEMA_VERSION = "0.1"
@@ -74,21 +74,31 @@ def _verify_upstream_reference(input_path: Path, artifact: dict[str, Any]) -> No
         raise ValueError(f"upstream artifact SHA-256 mismatch: expected {expected}, got {actual}")
 
 
-def _source_ref(module: str, path: Path, artifact: dict[str, Any], record_id: str) -> dict[str, Any]:
+def _source_ref(context: dict[str, Any], record_id: str) -> dict[str, Any]:
     return {
-        "module": module,
-        "artifact_path": str(path),
-        "artifact_sha256": sha256_file(path),
+        "module": context["module"],
+        "artifact_path": str(context["path"]),
+        "artifact_sha256": context["artifact_sha256"],
         "record_id": record_id,
-        "schema_version": str(artifact.get("schema_version", "unknown")),
+        "schema_version": context["schema_version"],
     }
 
 
-def _record(module: str, path: Path, artifact: dict[str, Any], record_id: str, scope_type: str, scope_id: str, observation: str, method: str, limitations: list[str]) -> dict[str, Any]:
+def _record(
+    context: dict[str, Any],
+    *,
+    record_id: str,
+    scope_type: str,
+    scope_id: str,
+    observation: str,
+    method: str,
+    limitations: list[str],
+) -> dict[str, Any]:
+    module = context["module"]
     return {
         "evidence_id": _evidence_id(module, record_id, observation),
         "module": module,
-        "source_ref": _source_ref(module, path, artifact, record_id),
+        "source_ref": _source_ref(context, record_id),
         "scope": {"type": scope_type, "id": scope_id},
         "observation": observation,
         "method": method,
@@ -96,55 +106,57 @@ def _record(module: str, path: Path, artifact: dict[str, Any], record_id: str, s
     }
 
 
-def _adapt_m01(path: Path, artifact: dict[str, Any]) -> list[dict[str, Any]]:
+def _adapt_m01(context: dict[str, Any], artifact: dict[str, Any]) -> list[dict[str, Any]]:
     missing = sorted(key for key, value in artifact["metadata_availability"].items() if value is not True)
     limitations = list(artifact["warnings"])
     if missing:
         limitations.append("Unavailable or partial metadata: " + ", ".join(missing))
     observation = f"Input format={artifact['format']}, status={artifact['status']}, length={artifact['length']} bytes."
-    return [_record("M01", path, artifact, artifact["id"], "input", artifact["id"], observation, "M01 validated input artifact", limitations)]
+    return [_record(context, record_id=artifact["id"], scope_type="input", scope_id=artifact["id"], observation=observation, method="M01 validated input artifact", limitations=limitations)]
 
 
-def _adapt_m07(path: Path, artifact: dict[str, Any]) -> list[dict[str, Any]]:
+def _adapt_m07(context: dict[str, Any], artifact: dict[str, Any]) -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
     for item in artifact["observations"]:
         fields = ", ".join(f"{field['field']}={field['value']}" for field in item["field_evidence"])
         observation = f"Protocol {item['protocol']} observed with visibility={item['visibility']}; {fields}."
-        records.append(_record("M07", path, artifact, item["observation_id"], item["scope_type"], item["scope_id"], observation, item["recognition_mode"], list(item["limitations"])))
+        records.append(_record(context, record_id=item["observation_id"], scope_type=item["scope_type"], scope_id=item["scope_id"], observation=observation, method=item["recognition_mode"], limitations=list(item["limitations"])))
     for item in artifact["unknown_scopes"]:
         observation = f"Protocol could not be determined: {item['reason_code']}."
-        records.append(_record("M07", path, artifact, f"unknown-{item['scope_id']}-{item['reason_code']}", item["scope_type"], item["scope_id"], observation, "M07 explicit degradation", [item["reason_code"]]))
+        records.append(_record(context, record_id=f"unknown-{item['scope_id']}-{item['reason_code']}", scope_type=item["scope_type"], scope_id=item["scope_id"], observation=observation, method="M07 explicit degradation", limitations=[item["reason_code"]]))
     return records
 
 
-def _adapt_m08(path: Path, artifact: dict[str, Any]) -> list[dict[str, Any]]:
+def _adapt_m08(context: dict[str, Any], artifact: dict[str, Any]) -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
     for item in artifact["recoveries"]:
         operations = " -> ".join(step["operation"] for step in item["transformation_chain"])
         observation = f"Recovered {item['output']['length']} bytes via {operations}; completeness={item['completeness']}."
-        records.append(_record("M08", path, artifact, item["recovery_id"], "byte_range", item["recovery_id"], observation, item["basis"], list(item["evidence"])))
+        records.append(_record(context, record_id=item["recovery_id"], scope_type="byte_range", scope_id=item["recovery_id"], observation=observation, method=item["basis"], limitations=list(item["evidence"])))
     for item in artifact["skipped_sources"]:
         observation = f"Content recovery skipped: {item['reason_code']}."
-        records.append(_record("M08", path, artifact, f"skip-{item['reason_code']}", "source", item["source_ref"]["record_id"], observation, "M08 explicit degradation", [item["detail"]]))
+        records.append(_record(context, record_id=f"skip-{item['reason_code']}", scope_type="source", scope_id=item["source_ref"]["record_id"], observation=observation, method="M08 explicit degradation", limitations=[item["detail"]]))
     return records
 
 
-def _adapt_generic(module: str, path: Path, artifact: dict[str, Any]) -> list[dict[str, Any]]:
+def _adapt_generic(context: dict[str, Any], artifact: dict[str, Any]) -> list[dict[str, Any]]:
+    module = context["module"]
     status = str(artifact.get("status", "unknown"))
     warnings = [str(item) for item in artifact.get("warnings", [])]
     observation = f"{module} artifact status={status}."
-    record_id = str(artifact.get("id") or artifact.get("source", {}).get("record_id") or path.name)
-    return [_record(module, path, artifact, record_id, "artifact", record_id, observation, f"{module} validated artifact adapter", warnings)]
+    record_id = str(artifact.get("id") or artifact.get("source", {}).get("record_id") or context["path"].name)
+    return [_record(context, record_id=record_id, scope_type="artifact", scope_id=record_id, observation=observation, method=f"{module} validated artifact adapter", limitations=warnings)]
 
 
-def _normalize(module: str, path: Path, artifact: dict[str, Any]) -> list[dict[str, Any]]:
+def _normalize(context: dict[str, Any], artifact: dict[str, Any]) -> list[dict[str, Any]]:
+    module = context["module"]
     if module == "M01":
-        return _adapt_m01(path, artifact)
+        return _adapt_m01(context, artifact)
     if module == "M07":
-        return _adapt_m07(path, artifact)
+        return _adapt_m07(context, artifact)
     if module == "M08":
-        return _adapt_m08(path, artifact)
-    return _adapt_generic(module, path, artifact)
+        return _adapt_m08(context, artifact)
+    return _adapt_generic(context, artifact)
 
 
 def _render_report(evidence: list[dict[str, Any]], missing_modules: list[str], model_claims: list[dict[str, Any]]) -> tuple[str, dict[str, list[str]]]:
@@ -190,12 +202,12 @@ def build_report(inputs: Mapping[str, str | Path], output_dir: str | Path, *, ma
         schema_path = MODULE_SCHEMAS.get(module)
         if schema_path is None or not schema_path.is_file():
             raise ValueError(f"no installed schema for module {module}")
-        artifact = load_json_artifact(path)
+        artifact, artifact_sha = load_json_artifact_with_sha256(path)
         jsonschema.validate(artifact, json.loads(schema_path.read_text(encoding="utf-8")))
         _verify_upstream_reference(path, artifact)
-        artifact_sha = sha256_file(path)
+        context = {"module": module, "path": path, "artifact_sha256": artifact_sha, "schema_version": str(artifact.get("schema_version", "unknown"))}
         manifest_inputs.append({"module": module, "artifact_path": str(path), "artifact_sha256": artifact_sha, "schema_version": str(artifact.get("schema_version", "unknown")), "status": str(artifact.get("status", "unknown"))})
-        evidence.extend(_normalize(module, path, artifact))
+        evidence.extend(_normalize(context, artifact))
     deduplicated = {_canonical(item): item for item in evidence}
     all_evidence = sorted(deduplicated.values(), key=lambda item: item["evidence_id"])
     included = all_evidence[:max_evidence]

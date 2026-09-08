@@ -24,9 +24,6 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from experiments.artifact_contracts import sha256_file
-
-
 OUTPUT_SCHEMA = ROOT / "research" / "M08-recovery" / "recovery.schema.json"
 SCHEMA_VERSION = "0.1"
 HEX_PATTERN = re.compile(rb"(?:[0-9A-Fa-f]{2}\s*)+")
@@ -48,7 +45,7 @@ def _decompress_limited(data: bytes, *, wbits: int, max_output_bytes: int, max_r
     return output
 
 
-def _text_operation(data: bytes, min_printable_length: int) -> tuple[str, str] | None:
+def _text_operation(data: bytes, min_printable_length: int) -> str | None:
     candidates: list[tuple[str, str]] = []
     if data.startswith((b"\xff\xfe", b"\xfe\xff")):
         try:
@@ -62,7 +59,7 @@ def _text_operation(data: bytes, min_printable_length: int) -> tuple[str, str] |
     for operation, text in candidates:
         printable = sum(char.isprintable() or char in "\r\n\t" for char in text)
         if len(text) >= min_printable_length and printable == len(text):
-            return operation, text
+            return operation
     return None
 
 
@@ -94,14 +91,15 @@ def analyze_recovery(
     destination = Path(output_dir)
     if destination.exists():
         raise FileExistsError(f"output directory already exists: {destination}")
-    if not source.is_file():
-        raise FileNotFoundError(f"input does not exist: {source}")
     if max_depth < 0 or max_output_bytes <= 0 or max_inflation_ratio <= 0 or max_artifacts <= 0 or min_printable_length <= 0:
         raise ValueError("recovery limits must be positive and max_depth non-negative")
-    source_sha256 = sha256_file(source)
+    try:
+        data = source.read_bytes()
+    except FileNotFoundError:
+        raise FileNotFoundError(f"input does not exist: {source}")
+    source_sha256 = hashlib.sha256(data).hexdigest()
     if expected_sha256 is not None and source_sha256 != expected_sha256:
         raise ValueError(f"source SHA-256 mismatch: expected {expected_sha256}, got {source_sha256}")
-    data = source.read_bytes()
     source_ref = {
         "module": source_module,
         "artifact_path": str(source),
@@ -141,8 +139,7 @@ def analyze_recovery(
             current, chain, basis, depth = pending.popleft()
             text = _text_operation(current, min_printable_length)
             if text is not None:
-                operation, _ = text
-                candidates.append((current, chain + [_step(operation, current, current, "strict_decode")], basis, f"text/plain; charset={operation}"))
+                candidates.append((current, chain + [_step(text, current, current, "strict_decode")], basis, f"text/plain; charset={text}"))
             transforms: list[tuple[str, bytes, str]] = []
             compact = b"".join(current.split())
             if len(compact) >= 2 and len(compact) % 2 == 0 and HEX_PATTERN.fullmatch(current):
