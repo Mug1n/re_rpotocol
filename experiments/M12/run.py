@@ -5,12 +5,13 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import heapq
 import json
 import shutil
 import sys
 import tempfile
 from pathlib import Path
-from typing import Any, Callable, Mapping
+from typing import Any, Callable, Iterable, Iterator, Mapping
 
 import jsonschema
 
@@ -19,14 +20,20 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from experiments.artifact_contracts import load_json_artifact_with_sha256, sha256_file
+from experiments.artifact_contracts import load_json_artifact_with_sha256, sha256_file, validate_m01_references
 
 
 SCHEMA_VERSION = "0.1"
+DEFAULT_MAX_INPUT_BYTES = 16 * 1024 * 1024
+MODEL_DISABLED_WARNING = (
+    "Model explanation disabled for this release: no bounded semantic-support "
+    "validator is available; deterministic evidence only."
+)
 EVIDENCE_SCHEMA = ROOT / "research" / "M12-llm" / "evidence.schema.json"
 MANIFEST_SCHEMA = ROOT / "research" / "M12-llm" / "report-manifest.schema.json"
 MODULE_SCHEMAS = {
     "M01": ROOT / "research" / "M01-input" / "input-artifact.schema.json",
+    "M02": ROOT / "research" / "M02-features" / "features.schema.json",
     "M03": ROOT / "research" / "M03-framing" / "framing.schema.json",
     "M04": ROOT / "research" / "M04-clustering" / "clustering.schema.json",
     "M05": ROOT / "research" / "M05-alignment" / "alignment.schema.json",
@@ -58,20 +65,87 @@ def _resolve_reference(input_path: Path, reference: str) -> Path:
     return nearby if nearby.is_file() else Path.cwd() / path
 
 
-def _verify_upstream_reference(input_path: Path, artifact: dict[str, Any]) -> None:
-    source = artifact.get("source")
+def _load_bounded_json(path: Path, max_input_bytes: int) -> tuple[dict[str, Any], str]:
+    try:
+        size = path.stat().st_size
+    except FileNotFoundError:
+        raise FileNotFoundError(f"artifact does not exist: {path}")
+    if size > max_input_bytes:
+        raise ValueError(
+            f"artifact exceeds max_input_bytes ({size} > {max_input_bytes}): {path}"
+        )
+    return load_json_artifact_with_sha256(path)
+
+
+def _declared_references(module: str, artifact: dict[str, Any]) -> list[tuple[str, str]]:
+    source = artifact if module == "M01" else artifact.get("source")
     if not isinstance(source, dict):
+        raise ValueError(f"{module} artifact does not declare a source object")
+    fields = {
+        "M01": (("path", "sha256"),),
+        "M02": (("path", "sha256"),),
+        "M03": (("path", "sha256"),),
+        "M04": (("framing_path", "framing_sha256"),),
+        "M05": (("clusters_path", "clusters_sha256"), ("framing_path", "framing_sha256")),
+        "M06": (("alignments_path", "alignments_sha256"),),
+        "M07": (("artifact_path", "artifact_sha256"),),
+        "M08": (("artifact_path", "artifact_sha256"),),
+        "M09": (("artifact_path", "artifact_sha256"),),
+        "M10": (("artifact_path", "artifact_sha256"),),
+        "M11": (("artifact_path", "artifact_sha256"),),
+    }.get(module, ())
+    references: list[tuple[str, str]] = []
+    for path_field, hash_field in fields:
+        reference, expected = source.get(path_field), source.get(hash_field)
+        if not isinstance(reference, str) or not isinstance(expected, str):
+            raise ValueError(
+                f"{module} source reference requires {path_field}/{hash_field}"
+            )
+        references.append((reference, expected))
+    return references
+
+
+def _verify_upstream_references(
+    module: str,
+    input_path: Path,
+    artifact: dict[str, Any],
+    max_input_bytes: int,
+) -> None:
+    resolved_references: list[Path] = []
+    for reference, expected in _declared_references(module, artifact):
+        resolved = _resolve_reference(input_path, reference)
+        if not resolved.is_file():
+            raise FileNotFoundError(f"referenced upstream artifact does not exist: {resolved}")
+        actual = sha256_file(resolved)
+        if actual != expected:
+            raise ValueError(
+                f"upstream artifact SHA-256 mismatch: expected {expected}, got {actual}"
+            )
+        resolved_references.append(resolved)
+    if module != "M07":
         return
-    reference = source.get("artifact_path")
-    expected = source.get("artifact_sha256")
-    if not isinstance(reference, str) or not isinstance(expected, str):
-        return
-    resolved = _resolve_reference(input_path, reference)
-    if not resolved.is_file():
-        raise FileNotFoundError(f"referenced upstream artifact does not exist: {resolved}")
-    actual = sha256_file(resolved)
-    if actual != expected:
-        raise ValueError(f"upstream artifact SHA-256 mismatch: expected {expected}, got {actual}")
+    m01_path = resolved_references[0]
+    m01, _ = _load_bounded_json(m01_path, max_input_bytes)
+    m01_schema = json.loads(MODULE_SCHEMAS["M01"].read_text(encoding="utf-8"))
+    jsonschema.validate(m01, m01_schema)
+    validate_m01_references(m01)
+    _validate_m07_scopes(artifact, m01)
+
+
+def _validate_m07_scopes(artifact: dict[str, Any], m01: dict[str, Any]) -> None:
+    valid = {
+        "input": {m01["id"]},
+        "packet": {item["id"] for item in m01["packets"]},
+        "flow": {item["id"] for item in m01["flows"]},
+        "stream": {item["id"] for item in m01["streams"]},
+    }
+    for collection in ("observations", "unknown_scopes"):
+        for item in artifact[collection]:
+            scope_type, scope_id = item["scope_type"], item["scope_id"]
+            if scope_id not in valid[scope_type]:
+                raise ValueError(
+                    f"M07 {collection[:-1]} references unknown M01 {scope_type} scope {scope_id!r}"
+                )
 
 
 def _source_ref(context: dict[str, Any], record_id: str) -> dict[str, Any]:
@@ -106,57 +180,153 @@ def _record(
     }
 
 
-def _adapt_m01(context: dict[str, Any], artifact: dict[str, Any]) -> list[dict[str, Any]]:
+def _adapt_m01(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
     missing = sorted(key for key, value in artifact["metadata_availability"].items() if value is not True)
     limitations = list(artifact["warnings"])
     if missing:
         limitations.append("Unavailable or partial metadata: " + ", ".join(missing))
     observation = f"Input format={artifact['format']}, status={artifact['status']}, length={artifact['length']} bytes."
-    return [_record(context, record_id=artifact["id"], scope_type="input", scope_id=artifact["id"], observation=observation, method="M01 validated input artifact", limitations=limitations)]
+    yield _record(context, record_id=artifact["id"], scope_type="input", scope_id=artifact["id"], observation=observation, method="M01 validated input artifact", limitations=limitations)
 
 
-def _adapt_m07(context: dict[str, Any], artifact: dict[str, Any]) -> list[dict[str, Any]]:
-    records: list[dict[str, Any]] = []
+def _adapt_m02(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
+    features = artifact["global"]
+    observation = (
+        f"Byte features: length={features['length']}, entropy="
+        f"{features['entropy_bits_per_byte']} bits/byte, printable_ascii_ratio="
+        f"{features['printable_ascii_ratio']}, zero_ratio={features['zero_ratio']}."
+    )
+    yield _record(
+        context,
+        record_id=artifact["source"]["id"],
+        scope_type="input",
+        scope_id=artifact["source"]["id"],
+        observation=observation,
+        method="M02 deterministic byte features",
+        limitations=list(artifact["warnings"]),
+    )
+
+
+def _adapt_m07(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
     for item in artifact["observations"]:
         fields = ", ".join(f"{field['field']}={field['value']}" for field in item["field_evidence"])
         observation = f"Protocol {item['protocol']} observed with visibility={item['visibility']}; {fields}."
-        records.append(_record(context, record_id=item["observation_id"], scope_type=item["scope_type"], scope_id=item["scope_id"], observation=observation, method=item["recognition_mode"], limitations=list(item["limitations"])))
+        yield _record(context, record_id=item["observation_id"], scope_type=item["scope_type"], scope_id=item["scope_id"], observation=observation, method=item["recognition_mode"], limitations=list(item["limitations"]))
     for item in artifact["unknown_scopes"]:
         observation = f"Protocol could not be determined: {item['reason_code']}."
-        records.append(_record(context, record_id=f"unknown-{item['scope_id']}-{item['reason_code']}", scope_type=item["scope_type"], scope_id=item["scope_id"], observation=observation, method="M07 explicit degradation", limitations=[item["reason_code"]]))
-    return records
+        yield _record(context, record_id=f"unknown-{item['scope_id']}-{item['reason_code']}", scope_type=item["scope_type"], scope_id=item["scope_id"], observation=observation, method="M07 explicit degradation", limitations=[item["reason_code"]])
 
 
-def _adapt_m08(context: dict[str, Any], artifact: dict[str, Any]) -> list[dict[str, Any]]:
-    records: list[dict[str, Any]] = []
+def _adapt_m08(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
     for item in artifact["recoveries"]:
         operations = " -> ".join(step["operation"] for step in item["transformation_chain"])
         observation = f"Recovered {item['output']['length']} bytes via {operations}; completeness={item['completeness']}."
-        records.append(_record(context, record_id=item["recovery_id"], scope_type="byte_range", scope_id=item["recovery_id"], observation=observation, method=item["basis"], limitations=list(item["evidence"])))
+        yield _record(context, record_id=item["recovery_id"], scope_type="byte_range", scope_id=item["recovery_id"], observation=observation, method=item["basis"], limitations=list(item["evidence"]))
     for item in artifact["skipped_sources"]:
         observation = f"Content recovery skipped: {item['reason_code']}."
-        records.append(_record(context, record_id=f"skip-{item['reason_code']}", scope_type="source", scope_id=item["source_ref"]["record_id"], observation=observation, method="M08 explicit degradation", limitations=[item["detail"]]))
-    return records
+        yield _record(context, record_id=f"skip-{item['reason_code']}", scope_type="source", scope_id=item["source_ref"]["record_id"], observation=observation, method="M08 explicit degradation", limitations=[item["detail"]])
 
 
-def _adapt_generic(context: dict[str, Any], artifact: dict[str, Any]) -> list[dict[str, Any]]:
+def _adapt_m09(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
+    limitations_by_flow: dict[str, list[str]] = {}
+    for item in artifact.get("unavailable_features", []):
+        flow_id = str(item.get("flow_id"))
+        limitations_by_flow.setdefault(flow_id, []).append(
+            str(item.get("reason_code", item.get("feature", "feature unavailable")))
+        )
+    for flow in artifact["flows"]:
+        flow_id = str(flow["flow_id"])
+        observation = (
+            f"Flow {flow_id}: {flow['packet_count']} packets, {flow['byte_count']} bytes, "
+            f"duration={flow.get('duration_seconds')} seconds."
+        )
+        yield _record(context, record_id=flow_id, scope_type="flow", scope_id=flow_id, observation=observation, method="M09 deterministic flow features", limitations=limitations_by_flow.get(flow_id, []))
+
+
+def _adapt_m10(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
+    for item in artifact["observations"]:
+        behavior_id = str(item["behavior_id"])
+        observation = (
+            f"Traffic pattern {item['type']} observed for flow {item['flow_id']}; "
+            f"values={_canonical(item['observed_values'])}; thresholds={_canonical(item['thresholds'])}."
+        )
+        yield _record(context, record_id=behavior_id, scope_type="flow", scope_id=str(item["flow_id"]), observation=observation, method="M10 deterministic threshold rule", limitations=list(item["limitations"]))
+    for index, item in enumerate(artifact["insufficient_scopes"]):
+        flow_id = str(item.get("flow_id", "unknown"))
+        reason = str(item.get("reason_code", "insufficient evidence"))
+        yield _record(context, record_id=f"insufficient-{index}-{flow_id}", scope_type="flow", scope_id=flow_id, observation=f"Traffic-pattern rule could not be evaluated: {reason}.", method="M10 explicit degradation", limitations=[reason])
+
+
+def _adapt_m11(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
+    for index, item in enumerate(artifact["predictions"]):
+        scope_id = str(item.get("scope_id", f"prediction-{index}"))
+        label = str(item.get("predicted_label", "unknown"))
+        observation = (
+            f"Evaluation prediction for {scope_id}: label={label}, "
+            f"score={item.get('score')}, rejected={item.get('rejected')}."
+        )
+        yield _record(context, record_id=f"prediction-{index}-{scope_id}", scope_type="evaluation_scope", scope_id=scope_id, observation=observation, method="M11 grouped evaluation classifier", limitations=list(artifact["warnings"]))
+    if not artifact["predictions"]:
+        task = artifact["task"]
+        yield _record(context, record_id="classification-status", scope_type="artifact", scope_id=str(task["label_dimension"]), observation=f"Classification status={artifact['status']}; classes={', '.join(map(str, task['classes'])) or 'none'}.", method="M11 explicit classification boundary", limitations=list(artifact["warnings"]))
+
+
+def _adapt_generic(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
     module = context["module"]
     status = str(artifact.get("status", "unknown"))
     warnings = [str(item) for item in artifact.get("warnings", [])]
     observation = f"{module} artifact status={status}."
     record_id = str(artifact.get("id") or artifact.get("source", {}).get("record_id") or context["path"].name)
-    return [_record(context, record_id=record_id, scope_type="artifact", scope_id=record_id, observation=observation, method=f"{module} validated artifact adapter", limitations=warnings)]
+    yield _record(context, record_id=record_id, scope_type="artifact", scope_id=record_id, observation=observation, method=f"{module} validated artifact adapter", limitations=warnings)
 
 
-def _normalize(context: dict[str, Any], artifact: dict[str, Any]) -> list[dict[str, Any]]:
+def _normalize(context: dict[str, Any], artifact: dict[str, Any]) -> Iterable[dict[str, Any]]:
     module = context["module"]
     if module == "M01":
         return _adapt_m01(context, artifact)
+    if module == "M02":
+        return _adapt_m02(context, artifact)
     if module == "M07":
         return _adapt_m07(context, artifact)
     if module == "M08":
         return _adapt_m08(context, artifact)
+    if module == "M09":
+        return _adapt_m09(context, artifact)
+    if module == "M10":
+        return _adapt_m10(context, artifact)
+    if module == "M11":
+        return _adapt_m11(context, artifact)
     return _adapt_generic(context, artifact)
+
+
+def _retain_bounded(
+    selected: dict[str, dict[str, Any]],
+    largest_first: list[tuple[bytes, str]],
+    seen_ids: set[str],
+    records: Iterable[dict[str, Any]],
+    limit: int,
+) -> int:
+    omitted = 0
+    for item in records:
+        evidence_id = item["evidence_id"]
+        if evidence_id in seen_ids:
+            existing = selected.get(evidence_id)
+            if existing is not None and existing != item:
+                raise ValueError(f"conflicting normalized evidence ID: {evidence_id}")
+            continue
+        seen_ids.add(evidence_id)
+        reverse_key = bytes(255 - value for value in evidence_id.encode("ascii"))
+        if len(selected) < limit:
+            selected[evidence_id] = item
+            heapq.heappush(largest_first, (reverse_key, evidence_id))
+        elif evidence_id < largest_first[0][1]:
+            _, removed_id = heapq.heapreplace(largest_first, (reverse_key, evidence_id))
+            del selected[removed_id]
+            selected[evidence_id] = item
+            omitted += 1
+        else:
+            omitted += 1
+    return omitted
 
 
 def _render_report(evidence: list[dict[str, Any]], missing_modules: list[str], model_claims: list[dict[str, Any]]) -> tuple[str, dict[str, list[str]]]:
@@ -186,56 +356,47 @@ def _render_report(evidence: list[dict[str, Any]], missing_modules: list[str], m
     return report, sections
 
 
-def build_report(inputs: Mapping[str, str | Path], output_dir: str | Path, *, max_evidence: int = 500, model_adapter: ModelAdapter | None = None) -> dict[str, Any]:
+def build_report(inputs: Mapping[str, str | Path], output_dir: str | Path, *, max_evidence: int = 500, max_input_bytes: int = DEFAULT_MAX_INPUT_BYTES, model_adapter: ModelAdapter | None = None) -> dict[str, Any]:
     destination = Path(output_dir)
     if destination.exists():
         raise FileExistsError(f"output directory already exists: {destination}")
     if max_evidence <= 0:
         raise ValueError("max_evidence must be positive")
+    if max_input_bytes <= 0:
+        raise ValueError("max_input_bytes must be positive")
     normalized_inputs = {str(module).upper(): Path(path) for module, path in inputs.items()}
     if not normalized_inputs:
         raise ValueError("at least one input artifact is required")
-    evidence: list[dict[str, Any]] = []
+    selected: dict[str, dict[str, Any]] = {}
+    largest_first: list[tuple[bytes, str]] = []
+    seen_ids: set[str] = set()
+    omitted = 0
     manifest_inputs: list[dict[str, Any]] = []
     for module in sorted(normalized_inputs):
         path = normalized_inputs[module]
         schema_path = MODULE_SCHEMAS.get(module)
         if schema_path is None or not schema_path.is_file():
             raise ValueError(f"no installed schema for module {module}")
-        artifact, artifact_sha = load_json_artifact_with_sha256(path)
+        artifact, artifact_sha = _load_bounded_json(path, max_input_bytes)
         jsonschema.validate(artifact, json.loads(schema_path.read_text(encoding="utf-8")))
-        _verify_upstream_reference(path, artifact)
+        if module == "M01":
+            validate_m01_references(artifact)
+        _verify_upstream_references(module, path, artifact, max_input_bytes)
         context = {"module": module, "path": path, "artifact_sha256": artifact_sha, "schema_version": str(artifact.get("schema_version", "unknown"))}
         manifest_inputs.append({"module": module, "artifact_path": str(path), "artifact_sha256": artifact_sha, "schema_version": str(artifact.get("schema_version", "unknown")), "status": str(artifact.get("status", "unknown"))})
-        evidence.extend(_normalize(context, artifact))
-    deduplicated = {_canonical(item): item for item in evidence}
-    all_evidence = sorted(deduplicated.values(), key=lambda item: item["evidence_id"])
-    included = all_evidence[:max_evidence]
-    omitted = len(all_evidence) - len(included)
+        omitted += _retain_bounded(selected, largest_first, seen_ids, _normalize(context, artifact), max_evidence)
+    included = [selected[key] for key in sorted(selected)]
     evidence_schema = json.loads(EVIDENCE_SCHEMA.read_text(encoding="utf-8"))
+    evidence_validator = jsonschema.Draft202012Validator(evidence_schema)
     for item in included:
-        jsonschema.validate(item, evidence_schema)
+        evidence_validator.validate(item)
 
     warnings: list[str] = []
     if omitted:
         warnings.append(f"Evidence truncated deterministically: omitted {omitted} records.")
     model_claims: list[dict[str, Any]] = []
     if model_adapter is not None:
-        try:
-            candidate = model_adapter(included)
-            valid_ids = {item["evidence_id"] for item in included}
-            if not isinstance(candidate, list):
-                raise ValueError("model response root must be a list")
-            for claim in candidate:
-                if not isinstance(claim, dict) or not isinstance(claim.get("text"), str) or not claim["text"].strip():
-                    raise ValueError("model claim is malformed")
-                references = claim.get("evidence_ids")
-                if not isinstance(references, list) or not references or any(item not in valid_ids for item in references):
-                    raise ValueError("model claim contains an unsupported evidence reference")
-                model_claims.append({"text": claim["text"].strip(), "evidence_ids": sorted(set(references))})
-        except Exception as exc:
-            warnings.append(f"Model explanation skipped: {type(exc).__name__}: {exc}")
-            model_claims = []
+        warnings.append(MODEL_DISABLED_WARNING)
     missing_modules = sorted(set(EXPECTED_MODULES) - set(normalized_inputs))
     report, sections = _render_report(included, missing_modules, model_claims)
     report_bytes = report.encode("utf-8")
@@ -268,6 +429,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--input", action="append", required=True, metavar="MODULE=PATH")
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--max-evidence", type=int, default=500)
+    parser.add_argument("--max-input-bytes", type=int, default=DEFAULT_MAX_INPUT_BYTES)
     return parser
 
 
@@ -282,7 +444,7 @@ def main(argv: list[str] | None = None) -> int:
             if module.upper() in inputs:
                 raise ValueError(f"duplicate module input: {module.upper()}")
             inputs[module.upper()] = Path(path)
-        build_report(inputs, args.output_dir, max_evidence=args.max_evidence)
+        build_report(inputs, args.output_dir, max_evidence=args.max_evidence, max_input_bytes=args.max_input_bytes)
     except (FileNotFoundError, FileExistsError, ValueError, jsonschema.ValidationError) as exc:
         print(f"m12: {exc}", file=sys.stderr)
         return 2

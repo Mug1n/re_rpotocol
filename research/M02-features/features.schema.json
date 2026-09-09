@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/schemas/m02-features.schema.json",
+  "title": "M02 Deterministic Byte Features",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source", "status", "parameters", "global", "windows", "warnings"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "path", "sha256", "range"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "range": {"$ref": "#/$defs/range"}
+      }
+    },
+    "status": {"enum": ["ok", "empty"]},
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entropy_log_base", "printable_ascii_range", "ascii_whitespace_bytes", "window_size", "window_step", "tail_window", "top_n", "ngram_sizes", "pattern_limit", "pattern_offset_limit", "ngram_counting"],
+      "properties": {
+        "entropy_log_base": {"const": 2},
+        "printable_ascii_range": {"const": [32, 126]},
+        "ascii_whitespace_bytes": {"const": [9, 10, 13]},
+        "window_size": {"type": "integer", "minimum": 1},
+        "window_step": {"type": "integer", "minimum": 1},
+        "tail_window": {"const": "include_short_tail"},
+        "top_n": {"type": "integer", "minimum": 0},
+        "ngram_sizes": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 1}},
+        "pattern_limit": {"type": "integer", "minimum": 0},
+        "pattern_offset_limit": {"type": "integer", "minimum": 0},
+        "ngram_counting": {"const": "overlapping"}
+      }
+    },
+    "global": {
+      "allOf": [
+        {"$ref": "#/$defs/summary"},
+        {
+          "type": "object",
+          "required": ["top_bytes", "prefix_preview_hex", "repeated_patterns"],
+          "properties": {
+            "top_bytes": {"type": "array", "items": {"$ref": "#/$defs/topByte"}},
+            "prefix_preview_hex": {"type": "string", "pattern": "^[0-9a-f]*$"},
+            "repeated_patterns": {"type": "array", "items": {"$ref": "#/$defs/pattern"}}
+          }
+        }
+      ]
+    },
+    "windows": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {"$ref": "#/$defs/summary"},
+          {
+            "type": "object",
+            "required": ["start", "end"],
+            "properties": {
+              "start": {"type": "integer", "minimum": 0},
+              "end": {"type": "integer", "minimum": 1}
+            }
+          }
+        ]
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {"start": {"type": "integer", "minimum": 0}, "end": {"type": "integer", "minimum": 0}}
+    },
+    "summary": {
+      "type": "object",
+      "required": ["length", "byte_counts", "byte_frequencies", "entropy_bits_per_byte", "printable_ascii_ratio", "ascii_whitespace_ratio", "zero_ratio"],
+      "properties": {
+        "length": {"type": "integer", "minimum": 0},
+        "byte_counts": {"type": "array", "minItems": 256, "maxItems": 256, "items": {"type": "integer", "minimum": 0}},
+        "byte_frequencies": {"type": "array", "minItems": 256, "maxItems": 256, "items": {"type": "number", "minimum": 0, "maximum": 1}},
+        "entropy_bits_per_byte": {"type": ["number", "null"], "minimum": 0, "maximum": 8},
+        "printable_ascii_ratio": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "ascii_whitespace_ratio": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "zero_ratio": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+      }
+    },
+    "topByte": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["byte", "hex", "count", "frequency"],
+      "properties": {
+        "byte": {"type": "integer", "minimum": 0, "maximum": 255},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{2}$"},
+        "count": {"type": "integer", "minimum": 1},
+        "frequency": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}
+      }
+    },
+    "pattern": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["size", "hex", "count", "offsets", "offsets_truncated"],
+      "properties": {
+        "size": {"type": "integer", "minimum": 1},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]+$"},
+        "count": {"type": "integer", "minimum": 2},
+        "offsets": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+        "offsets_truncated": {"type": "boolean"}
+      }
+    }
+  }
+}
