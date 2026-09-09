@@ -1,6 +1,6 @@
 # 测试数据调研与建议
 
-状态：第一轮候选检索完成。检索日期：2026-09-08；已获取并用 M01～M03 验证两个小型真实 DAT，其他较大候选尚未下载。
+状态：第二轮小型测试包已落库。检索日期：2026-09-09；除两个真实 DAT 外，已新增 21 个来自 NetPlier、BinaryInferno 和 Wireshark 的固定版本样例，清单及本机验证见 `../data/external/test-samples-manifest.json` 和 `../data/external/test-samples-validation.md`。大型行为数据集尚未下载。
 
 ## 已获取的小型真实 DAT（2026-09-08）
 
@@ -10,6 +10,14 @@
 2. WatchPAT ONE 的 `testdata.dat`：上游 BLE 客户端仓库发布的 8469 字节、15 条长度前缀 DATA_PACKET 测试抓取，含应用包头、时间戳、记录和 CRC。它包含生理传感器值，故仅用于离线协议测试，不作身份或医学分析。
 
 二者均来自 MIT 许可仓库并保留许可证原文。后续测试必须读取原始文件，不直接修改；如需截断、拼接或改后缀，写入 `data/derived/` 并登记父哈希和变换参数。
+
+## 已获取的公共协议测试包（2026-09-09）
+
+- NetPlier NDSS 2021：9 个论文使用的 100-message 抓包，覆盖 DHCP、DNP3、ICMP、Modbus、NTP、SMB/SMB2、TFTP 和 ZeroAccess。
+- BinaryInferno NDSS 2023：6 个各 100 条 Hex 消息的子集，覆盖 BGP、MAVLink、Mirai、教程自定义格式及两组随机负例。
+- Wireshark 4.6.0：6 个官方回归抓包，覆盖 DHCP、非标准端口 DNS、HTTP Brotli、Protocol Buffers、DTN BPv7/TCPCLv4 和签名 OPC UA。
+
+总计 21 个文件、912979 字节。15 个抓包均已通过 M01/TShark 解析，600 条 BinaryInferno 消息均通过 Hex 格式检查。恶意流量仅作离线解析，禁止回放。
 
 实际验证见 `data/external/validation.md`：Audiobeat 样本按公开格式切出 10 个 238 字节通道块；WatchPAT 样本按小端长度字段完整切出 15 条记录。两者的消息和未解析区间均逐字节覆盖整个源文件。
 
@@ -112,10 +120,10 @@ derivation, parent_artifact_id, split_group
 
 在不下载大数据集的前提下，下一轮可先完成：
 
-1. 建立 `data/external/manifest.json` 的正式 schema；
-2. 获取并校验 NetPlier 9 个小型 PCAP、BinaryInferno 的 100-message 子集和上述 Wireshark 精选文件；
-3. 用 TShark 与协议规范生成第一版机器可读真值；
-4. 从这些原始文件生成成对 DAT/截断/裸流样本；
-5. 再根据磁盘预算和 M9～M11 的开发进度决定是否获取 VNAT 中型或完整版本。
+1. 为 `data/external/manifest.json` 和 `test-samples-manifest.json` 建立正式 schema；
+2. 用固定 TShark 版本与协议规范生成第一版字段和消息边界真值；
+3. 从已落库原始文件生成成对 DAT、截断和裸流样本；
+4. 将小型样例纳入 M01～M10 的分层回归，而不是强行用一个样例覆盖全部模块；
+5. 再根据磁盘预算决定是否获取 VNAT 8.6 MB 特征集，用于 M11 数据加载和分组评估。
 
 下载前需要先核实每个来源的再分发条款；不能仅凭代码仓库许可证推定其中所有第三方抓包也采用同一许可证。

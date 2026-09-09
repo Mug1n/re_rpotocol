@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1",
+  "updated_at": "2026-09-09",
+  "total_byte_size": 912979,
+  "datasets": [
+    {
+      "dataset_id": "netplier-ndss2021",
+      "category": "protocol-reverse-engineering-paper",
+      "source_repository": "https://github.com/yapengye/NetPlier",
+      "source_commit": "78abbe67606c76fcd9bfec17667c662dce58f567",
+      "paper": "https://www.ndss-symposium.org/ndss-paper/netplier-probabilistic-network-protocol-reverse-engineering-from-message-traces/",
+      "license": "GPL-3.0 repository; upstream trace provenance is listed in the source data README",
+      "license_file": "licenses/netplier-GPL-3.0.txt",
+      "allowed_use": "Offline educational analysis only; retain provenance and do not replay captures",
+      "files": [
+        {"artifact_id": "netplier-dhcp-100", "path": "raw/netplier-ndss2021/dhcp_100.pcap", "protocol": "DHCP", "byte_size": 36659, "sha256": "29423c20f7066a94971aa2a45dbfea361abf2d88a04edc799ba8a92179d556f1", "observed_format": "pcap", "m01_packet_count": 100},
+        {"artifact_id": "netplier-dnp3-100", "path": "raw/netplier-ndss2021/dnp3_100.pcap", "protocol": "DNP3", "byte_size": 15836, "sha256": "71d28bb382463296d7b95a1a82ea8f943914935ec0159c9a8e9b9ee86ccd8bd5", "observed_format": "pcapng", "m01_packet_count": 114},
+        {"artifact_id": "netplier-icmp-100", "path": "raw/netplier-ndss2021/icmp_100.pcap", "protocol": "ICMP", "byte_size": 13864, "sha256": "bb831038880d0ef6bab6138469a4f398c795731d87092f44cccc9db43768ea54", "observed_format": "pcapng", "m01_packet_count": 100},
+        {"artifact_id": "netplier-modbus-100", "path": "raw/netplier-ndss2021/modbus_100.pcap", "protocol": "Modbus/TCP", "byte_size": 12780, "sha256": "82ac992001577d48e52f57be751977b0ef48c0a56b3d4d6820c7f9edf1c19390", "observed_format": "pcapng", "m01_packet_count": 100},
+        {"artifact_id": "netplier-ntp-100", "path": "raw/netplier-ndss2021/ntp_100.pcap", "protocol": "NTP", "byte_size": 13044, "sha256": "bc82a5cc53b392e402dc598251331bd071c4e96d030bb2a6e786acc2415509f9", "observed_format": "pcapng", "m01_packet_count": 100},
+        {"artifact_id": "netplier-smb-100", "path": "raw/netplier-ndss2021/smb_100.pcap", "protocol": "SMB", "byte_size": 24412, "sha256": "97f914ddaebe58bd7ca98594f612e9e29d3352519ab623c926ee7b3f5206fb39", "observed_format": "pcapng", "m01_packet_count": 100},
+        {"artifact_id": "netplier-smb2-100", "path": "raw/netplier-ndss2021/smb2_100.pcap", "protocol": "SMB2", "byte_size": 25700, "sha256": "594f81e2aa19a75c6842caf0a66be3dcbc61f4894166a37c5d5e66e20b4d7f13", "observed_format": "pcapng", "m01_packet_count": 100},
+        {"artifact_id": "netplier-tftp-100", "path": "raw/netplier-ndss2021/tftp_100.pcap", "protocol": "TFTP", "byte_size": 74460, "sha256": "209823f0b9b57463972c8f482ebc92e47167413692c43e39864e735480ba935d", "observed_format": "pcapng", "m01_packet_count": 100},
+        {"artifact_id": "netplier-zeroaccess-100", "path": "raw/netplier-ndss2021/zeroaccess_100.pcap", "protocol": "ZeroAccess malware traffic", "byte_size": 27500, "sha256": "acb51ed0ddf35fb5645ab02e69983c6571c615dba41de0374ad655c8bf09ccab", "observed_format": "pcapng", "m01_packet_count": 100, "sensitive_content": "Malware traffic; never replay or contact captured endpoints"}
+      ]
+    },
+    {
+      "dataset_id": "binaryinferno-ndss2023",
+      "category": "binary-format-reverse-engineering-paper",
+      "source_repository": "https://github.com/binaryinferno/binaryinferno",
+      "source_commit": "cb42a63ada74737c10d01e2c22f4502ba3983976",
+      "paper": "https://www.ndss-symposium.org/ndss-paper/binaryinferno-a-semantic-driven-approach-to-field-inference-for-binary-message-formats/",
+      "license": "GPL-3.0",
+      "license_file": "licenses/binaryinferno-GPL-3.0.txt",
+      "allowed_use": "Offline educational analysis with license notice retained",
+      "sample_format": "One hexadecimal message per non-empty line",
+      "files": [
+        {"artifact_id": "binaryinferno-bgp-100", "path": "raw/binaryinferno-ndss2023/bgp.txt.input", "protocol": "BGP", "message_count": 100, "decoded_byte_size": 2898, "byte_size": 5996, "sha256": "133842e100bedfc086a8b81c6dd0bde326552233d56390df624799011ab036bf"},
+        {"artifact_id": "binaryinferno-mavlink-100", "path": "raw/binaryinferno-ndss2023/mavlink.txt.input", "protocol": "MAVLink", "message_count": 100, "decoded_byte_size": 3757, "byte_size": 7714, "sha256": "c4caca78303589608e15a7b28308467e66dcbf23591eeaa39614b5fb188b0a98"},
+        {"artifact_id": "binaryinferno-mirai-100", "path": "raw/binaryinferno-ndss2023/mirai.txt.input", "protocol": "Mirai malware traffic", "message_count": 100, "decoded_byte_size": 3899, "byte_size": 7998, "sha256": "0f2ed55e6417ae9f54386fad6762fb4208948f0cc63cb56cf797980a60979741", "sensitive_content": "Malware-derived messages; never execute or replay"},
+        {"artifact_id": "binaryinferno-tutorial-100", "path": "raw/binaryinferno-ndss2023/tutorial.txt.input", "protocol": "BinaryInferno tutorial/custom format", "message_count": 100, "decoded_byte_size": 3798, "byte_size": 7796, "sha256": "64be59905eb59294830c1e4112261dc1bfa5282f8e25b76310968e304852bec9"},
+        {"artifact_id": "binaryinferno-random-variable-100", "path": "raw/binaryinferno-ndss2023/random.txt.input", "protocol": "Random variable-length negative control", "message_count": 100, "decoded_byte_size": 3445, "byte_size": 7090, "sha256": "06baacbf79711ad094312c33abda1d8b5021e59bde726602cad89a875aed2aed"},
+        {"artifact_id": "binaryinferno-random-fixed-100", "path": "raw/binaryinferno-ndss2023/randomfixed.txt.input", "protocol": "Random fixed-length negative control", "message_count": 100, "decoded_byte_size": 12800, "byte_size": 25800, "sha256": "90852571e95302e373effe8197a19046df6fda1349fbfb800399843baba246b8"}
+      ]
+    },
+    {
+      "dataset_id": "wireshark-v4.6.0-captures",
+      "category": "official-dissector-regression-captures",
+      "source_repository": "https://gitlab.com/wireshark/wireshark",
+      "source_ref": "v4.6.0",
+      "source_commit": "cdfb6721e77c19d43f4787f66e9d5f2525281a22",
+      "license": "GPL-2.0-or-later repository; individual capture provenance may differ",
+      "license_file": "licenses/wireshark-GPL-2.0-or-later.txt",
+      "allowed_use": "Offline regression testing; preserve per-file provenance and do not replay",
+      "files": [
+        {"artifact_id": "wireshark-dhcp-pcapng", "path": "raw/wireshark-v4.6.0/dhcp.pcapng", "protocol": "DHCP", "byte_size": 1508, "sha256": "e47f667c226a3f74ae033e488243399d1e31819c23b5ebe05d4b8377155a1666", "observed_format": "pcapng", "m01_packet_count": 4},
+        {"artifact_id": "wireshark-dns-nonstandard-port", "path": "raw/wireshark-v4.6.0/dns_port.pcap", "protocol": "DNS on non-standard port", "byte_size": 1318, "sha256": "78c3c00e4cb155118468e540a6151ca222fa50edd626daf1582d25e3d79626a1", "observed_format": "pcap", "m01_packet_count": 4},
+        {"artifact_id": "wireshark-http-brotli", "path": "raw/wireshark-v4.6.0/http-brotli.pcapng", "protocol": "HTTP with Brotli content encoding", "byte_size": 1840, "sha256": "dc3957f2348adc8f148cd776bef9e4bc2b3d062edc1b2aedc7c2a2b92b60b055", "observed_format": "pcapng", "m01_packet_count": 10},
+        {"artifact_id": "wireshark-protobuf-default-value", "path": "raw/wireshark-v4.6.0/protobuf_test_default_value.pcapng", "protocol": "Protocol Buffers test protocol", "byte_size": 476, "sha256": "9d195357f92735532ac3cae439373316450d070f6454977c209d95725b818533", "observed_format": "pcapng", "m01_packet_count": 1},
+        {"artifact_id": "wireshark-dtn-bpv7-tcpclv4", "path": "raw/wireshark-v4.6.0/dtn_tcpclv4_bpv7_transfer.pcapng", "protocol": "Delay-Tolerant Networking BPv7 over TCPCLv4", "byte_size": 3960, "sha256": "84bc311ead8bcaa77d63cf30f5bb9b4f7292ef3a8b8c51623e69faaae20bc664", "observed_format": "pcapng", "m01_packet_count": 29},
+        {"artifact_id": "wireshark-opcua-signed", "path": "raw/wireshark-v4.6.0/opcua-signed.pcapng", "protocol": "OPC UA signed messages", "byte_size": 597228, "sha256": "a2aaa4a74040dd079de4358131864725f01634bf53477f1a23485f6a0acfc7d2", "observed_format": "pcapng", "m01_packet_count": 98}
+      ]
+    }
+  ]
+}

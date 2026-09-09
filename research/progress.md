@@ -23,11 +23,13 @@
 
 测试数据调研见 [test-data.md](test-data.md)。已获取两个小型真实 DAT：Audiobeat OctaPro 8.2 的 US002 设备预设，以及 WatchPAT ONE 的 15 条长度前缀 BLE DATA_PACKET 抓取；固定来源提交、许可、哈希和限制见 `data/external/manifest.json`。更大公开数据仍按需获取，不以其结果替代课程最终验证。
 
+公共测试包已新增 21 个小型样例：NetPlier 9 个论文抓包、BinaryInferno 6 个 Hex 消息/负例集、Wireshark 4.6.0 的 6 个官方回归抓包。全部固定来源提交、许可、大小和 SHA-256；15 个抓包已通过 M01/TShark 解析，600 条 Hex 消息已通过格式检查。详见 `data/external/test-samples-manifest.json` 与 `data/external/test-samples-validation.md`。
+
 两个真实 DAT 已通过 M01～M06 离线验证，结果见 `data/external/validation.md`。Audiobeat 样本切出 10 个固定通道块并显式保留 Magic/footer；WatchPAT 样本按长度字段切出 15 条记录且无剩余；二者均实现源字节 100% 覆盖，并从 M05 对齐单元无损重建全部已对齐消息。M06 对 Audiobeat 未伪造长度关系，对 WatchPAT 复现了偏移 0 的 `u32le` payload length。
 
 已核对课程 PDF 第 5 页的技术探索性题目：要求围绕未知二进制比特流开展特征、识别、对齐、明文提取及访问行为分析，并最终用 DAT 做协议识别和还原分析。此处记录最终课程要求，不将最终测试提前到本次选型阶段；当前模块划分以根目录 agent.md 为准。
 
-开发进展：开发者 A 已完成共享 M01 契约、M07、M08、M12，并合并开发者 B 的 M09～M11。集成覆盖包括 M01→M07→M12、裸字节 M01→M08→M12、M01→M09→M10→M12 和 M11→M12；当前机器的 TShark 4.6.6 冒烟成功。M01～M12 与集成套件合计 118 项测试全部通过。
+开发进展：开发者 A 已完成共享 M01 契约、M07、M08、M12，并合并开发者 B 的 M09～M11。集成覆盖包括 M01→M07→M12、裸字节 M01→M08→M12、M01→M09→M10→M12 和 M11→M12；当前机器的 TShark 4.6.6 冒烟成功。加入公共样例完整性测试后，M01～M12 与集成套件合计 121 项测试全部通过。
 
 必要的下一步：取得课程真实 DAT，确认封装、包/消息边界、时间戳、方向和标签，并在这些真实条件下复核 M07～M11。公开、合成和契约数据可以验证工程边界，但不能替代最终 DAT 的协议还原和分类效果结论。
 

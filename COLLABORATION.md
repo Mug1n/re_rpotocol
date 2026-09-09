@@ -24,6 +24,7 @@ M01 输入识别与预处理
 - `data/external/raw/watchpat/testdata.dat`：8469 字节、15 条长度前缀 BLE 记录。M03 使用 `[u32le payload_length][payload]` 完整切分；M06 在 15 条记录中复现偏移 0 的 4 字节小端 payload-length 关系，并观察到偏移 20 的重复长度候选。
 - 数据来源提交、SHA-256、许可和使用限制记录在 `data/external/manifest.json`；许可副本随仓库保存。WatchPAT 样本涉及生理数据研究场景，不应尝试识别或传播个人身份信息。
 - 完整参数、指标和限制见 `data/external/validation.md`。聚类编号、对齐一致率和统计字段候选都不是协议语义真值。
+- 新增 21 个小型公共协议样例，来源于固定提交的 NetPlier、BinaryInferno 和 Wireshark；清单见 `data/external/test-samples-manifest.json`，本机验证见 `data/external/test-samples-validation.md`。ZeroAccess/Mirai 只允许离线解析，禁止回放。
 
 ## 复测
 
@@ -45,7 +46,7 @@ python -B -m unittest discover -s experiments\M12\tests -v
 python -B -m unittest discover -s experiments\tests -v
 ```
 
-当前环境共运行 118 项并全部通过，其中包含 M09～M11 模块测试和双线跨模块集成；M01 抓包路径与 M07 真实 TShark 4.6.6 冒烟也已执行。M02～M06 的运行代码只依赖 Python 标准库；M07 运行时依赖可选 TShark，M11 成功训练路径依赖可选 scikit-learn，Schema 测试依赖当前开发环境已有的 `jsonschema`。
+当前环境共运行 121 项并全部通过，其中包含新增公共样例的哈希、格式和 Hex 消息完整性测试、M09～M11 模块测试及双线跨模块集成；M01 抓包路径与 M07 真实 TShark 4.6.6 冒烟也已执行。M02～M06 的运行代码只依赖 Python 标准库；M07 运行时依赖可选 TShark，M11 成功训练路径依赖可选 scikit-learn，Schema 测试依赖当前开发环境已有的 `jsonschema`。
 
 ## 协作约定与已知限制
 
