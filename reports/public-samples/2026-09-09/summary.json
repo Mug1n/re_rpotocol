@@ -1,0 +1,1983 @@
+{
+  "generated_at": "2026-09-09",
+  "results": [
+    {
+      "artifact_id": "netplier-dhcp-100",
+      "protocol": "DHCP",
+      "category": "protocol-reverse-engineering-paper",
+      "dataset_id": "netplier-ndss2021",
+      "input_path": "raw/netplier-ndss2021/dhcp_100.pcap",
+      "input_sha256": "29423c20f7066a94971aa2a45dbfea361abf2d88a04edc799ba8a92179d556f1",
+      "input_size": 36659,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcap; packets=100, flows=0, streams=0",
+          "metrics": {
+            "format": "pcap",
+            "packet_count": 100,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=2.8983727120479634; printable=0.12234376278676451; zero=0.693608663629668",
+          "metrics": {
+            "length": 36659,
+            "entropy_bits_per_byte": 2.8983727120479634,
+            "printable_ascii_ratio": 0.12234376278676451,
+            "zero_ratio": 0.693608663629668
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "no reassembled TCP direction was available",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "empty",
+          "detail": "flows=0; packets=0; unavailable=0",
+          "metrics": {
+            "flow_count": 0,
+            "packet_count": 0,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "empty",
+          "detail": "observations=0; patterns=none",
+          "metrics": {
+            "flow_count": 0,
+            "observation_count": 0,
+            "patterns": [],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=3; report_status=partial",
+          "metrics": {
+            "evidence_count": 3,
+            "input_module_count": 5
+          }
+        }
+      },
+      "highlights": [],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "netplier-dnp3-100",
+      "protocol": "DNP3",
+      "category": "protocol-reverse-engineering-paper",
+      "dataset_id": "netplier-ndss2021",
+      "input_path": "raw/netplier-ndss2021/dnp3_100.pcap",
+      "input_sha256": "71d28bb382463296d7b95a1a82ea8f943914935ec0159c9a8e9b9ee86ccd8bd5",
+      "input_size": 15836,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=114, flows=4, streams=4",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 114,
+            "flow_count": 4,
+            "stream_count": 4,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=5.290671227398412; printable=0.2481687294771407; zero=0.34996211164435465",
+          "metrics": {
+            "length": 15836,
+            "entropy_bits_per_byte": 5.290671227398412,
+            "printable_ascii_ratio": 0.2481687294771407,
+            "zero_ratio": 0.34996211164435465
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "no_recoverable_content",
+          "detail": "largest TCP direction=885 bytes; recoveries=0; skipped=0",
+          "metrics": {
+            "input_length": 885,
+            "recovery_count": 0,
+            "skipped_count": 0
+          }
+        },
+        "M09": {
+          "status": "ok",
+          "detail": "flows=4; packets=114; unavailable=0",
+          "metrics": {
+            "flow_count": 4,
+            "packet_count": 114,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "ok",
+          "detail": "observations=4; patterns=bursty_transfer",
+          "metrics": {
+            "flow_count": 4,
+            "observation_count": 4,
+            "patterns": [
+              "bursty_transfer"
+            ],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=11; report_status=partial",
+          "metrics": {
+            "evidence_count": 11,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Traffic patterns (not application labels): bursty_transfer"
+      ],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "netplier-icmp-100",
+      "protocol": "ICMP",
+      "category": "protocol-reverse-engineering-paper",
+      "dataset_id": "netplier-ndss2021",
+      "input_path": "raw/netplier-ndss2021/icmp_100.pcap",
+      "input_sha256": "bb831038880d0ef6bab6138469a4f398c795731d87092f44cccc9db43768ea54",
+      "input_size": 13864,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=100, flows=16, streams=16",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 100,
+            "flow_count": 16,
+            "stream_count": 16,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=5.32335470098346; printable=0.2013127524523947; zero=0.33698788228505483",
+          "metrics": {
+            "length": 13864,
+            "entropy_bits_per_byte": 5.32335470098346,
+            "printable_ascii_ratio": 0.2013127524523947,
+            "zero_ratio": 0.33698788228505483
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "no reassembled TCP direction was available",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "ok",
+          "detail": "flows=16; packets=96; unavailable=0",
+          "metrics": {
+            "flow_count": 16,
+            "packet_count": 96,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "ok",
+          "detail": "observations=28; patterns=bursty_transfer, direction_dominance",
+          "metrics": {
+            "flow_count": 16,
+            "observation_count": 28,
+            "patterns": [
+              "bursty_transfer",
+              "direction_dominance"
+            ],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=47; report_status=partial",
+          "metrics": {
+            "evidence_count": 47,
+            "input_module_count": 5
+          }
+        }
+      },
+      "highlights": [
+        "Traffic patterns (not application labels): bursty_transfer, direction_dominance"
+      ],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "netplier-modbus-100",
+      "protocol": "Modbus/TCP",
+      "category": "protocol-reverse-engineering-paper",
+      "dataset_id": "netplier-ndss2021",
+      "input_path": "raw/netplier-ndss2021/modbus_100.pcap",
+      "input_sha256": "82ac992001577d48e52f57be751977b0ef48c0a56b3d4d6820c7f9edf1c19390",
+      "input_size": 12780,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=100, flows=13, streams=13",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 100,
+            "flow_count": 13,
+            "stream_count": 13,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=4.803059972800901; printable=0.22887323943661972; zero=0.43716744913928013",
+          "metrics": {
+            "length": 12780,
+            "entropy_bits_per_byte": 4.803059972800901,
+            "printable_ascii_ratio": 0.22887323943661972,
+            "zero_ratio": 0.43716744913928013
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "no_recoverable_content",
+          "detail": "largest TCP direction=391 bytes; recoveries=0; skipped=0",
+          "metrics": {
+            "input_length": 391,
+            "recovery_count": 0,
+            "skipped_count": 0
+          }
+        },
+        "M09": {
+          "status": "ok",
+          "detail": "flows=13; packets=100; unavailable=0",
+          "metrics": {
+            "flow_count": 13,
+            "packet_count": 100,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "ok",
+          "detail": "observations=13; patterns=bursty_transfer, direction_dominance",
+          "metrics": {
+            "flow_count": 13,
+            "observation_count": 13,
+            "patterns": [
+              "bursty_transfer",
+              "direction_dominance"
+            ],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=29; report_status=partial",
+          "metrics": {
+            "evidence_count": 29,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Traffic patterns (not application labels): bursty_transfer, direction_dominance"
+      ],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "netplier-ntp-100",
+      "protocol": "NTP",
+      "category": "protocol-reverse-engineering-paper",
+      "dataset_id": "netplier-ndss2021",
+      "input_path": "raw/netplier-ndss2021/ntp_100.pcap",
+      "input_sha256": "bc82a5cc53b392e402dc598251331bd071c4e96d030bb2a6e786acc2415509f9",
+      "input_size": 13044,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=100, flows=0, streams=0",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 100,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=5.48018259194838; printable=0.22853419196565472; zero=0.34115302054584484",
+          "metrics": {
+            "length": 13044,
+            "entropy_bits_per_byte": 5.48018259194838,
+            "printable_ascii_ratio": 0.22853419196565472,
+            "zero_ratio": 0.34115302054584484
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "no reassembled TCP direction was available",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "empty",
+          "detail": "flows=0; packets=0; unavailable=0",
+          "metrics": {
+            "flow_count": 0,
+            "packet_count": 0,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "empty",
+          "detail": "observations=0; patterns=none",
+          "metrics": {
+            "flow_count": 0,
+            "observation_count": 0,
+            "patterns": [],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=3; report_status=partial",
+          "metrics": {
+            "evidence_count": 3,
+            "input_module_count": 5
+          }
+        }
+      },
+      "highlights": [],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "netplier-smb-100",
+      "protocol": "SMB",
+      "category": "protocol-reverse-engineering-paper",
+      "dataset_id": "netplier-ndss2021",
+      "input_path": "raw/netplier-ndss2021/smb_100.pcap",
+      "input_sha256": "97f914ddaebe58bd7ca98594f612e9e29d3352519ab623c926ee7b3f5206fb39",
+      "input_size": 24412,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=100, flows=5, streams=5",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 100,
+            "flow_count": 5,
+            "stream_count": 5,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=5.294788355672693; printable=0.2706046206783549; zero=0.40533344256922826",
+          "metrics": {
+            "length": 24412,
+            "entropy_bits_per_byte": 5.294788355672693,
+            "printable_ascii_ratio": 0.2706046206783549,
+            "zero_ratio": 0.40533344256922826
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "no_recoverable_content",
+          "detail": "largest TCP direction=2065 bytes; recoveries=0; skipped=0",
+          "metrics": {
+            "input_length": 2065,
+            "recovery_count": 0,
+            "skipped_count": 0
+          }
+        },
+        "M09": {
+          "status": "ok",
+          "detail": "flows=5; packets=92; unavailable=0",
+          "metrics": {
+            "flow_count": 5,
+            "packet_count": 92,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "ok",
+          "detail": "observations=5; patterns=bursty_transfer",
+          "metrics": {
+            "flow_count": 5,
+            "observation_count": 5,
+            "patterns": [
+              "bursty_transfer"
+            ],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=13; report_status=partial",
+          "metrics": {
+            "evidence_count": 13,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Traffic patterns (not application labels): bursty_transfer"
+      ],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "netplier-smb2-100",
+      "protocol": "SMB2",
+      "category": "protocol-reverse-engineering-paper",
+      "dataset_id": "netplier-ndss2021",
+      "input_path": "raw/netplier-ndss2021/smb2_100.pcap",
+      "input_sha256": "594f81e2aa19a75c6842caf0a66be3dcbc61f4894166a37c5d5e66e20b4d7f13",
+      "input_size": 25700,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=100, flows=1, streams=1",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 100,
+            "flow_count": 1,
+            "stream_count": 1,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=3.9155116823372342; printable=0.1351750972762646; zero=0.564591439688716",
+          "metrics": {
+            "length": 25700,
+            "entropy_bits_per_byte": 3.9155116823372342,
+            "printable_ascii_ratio": 0.1351750972762646,
+            "zero_ratio": 0.564591439688716
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "no_recoverable_content",
+          "detail": "largest TCP direction=8737 bytes; recoveries=0; skipped=0",
+          "metrics": {
+            "input_length": 8737,
+            "recovery_count": 0,
+            "skipped_count": 0
+          }
+        },
+        "M09": {
+          "status": "ok",
+          "detail": "flows=1; packets=100; unavailable=0",
+          "metrics": {
+            "flow_count": 1,
+            "packet_count": 100,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "ok",
+          "detail": "observations=1; patterns=bursty_transfer",
+          "metrics": {
+            "flow_count": 1,
+            "observation_count": 1,
+            "patterns": [
+              "bursty_transfer"
+            ],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=5; report_status=partial",
+          "metrics": {
+            "evidence_count": 5,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Traffic patterns (not application labels): bursty_transfer"
+      ],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "netplier-tftp-100",
+      "protocol": "TFTP",
+      "category": "protocol-reverse-engineering-paper",
+      "dataset_id": "netplier-ndss2021",
+      "input_path": "raw/netplier-ndss2021/tftp_100.pcap",
+      "input_sha256": "209823f0b9b57463972c8f482ebc92e47167413692c43e39864e735480ba935d",
+      "input_size": 74460,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=100, flows=0, streams=0",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 100,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=6.91791484597389; printable=0.3351060972334139; zero=0.17561106634434595",
+          "metrics": {
+            "length": 74460,
+            "entropy_bits_per_byte": 6.91791484597389,
+            "printable_ascii_ratio": 0.3351060972334139,
+            "zero_ratio": 0.17561106634434595
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "no reassembled TCP direction was available",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "empty",
+          "detail": "flows=0; packets=0; unavailable=0",
+          "metrics": {
+            "flow_count": 0,
+            "packet_count": 0,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "empty",
+          "detail": "observations=0; patterns=none",
+          "metrics": {
+            "flow_count": 0,
+            "observation_count": 0,
+            "patterns": [],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=3; report_status=partial",
+          "metrics": {
+            "evidence_count": 3,
+            "input_module_count": 5
+          }
+        }
+      },
+      "highlights": [],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "netplier-zeroaccess-100",
+      "protocol": "ZeroAccess malware traffic",
+      "category": "protocol-reverse-engineering-paper",
+      "dataset_id": "netplier-ndss2021",
+      "input_path": "raw/netplier-ndss2021/zeroaccess_100.pcap",
+      "input_sha256": "acb51ed0ddf35fb5645ab02e69983c6571c615dba41de0374ad655c8bf09ccab",
+      "input_size": 27500,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=100, flows=0, streams=0",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 100,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=7.305319421367912; printable=0.33105454545454543; zero=0.10625454545454545",
+          "metrics": {
+            "length": 27500,
+            "entropy_bits_per_byte": 7.305319421367912,
+            "printable_ascii_ratio": 0.33105454545454543,
+            "zero_ratio": 0.10625454545454545
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "no reassembled TCP direction was available",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "empty",
+          "detail": "flows=0; packets=0; unavailable=0",
+          "metrics": {
+            "flow_count": 0,
+            "packet_count": 0,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "empty",
+          "detail": "observations=0; patterns=none",
+          "metrics": {
+            "flow_count": 0,
+            "observation_count": 0,
+            "patterns": [],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=3; report_status=partial",
+          "metrics": {
+            "evidence_count": 3,
+            "input_module_count": 5
+          }
+        }
+      },
+      "highlights": [],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "binaryinferno-bgp-100",
+      "protocol": "BGP",
+      "category": "binary-format-reverse-engineering-paper",
+      "dataset_id": "binaryinferno-ndss2023",
+      "input_path": "raw/binaryinferno-ndss2023/bgp.txt.input",
+      "input_sha256": "133842e100bedfc086a8b81c6dd0bde326552233d56390df624799011ab036bf",
+      "input_size": 5996,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected raw_bytes; packets=0, flows=0, streams=0",
+          "metrics": {
+            "format": "raw_bytes",
+            "packet_count": 0,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=2.7580950744582764; printable=0.061249241964827165; zero=0.22377198302001214",
+          "metrics": {
+            "length": 3298,
+            "entropy_bits_per_byte": 2.7580950744582764,
+            "printable_ascii_ratio": 0.061249241964827165,
+            "zero_ratio": 0.22377198302001214
+          }
+        },
+        "M03": {
+          "status": "complete",
+          "detail": "messages=100; unparsed_ranges=0; boundary_basis=derived u32be length",
+          "metrics": {
+            "message_count": 100,
+            "unparsed_range_count": 0
+          }
+        },
+        "M04": {
+          "status": "ok",
+          "detail": "clusters=1; noise=0",
+          "metrics": {
+            "cluster_count": 1,
+            "noise_count": 0,
+            "noise_ratio": 0.0,
+            "silhouette": null
+          }
+        },
+        "M05": {
+          "status": "ok",
+          "detail": "aligned=100; unaligned=0; mean_identity=0.9778260869565217",
+          "metrics": {
+            "aligned_cluster_count": 1,
+            "aligned_message_count": 100,
+            "unaligned_message_count": 0,
+            "total_alignment_columns": 150,
+            "mean_identity_on_paired_bytes": 0.9778260869565217
+          }
+        },
+        "M06": {
+          "status": "ok",
+          "detail": "fields=11; boundaries=10; length_hypotheses=0",
+          "metrics": {
+            "analyzed_cluster_count": 1,
+            "analyzed_message_count": 100,
+            "field_candidate_count": 11,
+            "boundary_candidate_count": 10,
+            "length_hypothesis_count": 0
+          }
+        },
+        "M07": {
+          "status": "not_applicable",
+          "detail": "no capture headers or dissector scope",
+          "metrics": {}
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "message corpus is not an encoded-content recovery fixture",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "not_applicable",
+          "detail": "no packet timestamps or directions",
+          "metrics": {}
+        },
+        "M10": {
+          "status": "not_applicable",
+          "detail": "no flow features",
+          "metrics": {}
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=6; report_status=partial",
+          "metrics": {
+            "evidence_count": 6,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Decoded 100 Hex messages; derived stream adds an explicit u32be payload length."
+      ],
+      "limitations": [
+        "M03 boundaries come from the evaluation wrapper, not from an inferred native protocol field."
+      ]
+    },
+    {
+      "artifact_id": "binaryinferno-mavlink-100",
+      "protocol": "MAVLink",
+      "category": "binary-format-reverse-engineering-paper",
+      "dataset_id": "binaryinferno-ndss2023",
+      "input_path": "raw/binaryinferno-ndss2023/mavlink.txt.input",
+      "input_sha256": "c4caca78303589608e15a7b28308467e66dcbf23591eeaa39614b5fb188b0a98",
+      "input_size": 7714,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected raw_bytes; packets=0, flows=0, streams=0",
+          "metrics": {
+            "format": "raw_bytes",
+            "packet_count": 0,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=6.192104402688628; printable=0.234784700505172; zero=0.27231176329083473",
+          "metrics": {
+            "length": 4157,
+            "entropy_bits_per_byte": 6.192104402688628,
+            "printable_ascii_ratio": 0.234784700505172,
+            "zero_ratio": 0.27231176329083473
+          }
+        },
+        "M03": {
+          "status": "complete",
+          "detail": "messages=100; unparsed_ranges=0; boundary_basis=derived u32be length",
+          "metrics": {
+            "message_count": 100,
+            "unparsed_range_count": 0
+          }
+        },
+        "M04": {
+          "status": "ok",
+          "detail": "clusters=10; noise=68",
+          "metrics": {
+            "cluster_count": 10,
+            "noise_count": 68,
+            "noise_ratio": 0.68,
+            "silhouette": 0.5349312392867581
+          }
+        },
+        "M05": {
+          "status": "ok",
+          "detail": "aligned=32; unaligned=68; mean_identity=0.8593812916191415",
+          "metrics": {
+            "aligned_cluster_count": 10,
+            "aligned_message_count": 32,
+            "unaligned_message_count": 68,
+            "total_alignment_columns": 377,
+            "mean_identity_on_paired_bytes": 0.8593812916191415
+          }
+        },
+        "M06": {
+          "status": "ok",
+          "detail": "fields=92; boundaries=82; length_hypotheses=0",
+          "metrics": {
+            "analyzed_cluster_count": 10,
+            "analyzed_message_count": 32,
+            "field_candidate_count": 92,
+            "boundary_candidate_count": 82,
+            "length_hypothesis_count": 0
+          }
+        },
+        "M07": {
+          "status": "not_applicable",
+          "detail": "no capture headers or dissector scope",
+          "metrics": {}
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "message corpus is not an encoded-content recovery fixture",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "not_applicable",
+          "detail": "no packet timestamps or directions",
+          "metrics": {}
+        },
+        "M10": {
+          "status": "not_applicable",
+          "detail": "no flow features",
+          "metrics": {}
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=6; report_status=partial",
+          "metrics": {
+            "evidence_count": 6,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Decoded 100 Hex messages; derived stream adds an explicit u32be payload length."
+      ],
+      "limitations": [
+        "M03 boundaries come from the evaluation wrapper, not from an inferred native protocol field."
+      ]
+    },
+    {
+      "artifact_id": "binaryinferno-mirai-100",
+      "protocol": "Mirai malware traffic",
+      "category": "binary-format-reverse-engineering-paper",
+      "dataset_id": "binaryinferno-ndss2023",
+      "input_path": "raw/binaryinferno-ndss2023/mirai.txt.input",
+      "input_sha256": "0f2ed55e6417ae9f54386fad6762fb4208948f0cc63cb56cf797980a60979741",
+      "input_size": 7998,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected raw_bytes; packets=0, flows=0, streams=0",
+          "metrics": {
+            "format": "raw_bytes",
+            "packet_count": 0,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=5.794752907970739; printable=0.5510583856710863; zero=0.16282856478250757",
+          "metrics": {
+            "length": 4299,
+            "entropy_bits_per_byte": 5.794752907970739,
+            "printable_ascii_ratio": 0.5510583856710863,
+            "zero_ratio": 0.16282856478250757
+          }
+        },
+        "M03": {
+          "status": "complete",
+          "detail": "messages=100; unparsed_ranges=0; boundary_basis=derived u32be length",
+          "metrics": {
+            "message_count": 100,
+            "unparsed_range_count": 0
+          }
+        },
+        "M04": {
+          "status": "ok",
+          "detail": "clusters=22; noise=22",
+          "metrics": {
+            "cluster_count": 22,
+            "noise_count": 22,
+            "noise_ratio": 0.22,
+            "silhouette": 0.4053660871356988
+          }
+        },
+        "M05": {
+          "status": "ok",
+          "detail": "aligned=78; unaligned=22; mean_identity=0.765389517745585",
+          "metrics": {
+            "aligned_cluster_count": 22,
+            "aligned_message_count": 78,
+            "unaligned_message_count": 22,
+            "total_alignment_columns": 995,
+            "mean_identity_on_paired_bytes": 0.765389517745585
+          }
+        },
+        "M06": {
+          "status": "ok",
+          "detail": "fields=251; boundaries=229; length_hypotheses=0",
+          "metrics": {
+            "analyzed_cluster_count": 22,
+            "analyzed_message_count": 78,
+            "field_candidate_count": 251,
+            "boundary_candidate_count": 229,
+            "length_hypothesis_count": 0
+          }
+        },
+        "M07": {
+          "status": "not_applicable",
+          "detail": "no capture headers or dissector scope",
+          "metrics": {}
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "message corpus is not an encoded-content recovery fixture",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "not_applicable",
+          "detail": "no packet timestamps or directions",
+          "metrics": {}
+        },
+        "M10": {
+          "status": "not_applicable",
+          "detail": "no flow features",
+          "metrics": {}
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=6; report_status=partial",
+          "metrics": {
+            "evidence_count": 6,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Decoded 100 Hex messages; derived stream adds an explicit u32be payload length."
+      ],
+      "limitations": [
+        "M03 boundaries come from the evaluation wrapper, not from an inferred native protocol field."
+      ]
+    },
+    {
+      "artifact_id": "binaryinferno-tutorial-100",
+      "protocol": "BinaryInferno tutorial/custom format",
+      "category": "binary-format-reverse-engineering-paper",
+      "dataset_id": "binaryinferno-ndss2023",
+      "input_path": "raw/binaryinferno-ndss2023/tutorial.txt.input",
+      "input_sha256": "64be59905eb59294830c1e4112261dc1bfa5282f8e25b76310968e304852bec9",
+      "input_size": 7796,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected raw_bytes; packets=0, flows=0, streams=0",
+          "metrics": {
+            "format": "raw_bytes",
+            "packet_count": 0,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=4.949557704341008; printable=0.6438780371605527; zero=0.2146260123868509",
+          "metrics": {
+            "length": 4198,
+            "entropy_bits_per_byte": 4.949557704341008,
+            "printable_ascii_ratio": 0.6438780371605527,
+            "zero_ratio": 0.2146260123868509
+          }
+        },
+        "M03": {
+          "status": "complete",
+          "detail": "messages=100; unparsed_ranges=0; boundary_basis=derived u32be length",
+          "metrics": {
+            "message_count": 100,
+            "unparsed_range_count": 0
+          }
+        },
+        "M04": {
+          "status": "ok",
+          "detail": "clusters=23; noise=24",
+          "metrics": {
+            "cluster_count": 23,
+            "noise_count": 24,
+            "noise_ratio": 0.24,
+            "silhouette": 0.2491344615148433
+          }
+        },
+        "M05": {
+          "status": "ok",
+          "detail": "aligned=76; unaligned=24; mean_identity=0.6256183680843305",
+          "metrics": {
+            "aligned_cluster_count": 23,
+            "aligned_message_count": 76,
+            "unaligned_message_count": 24,
+            "total_alignment_columns": 984,
+            "mean_identity_on_paired_bytes": 0.6256183680843305
+          }
+        },
+        "M06": {
+          "status": "ok",
+          "detail": "fields=369; boundaries=346; length_hypotheses=27",
+          "metrics": {
+            "analyzed_cluster_count": 23,
+            "analyzed_message_count": 76,
+            "field_candidate_count": 369,
+            "boundary_candidate_count": 346,
+            "length_hypothesis_count": 27
+          }
+        },
+        "M07": {
+          "status": "not_applicable",
+          "detail": "no capture headers or dissector scope",
+          "metrics": {}
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "message corpus is not an encoded-content recovery fixture",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "not_applicable",
+          "detail": "no packet timestamps or directions",
+          "metrics": {}
+        },
+        "M10": {
+          "status": "not_applicable",
+          "detail": "no flow features",
+          "metrics": {}
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=6; report_status=partial",
+          "metrics": {
+            "evidence_count": 6,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Decoded 100 Hex messages; derived stream adds an explicit u32be payload length."
+      ],
+      "limitations": [
+        "M03 boundaries come from the evaluation wrapper, not from an inferred native protocol field."
+      ]
+    },
+    {
+      "artifact_id": "binaryinferno-random-variable-100",
+      "protocol": "Random variable-length negative control",
+      "category": "binary-format-reverse-engineering-paper",
+      "dataset_id": "binaryinferno-ndss2023",
+      "input_path": "raw/binaryinferno-ndss2023/random.txt.input",
+      "input_sha256": "06baacbf79711ad094312c33abda1d8b5021e59bde726602cad89a875aed2aed",
+      "input_size": 7090,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected raw_bytes; packets=0, flows=0, streams=0",
+          "metrics": {
+            "format": "raw_bytes",
+            "packet_count": 0,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=7.695002679178378; printable=0.34148244473342004; zero=0.08218465539661898",
+          "metrics": {
+            "length": 3845,
+            "entropy_bits_per_byte": 7.695002679178378,
+            "printable_ascii_ratio": 0.34148244473342004,
+            "zero_ratio": 0.08218465539661898
+          }
+        },
+        "M03": {
+          "status": "complete",
+          "detail": "messages=100; unparsed_ranges=0; boundary_basis=derived u32be length",
+          "metrics": {
+            "message_count": 100,
+            "unparsed_range_count": 0
+          }
+        },
+        "M04": {
+          "status": "ok",
+          "detail": "clusters=0; noise=100",
+          "metrics": {
+            "cluster_count": 0,
+            "noise_count": 100,
+            "noise_ratio": 1.0,
+            "silhouette": null
+          }
+        },
+        "M05": {
+          "status": "ok",
+          "detail": "aligned=0; unaligned=100; mean_identity=None",
+          "metrics": {
+            "aligned_cluster_count": 0,
+            "aligned_message_count": 0,
+            "unaligned_message_count": 100,
+            "total_alignment_columns": 0,
+            "mean_identity_on_paired_bytes": null
+          }
+        },
+        "M06": {
+          "status": "empty",
+          "detail": "fields=0; boundaries=0; length_hypotheses=0",
+          "metrics": {
+            "analyzed_cluster_count": 0,
+            "analyzed_message_count": 0,
+            "field_candidate_count": 0,
+            "boundary_candidate_count": 0,
+            "length_hypothesis_count": 0
+          }
+        },
+        "M07": {
+          "status": "not_applicable",
+          "detail": "no capture headers or dissector scope",
+          "metrics": {}
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "message corpus is not an encoded-content recovery fixture",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "not_applicable",
+          "detail": "no packet timestamps or directions",
+          "metrics": {}
+        },
+        "M10": {
+          "status": "not_applicable",
+          "detail": "no flow features",
+          "metrics": {}
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=6; report_status=partial",
+          "metrics": {
+            "evidence_count": 6,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Decoded 100 Hex messages; derived stream adds an explicit u32be payload length."
+      ],
+      "limitations": [
+        "M03 boundaries come from the evaluation wrapper, not from an inferred native protocol field."
+      ]
+    },
+    {
+      "artifact_id": "binaryinferno-random-fixed-100",
+      "protocol": "Random fixed-length negative control",
+      "category": "binary-format-reverse-engineering-paper",
+      "dataset_id": "binaryinferno-ndss2023",
+      "input_path": "raw/binaryinferno-ndss2023/randomfixed.txt.input",
+      "input_sha256": "90852571e95302e373effe8197a19046df6fda1349fbfb800399843baba246b8",
+      "input_size": 25800,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected raw_bytes; packets=0, flows=0, streams=0",
+          "metrics": {
+            "format": "raw_bytes",
+            "packet_count": 0,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=7.942471691442052; printable=0.35613636363636364; zero=0.025757575757575757",
+          "metrics": {
+            "length": 13200,
+            "entropy_bits_per_byte": 7.942471691442052,
+            "printable_ascii_ratio": 0.35613636363636364,
+            "zero_ratio": 0.025757575757575757
+          }
+        },
+        "M03": {
+          "status": "complete",
+          "detail": "messages=100; unparsed_ranges=0; boundary_basis=derived u32be length",
+          "metrics": {
+            "message_count": 100,
+            "unparsed_range_count": 0
+          }
+        },
+        "M04": {
+          "status": "ok",
+          "detail": "clusters=0; noise=100",
+          "metrics": {
+            "cluster_count": 0,
+            "noise_count": 100,
+            "noise_ratio": 1.0,
+            "silhouette": null
+          }
+        },
+        "M05": {
+          "status": "ok",
+          "detail": "aligned=0; unaligned=100; mean_identity=None",
+          "metrics": {
+            "aligned_cluster_count": 0,
+            "aligned_message_count": 0,
+            "unaligned_message_count": 100,
+            "total_alignment_columns": 0,
+            "mean_identity_on_paired_bytes": null
+          }
+        },
+        "M06": {
+          "status": "empty",
+          "detail": "fields=0; boundaries=0; length_hypotheses=0",
+          "metrics": {
+            "analyzed_cluster_count": 0,
+            "analyzed_message_count": 0,
+            "field_candidate_count": 0,
+            "boundary_candidate_count": 0,
+            "length_hypothesis_count": 0
+          }
+        },
+        "M07": {
+          "status": "not_applicable",
+          "detail": "no capture headers or dissector scope",
+          "metrics": {}
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "message corpus is not an encoded-content recovery fixture",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "not_applicable",
+          "detail": "no packet timestamps or directions",
+          "metrics": {}
+        },
+        "M10": {
+          "status": "not_applicable",
+          "detail": "no flow features",
+          "metrics": {}
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=6; report_status=partial",
+          "metrics": {
+            "evidence_count": 6,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Decoded 100 Hex messages; derived stream adds an explicit u32be payload length."
+      ],
+      "limitations": [
+        "M03 boundaries come from the evaluation wrapper, not from an inferred native protocol field."
+      ]
+    },
+    {
+      "artifact_id": "wireshark-dhcp-pcapng",
+      "protocol": "DHCP",
+      "category": "official-dissector-regression-captures",
+      "dataset_id": "wireshark-v4.6.0-captures",
+      "input_path": "raw/wireshark-v4.6.0/dhcp.pcapng",
+      "input_sha256": "e47f667c226a3f74ae033e488243399d1e31819c23b5ebe05d4b8377155a1666",
+      "input_size": 1508,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=4, flows=0, streams=0",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 4,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=2.1363512206018798; printable=0.07029177718832891; zero=0.7486737400530504",
+          "metrics": {
+            "length": 1508,
+            "entropy_bits_per_byte": 2.1363512206018798,
+            "printable_ascii_ratio": 0.07029177718832891,
+            "zero_ratio": 0.7486737400530504
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "no reassembled TCP direction was available",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "empty",
+          "detail": "flows=0; packets=0; unavailable=0",
+          "metrics": {
+            "flow_count": 0,
+            "packet_count": 0,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "empty",
+          "detail": "observations=0; patterns=none",
+          "metrics": {
+            "flow_count": 0,
+            "observation_count": 0,
+            "patterns": [],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=3; report_status=partial",
+          "metrics": {
+            "evidence_count": 3,
+            "input_module_count": 5
+          }
+        }
+      },
+      "highlights": [],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "wireshark-dns-nonstandard-port",
+      "protocol": "DNS on non-standard port",
+      "category": "official-dissector-regression-captures",
+      "dataset_id": "wireshark-v4.6.0-captures",
+      "input_path": "raw/wireshark-v4.6.0/dns_port.pcap",
+      "input_sha256": "78c3c00e4cb155118468e540a6151ca222fa50edd626daf1582d25e3d79626a1",
+      "input_size": 1318,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcap; packets=4, flows=0, streams=0",
+          "metrics": {
+            "format": "pcap",
+            "packet_count": 4,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=5.2780038216875615; printable=0.2959028831562974; zero=0.26479514415781485",
+          "metrics": {
+            "length": 1318,
+            "entropy_bits_per_byte": 5.2780038216875615,
+            "printable_ascii_ratio": 0.2959028831562974,
+            "zero_ratio": 0.26479514415781485
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "no reassembled TCP direction was available",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "empty",
+          "detail": "flows=0; packets=0; unavailable=0",
+          "metrics": {
+            "flow_count": 0,
+            "packet_count": 0,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "empty",
+          "detail": "observations=0; patterns=none",
+          "metrics": {
+            "flow_count": 0,
+            "observation_count": 0,
+            "patterns": [],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=3; report_status=partial",
+          "metrics": {
+            "evidence_count": 3,
+            "input_module_count": 5
+          }
+        }
+      },
+      "highlights": [],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "wireshark-http-brotli",
+      "protocol": "HTTP with Brotli content encoding",
+      "category": "official-dissector-regression-captures",
+      "dataset_id": "wireshark-v4.6.0-captures",
+      "input_path": "raw/wireshark-v4.6.0/http-brotli.pcapng",
+      "input_sha256": "dc3957f2348adc8f148cd776bef9e4bc2b3d062edc1b2aedc7c2a2b92b60b055",
+      "input_size": 1840,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=10, flows=1, streams=1",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 10,
+            "flow_count": 1,
+            "stream_count": 1,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=5.944333197921171; printable=0.4625; zero=0.23967391304347826",
+          "metrics": {
+            "length": 1840,
+            "entropy_bits_per_byte": 5.944333197921171,
+            "printable_ascii_ratio": 0.4625,
+            "zero_ratio": 0.23967391304347826
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "no_recoverable_content",
+          "detail": "largest TCP direction=320 bytes; recoveries=0; skipped=0",
+          "metrics": {
+            "input_length": 320,
+            "recovery_count": 0,
+            "skipped_count": 0
+          }
+        },
+        "M09": {
+          "status": "ok",
+          "detail": "flows=1; packets=10; unavailable=0",
+          "metrics": {
+            "flow_count": 1,
+            "packet_count": 10,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "ok",
+          "detail": "observations=1; patterns=bursty_transfer",
+          "metrics": {
+            "flow_count": 1,
+            "observation_count": 1,
+            "patterns": [
+              "bursty_transfer"
+            ],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=5; report_status=partial",
+          "metrics": {
+            "evidence_count": 5,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Traffic patterns (not application labels): bursty_transfer"
+      ],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "wireshark-protobuf-default-value",
+      "protocol": "Protocol Buffers test protocol",
+      "category": "official-dissector-regression-captures",
+      "dataset_id": "wireshark-v4.6.0-captures",
+      "input_path": "raw/wireshark-v4.6.0/protobuf_test_default_value.pcapng",
+      "input_sha256": "9d195357f92735532ac3cae439373316450d070f6454977c209d95725b818533",
+      "input_size": 476,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=1, flows=0, streams=0",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 1,
+            "flow_count": 0,
+            "stream_count": 0,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=5.246617668186405; printable=0.5399159663865546; zero=0.28781512605042014",
+          "metrics": {
+            "length": 476,
+            "entropy_bits_per_byte": 5.246617668186405,
+            "printable_ascii_ratio": 0.5399159663865546,
+            "zero_ratio": 0.28781512605042014
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "not_applicable",
+          "detail": "no reassembled TCP direction was available",
+          "metrics": {}
+        },
+        "M09": {
+          "status": "empty",
+          "detail": "flows=0; packets=0; unavailable=0",
+          "metrics": {
+            "flow_count": 0,
+            "packet_count": 0,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "empty",
+          "detail": "observations=0; patterns=none",
+          "metrics": {
+            "flow_count": 0,
+            "observation_count": 0,
+            "patterns": [],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=3; report_status=partial",
+          "metrics": {
+            "evidence_count": 3,
+            "input_module_count": 5
+          }
+        }
+      },
+      "highlights": [],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "wireshark-dtn-bpv7-tcpclv4",
+      "protocol": "Delay-Tolerant Networking BPv7 over TCPCLv4",
+      "category": "official-dissector-regression-captures",
+      "dataset_id": "wireshark-v4.6.0-captures",
+      "input_path": "raw/wireshark-v4.6.0/dtn_tcpclv4_bpv7_transfer.pcapng",
+      "input_sha256": "84bc311ead8bcaa77d63cf30f5bb9b4f7292ef3a8b8c51623e69faaae20bc664",
+      "input_size": 3960,
+      "outcome": "completed_with_limits",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=29, flows=1, streams=1",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 29,
+            "flow_count": 1,
+            "stream_count": 1,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=4.968134426083696; printable=0.21464646464646464; zero=0.38585858585858585",
+          "metrics": {
+            "length": 3960,
+            "entropy_bits_per_byte": 4.968134426083696,
+            "printable_ascii_ratio": 0.21464646464646464,
+            "zero_ratio": 0.38585858585858585
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "no_recoverable_content",
+          "detail": "largest TCP direction=376 bytes; recoveries=0; skipped=0",
+          "metrics": {
+            "input_length": 376,
+            "recovery_count": 0,
+            "skipped_count": 0
+          }
+        },
+        "M09": {
+          "status": "ok",
+          "detail": "flows=1; packets=29; unavailable=0",
+          "metrics": {
+            "flow_count": 1,
+            "packet_count": 29,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "ok",
+          "detail": "observations=1; patterns=bursty_transfer",
+          "metrics": {
+            "flow_count": 1,
+            "observation_count": 1,
+            "patterns": [
+              "bursty_transfer"
+            ],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "partial",
+          "detail": "evidence_records=5; report_status=partial",
+          "metrics": {
+            "evidence_count": 5,
+            "input_module_count": 6
+          }
+        }
+      },
+      "highlights": [
+        "Traffic patterns (not application labels): bursty_transfer"
+      ],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist."
+      ]
+    },
+    {
+      "artifact_id": "wireshark-opcua-signed",
+      "protocol": "OPC UA signed messages",
+      "category": "official-dissector-regression-captures",
+      "dataset_id": "wireshark-v4.6.0-captures",
+      "input_path": "raw/wireshark-v4.6.0/opcua-signed.pcapng",
+      "input_sha256": "a2aaa4a74040dd079de4358131864725f01634bf53477f1a23485f6a0acfc7d2",
+      "input_size": 597228,
+      "outcome": "completed_with_failures",
+      "modules": {
+        "M01": {
+          "status": "ok",
+          "detail": "detected pcapng; packets=98, flows=3, streams=3",
+          "metrics": {
+            "format": "pcapng",
+            "packet_count": 98,
+            "flow_count": 3,
+            "stream_count": 3,
+            "warning_count": 1
+          }
+        },
+        "M02": {
+          "status": "ok",
+          "detail": "entropy=5.530835365041219; printable=0.9113621598451512; zero=0.010863522808709572",
+          "metrics": {
+            "length": 597228,
+            "entropy_bits_per_byte": 5.530835365041219,
+            "printable_ascii_ratio": 0.9113621598451512,
+            "zero_ratio": 0.010863522808709572
+          }
+        },
+        "M07": {
+          "status": "tool_unavailable",
+          "detail": "observations=0; protocols=none approved",
+          "metrics": {
+            "observation_count": 0,
+            "unknown_scope_count": 1,
+            "protocols": []
+          }
+        },
+        "M08": {
+          "status": "no_recoverable_content",
+          "detail": "largest TCP direction=190941 bytes; recoveries=0; skipped=0",
+          "metrics": {
+            "input_length": 190941,
+            "recovery_count": 0,
+            "skipped_count": 0
+          }
+        },
+        "M09": {
+          "status": "ok",
+          "detail": "flows=3; packets=98; unavailable=0",
+          "metrics": {
+            "flow_count": 3,
+            "packet_count": 98,
+            "unavailable_feature_count": 0
+          }
+        },
+        "M10": {
+          "status": "ok",
+          "detail": "observations=6; patterns=bursty_transfer, direction_dominance",
+          "metrics": {
+            "flow_count": 3,
+            "observation_count": 6,
+            "patterns": [
+              "bursty_transfer",
+              "direction_dominance"
+            ],
+            "insufficient_scope_count": 0
+          }
+        },
+        "M11": {
+          "status": "not_applicable",
+          "detail": "no behavior labels and leakage-safe collection groups",
+          "metrics": {}
+        },
+        "M12": {
+          "status": "failed",
+          "detail": "ValueError: artifact exceeds max_input_bytes (17022672 > 16777216): tmp\\public-sample-evaluation-20260909\\wireshark-opcua-signed\\m02\\features.json",
+          "metrics": {}
+        }
+      },
+      "highlights": [
+        "Traffic patterns (not application labels): bursty_transfer, direction_dominance"
+      ],
+      "limitations": [
+        "M07 found no fields from its approved protocol whitelist.",
+        "M12 failed: ValueError: artifact exceeds max_input_bytes (17022672 > 16777216): tmp\\public-sample-evaluation-20260909\\wireshark-opcua-signed\\m02\\features.json"
+      ]
+    }
+  ]
+}
