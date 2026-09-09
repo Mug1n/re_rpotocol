@@ -51,6 +51,20 @@ def validate_m01_references(artifact: dict[str, Any]) -> None:
     packets = artifact.get("packets", [])
     flows = artifact.get("flows", [])
     streams = artifact.get("streams", [])
+
+    for collection_name, records in (
+        ("packet", packets),
+        ("flow", flows),
+        ("stream", streams),
+    ):
+        record_ids = [item.get("id") for item in records]
+        if len(record_ids) != len(set(record_ids)):
+            raise ValueError(f"{collection_name} IDs must be unique")
+
+    packet_indices = [item.get("index") for item in packets]
+    if len(packet_indices) != len(set(packet_indices)):
+        raise ValueError("packet indices must be unique")
+
     packet_ids = {item.get("id") for item in packets}
     flow_ids = {item.get("id") for item in flows}
 

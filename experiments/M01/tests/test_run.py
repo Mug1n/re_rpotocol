@@ -236,6 +236,43 @@ class InputArtifactContractTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unknown packet"):
             module.validate_m01_references(artifact)
 
+    def test_duplicate_record_ids_are_rejected_per_collection(self):
+        spec = importlib.util.spec_from_file_location(
+            "artifact_contracts", ROOT / "experiments" / "artifact_contracts.py"
+        )
+        self.assertIsNotNone(spec)
+        self.assertIsNotNone(spec.loader)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        for collection_name in ("packets", "flows", "streams"):
+            with self.subTest(collection=collection_name):
+                artifact = copy.deepcopy(self.complete)
+                artifact[collection_name].append(
+                    copy.deepcopy(artifact[collection_name][0])
+                )
+                expected_name = collection_name.removesuffix("s")
+                with self.assertRaisesRegex(
+                    ValueError, rf"^{expected_name} IDs must be unique$"
+                ):
+                    module.validate_m01_references(artifact)
+
+    def test_duplicate_packet_indices_are_rejected(self):
+        spec = importlib.util.spec_from_file_location(
+            "artifact_contracts", ROOT / "experiments" / "artifact_contracts.py"
+        )
+        self.assertIsNotNone(spec)
+        self.assertIsNotNone(spec.loader)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        artifact = copy.deepcopy(self.complete)
+        duplicate_index_packet = copy.deepcopy(artifact["packets"][0])
+        duplicate_index_packet["id"] = "packet-duplicate-index"
+        artifact["packets"].append(duplicate_index_packet)
+
+        with self.assertRaisesRegex(ValueError, "^packet indices must be unique$"):
+            module.validate_m01_references(artifact)
+
     def test_artifact_hash_mismatch_is_rejected(self):
         spec = importlib.util.spec_from_file_location(
             "artifact_contracts", ROOT / "experiments" / "artifact_contracts.py"
