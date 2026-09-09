@@ -12,8 +12,9 @@
 - M06 字段与格式推断：按列统计、连续区域、边界候选及严格长度关系假设已实现，所有结论保留样本和原始偏移证据。
 - M07 标准协议：已实现 TShark 字段白名单、Decode As 追踪、工具缺失与裸字节降级；端口不作为协议证据。
 - M08 内容恢复：已实现受限文本、Hex/Base64、gzip/zlib 恢复，保留转换链、来源范围与输出哈希；无密钥 TLS/SSH 明确跳过。
-- M09–M11：开发者 B 工作线尚未实现，M12 报告会把这些证据缺口列为无法判断。
-- M12 证据报告：已实现 M01/M07/M08 细粒度适配、稳定证据 ID、确定性四章节 Markdown 与可选模型非阻塞边界。
+- M09 流量特征与 M10 行为规则：开发者 B 实现已合并；仅在 M01 保留包边界、时间戳和方向时生成相应统计，不把流量模式解释为应用语义。
+- M11 行为分类：开发者 B 实现已合并；只有显式标签、固定特征定义和不重叠分组满足要求时才训练，否则输出明确的不可评估状态。
+- M12 证据报告：已实现 M01/M02/M07～M11 细粒度适配、其余模块通用适配、稳定证据 ID 和确定性四章节 Markdown；本版本禁用可选模型调用，以保持离线、可审计输出。
 - 真实课程 DAT：课程未提供；现已引入两个来源和许可明确的真实外部 DAT，并用 M01～M06 验证。它们能支撑开发，但不能代表课程隐藏验收数据。
 
 权威状态见 `research/progress.md`，技术路线见 `research/selection.md`，课程原始要求见根目录 PDF。
@@ -58,12 +59,14 @@ M06 从 M05 对齐列提出统计字段区间和长度关系假设；完整参�
 python experiments\M06\run.py tmp\m05-stream\alignments.json --output-dir tmp\m06-stream
 ```
 
-M07 从 M01 抓包 artifact 提取批准的标准协议字段；M08 对明确的字节来源执行受限恢复；M12 汇总经校验的证据：
+M07 从 M01 抓包 artifact 提取批准的标准协议字段；M08 对明确的字节来源执行受限恢复；M09/M10 计算流量特征和非语义行为规则；M12 汇总经校验的证据：
 
 ```powershell
 python experiments\M07\run.py tmp\m01-capture\result.json --output-dir tmp\m07-capture --tshark "C:\Program Files\Wireshark\tshark.exe"
 python experiments\M08\run.py input.bin --output-dir tmp\m08-input
-python experiments\M12\run.py --input M01=tmp\m01-capture\result.json --input M07=tmp\m07-capture\protocols.json --output-dir tmp\m12-report
+python experiments\M09\run.py tmp\m01-capture\result.json --output-dir tmp\m09-capture
+python experiments\M10\run.py tmp\m09-capture\flow_features.json --output-dir tmp\m10-capture
+python experiments\M12\run.py --input M01=tmp\m01-capture\result.json --input M07=tmp\m07-capture\protocols.json --input M09=tmp\m09-capture\flow_features.json --input M10=tmp\m10-capture\behaviors.json --output-dir tmp\m12-report
 ```
 
 运行当前全部测试：
@@ -77,6 +80,9 @@ python -m unittest discover -s experiments\M05\tests -v
 python -m unittest discover -s experiments\M06\tests -v
 python -m unittest discover -s experiments\M07\tests -v
 python -m unittest discover -s experiments\M08\tests -v
+python -m unittest discover -s experiments\M09\tests -v
+python -m unittest discover -s experiments\M10\tests -v
+python -m unittest discover -s experiments\M11\tests -v
 python -m unittest discover -s experiments\M12\tests -v
 python -m unittest discover -s experiments\tests -v
 ```
@@ -93,8 +99,7 @@ python -m unittest discover -s experiments\tests -v
 
 ## 后续里程碑
 
-1. 开发者 B 完成 M09/M10 流量统计与可解释行为规则；只在标签和分组条件满足后实现 M11 评估。
-2. 将 M09～M11 的冻结 Schema 与 fixture 接入 M12 细粒度证据适配器，完成双线端到端测试。
-3. 获得课程真实 DAT 后复核封装、标准协议字段、编码/压缩条件、时间戳、方向和标签可用性。
-4. 可选 LLM 仅在有数据外发授权和可审计引用时接入，不阻塞确定性模板报告。
-5. 完成最终设计报告、测试报告、安装使用文档、PPT 与演示材料。
+1. 获得课程真实 DAT 后复核封装、标准协议字段、编码/压缩条件、时间戳、方向和标签可用性，并运行完整链路。
+2. 根据真实数据补强 M09～M11 的特征定义、场景阈值和分类评估，不以当前合成测试替代效果结论。
+3. 可选 LLM 仅在有数据外发授权、调用预算和可审计引用机制时重新启用，不阻塞确定性模板报告。
+4. 完成最终设计报告、测试报告、安装使用文档、PPT 与演示材料。

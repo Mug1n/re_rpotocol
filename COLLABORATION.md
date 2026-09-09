@@ -1,6 +1,6 @@
 # pc1 分支协作说明
 
-更新日期：2026-09-08。本分支从 `origin/main` 的 `4d1f23e` 创建，集中交付 M01～M06 的可运行基线、测试、JSON Schema、两个真实外部 DAT 及验证记录。课程尚未提供最终 DAT，因此当前结果用于开发与接口验证，不代表对隐藏数据的最终适配。
+更新日期：2026-09-09。本分支从 `origin/main` 的 `4d1f23e` 创建，现已汇合 M01～M12 的可运行基线、测试、JSON Schema、两个真实外部 DAT 及验证记录。课程尚未提供最终 DAT，因此当前结果用于开发与接口验证，不代表对隐藏数据的最终适配。
 
 ## 当前链路
 
@@ -11,6 +11,9 @@ M01 输入识别与预处理
   → M04 DBSCAN 消息聚类
   → M05 代表消息参考对齐
   → M06 字段/边界及长度关系假设
+  → M07 标准协议证据 / M08 受限内容恢复
+  → M09 流量特征 → M10 非语义行为规则 → M11 条件式分类评估
+  → M12 可追溯证据报告
 ```
 
 各模块都提供 `experiments/Mxx/run.py`、模块 README 和测试；结构化输出 Schema 位于对应的 `research/Mxx-*` 目录。权威工程状态见 `research/progress.md`，总体入口和命令见根目录 `README.md`。
@@ -33,10 +36,16 @@ python -B -m unittest discover -s experiments\M03\tests -v
 python -B -m unittest discover -s experiments\M04\tests -v
 python -B -m unittest discover -s experiments\M05\tests -v
 python -B -m unittest discover -s experiments\M06\tests -v
+python -B -m unittest discover -s experiments\M07\tests -v
+python -B -m unittest discover -s experiments\M08\tests -v
+python -B -m unittest discover -s experiments\M09\tests -v
+python -B -m unittest discover -s experiments\M10\tests -v
+python -B -m unittest discover -s experiments\M11\tests -v
+python -B -m unittest discover -s experiments\M12\tests -v
 python -B -m unittest discover -s experiments\tests -v
 ```
 
-当前环境共运行 80 项并全部通过，其中 M01 的抓包测试和 M07 真实 TShark 4.6.6 冒烟均已执行。M02～M06 的运行代码只依赖 Python 标准库；M07 运行时依赖可选 TShark，M01/M04～M08/M12 的 Schema 测试需要当前开发环境已有的 `jsonschema`。
+当前环境共运行 118 项并全部通过，其中包含 M09～M11 模块测试和双线跨模块集成；M01 抓包路径与 M07 真实 TShark 4.6.6 冒烟也已执行。M02～M06 的运行代码只依赖 Python 标准库；M07 运行时依赖可选 TShark，M11 成功训练路径依赖可选 scikit-learn，Schema 测试依赖当前开发环境已有的 `jsonschema`。
 
 ## 协作约定与已知限制
 
@@ -46,14 +55,14 @@ python -B -m unittest discover -s experiments\tests -v
 - M03 当前是显式规则分帧，不声称从任意未知流自动发现边界。
 - M04 使用 O(n²) 距离矩阵；M05 是以代表消息为锚的确定性对齐，不是全局最优多序列对齐。
 - M06 的连续统计区间是候选而非真实字段。WatchPAT 默认单簇对齐较碎，说明应同时检查 M04/M05 质量。
-- 当前机器缺少 Wireshark/TShark，因此 M01 抓包路径尚未在本轮环境复测；不要把历史运行记录表述为当前复测结果。
+- 当前机器已用 TShark 4.6.6 完成 M01→M07 冒烟；这只证明工具链可运行，不证明课程 DAT 含有可识别的标准协议字段。
 - 开始新模块前先读 `agent.md` 和 `research/progress.md`；修改模块接口时同步更新下游测试、Schema、根 README 和真实验证记录。
 
 ## 当前开发分工与交接
 
-- 开发者 A 已完成 M01 契约收紧、M07、M08、M12 的 A 线实现和两条 A 线集成测试；当前 TShark 4.6.6 真实冒烟成功。
-- 开发者 B 仍负责 M09～M11；只有输入保留包边界、时间戳、方向和标签时才能进行相应流量与分类分析。
-- M12 当前对 M01/M07/M08 使用细粒度适配器；M09～M11 的适配器必须等其 Schema 和 fixture 冻结后接入，不能提前猜字段。
-- 完整 U8 仍需开发者 B 审核行为与分类证据，并通过双线端到端测试；当前报告中的缺失模块会明确列入“无法判断”。
+- 开发者 A 已完成 M01 契约收紧、M07、M08、M12 以及双线集成；开发者 B 的 M09～M11 提交已合并。
+- M01→M09→M10→M12 的来源哈希链和 M11→M12 的分组评估证据均有端到端测试；缺失模块仍会在报告中明确列入“无法判断”。
+- M11 只在显式标签、固定数值特征和分组拆分条件满足时训练；无标签、单类别或依赖缺失时不生成伪指标。
+- 当前 U8 的代码与合成/契约验收已完成；课程真实 DAT 的协议可见性、标签可用性和最终效果仍是外部验收条件。
 
 合并本分支前，建议先运行上述全套测试，并重点审阅 `data/external/validation.md` 中公开样本与课程最终 DAT 的边界说明。
