@@ -28,21 +28,33 @@ OUTPUT_SCHEMA = ROOT / "research" / "M08-recovery" / "recovery.schema.json"
 SCHEMA_VERSION = "0.1"
 HEX_PATTERN = re.compile(rb"(?:[0-9A-Fa-f]{2}\s*)+")
 BASE64_PATTERN = re.compile(rb"[A-Za-z0-9+/]*={0,2}")
+DEFAULT_MAX_INPUT_BYTES = 64 * 1024 * 1024
 
 
 def _decompress_limited(data: bytes, *, wbits: int, max_output_bytes: int, max_ratio: float) -> bytes:
-    decoder = zlib.decompressobj(wbits)
-    output = decoder.decompress(data, max_output_bytes + 1)
-    if len(output) > max_output_bytes or decoder.unconsumed_tail:
-        raise OverflowError("MAX_OUTPUT_BYTES")
-    output += decoder.flush(max_output_bytes + 1 - len(output))
-    if len(output) > max_output_bytes:
-        raise OverflowError("MAX_OUTPUT_BYTES")
-    if not decoder.eof:
-        raise ValueError("INVALID_COMPRESSED_STREAM")
+    is_gzip = wbits == 31
+    remaining = data
+    output = bytearray()
+    while remaining:
+        decoder = zlib.decompressobj(wbits)
+        member = decoder.decompress(remaining, max_output_bytes + 1 - len(output))
+        output.extend(member)
+        if len(output) > max_output_bytes or decoder.unconsumed_tail:
+            raise OverflowError("MAX_OUTPUT_BYTES")
+        output.extend(decoder.flush(max_output_bytes + 1 - len(output)))
+        if len(output) > max_output_bytes:
+            raise OverflowError("MAX_OUTPUT_BYTES")
+        if not decoder.eof:
+            raise ValueError("INVALID_COMPRESSED_STREAM")
+        trailing = decoder.unused_data
+        if not trailing:
+            break
+        if not is_gzip or not trailing.startswith(b"\x1f\x8b"):
+            raise ValueError("TRAILING_DATA")
+        remaining = trailing
     if data and len(output) / len(data) > max_ratio:
         raise OverflowError("MAX_INFLATION_RATIO")
-    return output
+    return bytes(output)
 
 
 def _text_operation(data: bytes, min_printable_length: int) -> str | None:
@@ -81,6 +93,7 @@ def analyze_recovery(
     source_module: str = "direct",
     source_record_id: str | None = None,
     encrypted_protocol: str | None = None,
+    max_input_bytes: int = DEFAULT_MAX_INPUT_BYTES,
     max_depth: int = 3,
     max_output_bytes: int = 8 * 1024 * 1024,
     max_inflation_ratio: float = 100.0,
@@ -91,12 +104,17 @@ def analyze_recovery(
     destination = Path(output_dir)
     if destination.exists():
         raise FileExistsError(f"output directory already exists: {destination}")
-    if max_depth < 0 or max_output_bytes <= 0 or max_inflation_ratio <= 0 or max_artifacts <= 0 or min_printable_length <= 0:
+    if max_input_bytes <= 0 or max_depth < 0 or max_output_bytes <= 0 or max_inflation_ratio <= 0 or max_artifacts <= 0 or min_printable_length <= 0:
         raise ValueError("recovery limits must be positive and max_depth non-negative")
     try:
-        data = source.read_bytes()
+        if source.stat().st_size > max_input_bytes:
+            raise ValueError("INPUT_EXCEEDS_MAX_BYTES")
+        with source.open("rb") as handle:
+            data = handle.read(max_input_bytes + 1)
     except FileNotFoundError:
         raise FileNotFoundError(f"input does not exist: {source}")
+    if len(data) > max_input_bytes:
+        raise ValueError("INPUT_EXCEEDS_MAX_BYTES")
     source_sha256 = hashlib.sha256(data).hexdigest()
     if expected_sha256 is not None and source_sha256 != expected_sha256:
         raise ValueError(f"source SHA-256 mismatch: expected {expected_sha256}, got {source_sha256}")
@@ -111,6 +129,7 @@ def analyze_recovery(
         "source": source_ref,
         "status": "empty" if not data else "no_recoverable_content",
         "parameters": {
+            "max_input_bytes": max_input_bytes,
             "max_depth": max_depth,
             "max_output_bytes": max_output_bytes,
             "max_inflation_ratio": max_inflation_ratio,
@@ -132,14 +151,50 @@ def analyze_recovery(
         })
     elif data:
         destination.parent.mkdir(parents=True, exist_ok=True)
-        pending = deque([(data, [], "strict_candidate", 0)])
+        pending = deque([(data, [], "strict_candidate")])
         seen = {hashlib.sha256(data).hexdigest()}
         candidates: list[tuple[bytes, list[dict[str, Any]], str, str | None]] = []
+        admitted_output_hashes: dict[str, int] = {}
+        admitted_output_bytes = 0
+
+        def admit_candidate(
+            recovered: bytes,
+            chain: list[dict[str, Any]],
+            basis: str,
+            media_type: str | None,
+            operation: str,
+        ) -> bool:
+            nonlocal admitted_output_bytes
+            if len(candidates) >= max_artifacts:
+                return False
+            output_sha = hashlib.sha256(recovered).hexdigest()
+            if output_sha not in admitted_output_hashes:
+                if admitted_output_bytes + len(recovered) > max_output_bytes:
+                    result["failed_attempts"].append({
+                        "source_ref": source_ref,
+                        "operation": operation,
+                        "reason_code": "TOTAL_OUTPUT_BYTES",
+                    })
+                    return False
+                admitted_output_hashes[output_sha] = len(recovered)
+                admitted_output_bytes += len(recovered)
+            candidates.append((recovered, chain, basis, media_type))
+            return True
+
         while pending and len(candidates) < max_artifacts:
-            current, chain, basis, depth = pending.popleft()
+            current, chain, basis = pending.popleft()
+            if len(chain) >= max_depth:
+                result["failed_attempts"].append({"source_ref": source_ref, "operation": "decode", "reason_code": "MAX_RECURSION_DEPTH"})
+                continue
             text = _text_operation(current, min_printable_length)
             if text is not None:
-                candidates.append((current, chain + [_step(text, current, current, "strict_decode")], basis, f"text/plain; charset={text}"))
+                admit_candidate(
+                    current,
+                    chain + [_step(text, current, current, "strict_decode")],
+                    basis,
+                    f"text/plain; charset={text}",
+                    text,
+                )
             transforms: list[tuple[str, bytes, str]] = []
             compact = b"".join(current.split())
             if len(compact) >= 2 and len(compact) % 2 == 0 and HEX_PATTERN.fullmatch(current):
@@ -161,44 +216,47 @@ def analyze_recovery(
                         transforms.append((operation, _decompress_limited(current, wbits=wbits, max_output_bytes=max_output_bytes, max_ratio=max_inflation_ratio), "container_integrity"))
                     except OverflowError as exc:
                         result["failed_attempts"].append({"source_ref": source_ref, "operation": operation, "reason_code": str(exc)})
-                    except (ValueError, zlib.error):
+                    except ValueError as exc:
+                        result["failed_attempts"].append({"source_ref": source_ref, "operation": operation, "reason_code": str(exc)})
+                    except zlib.error:
                         result["failed_attempts"].append({"source_ref": source_ref, "operation": operation, "reason_code": "INVALID_COMPRESSED_STREAM"})
             for operation, transformed, validation in transforms:
-                if len(transformed) > max_output_bytes:
-                    result["failed_attempts"].append({"source_ref": source_ref, "operation": operation, "reason_code": "MAX_OUTPUT_BYTES"})
-                    continue
                 next_basis = "validated_magic" if operation in ("gzip", "zlib") else basis
                 next_chain = chain + [_step(operation, current, transformed, validation)]
-                candidates.append((transformed, next_chain, next_basis, None))
+                if not admit_candidate(transformed, next_chain, next_basis, None, operation):
+                    continue
                 digest = hashlib.sha256(transformed).hexdigest()
-                if depth < max_depth and digest not in seen:
+                if digest not in seen:
                     seen.add(digest)
-                    pending.append((transformed, next_chain, next_basis, depth + 1))
-                elif depth >= max_depth:
-                    result["failed_attempts"].append({"source_ref": source_ref, "operation": operation, "reason_code": "MAX_RECURSION_DEPTH"})
+                    pending.append((transformed, next_chain, next_basis))
 
         staging = Path(tempfile.mkdtemp(prefix=f".{destination.name}.tmp-", dir=destination.parent))
         try:
             recovered_dir = staging / "recovered"
             recovered_dir.mkdir()
-            unique_outputs: set[tuple[str, tuple[str, ...]]] = set()
+            unique_chains: set[tuple[str, tuple[str, ...]]] = set()
+            artifact_refs: dict[str, str] = {}
             for recovered, chain, basis, media_type in candidates:
                 operations = tuple(step["operation"] for step in chain)
                 output_sha = hashlib.sha256(recovered).hexdigest()
                 identity = (output_sha, operations)
-                if identity in unique_outputs or len(result["recoveries"]) >= max_artifacts:
+                if identity in unique_chains or len(result["recoveries"]) >= max_artifacts:
                     continue
-                unique_outputs.add(identity)
+                unique_chains.add(identity)
                 recovery_id = f"m08-{source_sha256[:12]}-{len(result['recoveries']):04d}"
-                artifact = recovered_dir / f"{recovery_id}.bin"
-                artifact.write_bytes(recovered)
+                artifact_ref = artifact_refs.get(output_sha)
+                if artifact_ref is None:
+                    artifact = recovered_dir / f"{recovery_id}.bin"
+                    artifact.write_bytes(recovered)
+                    artifact_ref = artifact.relative_to(staging).as_posix()
+                    artifact_refs[output_sha] = artifact_ref
                 result["recoveries"].append({
                     "recovery_id": recovery_id,
                     "source_ref": source_ref,
                     "source_range": {"start": 0, "end": len(data)},
                     "basis": basis,
                     "transformation_chain": chain,
-                    "output": {"artifact_ref": artifact.relative_to(staging).as_posix(), "sha256": output_sha, "length": len(recovered), "media_type": media_type},
+                    "output": {"artifact_ref": artifact_ref, "sha256": output_sha, "length": len(recovered), "media_type": media_type},
                     "completeness": "complete" if basis in ("validated_magic", "protocol_declared") else "candidate",
                     "evidence": ["strict validation completed for every recorded transformation"],
                 })
@@ -208,7 +266,7 @@ def analyze_recovery(
                 "recovery_count": len(result["recoveries"]),
                 "failed_attempt_count": len(result["failed_attempts"]),
                 "skipped_source_count": len(result["skipped_sources"]),
-                "output_bytes": sum(item["output"]["length"] for item in result["recoveries"]),
+                "output_bytes": sum(admitted_output_hashes.values()),
             }
             jsonschema.validate(result, json.loads(OUTPUT_SCHEMA.read_text(encoding="utf-8")))
             (staging / "recovery.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -239,6 +297,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--source-module", default="direct")
     parser.add_argument("--source-record-id")
     parser.add_argument("--encrypted-protocol", choices=("tls", "ssh"))
+    parser.add_argument("--max-input-bytes", type=int, default=DEFAULT_MAX_INPUT_BYTES)
     parser.add_argument("--max-depth", type=int, default=3)
     parser.add_argument("--max-output-bytes", type=int, default=8 * 1024 * 1024)
     parser.add_argument("--max-inflation-ratio", type=float, default=100.0)
@@ -250,7 +309,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
-        analyze_recovery(args.input, args.output_dir, expected_sha256=args.expected_sha256, source_module=args.source_module, source_record_id=args.source_record_id, encrypted_protocol=args.encrypted_protocol, max_depth=args.max_depth, max_output_bytes=args.max_output_bytes, max_inflation_ratio=args.max_inflation_ratio, max_artifacts=args.max_artifacts, min_printable_length=args.min_printable_length)
+        analyze_recovery(args.input, args.output_dir, expected_sha256=args.expected_sha256, source_module=args.source_module, source_record_id=args.source_record_id, encrypted_protocol=args.encrypted_protocol, max_input_bytes=args.max_input_bytes, max_depth=args.max_depth, max_output_bytes=args.max_output_bytes, max_inflation_ratio=args.max_inflation_ratio, max_artifacts=args.max_artifacts, min_printable_length=args.min_printable_length)
     except (FileNotFoundError, FileExistsError, ValueError, jsonschema.ValidationError) as exc:
         print(f"m08: {exc}", file=sys.stderr)
         return 2

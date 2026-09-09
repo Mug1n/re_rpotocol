@@ -6,6 +6,8 @@ import json
 import sys
 import tempfile
 import unittest
+import gzip
+import zlib
 from pathlib import Path
 
 import jsonschema
@@ -65,10 +67,72 @@ class RecoveryTests(unittest.TestCase):
         self.assertTrue(any(item["reason_code"] == "INVALID_COMPRESSED_STREAM" for item in gzip_result["failed_attempts"]))
 
     def test_output_and_inflation_limits_are_enforced(self):
-        import gzip
         encoded = gzip.compress(b"A" * 4096, mtime=0)
         result, _ = self.analyze(encoded, max_output_bytes=128, max_inflation_ratio=4.0)
         self.assertTrue(any(item["reason_code"] in ("MAX_OUTPUT_BYTES", "MAX_INFLATION_RATIO") for item in result["failed_attempts"]))
+
+    def test_input_limit_is_checked_at_and_above_the_exact_boundary(self):
+        result, _ = self.analyze(b"exact", max_input_bytes=5, max_output_bytes=5, max_depth=1)
+        self.assertEqual(5, result["parameters"]["max_input_bytes"])
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = root / "input.bin"
+            source.write_bytes(b"too-big")
+            output = root / "out"
+            with self.assertRaisesRegex(ValueError, "INPUT_EXCEEDS_MAX_BYTES"):
+                self.module.analyze_recovery(source, output, max_input_bytes=6)
+            self.assertFalse(output.exists())
+
+    def test_max_depth_zero_and_n_bound_every_transformation_chain(self):
+        depth_zero, _ = self.analyze(b"4869", max_depth=0)
+        self.assertEqual([], depth_zero["recoveries"])
+        self.assertTrue(any(item["reason_code"] == "MAX_RECURSION_DEPTH" for item in depth_zero["failed_attempts"]))
+
+        depth_one, _ = self.analyze(b"4869", max_depth=1)
+        self.assertTrue(any([step["operation"] for step in item["transformation_chain"]] == ["hex"] for item in depth_one["recoveries"]))
+        self.assertTrue(all(len(item["transformation_chain"]) <= 1 for item in depth_one["recoveries"]))
+
+        depth_two, _ = self.analyze(b"4869", max_depth=2, min_printable_length=2)
+        self.assertTrue(any([step["operation"] for step in item["transformation_chain"]] == ["hex", "utf8"] for item in depth_two["recoveries"]))
+        self.assertTrue(all(len(item["transformation_chain"]) <= 2 for item in depth_two["recoveries"]))
+
+    def test_printable_and_cumulative_unique_output_budgets_are_enforced(self):
+        exact, _ = self.analyze(b"test", max_output_bytes=4, max_depth=1)
+        self.assertEqual(4, exact["metrics"]["output_bytes"])
+
+        oversized, _ = self.analyze(b"hello", max_output_bytes=4, max_depth=1)
+        self.assertEqual([], oversized["recoveries"])
+        self.assertTrue(any(item["reason_code"] == "TOTAL_OUTPUT_BYTES" for item in oversized["failed_attempts"]))
+
+        cumulative, _ = self.analyze(b"dGVzdA==", max_output_bytes=8, max_depth=1)
+        self.assertLessEqual(cumulative["metrics"]["output_bytes"], 8)
+        self.assertTrue(any(item["reason_code"] == "TOTAL_OUTPUT_BYTES" for item in cumulative["failed_attempts"]))
+
+    def test_identical_bytes_from_distinct_chains_share_one_artifact(self):
+        encoded = gzip.compress(b"hello", mtime=0)
+        result, _ = self.analyze(encoded, max_output_bytes=5, max_depth=2)
+        matching = [item for item in result["recoveries"] if item["output"]["sha256"] == hashlib.sha256(b"hello").hexdigest()]
+        self.assertEqual(2, len(matching))
+        self.assertEqual({("gzip",), ("gzip", "utf8")}, {tuple(step["operation"] for step in item["transformation_chain"]) for item in matching})
+        self.assertEqual(1, len({item["output"]["artifact_ref"] for item in matching}))
+        self.assertEqual(5, result["metrics"]["output_bytes"])
+
+    def test_concatenated_gzip_members_are_recovered_completely(self):
+        encoded = gzip.compress(b"first", mtime=0) + gzip.compress(b"second", mtime=0)
+        result, output = self.analyze(encoded, max_output_bytes=11, max_depth=1)
+        recovery = next(item for item in result["recoveries"] if [step["operation"] for step in item["transformation_chain"]] == ["gzip"])
+        self.assertEqual(b"firstsecond", (output / recovery["output"]["artifact_ref"]).read_bytes())
+
+    def test_gzip_and_zlib_trailing_data_are_rejected_atomically(self):
+        for operation, encoded in (
+            ("gzip", gzip.compress(b"first", mtime=0) + b"trailing"),
+            ("zlib", zlib.compress(b"first") + b"trailing"),
+        ):
+            with self.subTest(operation=operation):
+                result, _ = self.analyze(encoded, max_depth=1)
+                self.assertFalse(any(step["operation"] == operation for item in result["recoveries"] for step in item["transformation_chain"]))
+                self.assertTrue(any(item["operation"] == operation and item["reason_code"] == "TRAILING_DATA" for item in result["failed_attempts"]))
 
     def test_tls_metadata_without_key_is_explicitly_skipped(self):
         result, _ = self.analyze(b"opaque ciphertext", encrypted_protocol="tls")
