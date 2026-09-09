@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "source", "status", "parameters", "feature_definition", "metrics", "flows", "unavailable_features", "warnings"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "status": {"enum": ["ok", "partial", "empty", "insufficient_metadata"]},
+    "flows": {"type": "array", "items": {"type": "object", "required": ["flow_id", "packet_count", "byte_count", "directional", "packet_length", "integrity"]}},
+    "unavailable_features": {"type": "array"}, "warnings": {"type": "array", "items": {"type": "string"}}
+  }
+}
+

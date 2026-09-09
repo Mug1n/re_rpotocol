@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import shutil
 import struct
@@ -76,6 +77,11 @@ def _find_tool(
     discovered = shutil.which(name)
     if discovered:
         return Path(discovered)
+    wireshark_home = os.environ.get("WIRESHARK_HOME")
+    if wireshark_home:
+        bundled = Path(wireshark_home) / f"{name}.exe"
+        if bundled.is_file():
+            return bundled
     if windows_default.is_file():
         return windows_default
     raise FileNotFoundError(
@@ -696,3 +702,4 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

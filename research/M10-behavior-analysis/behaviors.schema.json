@@ -1,0 +1,2 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","required":["schema_version","source","status","parameters","rule_set","metrics","observations","insufficient_scopes","warnings"],"properties":{"schema_version":{"const":"0.1"},"status":{"enum":["ok","partial","empty","insufficient_evidence"]},"observations":{"type":"array","items":{"type":"object","required":["behavior_id","flow_id","type","observed_values","thresholds","evidence_refs","limitations"]}},"insufficient_scopes":{"type":"array"}}}
+
