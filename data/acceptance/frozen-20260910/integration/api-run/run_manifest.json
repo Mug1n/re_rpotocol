@@ -1,0 +1,106 @@
+{
+  "schema_version": "0.1",
+  "status": "partial",
+  "input": {
+    "m01": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
+      "sha256": "e236f49ff1c96489ae2973f31b88270953303bb9ed90182d90d97bbb724b3ac7",
+      "length": 13907
+    },
+    "m09": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\m09\\flow_features.json",
+      "sha256": "566e1cfb2ae26b4f945ec02806b9c96b27cfe03df5723a1cacc646a1fecd1b1e",
+      "length": 3285
+    }
+  },
+  "deterministic_report": {
+    "manifest": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\api-run\\m12\\report_manifest.json",
+      "sha256": "65352e67249cc5284e5623c6ee99e603fce4d48b4606dff632059e661e083417",
+      "length": 1130
+    },
+    "status": "partial",
+    "generation_mode": "deterministic"
+  },
+  "recovery": {
+    "status": "matched",
+    "recovery_id": "m08-215ff970eee6-0000",
+    "expected_sha256": "215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07",
+    "recovered": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\recovery\\recovered\\m08-215ff970eee6-0000.bin",
+      "sha256": "215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07",
+      "length": 101
+    },
+    "truth": {
+      "path": "data\\acceptance\\frozen-20260910\\truth\\download-01.json",
+      "sha256": "52d7081a5e6afa999cb40495def4309c5894f929105503dc22a6e2f51f028a11",
+      "length": 222
+    }
+  },
+  "classification": {
+    "evaluation": {
+      "path": "data\\acceptance\\frozen-20260910\\classification\\model-run\\evaluation.json",
+      "sha256": "127a533fc4a47acb0384472a5f88ddbdc6794070c3eed825653a90abedf6372e",
+      "length": 3666
+    },
+    "prediction": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\upload-06-prediction.json",
+      "sha256": "38bcdfe082851981571bebab79cb500158b274f121051414c027f435b3eb51ce",
+      "length": 981
+    },
+    "model": {
+      "path": "data\\acceptance\\frozen-20260910\\classification\\model-run\\model.joblib",
+      "sha256": "4e7b6dcdeed8310556fdfe163a42dac645e8abf201cfd9aa63390b6c7398dfa5",
+      "length": 172177
+    },
+    "test_macro_f1": 1.0,
+    "validation_macro_f1": 1.0
+  },
+  "model": {
+    "status": "invoked",
+    "model": "deepseek-v4-flash",
+    "request": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\api-run\\model\\request.json",
+      "sha256": "51add36c7deee9545e29d76918ec1a6a77be7f93a5ce5869cb6c9a732ac9ac7a"
+    },
+    "response": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\api-run\\model\\response.json",
+      "sha256": "a102473647141e4e7a372944d15c5d2285e3410ff8e5122e4afc623c853587cc"
+    },
+    "claims": [
+      {
+        "text": "The input was a pcapng file of 1844 bytes and was processed with status ok.",
+        "evidence_ids": [
+          "evidence-m01-33abe24df5cbad28"
+        ]
+      },
+      {
+        "text": "Flow download-01-d8f9c37a5714-tcp-flow-0 contained 13 packets totaling 1076 bytes over a duration of 0.0106697 seconds.",
+        "evidence_ids": [
+          "evidence-m09-2c7a111907a1d04b"
+        ]
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 228,
+      "completion_tokens": 109,
+      "total_tokens": 337,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 228
+    },
+    "limitations": [
+      "Model claims are bounded to cited deterministic evidence."
+    ],
+    "manifest": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\api-run\\model\\model_manifest.json",
+      "sha256": "2a2213548e5b68a097a9836c46d012d6849f18f01954b434a67a8425d30152f9"
+    }
+  },
+  "limitations": [
+    "The classifier was assessed on a small self-controlled frozen batch.",
+    "No semantic model claim is emitted without a verified local model invocation and bounded validator."
+  ]
+}

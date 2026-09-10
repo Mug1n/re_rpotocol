@@ -25,7 +25,7 @@ def verify_record(item: dict) -> None:
         raise ValueError(f"artifact hash or length mismatch: {path}")
 
 
-def verify(manifest_path: Path) -> str:
+def verify(manifest_path: Path) -> tuple[str, str]:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8-sig"))
     if manifest.get("schema_version") != "0.1":
         raise ValueError("unsupported manifest schema")
@@ -50,7 +50,7 @@ def verify(manifest_path: Path) -> str:
         raise ValueError("prediction is not bound to verified classifier model")
     if not prediction.get("predictions"):
         raise ValueError("prediction set is empty")
-    return str(manifest.get("model", {}).get("status", "missing"))
+    return str(manifest.get("status", "missing")), str(manifest.get("model", {}).get("status", "missing"))
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -58,12 +58,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("manifest", type=Path)
     args = parser.parse_args(argv)
     try:
-        model_status = verify(args.manifest)
+        run_status, model_status = verify(args.manifest)
     except (KeyError, ValueError, OSError, json.JSONDecodeError) as exc:
         print(f"acceptance: FAIL: {exc}")
         return 2
     if model_status != "invoked":
         print(f"acceptance: BLOCKED: semantic model status={model_status}")
+        return 3
+    if run_status != "complete":
+        print(f"acceptance: PARTIAL: deterministic module coverage status={run_status}")
         return 3
     print("acceptance: PASS")
     return 0

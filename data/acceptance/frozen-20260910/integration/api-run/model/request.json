@@ -1,0 +1,28 @@
+{
+  "api_url": "https://api.deepseek.com/chat/completions",
+  "model": "deepseek-v4-flash",
+  "body": {
+    "model": "deepseek-v4-flash",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a constrained evidence summarizer. Output valid JSON only."
+      },
+      {
+        "role": "user",
+        "content": "Summarize only the supplied deterministic network-analysis evidence. Return JSON only: {\"claims\":[{\"text\":string,\"evidence_ids\":[string]}]}. At most two claims. Each claim must cite one or more exact evidence_ids. Do not assert protocol semantics, ground truth, causality, or anything not entailed by observations.\n[{\"evidence_id\":\"evidence-m01-33abe24df5cbad28\",\"observation\":\"Input format=pcapng, status=ok, length=1844 bytes.\",\"limitations\":[\"TShark did not populate frame.file_off; packet source offsets are null.\"]},{\"evidence_id\":\"evidence-m09-2c7a111907a1d04b\",\"observation\":\"Flow download-01-d8f9c37a5714-tcp-flow-0: 13 packets, 1076 bytes, duration=0.0106697 seconds.\",\"limitations\":[]}]"
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 400,
+    "stream": false,
+    "thinking": {
+      "type": "disabled"
+    },
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  "body_sha256": "2602b4616313a4262514f19a3cd788cd4f6f9d045661a2f97452827c830d6792",
+  "key_persisted": false
+}

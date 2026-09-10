@@ -1,0 +1,28 @@
+{
+  "id": "b1cda965-ce57-4600-b1b2-f0214627bcfa",
+  "object": "chat.completion",
+  "created": 1789048526,
+  "model": "deepseek-flash",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\"claims\":[{\"text\":\"The input was a pcapng file of 1844 bytes and was processed with status ok.\",\"evidence_ids\":[\"evidence-m01-33abe24df5cbad28\"]},{\"text\":\"Flow download-01-d8f9c37a5714-tcp-flow-0 contained 13 packets totaling 1076 bytes over a duration of 0.0106697 seconds.\",\"evidence_ids\":[\"evidence-m09-2c7a111907a1d04b\"]}]}"
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 228,
+    "completion_tokens": 109,
+    "total_tokens": 337,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 228
+  },
+  "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669"
+}

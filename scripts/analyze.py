@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -18,6 +19,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from experiments.M12.run import build_report
+from experiments.M12.deepseek_adapter import invoke as invoke_deepseek
 
 
 def sha256(path: Path) -> str:
@@ -75,7 +77,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--classifier-evaluation", required=True, type=Path)
     parser.add_argument("--classifier-prediction", required=True, type=Path)
     parser.add_argument("--output-dir", required=True, type=Path)
-    parser.add_argument("--local-model-id", help="Recorded only after a separately verified local model invocation.")
+    parser.add_argument("--deepseek-model", default="deepseek-v4-flash", help="DeepSeek model name; requires DEEPSEEK_API_KEY in process memory.")
     args = parser.parse_args(argv)
     if args.output_dir.exists():
         raise FileExistsError(f"output directory exists: {args.output_dir}")
@@ -85,10 +87,10 @@ def main(argv: list[str] | None = None) -> int:
         m12 = build_report({"M01": args.m01, "M09": args.m09}, args.output_dir / "m12")
         recovery = validate_recovery(args.recovery, args.truth)
         classifier = validate_classifier(args.classifier_evaluation, args.classifier_prediction)
-        model = ({"status": "not_invoked", "id": args.local_model_id,
-                  "reason": "Adapter invocation is deliberately disabled until a bounded semantic validator is supplied."}
-                 if args.local_model_id else
-                 {"status": "blocked", "reason": "No local model executable or endpoint was found on this host."})
+        key = os.environ.get("DEEPSEEK_API_KEY", "")
+        model = (invoke_deepseek(json.loads((args.output_dir / "m12" / "evidence.json").read_text(encoding="utf-8")),
+                                 args.output_dir / "model", key, args.deepseek_model)
+                 if key else {"status": "blocked", "reason": "No DeepSeek key was supplied to this process."})
         manifest = {
             "schema_version": "0.1", "status": "partial", "input": {"m01": record(args.m01), "m09": record(args.m09)},
             "deterministic_report": {"manifest": record(args.output_dir / "m12" / "report_manifest.json"),

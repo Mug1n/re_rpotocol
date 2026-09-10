@@ -1,0 +1,39 @@
+{
+  "status": "invoked",
+  "model": "deepseek-v4-flash",
+  "request": {
+    "path": "data\\acceptance\\frozen-20260910\\integration\\api-run\\model\\request.json",
+    "sha256": "51add36c7deee9545e29d76918ec1a6a77be7f93a5ce5869cb6c9a732ac9ac7a"
+  },
+  "response": {
+    "path": "data\\acceptance\\frozen-20260910\\integration\\api-run\\model\\response.json",
+    "sha256": "a102473647141e4e7a372944d15c5d2285e3410ff8e5122e4afc623c853587cc"
+  },
+  "claims": [
+    {
+      "text": "The input was a pcapng file of 1844 bytes and was processed with status ok.",
+      "evidence_ids": [
+        "evidence-m01-33abe24df5cbad28"
+      ]
+    },
+    {
+      "text": "Flow download-01-d8f9c37a5714-tcp-flow-0 contained 13 packets totaling 1076 bytes over a duration of 0.0106697 seconds.",
+      "evidence_ids": [
+        "evidence-m09-2c7a111907a1d04b"
+      ]
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 228,
+    "completion_tokens": 109,
+    "total_tokens": 337,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 228
+  },
+  "limitations": [
+    "Model claims are bounded to cited deterministic evidence."
+  ]
+}
