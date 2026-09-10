@@ -1,5 +1,11 @@
 # C handoffs
 
+## C3-independent-model-verifier-001
+
+- Consumer: final acceptance. Input: `data/acceptance/frozen-20260910/integration/api-run/run_manifest.json`.
+- C verifies model-manifest, request and response hashes; requires `key_persisted=false`, parses raw response claims, and permits only evidence IDs in the deterministic M12 evidence file.
+- Current outcome is non-pass: `PARTIAL` because M02--M08 and M10--M11 are not included in the same M12 input coverage.
+
 ## C2-feature-adapter-001
 
 - producer：C；consumer：A；任务：C2；code_ref：`c7f7fc099be97d5358350430f441450b9db57d22`（`codex/acceptance-c-behavior`）。
