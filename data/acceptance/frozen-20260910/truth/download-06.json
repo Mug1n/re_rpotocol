@@ -1,0 +1,8 @@
+{
+  "sample_id": "download-06",
+  "action": "download",
+  "response_sha256": "215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07",
+  "response_length": 101,
+  "method": "GET",
+  "path": "/download"
+}

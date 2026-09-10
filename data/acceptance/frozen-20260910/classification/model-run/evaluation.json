@@ -1,0 +1,184 @@
+{
+  "schema_version": "0.1",
+  "task": "action_type",
+  "feature_definition_version": "0.1",
+  "feature_names": [
+    "burst_count",
+    "burst_max_packets",
+    "byte_count",
+    "direction_switches",
+    "duration_seconds",
+    "iat_mean",
+    "iat_p95",
+    "node0_to_node1_byte_ratio",
+    "packet_count",
+    "rate_bytes_per_second"
+  ],
+  "source_sha256": "4a4d4a43016651841ab6c73a7e87672ccc2ed75a2e200989a6d7b2219c9ea2ad",
+  "model": {
+    "artifact_ref": "model.joblib",
+    "sha256": "4e7b6dcdeed8310556fdfe163a42dac645e8abf201cfd9aa63390b6c7398dfa5",
+    "algorithm": "RandomForestClassifier",
+    "parameters": {
+      "n_estimators": 200,
+      "random_state": 17
+    }
+  },
+  "partitions": {
+    "train": {
+      "count": 12,
+      "groups": [
+        "download-01",
+        "download-02",
+        "download-03",
+        "download-04",
+        "periodic-01",
+        "periodic-02",
+        "periodic-03",
+        "periodic-04",
+        "upload-01",
+        "upload-02",
+        "upload-03",
+        "upload-04"
+      ]
+    },
+    "validation": {
+      "count": 3,
+      "groups": [
+        "download-05",
+        "periodic-05",
+        "upload-05"
+      ]
+    },
+    "test": {
+      "count": 3,
+      "groups": [
+        "download-06",
+        "periodic-06",
+        "upload-06"
+      ]
+    }
+  },
+  "validation": {
+    "macro_f1": 1.0,
+    "per_class": {
+      "download": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1.0
+      },
+      "periodic": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1.0
+      },
+      "upload": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3.0
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "download",
+        "periodic",
+        "upload"
+      ],
+      "values": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    "majority_baseline": 0.3333333333333333
+  },
+  "test": {
+    "macro_f1": 1.0,
+    "per_class": {
+      "download": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1.0
+      },
+      "periodic": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1.0
+      },
+      "upload": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3.0
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "download",
+        "periodic",
+        "upload"
+      ],
+      "values": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    "majority_baseline": 0.3333333333333333
+  }
+}

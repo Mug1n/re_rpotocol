@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1",
+  "feature_definition_version": "0.1",
+  "source": {
+    "module": "M09",
+    "artifact_path": "data\\acceptance\\frozen-20260910\\integration\\m09-upload-06\\flow_features.json",
+    "artifact_sha256": "2e95b387ee0746c03e2c576a143b44b6b93b04ca7fca281b500e0a35dc252d66"
+  },
+  "feature_names": [
+    "packet_count",
+    "byte_count",
+    "duration_seconds",
+    "rate_bytes_per_second",
+    "direction_switches",
+    "node0_to_node1_byte_ratio",
+    "burst_count",
+    "burst_max_packets",
+    "iat_mean",
+    "iat_p95"
+  ],
+  "rows": [
+    {
+      "id": "upload-06-ccbfdfa0eee3-tcp-flow-0",
+      "group_id": null,
+      "labels": {},
+      "features": {
+        "packet_count": 15.0,
+        "byte_count": 1231.0,
+        "duration_seconds": 0.0026291,
+        "rate_bytes_per_second": 468221.0642425164,
+        "direction_switches": 11.0,
+        "node0_to_node1_byte_ratio": 0.4703493095044679,
+        "burst_count": 1.0,
+        "burst_max_packets": 15.0,
+        "iat_mean": 0.00018779285714285715,
+        "iat_p95": 0.0020985
+      }
+    }
+  ],
+  "warnings": [
+    "Labels and split assignments are intentionally absent; add them only in the isolated training-preparation step."
+  ]
+}

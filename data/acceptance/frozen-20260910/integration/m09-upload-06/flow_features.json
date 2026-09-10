@@ -1,0 +1,116 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "module": "M01",
+    "artifact_path": "data\\acceptance\\frozen-20260910\\integration\\m01-upload-06\\result.json",
+    "artifact_sha256": "baea862ac4e31b0bc74f82d0f7f1f985fd3230d1b49a112580bbfb44660b3206",
+    "record_count": 1,
+    "schema_version": "0.1"
+  },
+  "status": "ok",
+  "parameters": {
+    "retransmission_policy": "include",
+    "burst_gap_seconds": 1.0,
+    "length_basis": "captured_length",
+    "direction_role_mapping": "node_relative",
+    "quantile_method": "nearest_rank"
+  },
+  "feature_definition": {
+    "version": "0.1",
+    "time_unit": "seconds",
+    "byte_range": "captured packet length",
+    "direction": "node_relative"
+  },
+  "metrics": {
+    "flow_count": 1,
+    "packet_count": 15
+  },
+  "flows": [
+    {
+      "flow_id": "upload-06-ccbfdfa0eee3-tcp-flow-0",
+      "packet_ids": [
+        "upload-06-ccbfdfa0eee3-packet-1",
+        "upload-06-ccbfdfa0eee3-packet-2",
+        "upload-06-ccbfdfa0eee3-packet-3",
+        "upload-06-ccbfdfa0eee3-packet-4",
+        "upload-06-ccbfdfa0eee3-packet-5",
+        "upload-06-ccbfdfa0eee3-packet-6",
+        "upload-06-ccbfdfa0eee3-packet-7",
+        "upload-06-ccbfdfa0eee3-packet-8",
+        "upload-06-ccbfdfa0eee3-packet-9",
+        "upload-06-ccbfdfa0eee3-packet-10",
+        "upload-06-ccbfdfa0eee3-packet-11",
+        "upload-06-ccbfdfa0eee3-packet-12",
+        "upload-06-ccbfdfa0eee3-packet-13",
+        "upload-06-ccbfdfa0eee3-packet-14",
+        "upload-06-ccbfdfa0eee3-packet-15"
+      ],
+      "packet_count": 15,
+      "byte_count": 1231,
+      "directional": {
+        "node0_to_node1": {
+          "packet_count": 8,
+          "bytes": 579,
+          "length": {
+            "count": 8,
+            "min": 44.0,
+            "max": 239.0,
+            "mean": 72.375,
+            "median": 44.0,
+            "p95": 239.0,
+            "sum": 579.0
+          }
+        },
+        "node1_to_node0": {
+          "packet_count": 7,
+          "bytes": 652,
+          "length": {
+            "count": 7,
+            "min": 44.0,
+            "max": 286.0,
+            "mean": 93.14285714285714,
+            "median": 44.0,
+            "p95": 286.0,
+            "sum": 652.0
+          }
+        }
+      },
+      "packet_length": {
+        "count": 15,
+        "min": 44.0,
+        "max": 286.0,
+        "mean": 82.06666666666666,
+        "median": 44.0,
+        "p95": 286.0,
+        "sum": 1231.0
+      },
+      "duration_seconds": 0.0026291,
+      "packet_interarrival_seconds": {
+        "count": 14,
+        "min": 7.6e-06,
+        "max": 0.0020985,
+        "mean": 0.00018779285714285715,
+        "median": 4.075e-05,
+        "p95": 0.0020985,
+        "sum": 0.0026291
+      },
+      "interarrival_cv": 2.8261908031716785,
+      "rate_bytes_per_second": 468221.0642425164,
+      "direction_switches": 11,
+      "node0_to_node1_byte_ratio": 0.4703493095044679,
+      "burst": {
+        "gap_seconds": 1.0,
+        "count": 1,
+        "max_packets": 15
+      },
+      "integrity": {
+        "truncated_packets": 0,
+        "retransmission_packets": 0,
+        "out_of_order_packets": 0,
+        "gap_or_loss_packets": 0
+      }
+    }
+  ],
+  "unavailable_features": [],
+  "warnings": []
+}

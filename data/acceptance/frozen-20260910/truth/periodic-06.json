@@ -1,0 +1,9 @@
+{
+  "sample_id": "periodic-06",
+  "action": "periodic",
+  "response_sha256": "6463936324c6130e7cdfc9c8423e703eeb6b797bd8104fba530c2551d4557575",
+  "response_length": 33,
+  "method": "GET",
+  "path": "/periodic",
+  "requests_in_one_connection": 4
+}

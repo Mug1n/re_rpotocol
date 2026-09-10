@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.1",
+  "status": "partial",
+  "input": {
+    "m01": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
+      "sha256": "e236f49ff1c96489ae2973f31b88270953303bb9ed90182d90d97bbb724b3ac7",
+      "length": 13907
+    },
+    "m09": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\m09\\flow_features.json",
+      "sha256": "566e1cfb2ae26b4f945ec02806b9c96b27cfe03df5723a1cacc646a1fecd1b1e",
+      "length": 3285
+    }
+  },
+  "deterministic_report": {
+    "manifest": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\run\\m12\\report_manifest.json",
+      "sha256": "65352e67249cc5284e5623c6ee99e603fce4d48b4606dff632059e661e083417",
+      "length": 1130
+    },
+    "status": "partial",
+    "generation_mode": "deterministic"
+  },
+  "recovery": {
+    "status": "matched",
+    "recovery_id": "m08-215ff970eee6-0000",
+    "expected_sha256": "215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07",
+    "recovered": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\recovery\\recovered\\m08-215ff970eee6-0000.bin",
+      "sha256": "215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07",
+      "length": 101
+    },
+    "truth": {
+      "path": "data\\acceptance\\frozen-20260910\\truth\\download-01.json",
+      "sha256": "52d7081a5e6afa999cb40495def4309c5894f929105503dc22a6e2f51f028a11",
+      "length": 222
+    }
+  },
+  "classification": {
+    "evaluation": {
+      "path": "data\\acceptance\\frozen-20260910\\classification\\model-run\\evaluation.json",
+      "sha256": "127a533fc4a47acb0384472a5f88ddbdc6794070c3eed825653a90abedf6372e",
+      "length": 3666
+    },
+    "prediction": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\upload-06-prediction.json",
+      "sha256": "38bcdfe082851981571bebab79cb500158b274f121051414c027f435b3eb51ce",
+      "length": 981
+    },
+    "model": {
+      "path": "data\\acceptance\\frozen-20260910\\classification\\model-run\\model.joblib",
+      "sha256": "4e7b6dcdeed8310556fdfe163a42dac645e8abf201cfd9aa63390b6c7398dfa5",
+      "length": 172177
+    },
+    "test_macro_f1": 1.0,
+    "validation_macro_f1": 1.0
+  },
+  "model": {
+    "status": "blocked",
+    "reason": "No local model executable or endpoint was found on this host."
+  },
+  "limitations": [
+    "The classifier was assessed on a small self-controlled frozen batch.",
+    "No semantic model claim is emitted without a verified local model invocation and bounded validator."
+  ]
+}

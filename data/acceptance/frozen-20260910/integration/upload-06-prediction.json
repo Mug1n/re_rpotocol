@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1",
+  "status": "ok",
+  "source": {
+    "evaluation_path": "data\\acceptance\\frozen-20260910\\classification\\model-run\\evaluation.json",
+    "evaluation_sha256": "127a533fc4a47acb0384472a5f88ddbdc6794070c3eed825653a90abedf6372e",
+    "rows_path": "data\\acceptance\\frozen-20260910\\integration\\upload-06-label-free.json",
+    "rows_sha256": "d81b22978374fd7c7380e56cec1c8b73afa85c806b15332dea46a9afbbbc52d0"
+  },
+  "model": {
+    "artifact_ref": "model.joblib",
+    "sha256": "4e7b6dcdeed8310556fdfe163a42dac645e8abf201cfd9aa63390b6c7398dfa5",
+    "feature_definition_version": "0.1"
+  },
+  "predictions": [
+    {
+      "scope_id": "upload-06-ccbfdfa0eee3-tcp-flow-0",
+      "predicted_label": "upload",
+      "score_type": "class_probability",
+      "score": 0.95,
+      "rejected": false
+    }
+  ],
+  "warnings": [
+    "Predictions are not ground truth and this small controlled capture batch is not generalizable."
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "schema_version": "0.1",
+  "generator": "capture_acceptance_samples.py",
+  "base_url": "http://127.0.0.1:18080",
+  "tshark": "D:\\\u65b0\u5efa\u6587\u4ef6\u5939 (2)\\Wireshark\\tshark.exe",
+  "samples": [
+    {
+      "sample_id": "download-01",
+      "input_path": "captures/download-01.pcapng",
+      "input_sha256": "d8f9c37a57146377948b4792d7b0d86b8c95c83d8f23ffb6fabf445eb518f11f",
+      "source_type": "loopback_http_capture",
+      "task_id": "download-01",
+      "group_id": "download-01",
+      "split": "train",
+      "action": "download",
+      "truth_path": "truth/download-01.json"
+    },
+    {
+      "sample_id": "download-02",
+      "input_path": "captures/download-02.pcapng",
+      "input_sha256": "91acab9db0a11f168bc47d183e736c318ec3cab367ecc29407185b6690ab83ed",
+      "source_type": "loopback_http_capture",
+      "task_id": "download-02",
+      "group_id": "download-02",
+      "split": "train",
+      "action": "download",
+      "truth_path": "truth/download-02.json"
+    },
+    {
+      "sample_id": "download-03",
+      "input_path": "captures/download-03.pcapng",
+      "input_sha256": "ddfc5a5dc1d44dce5723c16dba09e5df90d20fc6b7e3ae840aac2e7cc2946c60",
+      "source_type": "loopback_http_capture",
+      "task_id": "download-03",
+      "group_id": "download-03",
+      "split": "train",
+      "action": "download",
+      "truth_path": "truth/download-03.json"
+    },
+    {
+      "sample_id": "download-04",
+      "input_path": "captures/download-04.pcapng",
+      "input_sha256": "1f954832ad917f442e7d4f353f77898d0264ef211666b7f7290d9ef9d17dc65b",
+      "source_type": "loopback_http_capture",
+      "task_id": "download-04",
+      "group_id": "download-04",
+      "split": "train",
+      "action": "download",
+      "truth_path": "truth/download-04.json"
+    },
+    {
+      "sample_id": "download-05",
+      "input_path": "captures/download-05.pcapng",
+      "input_sha256": "230e4abd0f69517baa76f720310486197a9710daefcd87c8a1b06b26dcd6aad8",
+      "source_type": "loopback_http_capture",
+      "task_id": "download-05",
+      "group_id": "download-05",
+      "split": "validation",
+      "action": "download",
+      "truth_path": "truth/download-05.json"
+    },
+    {
+      "sample_id": "download-06",
+      "input_path": "captures/download-06.pcapng",
+      "input_sha256": "e827ef76c8b5211fd6b95b293a7964293885d247ef416e6144f8221a0c1e25f9",
+      "source_type": "loopback_http_capture",
+      "task_id": "download-06",
+      "group_id": "download-06",
+      "split": "test",
+      "action": "download",
+      "truth_path": "truth/download-06.json"
+    },
+    {
+      "sample_id": "upload-01",
+      "input_path": "captures/upload-01.pcapng",
+      "input_sha256": "577e2dba26fbabca92a9ccce7be398a84b58c84bdb6ae745b1b2c335ce575e23",
+      "source_type": "loopback_http_capture",
+      "task_id": "upload-01",
+      "group_id": "upload-01",
+      "split": "train",
+      "action": "upload",
+      "truth_path": "truth/upload-01.json"
+    },
+    {
+      "sample_id": "upload-02",
+      "input_path": "captures/upload-02.pcapng",
+      "input_sha256": "8567cfc360799db61195c937cfa0ffbb9499754db8cc9e3986bc5277a17274b4",
+      "source_type": "loopback_http_capture",
+      "task_id": "upload-02",
+      "group_id": "upload-02",
+      "split": "train",
+      "action": "upload",
+      "truth_path": "truth/upload-02.json"
+    },
+    {
+      "sample_id": "upload-03",
+      "input_path": "captures/upload-03.pcapng",
+      "input_sha256": "ce7da042c563a08d18baf601703a2da30e6ba4d3c0cfe8fd1b43e0cb38bf4268",
+      "source_type": "loopback_http_capture",
+      "task_id": "upload-03",
+      "group_id": "upload-03",
+      "split": "train",
+      "action": "upload",
+      "truth_path": "truth/upload-03.json"
+    },
+    {
+      "sample_id": "upload-04",
+      "input_path": "captures/upload-04.pcapng",
+      "input_sha256": "81de2cd471b9fac153542993d9bccc03c3dad19a879da4b9d9884d9ab89e9d56",
+      "source_type": "loopback_http_capture",
+      "task_id": "upload-04",
+      "group_id": "upload-04",
+      "split": "train",
+      "action": "upload",
+      "truth_path": "truth/upload-04.json"
+    },
+    {
+      "sample_id": "upload-05",
+      "input_path": "captures/upload-05.pcapng",
+      "input_sha256": "2cfaccf6b7a7c1d8ecce65b4bdaa4495e8dc2483a65484d01f501e38c3a389cf",
+      "source_type": "loopback_http_capture",
+      "task_id": "upload-05",
+      "group_id": "upload-05",
+      "split": "validation",
+      "action": "upload",
+      "truth_path": "truth/upload-05.json"
+    },
+    {
+      "sample_id": "upload-06",
+      "input_path": "captures/upload-06.pcapng",
+      "input_sha256": "ccbfdfa0eee36d50bd356fac7d88fb157695859ac0c05acf873620b91961b042",
+      "source_type": "loopback_http_capture",
+      "task_id": "upload-06",
+      "group_id": "upload-06",
+      "split": "test",
+      "action": "upload",
+      "truth_path": "truth/upload-06.json"
+    },
+    {
+      "sample_id": "periodic-01",
+      "input_path": "captures/periodic-01.pcapng",
+      "input_sha256": "ea9a3ab5d2aa0f3ea5b505f9c04274dcb113c3393bb25d69047c1824806401fa",
+      "source_type": "loopback_http_capture",
+      "task_id": "periodic-01",
+      "group_id": "periodic-01",
+      "split": "train",
+      "action": "periodic",
+      "truth_path": "truth/periodic-01.json"
+    },
+    {
+      "sample_id": "periodic-02",
+      "input_path": "captures/periodic-02.pcapng",
+      "input_sha256": "7e496d2d90503b9237585d37f5d4ae4e25029b7470b9a6d2ef4655f81817c9bc",
+      "source_type": "loopback_http_capture",
+      "task_id": "periodic-02",
+      "group_id": "periodic-02",
+      "split": "train",
+      "action": "periodic",
+      "truth_path": "truth/periodic-02.json"
+    },
+    {
+      "sample_id": "periodic-03",
+      "input_path": "captures/periodic-03.pcapng",
+      "input_sha256": "3c4913b0e1ee602cc13abd4522e12e5bdfeadd5d3e36e08029056500bcf394db",
+      "source_type": "loopback_http_capture",
+      "task_id": "periodic-03",
+      "group_id": "periodic-03",
+      "split": "train",
+      "action": "periodic",
+      "truth_path": "truth/periodic-03.json"
+    },
+    {
+      "sample_id": "periodic-04",
+      "input_path": "captures/periodic-04.pcapng",
+      "input_sha256": "af55cea12972e584111a439a27fd22d465e51a477a745a24d8921d341911a3e2",
+      "source_type": "loopback_http_capture",
+      "task_id": "periodic-04",
+      "group_id": "periodic-04",
+      "split": "train",
+      "action": "periodic",
+      "truth_path": "truth/periodic-04.json"
+    },
+    {
+      "sample_id": "periodic-05",
+      "input_path": "captures/periodic-05.pcapng",
+      "input_sha256": "fba132fb247d8e25cc0aba9a3441ae938b3b3fb55876e9978429d20a2bdfb905",
+      "source_type": "loopback_http_capture",
+      "task_id": "periodic-05",
+      "group_id": "periodic-05",
+      "split": "validation",
+      "action": "periodic",
+      "truth_path": "truth/periodic-05.json"
+    },
+    {
+      "sample_id": "periodic-06",
+      "input_path": "captures/periodic-06.pcapng",
+      "input_sha256": "03f364ea380f754ff1cf0bf1e1032967a97e1e788f567c3190d1c85cbcbef346",
+      "source_type": "loopback_http_capture",
+      "task_id": "periodic-06",
+      "group_id": "periodic-06",
+      "split": "test",
+      "action": "periodic",
+      "truth_path": "truth/periodic-06.json"
+    }
+  ],
+  "warnings": [
+    "Truth files are isolated and must not be passed to analysis modules."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "sample_id": "upload-06",
+  "action": "upload",
+  "response_sha256": "32cb41ae2fe8454a66b0f0932b3647a2412998a66d6e866c7a9197f465b4794d",
+  "response_length": 90,
+  "method": "POST",
+  "path": "/upload",
+  "uploaded_sha256": "e3a1098cbfc0d4e4511432830e4ae9e8478f1db60b441f83a3b4dbabcb104106"
+}
