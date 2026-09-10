@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/schemas/payload-sources.schema.json",
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "nonEmpty": {"type": "string", "minLength": 1},
+    "range": {
+      "type": "object", "additionalProperties": false, "required": ["start", "end"],
+      "properties": {"start": {"type": "integer", "minimum": 0}, "end": {"type": "integer", "minimum": 0}}
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source", "status", "parameters", "sources", "unparsed_ranges", "metrics", "warnings"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["module", "artifact_path", "artifact_sha256", "record_id", "schema_version"],
+      "properties": {
+        "module": {"const": "M01"}, "artifact_path": {"$ref": "#/$defs/nonEmpty"},
+        "artifact_sha256": {"$ref": "#/$defs/sha256"}, "record_id": {"$ref": "#/$defs/nonEmpty"},
+        "schema_version": {"const": "0.1"}
+      }
+    },
+    "status": {"enum": ["ok", "partial", "no_http_payloads"]},
+    "parameters": {
+      "type": "object", "additionalProperties": false, "required": ["max_stream_bytes"],
+      "properties": {"max_stream_bytes": {"type": "integer", "minimum": 1}}
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["source_id", "protocol", "stream_id", "flow_id", "direction", "recognition_basis", "message_index", "message_type", "start_line", "headers", "framing", "content_encoding", "source_artifact", "source_ranges", "output", "completeness", "limitations"],
+        "properties": {
+          "source_id": {"$ref": "#/$defs/nonEmpty"}, "protocol": {"const": "http"},
+          "stream_id": {"$ref": "#/$defs/nonEmpty"}, "flow_id": {"$ref": "#/$defs/nonEmpty"},
+          "direction": {"enum": ["node0_to_node1", "node1_to_node0"]},
+          "recognition_basis": {"const": "strict_http_start_line_and_framing_headers"},
+          "message_index": {"type": "integer", "minimum": 0}, "message_type": {"enum": ["request", "response"]},
+          "start_line": {"$ref": "#/$defs/nonEmpty"},
+          "headers": {"type": "object", "additionalProperties": {"type": "string"}},
+          "framing": {"enum": ["content_length", "chunked"]},
+          "content_encoding": {"type": ["string", "null"]},
+          "source_artifact": {
+            "type": "object", "additionalProperties": false,
+            "required": ["artifact_path", "artifact_sha256", "length"],
+            "properties": {"artifact_path": {"$ref": "#/$defs/nonEmpty"}, "artifact_sha256": {"$ref": "#/$defs/sha256"}, "length": {"type": "integer", "minimum": 0}}
+          },
+          "source_ranges": {"type": "array", "items": {"$ref": "#/$defs/range"}},
+          "output": {
+            "type": "object", "additionalProperties": false, "required": ["artifact_ref", "sha256", "length"],
+            "properties": {"artifact_ref": {"$ref": "#/$defs/nonEmpty"}, "sha256": {"$ref": "#/$defs/sha256"}, "length": {"type": "integer", "minimum": 0}}
+          },
+          "completeness": {"enum": ["complete", "partial"]},
+          "limitations": {"type": "array", "items": {"$ref": "#/$defs/nonEmpty"}}
+        }
+      }
+    },
+    "unparsed_ranges": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["stream_id", "direction", "start", "end", "reason"],
+        "properties": {
+          "stream_id": {"$ref": "#/$defs/nonEmpty"}, "direction": {"enum": ["node0_to_node1", "node1_to_node0"]},
+          "start": {"type": "integer", "minimum": 0}, "end": {"type": "integer", "minimum": 0}, "reason": {"$ref": "#/$defs/nonEmpty"}
+        }
+      }
+    },
+    "metrics": {
+      "type": "object", "additionalProperties": false,
+      "required": ["stream_count", "direction_count", "payload_count", "complete_payload_count", "output_bytes"],
+      "properties": {
+        "stream_count": {"type": "integer", "minimum": 0}, "direction_count": {"type": "integer", "minimum": 0},
+        "payload_count": {"type": "integer", "minimum": 0}, "complete_payload_count": {"type": "integer", "minimum": 0},
+        "output_bytes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  }
+}

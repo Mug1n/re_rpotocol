@@ -24,7 +24,11 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from experiments.artifact_contracts import load_json_artifact_with_sha256, sha256_file, validate_m01_references
+
 OUTPUT_SCHEMA = ROOT / "research" / "M08-recovery" / "recovery.schema.json"
+PAYLOAD_SOURCES_SCHEMA = ROOT / "research" / "M08-recovery" / "payload-sources.schema.json"
+M01_SCHEMA = ROOT / "research" / "M01-input" / "input-artifact.schema.json"
 SCHEMA_VERSION = "0.1"
 HEX_PATTERN = re.compile(rb"(?:[0-9A-Fa-f]{2}\s*)+")
 BASE64_PATTERN = re.compile(rb"[A-Za-z0-9+/]*={0,2}")
@@ -93,6 +97,11 @@ def analyze_recovery(
     source_module: str = "direct",
     source_record_id: str | None = None,
     encrypted_protocol: str | None = None,
+    unsupported_content_encoding: str | None = None,
+    source_basis: str = "strict_candidate",
+    source_completeness: str = "complete",
+    source_ranges: list[dict[str, int]] | None = None,
+    source_context: dict[str, Any] | None = None,
     max_input_bytes: int = DEFAULT_MAX_INPUT_BYTES,
     max_depth: int = 3,
     max_output_bytes: int = 8 * 1024 * 1024,
@@ -104,6 +113,10 @@ def analyze_recovery(
     destination = Path(output_dir)
     if destination.exists():
         raise FileExistsError(f"output directory already exists: {destination}")
+    if source_basis not in {"strict_candidate", "protocol_declared"}:
+        raise ValueError("source_basis must be strict_candidate or protocol_declared")
+    if source_completeness not in {"complete", "partial"}:
+        raise ValueError("source_completeness must be complete or partial")
     if max_input_bytes <= 0 or max_depth < 0 or max_output_bytes <= 0 or max_inflation_ratio <= 0 or max_artifacts <= 0 or min_printable_length <= 0:
         raise ValueError("recovery limits must be positive and max_depth non-negative")
     try:
@@ -136,6 +149,8 @@ def analyze_recovery(
             "max_artifacts": max_artifacts,
             "min_printable_length": min_printable_length,
             "enabled_decoders": ["utf8", "utf16", "hex", "base64", "gzip", "zlib"],
+            "source_basis": source_basis,
+            "source_completeness": source_completeness,
         },
         "recoveries": [],
         "failed_attempts": [],
@@ -143,15 +158,27 @@ def analyze_recovery(
         "metrics": {"recovery_count": 0, "failed_attempt_count": 0, "skipped_source_count": 0, "output_bytes": 0},
         "warnings": ["Successful decoding or decompression does not establish application semantics."],
     }
-    if encrypted_protocol:
-        result["skipped_sources"].append({
+    if encrypted_protocol or unsupported_content_encoding:
+        skipped = {
             "source_ref": source_ref,
-            "reason_code": "ENCRYPTED_WITHOUT_DECRYPTION_MATERIAL",
-            "detail": f"{encrypted_protocol.upper()} content was not treated as plaintext without explicit decryption material.",
-        })
+            "reason_code": (
+                "ENCRYPTED_WITHOUT_DECRYPTION_MATERIAL" if encrypted_protocol
+                else "UNSUPPORTED_CONTENT_ENCODING"
+            ),
+            "detail": (
+                f"{encrypted_protocol.upper()} content was not treated as plaintext without explicit decryption material."
+                if encrypted_protocol else
+                f"HTTP Content-Encoding {unsupported_content_encoding!r} is not supported by M08."
+            ),
+        }
+        if source_ranges is not None:
+            skipped["source_ranges"] = source_ranges
+        if source_context is not None:
+            skipped["source_context"] = source_context
+        result["skipped_sources"].append(skipped)
     elif data:
         destination.parent.mkdir(parents=True, exist_ok=True)
-        pending = deque([(data, [], "strict_candidate")])
+        pending = deque([(data, [], source_basis)])
         seen = {hashlib.sha256(data).hexdigest()}
         candidates: list[tuple[bytes, list[dict[str, Any]], str, str | None]] = []
         admitted_output_hashes: dict[str, int] = {}
@@ -221,7 +248,11 @@ def analyze_recovery(
                     except zlib.error:
                         result["failed_attempts"].append({"source_ref": source_ref, "operation": operation, "reason_code": "INVALID_COMPRESSED_STREAM"})
             for operation, transformed, validation in transforms:
-                next_basis = "validated_magic" if operation in ("gzip", "zlib") else basis
+                next_basis = (
+                    basis if basis == "protocol_declared"
+                    else "validated_magic" if operation in ("gzip", "zlib")
+                    else basis
+                )
                 next_chain = chain + [_step(operation, current, transformed, validation)]
                 if not admit_candidate(transformed, next_chain, next_basis, None, operation):
                     continue
@@ -250,16 +281,25 @@ def analyze_recovery(
                     artifact.write_bytes(recovered)
                     artifact_ref = artifact.relative_to(staging).as_posix()
                     artifact_refs[output_sha] = artifact_ref
-                result["recoveries"].append({
+                recovery = {
                     "recovery_id": recovery_id,
                     "source_ref": source_ref,
                     "source_range": {"start": 0, "end": len(data)},
                     "basis": basis,
                     "transformation_chain": chain,
                     "output": {"artifact_ref": artifact_ref, "sha256": output_sha, "length": len(recovered), "media_type": media_type},
-                    "completeness": "complete" if basis in ("validated_magic", "protocol_declared") else "candidate",
+                    "completeness": (
+                        "partial" if source_completeness == "partial"
+                        else "complete" if basis in ("validated_magic", "protocol_declared")
+                        else "candidate"
+                    ),
                     "evidence": ["strict validation completed for every recorded transformation"],
-                })
+                }
+                if source_ranges is not None:
+                    recovery["source_ranges"] = source_ranges
+                if source_context is not None:
+                    recovery["source_context"] = source_context
+                result["recoveries"].append(recovery)
             if result["recoveries"]:
                 result["status"] = "partial" if result["failed_attempts"] or result["skipped_sources"] else "ok"
             result["metrics"] = {
@@ -289,10 +329,112 @@ def analyze_recovery(
         raise
 
 
+def _resolve_reference(parent_artifact: Path, reference: str) -> Path:
+    path = Path(reference)
+    if path.is_absolute():
+        return path
+    nearby = parent_artifact.parent / path
+    return nearby if nearby.is_file() else Path.cwd() / path
+
+
+def analyze_payload_source(
+    payload_sources_path: str | Path,
+    source_id: str,
+    output_dir: str | Path,
+    **parameters: Any,
+) -> dict[str, Any]:
+    """Recover one declared HTTP body after revalidating its complete provenance chain."""
+    manifest_path = Path(payload_sources_path)
+    manifest, manifest_sha256 = load_json_artifact_with_sha256(manifest_path)
+    jsonschema.validate(
+        manifest, json.loads(PAYLOAD_SOURCES_SCHEMA.read_text(encoding="utf-8"))
+    )
+    m01_ref = manifest["source"]
+    m01_path = _resolve_reference(manifest_path, m01_ref["artifact_path"])
+    m01, _ = load_json_artifact_with_sha256(
+        m01_path, expected_sha256=m01_ref["artifact_sha256"]
+    )
+    jsonschema.validate(m01, json.loads(M01_SCHEMA.read_text(encoding="utf-8")))
+    validate_m01_references(m01)
+    matches = [item for item in manifest["sources"] if item["source_id"] == source_id]
+    if len(matches) != 1:
+        raise ValueError(f"payload source_id must resolve exactly once: {source_id!r}")
+    source = matches[0]
+    payload_path = _resolve_reference(manifest_path, source["output"]["artifact_ref"])
+    if not payload_path.is_file():
+        raise FileNotFoundError(f"payload artifact does not exist: {payload_path}")
+    if payload_path.stat().st_size != source["output"]["length"]:
+        raise ValueError("payload artifact length mismatch")
+    if sha256_file(payload_path) != source["output"]["sha256"]:
+        raise ValueError("payload artifact SHA-256 mismatch")
+    stream = source["source_artifact"]
+    matching_streams = [item for item in m01["streams"] if item["id"] == source["stream_id"]]
+    if len(matching_streams) != 1 or matching_streams[0]["flow_id"] != source["flow_id"]:
+        raise ValueError("payload source stream/flow does not match referenced M01")
+    matching_directions = [
+        item for item in matching_streams[0]["directions"]
+        if item["direction"] == source["direction"]
+    ]
+    if len(matching_directions) != 1 or any(
+        matching_directions[0][key] != stream[value]
+        for key, value in (("sha256", "artifact_sha256"), ("length", "length"))
+    ):
+        raise ValueError("payload source direction does not match referenced M01")
+    stream_path = _resolve_reference(manifest_path, stream["artifact_path"])
+    if not stream_path.is_file():
+        raise FileNotFoundError(f"source stream artifact does not exist: {stream_path}")
+    if stream_path.stat().st_size != stream["length"]:
+        raise ValueError("source stream artifact length mismatch")
+    if sha256_file(stream_path) != stream["artifact_sha256"]:
+        raise ValueError("source stream artifact SHA-256 mismatch")
+    stream_bytes = stream_path.read_bytes()
+    previous_end = -1
+    rebuilt = bytearray()
+    for item in source["source_ranges"]:
+        start, end = item["start"], item["end"]
+        if start > end or start < previous_end or end > len(stream_bytes):
+            raise ValueError("payload source ranges are invalid or overlapping")
+        rebuilt.extend(stream_bytes[start:end])
+        previous_end = end
+    if bytes(rebuilt) != payload_path.read_bytes():
+        raise ValueError("payload bytes do not match declared source ranges")
+    context = {
+        "payload_sources_path": str(manifest_path),
+        "payload_sources_sha256": manifest_sha256,
+        "protocol": source["protocol"],
+        "recognition_basis": source["recognition_basis"],
+        "stream_id": source["stream_id"],
+        "flow_id": source["flow_id"],
+        "direction": source["direction"],
+        "message_index": source["message_index"],
+        "framing": source["framing"],
+        "content_encoding": source["content_encoding"],
+    }
+    encoding = (source["content_encoding"] or "identity").strip().lower()
+    supported_encodings = {"identity", "gzip", "x-gzip", "deflate"}
+    return analyze_recovery(
+        payload_path,
+        output_dir,
+        expected_sha256=source["output"]["sha256"],
+        source_module="payload_sources",
+        source_record_id=source["source_id"],
+        source_basis="protocol_declared",
+        source_completeness=source["completeness"],
+        source_ranges=source["source_ranges"],
+        source_context=context,
+        unsupported_content_encoding=(
+            None if encoding in supported_encodings else source["content_encoding"]
+        ),
+        **parameters,
+    )
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Recover strictly validated text, encodings, and compressed content under explicit limits.")
-    parser.add_argument("input", type=Path)
+    parser.add_argument("input", type=Path, nargs="?")
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--payload-sources", type=Path)
+    parser.add_argument("--payload-source-id")
     parser.add_argument("--expected-sha256")
     parser.add_argument("--source-module", default="direct")
     parser.add_argument("--source-record-id")
@@ -309,7 +451,27 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
-        analyze_recovery(args.input, args.output_dir, expected_sha256=args.expected_sha256, source_module=args.source_module, source_record_id=args.source_record_id, encrypted_protocol=args.encrypted_protocol, max_input_bytes=args.max_input_bytes, max_depth=args.max_depth, max_output_bytes=args.max_output_bytes, max_inflation_ratio=args.max_inflation_ratio, max_artifacts=args.max_artifacts, min_printable_length=args.min_printable_length)
+        common = {
+            "max_input_bytes": args.max_input_bytes, "max_depth": args.max_depth,
+            "max_output_bytes": args.max_output_bytes,
+            "max_inflation_ratio": args.max_inflation_ratio,
+            "max_artifacts": args.max_artifacts,
+            "min_printable_length": args.min_printable_length,
+        }
+        if args.payload_sources is not None or args.payload_source_id is not None:
+            if args.input is not None or args.payload_sources is None or not args.payload_source_id:
+                raise ValueError("use either input or --payload-sources with --payload-source-id")
+            analyze_payload_source(
+                args.payload_sources, args.payload_source_id, args.output_dir, **common
+            )
+        else:
+            if args.input is None:
+                raise ValueError("input is required for direct recovery")
+            analyze_recovery(
+                args.input, args.output_dir, expected_sha256=args.expected_sha256,
+                source_module=args.source_module, source_record_id=args.source_record_id,
+                encrypted_protocol=args.encrypted_protocol, **common,
+            )
     except (FileNotFoundError, FileExistsError, ValueError, jsonschema.ValidationError) as exc:
         print(f"m08: {exc}", file=sys.stderr)
         return 2
