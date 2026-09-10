@@ -1,5 +1,7 @@
 # 网络加密流量二进制分析
 
+> **三人Codex验收协作入口：** 从 `origin/codex/acceptance-collaboration` 开始，先读 [START-HERE](docs/acceptance/START-HERE.md)。根目录 [AGENTS.md](AGENTS.md) 要求所有Codex任务读取共用执行契约，再按A/B/C角色实施；各自使用独立开发分支，按同一套核心流程验收标准交付。
+
 面向课程设计技术探索题目的可解释分析原型：读取 `.dat/.bin/.pcap/.pcapng`，在不伪造缺失元数据的前提下，逐步完成字节特征、消息分帧、聚类、对齐、字段假设、标准协议解析、内容恢复、流量行为分析、分类与证据约束报告。
 
 ## 当前进度

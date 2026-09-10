@@ -1,5 +1,9 @@
 # 网络加密流量二进制分析：Agent 工作规范
 
+## 三人验收协作入口
+
+执行验收冲刺的Codex任务先读 `docs/acceptance/codex-execution-contract.md`，再按用户指定的A/B/C读取 `docs/acceptance/role-a.md`、`role-b.md` 或 `role-c.md`。角色入口定义最小阅读集、写入范围和实际交接要求；总验收标准见 `docs/plans/2026-09-10-1827-feat-acceptance-closure-plan.md`。未指定角色时不能自行占用三个角色的文件。仅要求检查或修改计划的任务不自动开始开发。
+
 ## 当前任务
 
 M1～M12 的模块调研与初步选型已经完成。用户已于 2026-09-08 明确要求进入开发阶段；当前任务是按可验证的小步迭代实现、测试并集成完整分析链路。

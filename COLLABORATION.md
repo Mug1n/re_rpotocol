@@ -1,5 +1,9 @@
 # pc1 分支协作说明
 
+> **Codex执行入口：** 先读 [执行契约](docs/acceptance/codex-execution-contract.md)，再按分配角色读 [A](docs/acceptance/role-a.md)、[B](docs/acceptance/role-b.md) 或 [C](docs/acceptance/role-c.md)。每个入口包含读取顺序、写入范围、依赖、交接和启动提示词。以门禁和实际证据推进，不按下文历史状态或人类会议时间等待。
+
+> 三人团队的后续验收冲刺以 [三人团队验收协作计划](docs/plans/2026-09-10-1835-docs-three-person-acceptance-plan.md) 为分工与交接依据，以 [PDF验收闭环方案](docs/plans/2026-09-10-1827-feat-acceptance-closure-plan.md) 为验收标准。新计划明确 A（集成/报告/大模型）、B（协议/结构/还原）、C（数据/分类/独立验收）的文件所有权；下文既有记录保留作历史背景。
+
 更新日期：2026-09-10。本分支从 `origin/main` 的 `4d1f23e` 创建，现已汇合 M01～M12 的可运行基线、测试、JSON Schema、两个真实外部 DAT 及验证记录。课程尚未提供最终 DAT，因此当前结果用于开发与接口验证，不代表对隐藏数据的最终适配。
 
 ## 当前链路
