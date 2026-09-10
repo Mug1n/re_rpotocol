@@ -13,6 +13,12 @@
 - Re-run: `python -B scripts/verify_acceptance.py data/acceptance/frozen-20260910/full-chain/acceptance.json` returns `acceptance: PASS` (exit 0).
 - Scope note: full coverage is proven; M03 remains partial and M06 empty for this one response flow, and those are preserved as module limitations.
 
+## C-public-replay-001
+
+- Artifact: `reports/public-samples/2026-09-10-c-public-evaluation-final/README.md` and `summary.json`, with 21 linked per-sample reports.
+- Re-run used the frozen local corpus and TShark for capture inputs; no replay or external network traffic occurred.
+- Result: 21 `completed_with_limits`, 0 module failures. The merger independently rejects any missing/duplicate artifact or mismatch against the frozen public-manifest SHA-256 and byte size.
+
 ## C2-feature-adapter-001
 
 - producer：C；consumer：A；任务：C2；code_ref：`c7f7fc099be97d5358350430f441450b9db57d22`（`codex/acceptance-c-behavior`）。

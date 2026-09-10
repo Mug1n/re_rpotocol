@@ -596,6 +596,7 @@ def evaluate_all(
     *,
     generated_at: str,
     tshark_path: Path | None = None,
+    dataset_ids: set[str] | None = None,
 ) -> list[dict[str, Any]]:
     if work_root.exists():
         raise FileExistsError(f"work directory already exists: {work_root}")
@@ -607,7 +608,10 @@ def evaluate_all(
     report_root.mkdir(parents=True)
     modules = load_modules()
     results = []
-    for dataset in manifest["datasets"]:
+    datasets = [item for item in manifest["datasets"] if dataset_ids is None or item["dataset_id"] in dataset_ids]
+    if not datasets:
+        raise ValueError("no datasets matched --dataset-id")
+    for dataset in datasets:
         for artifact in dataset["files"]:
             input_path = external_root / artifact["path"]
             work_dir = work_root / artifact["artifact_id"]
@@ -643,6 +647,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--tshark", type=Path,
         help="Path to tshark.exe when it is not available on PATH.",
     )
+    parser.add_argument("--dataset-id", action="append", help="Evaluate only this frozen dataset id; may be repeated.")
     return parser
 
 
@@ -655,6 +660,7 @@ def main(argv: list[str] | None = None) -> int:
             args.report_root,
             generated_at=args.generated_at,
             tshark_path=args.tshark,
+            dataset_ids=set(args.dataset_id) if args.dataset_id else None,
         )
     except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
         print(f"public-sample-evaluation: {exc}", file=sys.stderr)
