@@ -1,2 +1,119 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","required":["schema_version","source","status","parameters","task","split","model","metrics","predictions","leakage_checks","warnings"],"properties":{"schema_version":{"const":"0.1"},"status":{"enum":["ok","evaluation_only","insufficient_labels","dependency_unavailable","empty"]},"task":{"type":"object","required":["label_dimension","classes","unknown_rejection","feature_schema_version"]},"split":{"type":"object","required":["group_key","train_count","test_count","group_overlap","random_seed"]},"predictions":{"type":"array"}}}
-
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "metricRow": {
+      "type": "object", "required": ["precision", "recall", "f1-score", "support"], "additionalProperties": false,
+      "properties": {
+        "precision": {"type": "number", "minimum": 0, "maximum": 1},
+        "recall": {"type": "number", "minimum": 0, "maximum": 1},
+        "f1-score": {"type": "number", "minimum": 0, "maximum": 1},
+        "support": {"type": "number", "minimum": 0}
+      }
+    }
+  },
+  "type": "object",
+  "required": ["schema_version", "source", "status", "parameters", "task", "split", "model", "metrics", "predictions", "leakage_checks", "warnings"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "source": {
+      "type": "object", "required": ["module", "artifact_path", "artifact_sha256", "record_count", "schema_version"], "additionalProperties": false,
+      "properties": {
+        "module": {"const": "M09-compatible-feature-rows"}, "artifact_path": {"$ref": "#/$defs/nonEmptyString"},
+        "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "record_count": {"type": "integer", "minimum": 0},
+        "schema_version": {"const": "0.1"}
+      }
+    },
+    "status": {"enum": ["ok", "evaluation_only", "insufficient_labels", "dependency_unavailable", "empty"]},
+    "parameters": {
+      "type": "object", "required": ["algorithm", "random_seed", "split_strategy", "test_fraction"], "additionalProperties": false,
+      "properties": {"algorithm": {"const": "random_forest"}, "random_seed": {"const": 17}, "split_strategy": {"const": "grouped_holdout"}, "test_fraction": {"const": 0.25}}
+    },
+    "task": {
+      "type": "object", "required": ["label_dimension", "classes", "unknown_rejection", "feature_schema_version"], "additionalProperties": false,
+      "properties": {
+        "label_dimension": {"$ref": "#/$defs/nonEmptyString"}, "classes": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+        "unknown_rejection": {"$ref": "#/$defs/nonEmptyString"}, "feature_schema_version": {"const": "0.1"}
+      }
+    },
+    "split": {
+      "type": "object", "required": ["group_key", "train_count", "test_count", "train_groups", "test_groups", "group_overlap", "random_seed"], "additionalProperties": false,
+      "properties": {
+        "group_key": {"const": "group_id"}, "train_count": {"type": "integer", "minimum": 0}, "test_count": {"type": "integer", "minimum": 0},
+        "train_groups": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+        "test_groups": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+        "group_overlap": {"type": "array", "maxItems": 0}, "random_seed": {"const": 17}
+      }
+    },
+    "model": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object", "required": ["algorithm", "parameters", "feature_names", "dependency", "artifact"], "additionalProperties": false,
+          "properties": {
+            "algorithm": {"const": "RandomForestClassifier"},
+            "parameters": {
+              "type": "object", "required": ["n_estimators", "random_state", "n_jobs"], "additionalProperties": false,
+              "properties": {"n_estimators": {"const": 100}, "random_state": {"const": 17}, "n_jobs": {"const": 1}}
+            },
+            "feature_names": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+            "dependency": {
+              "type": "object", "required": ["name", "version"], "additionalProperties": false,
+              "properties": {"name": {"const": "scikit-learn"}, "version": {"$ref": "#/$defs/nonEmptyString"}}
+            },
+            "artifact": {
+              "type": "object", "required": ["artifact_ref", "sha256", "length", "format"], "additionalProperties": false,
+              "properties": {
+                "artifact_ref": {"const": "model.joblib"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                "length": {"type": "integer", "minimum": 1}, "format": {"const": "joblib"}
+              }
+            }
+          }
+        }
+      ]
+    },
+    "metrics": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object", "required": ["macro_f1", "per_class", "confusion_matrix"], "additionalProperties": false,
+          "properties": {
+            "macro_f1": {"type": "number", "minimum": 0, "maximum": 1},
+            "per_class": {"type": "object", "minProperties": 1, "additionalProperties": {"oneOf": [{"type": "number", "minimum": 0, "maximum": 1}, {"$ref": "#/$defs/metricRow"}]}},
+            "confusion_matrix": {
+              "type": "object", "required": ["labels", "values"], "additionalProperties": false,
+              "properties": {
+                "labels": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+                "values": {"type": "array", "minItems": 2, "items": {"type": "array", "minItems": 2, "items": {"type": "integer", "minimum": 0}}}
+              }
+            }
+          }
+        }
+      ]
+    },
+    "predictions": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["scope_id", "predicted_label", "score_type", "score", "rejected"], "additionalProperties": false,
+        "properties": {
+          "scope_id": {"$ref": "#/$defs/nonEmptyString"}, "predicted_label": {"$ref": "#/$defs/nonEmptyString"},
+          "score_type": {"const": "class_probability"}, "score": {"type": "number", "minimum": 0, "maximum": 1}, "rejected": {"type": "boolean"}
+        }
+      }
+    },
+    "leakage_checks": {
+      "type": "object", "required": ["groups_disjoint", "preprocessing_fit_scope", "cluster_id_not_used_as_label"], "additionalProperties": false,
+      "properties": {
+        "groups_disjoint": {"const": true}, "preprocessing_fit_scope": {"const": "training_only when a model is trained"}, "cluster_id_not_used_as_label": {"const": true}
+      }
+    },
+    "warnings": {"type": "array", "items": {"$ref": "#/$defs/nonEmptyString"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "ok"}}, "required": ["status"]},
+      "then": {"properties": {"model": {"type": "object"}, "metrics": {"type": "object"}, "predictions": {"minItems": 1}}}
+    }
+  ]
+}

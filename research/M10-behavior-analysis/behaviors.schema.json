@@ -1,2 +1,89 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","required":["schema_version","source","status","parameters","rule_set","metrics","observations","insufficient_scopes","warnings"],"properties":{"schema_version":{"const":"0.1"},"status":{"enum":["ok","partial","empty","insufficient_evidence"]},"observations":{"type":"array","items":{"type":"object","required":["behavior_id","flow_id","type","observed_values","thresholds","evidence_refs","limitations"]}},"insufficient_scopes":{"type":"array"}}}
-
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/schemas/m10-behaviors.schema.json",
+  "title": "M10 BehaviorObservations",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source", "status", "parameters", "rule_set", "metrics", "observations", "insufficient_scopes", "warnings"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "source": {"$ref": "#/$defs/source"},
+    "status": {"enum": ["ok", "partial", "empty", "insufficient_evidence"]},
+    "parameters": {"$ref": "#/$defs/rules"},
+    "rule_set": {"$ref": "#/$defs/rules"},
+    "metrics": {
+      "type": "object", "additionalProperties": false,
+      "required": ["flow_count", "observation_count"],
+      "properties": {
+        "flow_count": {"type": "integer", "minimum": 0},
+        "observation_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "observations": {"type": "array", "items": {"$ref": "#/$defs/observation"}},
+    "insufficient_scopes": {"type": "array", "items": {"$ref": "#/$defs/insufficient"}},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["module", "artifact_path", "artifact_sha256", "record_count", "schema_version"],
+      "properties": {
+        "module": {"const": "M09"},
+        "artifact_path": {"type": "string", "minLength": 1},
+        "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "record_count": {"type": "integer", "minimum": 0},
+        "schema_version": {"const": "0.1"}
+      }
+    },
+    "rules": {
+      "type": "object", "additionalProperties": false,
+      "required": ["version", "direction_dominance_ratio", "periodicity_max_iat_cv", "periodicity_min_iats", "bursty_min_packets", "long_lived_min_seconds", "intermittent_idle_min_seconds"],
+      "properties": {
+        "version": {"const": "0.1"},
+        "direction_dominance_ratio": {"type": "number", "minimum": 0.5, "maximum": 1},
+        "periodicity_max_iat_cv": {"type": "number", "minimum": 0},
+        "periodicity_min_iats": {"type": "integer", "minimum": 1},
+        "bursty_min_packets": {"type": "integer", "minimum": 1},
+        "long_lived_min_seconds": {"type": "number", "minimum": 0},
+        "intermittent_idle_min_seconds": {"type": "number", "minimum": 0}
+      }
+    },
+    "numericMap": {
+      "type": "object", "minProperties": 1,
+      "additionalProperties": {"type": ["number", "null"]}
+    },
+    "observation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["behavior_id", "flow_id", "type", "observed_values", "thresholds", "evidence_refs", "confidence_basis", "limitations"],
+      "properties": {
+        "behavior_id": {"type": "string", "minLength": 1},
+        "flow_id": {"type": "string", "minLength": 1},
+        "type": {"enum": ["periodicity_candidate", "direction_dominance", "bursty_transfer", "long_lived_intermittent"]},
+        "observed_values": {"$ref": "#/$defs/numericMap"},
+        "thresholds": {"$ref": "#/$defs/numericMap"},
+        "evidence_refs": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["record_id", "feature_definition_version"],
+            "properties": {
+              "record_id": {"type": "string", "minLength": 1},
+              "feature_definition_version": {"const": "0.1"}
+            }
+          }
+        },
+        "confidence_basis": {"const": "deterministic threshold rule"},
+        "limitations": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "insufficient": {
+      "type": "object", "additionalProperties": false,
+      "required": ["flow_id", "rule", "reason_code"],
+      "properties": {
+        "flow_id": {"type": "string", "minLength": 1},
+        "rule": {"enum": ["periodicity_candidate", "direction_dominance", "bursty_transfer", "long_lived_intermittent"]},
+        "reason_code": {"enum": ["directional_bytes_unavailable", "timestamp_missing_or_invalid"]}
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -53,6 +54,31 @@ class PublicSampleEvaluationTests(unittest.TestCase):
         self.assertIn("completed_with_limits", report)
         self.assertIn("not_applicable", report)
         self.assertNotIn("M09 failure", report)
+
+    def test_capture_m02_uses_bounded_evaluation_windows(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = root / "capture.bin"
+            source.write_bytes(bytes(range(256)) * 2400)
+            module = self.runner.load_module(
+                "m02_for_public_evaluation_test", ROOT / "experiments" / "M02" / "run.py"
+            )
+            artifact, _, _ = self.runner._m02_step(
+                {"M02": module}, source, root / "m02"
+            )
+            output = root / "m02" / "features.json"
+            self.assertEqual(self.runner.EVALUATION_M02_WINDOW_SIZE,
+                             artifact["parameters"]["window_size"])
+            self.assertLess(output.stat().st_size, 16 * 1024 * 1024)
+            self.assertEqual(artifact, json.loads(output.read_text(encoding="utf-8")))
+
+    def test_cli_accepts_explicit_tshark_path(self):
+        parser = self.runner.build_parser()
+        args = parser.parse_args([
+            "--work-root", "work", "--report-root", "reports",
+            "--tshark", "C:/Program Files/Wireshark/tshark.exe",
+        ])
+        self.assertEqual(Path("C:/Program Files/Wireshark/tshark.exe"), args.tshark)
 
 
 if __name__ == "__main__":

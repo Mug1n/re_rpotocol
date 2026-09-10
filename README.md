@@ -4,7 +4,7 @@
 
 ## 当前进度
 
-- M01 输入与预处理：已有可运行实现，并已收紧 packet/flow/stream Schema 与跨引用契约。当前机器的 TShark 4.6.6 可用，抓包、TCP 重组、重传与截断测试已复测通过。
+- M01 输入与预处理：已有可运行实现，并已收紧 packet/flow/stream Schema 与跨引用契约。抓包解析需要 TShark；当前复测环境未安装，因此 6 项真实工具测试被明确跳过。
 - M02 二进制基础特征：已有标准库实现与边界测试。
 - M03 消息边界识别：长度字段、分隔符和固定长度规则基线已实现并通过带真值测试。
 - M04 消息聚类：依赖标准库的 DBSCAN 基线已实现，支持组合距离、噪声、真实消息代表、轮廓系数，以及可选 ARI/NMI。
@@ -12,9 +12,9 @@
 - M06 字段与格式推断：按列统计、连续区域、边界候选及严格长度关系假设已实现，所有结论保留样本和原始偏移证据。
 - M07 标准协议：已实现 TShark 字段白名单、Decode As 追踪、工具缺失与裸字节降级；端口不作为协议证据。
 - M08 内容恢复：已实现受限文本、Hex/Base64、gzip/zlib 恢复，保留转换链、来源范围与输出哈希；无密钥 TLS/SSH 明确跳过。
-- M09 流量特征与 M10 行为规则：开发者 B 实现已合并；仅在 M01 保留包边界、时间戳和方向时生成相应统计，不把流量模式解释为应用语义。
-- M11 行为分类：开发者 B 实现已合并；只有显式标签、固定特征定义和不重叠分组满足要求时才训练，否则输出明确的不可评估状态。
-- M12 证据报告：已实现 M01/M02/M07～M11 细粒度适配、其余模块通用适配、稳定证据 ID 和确定性四章节 Markdown；本版本禁用可选模型调用，以保持离线、可审计输出。
+- M09 流量特征与 M10 行为规则：严格校验输入 Schema、直接上游哈希、有限数值和参数范围，原子发布输出；仅在 M01 保留包边界、时间戳和方向时生成相应统计，不把流量模式解释为应用语义。
+- M11 行为分类：只有显式标签、固定有限数值特征和类别完整的互斥分组满足要求时才训练；拒绝以 M04 `cluster_id` 充当行为标签，成功时保存带哈希的 `model.joblib`。
+- M12 证据报告：已实现 M01～M11 的记录级适配、稳定证据 ID 和确定性四章节 Markdown；本版本禁用可选模型调用，以保持离线、可审计输出。
 - 真实课程 DAT：课程未提供；现已引入两个来源和许可明确的真实外部 DAT，并用 M01～M06 验证。它们能支撑开发，但不能代表课程隐藏验收数据。
 - 公共测试包：已固定 21 个 NetPlier、BinaryInferno 和 Wireshark 小型样例，覆盖常见、工业、少见、自定义、恶意协议及随机负例；来源、许可、哈希和实测结果见 `data/external/test-samples-manifest.json`。
 
@@ -70,6 +70,12 @@ python experiments\M10\run.py tmp\m09-capture\flow_features.json --output-dir tm
 python experiments\M12\run.py --input M01=tmp\m01-capture\result.json --input M07=tmp\m07-capture\protocols.json --input M09=tmp\m09-capture\flow_features.json --input M10=tmp\m10-capture\behaviors.json --output-dir tmp\m12-report
 ```
 
+公共样例评估在抓包路径上同样需要 TShark；若它不在 `PATH`，必须显式传入：
+
+```powershell
+python scripts\evaluate_public_samples.py --work-root tmp\public-evaluation --report-root reports\public-samples\<date> --tshark "C:\Program Files\Wireshark\tshark.exe"
+```
+
 运行当前全部测试：
 
 ```powershell
@@ -89,6 +95,7 @@ python -m unittest discover -s experiments\tests -v
 ```
 
 各模块 CLI 均拒绝覆盖已存在的输出目录。临时结果放在 `tmp/`，该目录不会进入 Git。
+当前环境共发现 136 项测试：130 项通过，6 项因未检测到 TShark 而跳过。
 
 ## 核心原则
 

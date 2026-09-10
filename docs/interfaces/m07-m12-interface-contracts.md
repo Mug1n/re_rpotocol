@@ -129,7 +129,7 @@ Schema：`research/M09-flow-features/flow-features.schema.json`
 | `flows` | 每个 M01 流对应一条特征记录。 |
 | `unavailable_features` | 不可计算的特征、受影响流和原因码。 |
 
-每条流记录包含身份、总量和分方向计数、包长统计、持续时间和包间隔、速率、活跃/空闲、方向切换、node 相对比例、突发摘要，以及截断/重传/乱序/丢失计数。不得使用 M03 消息长度冒充网络包长度。
+每条流记录包含身份、总量和分方向计数、包长统计、持续时间和包间隔、速率、方向切换、node 相对比例、突发摘要，以及截断/重传/乱序/丢失计数。生产者必须先校验 M01 Schema 和内部引用，并拒绝非有限时间戳或参数；不得使用 M03 消息长度冒充网络包长度。
 
 ## 7. M10 行为分析
 
@@ -144,13 +144,13 @@ Schema：`research/M10-behavior-analysis/behaviors.schema.json`
 
 ### 输出字段
 
-`rule_set` 记录规则版本和阈值；`observations` 记录每个流零条或多条非互斥观测；`insufficient_scopes` 记录无法支撑某条规则的流及缺失证据。
+`rule_set` 记录规则版本和阈值；`observations` 记录每个流零条或多条非互斥观测；`insufficient_scopes` 记录无法支撑某条规则的流及缺失证据。消费者必须验证 M09 Schema，并重新核对 M09 声明的 M01 artifact 哈希。
 
 首版类型为 `periodicity_candidate`、`direction_dominance`、`bursty_transfer`、`long_lived_intermittent`。每条观测包含 `behavior_id`、`flow_id`、`type`、`observed_values`、`thresholds`、`evidence_refs`、`confidence_basis`、`limitations`，只能描述统计模式，不得声称应用、意图或恶意性。
 
 ## 8. M11 行为分类
 
-主输出：`classification.json`；只有训练成功后才写模型 artifact 和 manifest。
+主输出：`classification.json`；只有训练成功后才另外写 `model.joblib`，其 artifact 清单内嵌在主输出中。
 
 Schema：`research/M11-behavior-classification/classification.schema.json`
 
@@ -165,13 +165,13 @@ Schema：`research/M11-behavior-classification/classification.schema.json`
 | 字段 | 约定 |
 |---|---|
 | `task` | 标签维度、类别集合、未知/拒识策略和特征 Schema 版本。 |
-| `split` | 分组键、训练/验证/测试数量、类别数量和随机种子。 |
+| `split` | 分组键、训练/测试数量、各分区组 ID、空交集证明和随机种子。 |
 | `model` | 算法、参数、依赖版本，以及模型引用和 SHA-256。 |
 | `metrics` | macro-F1、逐类指标、support、混淆矩阵和可选校准指标。 |
 | `predictions` | 范围 ID、预测标签、分数类型/值和拒识状态。 |
 | `leakage_checks` | 证明预处理只在训练集拟合，且组不跨数据分区。 |
 
-M04 簇 ID 永远不能作为行为标签；应用类别与 VPN 状态必须是两个独立任务。标签不足时输出 `insufficient_labels`，不得给出准确率结论。
+M04 簇 ID 永远不能作为行为标签；应用类别与 VPN 状态必须是两个独立任务。所有特征必须为固定列的有限数值，训练和测试分区必须各自包含全部类别。标签或可行分组不足时输出 `insufficient_labels`，不得给出准确率结论；成功训练必须原子发布 `model.joblib` 并在 `classification.json` 中记录长度和 SHA-256。
 
 ## 9. M12 证据与报告
 
@@ -181,7 +181,7 @@ Schema：`research/M12-llm/evidence.schema.json`、`research/M12-llm/report-mani
 
 ### 输入
 
-任意经过校验的 M01～M11 结果。确定性报告器必须在没有模型端点时工作。
+任意经过校验的 M01～M11 结果。M03～M06 的消息、未解析区间、簇/噪声、对齐/未对齐消息、字段、边界与长度关系候选必须保留为记录级证据，而非只输出模块状态。确定性报告器必须在没有模型端点时工作。
 
 ### 证据记录
 

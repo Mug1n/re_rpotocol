@@ -33,8 +33,20 @@ class ReportTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.module = load_module()
+        cls.m09 = cls._load_producer("m09_for_m12", ROOT / "experiments" / "M09" / "run.py")
+        cls.m10 = cls._load_producer("m10_for_m12", ROOT / "experiments" / "M10" / "run.py")
+        cls.m11 = cls._load_producer("m11_for_m12", ROOT / "experiments" / "M11" / "run.py")
         cls.evidence_schema = json.loads(EVIDENCE_SCHEMA.read_text(encoding="utf-8"))
         cls.manifest_schema = json.loads(MANIFEST_SCHEMA.read_text(encoding="utf-8"))
+
+    @staticmethod
+    def _load_producer(name: str, path: Path):
+        spec = importlib.util.spec_from_file_location(name, path)
+        if spec is None or spec.loader is None:
+            raise RuntimeError(f"Unable to load {path}")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
 
     def make_m01(self, root: Path) -> Path:
         source, digest = self.source_file(root, "capture.pcapng")
@@ -105,10 +117,13 @@ class ReportTests(unittest.TestCase):
         m06 = self.write_artifact(root, "m06.json", {"schema_version": "0.1", "source": {"alignments_path": str(m05), "alignments_sha256": self.digest(m05), "stream_id": None, "message_count": 0, "aligned_message_count": 0}, "status": "empty", "parameters": {"method": "aligned_column_statistics", "min_cluster_samples": 1, "min_presence_ratio": 0.5, "length_widths": [1], "min_relation_samples": 1, "max_length_overhead": 0}, "cluster_formats": [], "unaligned_messages": [], "metrics": {"analyzed_cluster_count": 0, "analyzed_message_count": 0, "field_candidate_count": 0, "boundary_candidate_count": 0, "length_hypothesis_count": 0}, "warnings": []})
         m07 = self.make_m07(root, m01_path=m01)
         m08 = self.write_artifact(root, "m08.json", {"schema_version": "0.1", "source": {"module": "M01", "artifact_path": str(m01), "artifact_sha256": self.digest(m01), "record_id": "fixture-capture"}, "status": "no_recoverable_content", "parameters": {"max_input_bytes": 1024, "max_depth": 0, "max_output_bytes": 1024, "max_inflation_ratio": 10, "max_artifacts": 1, "min_printable_length": 1, "enabled_decoders": []}, "recoveries": [], "failed_attempts": [], "skipped_sources": [], "metrics": {"recovery_count": 0, "failed_attempt_count": 0, "skipped_source_count": 0, "output_bytes": 0}, "warnings": []})
-        m09 = self.write_artifact(root, "m09.json", {"schema_version": "0.1", "source": {"module": "M01", "artifact_path": str(m01), "artifact_sha256": self.digest(m01), "record_count": 0}, "status": "empty", "parameters": {}, "feature_definition": {}, "metrics": {}, "flows": [], "unavailable_features": [], "warnings": []})
-        m10 = self.write_artifact(root, "m10.json", {"schema_version": "0.1", "source": {"module": "M09", "artifact_path": str(m09), "artifact_sha256": self.digest(m09), "record_count": 0}, "status": "empty", "parameters": {}, "rule_set": {}, "metrics": {}, "observations": [], "insufficient_scopes": [], "warnings": []})
+        self.m09.analyze(m01, root / "m09-output")
+        m09 = root / "m09-output" / "flow_features.json"
+        self.m10.analyze(m09, root / "m10-output")
+        m10 = root / "m10-output" / "behaviors.json"
         rows = self.write_artifact(root, "rows.json", {"schema_version": "0.1", "feature_definition_version": "0.1", "rows": []})
-        m11 = self.write_artifact(root, "m11.json", {"schema_version": "0.1", "source": {"module": "M09-compatible-feature-rows", "artifact_path": str(rows), "artifact_sha256": self.digest(rows), "record_count": 0}, "status": "empty", "parameters": {}, "task": {"label_dimension": "application", "classes": [], "unknown_rejection": "not implemented", "feature_schema_version": "0.1"}, "split": {"group_key": "group_id", "train_count": 0, "test_count": 0, "group_overlap": [], "random_seed": 17}, "model": None, "metrics": None, "predictions": [], "leakage_checks": {}, "warnings": []})
+        self.m11.analyze(rows, root / "m11-output", task="application")
+        m11 = root / "m11-output" / "classification.json"
         return {f"M{index:02d}": path for index, path in enumerate((m01, m02, m03, m04, m05, m06, m07, m08, m09, m10, m11), 1)}
 
     def test_mixed_inputs_produce_stable_order_hashes_and_valid_evidence(self):
@@ -211,19 +226,96 @@ class ReportTests(unittest.TestCase):
     def test_m09_m10_m11_use_record_level_adapters(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            upstream, upstream_hash = self.source_file(root, "upstream.json")
-            source = {"module": "M01", "artifact_path": str(upstream), "artifact_sha256": upstream_hash, "record_count": 1}
-            m09 = self.write_artifact(root, "m09.json", {"schema_version": "0.1", "source": source, "status": "ok", "parameters": {}, "feature_definition": {}, "metrics": {}, "flows": [{"flow_id": "flow-1", "packet_count": 2, "byte_count": 42, "directional": {}, "packet_length": {}, "duration_seconds": 1.5, "integrity": {}}], "unavailable_features": [], "warnings": []})
-            source10 = {"module": "M09", "artifact_path": str(m09), "artifact_sha256": hashlib.sha256(m09.read_bytes()).hexdigest(), "record_count": 1}
-            m10 = self.write_artifact(root, "m10.json", {"schema_version": "0.1", "source": source10, "status": "ok", "parameters": {}, "rule_set": {}, "metrics": {}, "observations": [{"behavior_id": "b1", "flow_id": "flow-1", "type": "bursty_transfer", "observed_values": {"max_burst_packets": 4}, "thresholds": {"min_burst_packets": 3}, "evidence_refs": [], "limitations": ["pattern only"]}], "insufficient_scopes": [], "warnings": []})
-            source11 = {"module": "M09-compatible-feature-rows", "artifact_path": str(upstream), "artifact_sha256": upstream_hash, "record_count": 1}
-            m11 = self.write_artifact(root, "m11.json", {"schema_version": "0.1", "source": source11, "status": "evaluation_only", "parameters": {}, "task": {"label_dimension": "application", "classes": ["alpha"], "unknown_rejection": "enabled", "feature_schema_version": "0.1"}, "split": {"group_key": "group_id", "train_count": 1, "test_count": 1, "group_overlap": [], "random_seed": 17}, "model": {}, "metrics": {}, "predictions": [{"scope_id": "flow-1", "predicted_label": "alpha", "score_type": "class_probability", "score": 0.75, "rejected": False}], "leakage_checks": {}, "warnings": []})
+            m01 = self.make_m01(root)
+            self.m09.analyze(m01, root / "m09-output")
+            m09 = root / "m09-output" / "flow_features.json"
+            self.m10.analyze(m09, root / "m10-output", burst_packets=1)
+            m10 = root / "m10-output" / "behaviors.json"
+            rows = []
+            for index in range(12):
+                label = "alpha" if index % 2 else "beta"
+                rows.append({"id": f"flow-{index}", "group_id": f"g{index}", "labels": {"application": label}, "features": {"bytes": 100 if label == "alpha" else 1, "packets": 10 if label == "alpha" else 1}})
+            row_path = self.write_artifact(root, "rows.json", {"schema_version": "0.1", "feature_definition_version": "0.1", "rows": rows})
+            self.m11.analyze(row_path, root / "m11-output", task="application")
+            m11 = root / "m11-output" / "classification.json"
             self.module.build_report({"M09": m09, "M10": m10, "M11": m11}, root / "out")
             evidence = json.loads((root / "out" / "evidence.json").read_text(encoding="utf-8"))
-            by_module = {item["module"]: item for item in evidence}
-            self.assertIn("42 bytes", by_module["M09"]["observation"])
-            self.assertIn("bursty_transfer", by_module["M10"]["observation"])
-            self.assertIn("alpha", by_module["M11"]["observation"])
+            observations = lambda module: [item["observation"] for item in evidence if item["module"] == module]
+            self.assertTrue(any("64 bytes" in item for item in observations("M09")))
+            self.assertTrue(any("bursty_transfer" in item for item in observations("M10")))
+            self.assertTrue(any("alpha" in item for item in observations("M11")))
+
+    def test_m03_through_m06_use_record_level_adapters(self):
+        fixtures = {
+            "M03": {
+                "messages": [{"id": "message-1", "start": 0, "end": 4, "length": 4}],
+                "unparsed_ranges": [], "rule": "fixed", "warnings": [],
+            },
+            "M04": {
+                "clusters": [{"cluster_id": 2, "size": 3,
+                              "representative_message_id": "message-1",
+                              "mean_distance_to_representative": 0.1}],
+                "assignments": [], "warnings": [],
+            },
+            "M05": {
+                "cluster_alignments": [{"cluster_id": 2, "message_count": 3,
+                                        "reference_length": 4, "column_count": 5,
+                                        "rows": [{"identity_on_paired_bytes": 0.75}]}],
+                "unaligned_messages": [], "warnings": [],
+            },
+            "M06": {
+                "cluster_formats": [{
+                    "cluster_id": 2,
+                    "field_candidates": [{"field_id": "field-0001", "alignment_start": 0,
+                                          "alignment_end": 1, "classification": "fixed",
+                                          "width_columns": 2, "mean_entropy_bits": 0.0}],
+                    "boundary_candidates": [{"alignment_column": 2,
+                                             "left_field_id": "field-0001",
+                                             "right_field_id": "field-0002",
+                                             "reasons": ["column_class_change"]}],
+                    "length_hypotheses": [{"hypothesis_id": "length-0001",
+                                           "width_bytes": 2, "byteorder": "little",
+                                           "relation": "message_length", "sample_count": 3,
+                                           "exact_match_ratio": 1.0}],
+                }],
+                "warnings": [],
+            },
+        }
+        expected_terms = {"M03": "Message message-1", "M04": "Cluster 2",
+                          "M05": "alignment", "M06": "field field-0001"}
+        for module, artifact in fixtures.items():
+            with self.subTest(module=module):
+                context = {"module": module, "path": Path(f"{module}.json"),
+                           "artifact_sha256": "0" * 64, "schema_version": "0.1"}
+                evidence = list(self.module._normalize(context, artifact))
+                self.assertTrue(evidence)
+                self.assertIn(expected_terms[module], evidence[0]["observation"])
+                self.assertNotIn("artifact status=", evidence[0]["observation"])
+                for item in evidence:
+                    jsonschema.validate(item, self.evidence_schema)
+
+    def test_m11_model_artifact_is_hash_verified(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            rows = []
+            for index in range(12):
+                label = "alpha" if index % 2 else "beta"
+                rows.append({
+                    "id": str(index), "group_id": f"g{index}",
+                    "labels": {"application": label},
+                    "features": {"bytes": 100 if label == "alpha" else 1},
+                })
+            source = self.write_artifact(
+                root, "rows.json",
+                {"schema_version": "0.1", "feature_definition_version": "0.1", "rows": rows},
+            )
+            m11_dir = root / "m11"
+            self.m11.analyze(source, m11_dir, task="application")
+            (m11_dir / "model.joblib").write_bytes(b"tampered")
+            output = root / "out"
+            with self.assertRaisesRegex(ValueError, "model artifact (length|SHA-256) mismatch"):
+                self.module.build_report({"M11": m11_dir / "classification.json"}, output)
+            self.assertFalse(output.exists())
 
     def test_input_size_is_checked_before_json_load(self):
         with tempfile.TemporaryDirectory() as temp:

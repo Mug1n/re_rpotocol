@@ -18,6 +18,7 @@ from typing import Any, Callable
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / "data" / "external" / "test-samples-manifest.json"
 HEX_LINE = re.compile(r"^(?:[0-9A-Fa-f]{2})+$")
+EVALUATION_M02_WINDOW_SIZE = 64 * 1024
 
 
 def load_module(name: str, path: Path):
@@ -102,8 +103,13 @@ def _base_result(dataset: dict[str, Any], artifact: dict[str, Any], input_path: 
     }
 
 
-def _m01_step(modules: dict[str, Any], input_path: Path, output: Path):
-    artifact = modules["M01"].analyze_input(input_path, output)
+def _m01_step(
+    modules: dict[str, Any], input_path: Path, output: Path,
+    *, tshark_path: Path | None = None,
+):
+    artifact = modules["M01"].analyze_input(
+        input_path, output, tshark_path=tshark_path
+    )
     detail = (
         f"detected {artifact['format']}; packets={len(artifact['packets'])}, "
         f"flows={len(artifact['flows'])}, streams={len(artifact['streams'])}"
@@ -118,7 +124,12 @@ def _m01_step(modules: dict[str, Any], input_path: Path, output: Path):
 
 
 def _m02_step(modules: dict[str, Any], input_path: Path, output: Path):
-    artifact = modules["M02"].analyze_file(input_path, output)
+    artifact = modules["M02"].analyze_file(
+        input_path,
+        output,
+        window_size=EVALUATION_M02_WINDOW_SIZE,
+        window_step=EVALUATION_M02_WINDOW_SIZE,
+    )
     global_features = artifact["global"]
     detail = (
         f"entropy={global_features['entropy_bits_per_byte']}; "
@@ -150,10 +161,15 @@ def evaluate_capture(
     input_path: Path,
     work_dir: Path,
     modules: dict[str, Any],
+    *,
+    tshark_path: Path | None = None,
 ) -> dict[str, Any]:
     result = _base_result(dataset, artifact, input_path)
     m01_dir = work_dir / "m01"
-    m01 = _run_step(result, "M01", lambda: _m01_step(modules, input_path, m01_dir))
+    m01 = _run_step(
+        result, "M01",
+        lambda: _m01_step(modules, input_path, m01_dir, tshark_path=tshark_path),
+    )
     m02_dir = work_dir / "m02"
     m02 = _run_step(result, "M02", lambda: _m02_step(modules, input_path, m02_dir))
     if m01 is None:
@@ -165,7 +181,9 @@ def evaluate_capture(
     m07_dir = work_dir / "m07"
 
     def run_m07():
-        value = modules["M07"].analyze_protocols(m01_path, m07_dir)
+        value = modules["M07"].analyze_protocols(
+            m01_path, m07_dir, tshark_path=tshark_path
+        )
         protocols = sorted({str(item["protocol"]) for item in value["observations"]})
         detail = (
             f"observations={len(value['observations'])}; protocols="
@@ -577,6 +595,7 @@ def evaluate_all(
     report_root: Path,
     *,
     generated_at: str,
+    tshark_path: Path | None = None,
 ) -> list[dict[str, Any]]:
     if work_root.exists():
         raise FileExistsError(f"work directory already exists: {work_root}")
@@ -593,7 +612,10 @@ def evaluate_all(
             input_path = external_root / artifact["path"]
             work_dir = work_root / artifact["artifact_id"]
             if artifact.get("observed_format"):
-                result = evaluate_capture(dataset, artifact, input_path, work_dir, modules)
+                result = evaluate_capture(
+                    dataset, artifact, input_path, work_dir, modules,
+                    tshark_path=tshark_path,
+                )
             else:
                 result = evaluate_hex_messages(dataset, artifact, input_path, work_dir, modules)
             results.append(result)
@@ -617,6 +639,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--work-root", type=Path, required=True)
     parser.add_argument("--report-root", type=Path, required=True)
     parser.add_argument("--generated-at", default=date.today().isoformat())
+    parser.add_argument(
+        "--tshark", type=Path,
+        help="Path to tshark.exe when it is not available on PATH.",
+    )
     return parser
 
 
@@ -628,6 +654,7 @@ def main(argv: list[str] | None = None) -> int:
             args.work_root,
             args.report_root,
             generated_at=args.generated_at,
+            tshark_path=args.tshark,
         )
     except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
         print(f"public-sample-evaluation: {exc}", file=sys.stderr)

@@ -122,6 +122,19 @@ def _verify_upstream_references(
                 f"upstream artifact SHA-256 mismatch: expected {expected}, got {actual}"
             )
         resolved_references.append(resolved)
+    if module == "M11" and artifact.get("model") is not None:
+        declared = artifact["model"]["artifact"]
+        model_path = _resolve_reference(input_path, declared["artifact_ref"])
+        if not model_path.is_file():
+            raise FileNotFoundError(f"referenced M11 model artifact does not exist: {model_path}")
+        if model_path.stat().st_size != declared["length"]:
+            raise ValueError("M11 model artifact length mismatch")
+        actual_model_sha256 = sha256_file(model_path)
+        if actual_model_sha256 != declared["sha256"]:
+            raise ValueError(
+                "M11 model artifact SHA-256 mismatch: "
+                f"expected {declared['sha256']}, got {actual_model_sha256}"
+            )
     if module != "M07":
         return
     m01_path = resolved_references[0]
@@ -207,6 +220,135 @@ def _adapt_m02(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[di
     )
 
 
+def _adapt_m03(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
+    emitted = False
+    for message in artifact["messages"]:
+        emitted = True
+        message_id = str(message["id"])
+        observation = (
+            f"Message {message_id} framed by {artifact['rule']} rule at byte range "
+            f"[{message['start']}, {message['end']}); length={message['length']} bytes."
+        )
+        yield _record(context, record_id=message_id, scope_type="message", scope_id=message_id,
+                      observation=observation, method="M03 deterministic framing",
+                      limitations=list(artifact["warnings"]))
+    for index, item in enumerate(artifact["unparsed_ranges"]):
+        emitted = True
+        record_id = f"unparsed-{index}-{item['start']}-{item['end']}"
+        observation = (
+            f"Byte range [{item['start']}, {item['end']}) was not framed; "
+            f"length={item['length']} bytes, reason={item['reason']}."
+        )
+        yield _record(context, record_id=record_id, scope_type="byte_range",
+                      scope_id=f"{item['start']}:{item['end']}", observation=observation,
+                      method="M03 explicit framing degradation", limitations=[str(item["reason"])])
+    if not emitted:
+        yield from _adapt_generic(context, artifact)
+
+
+def _adapt_m04(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
+    emitted = False
+    for cluster in artifact["clusters"]:
+        emitted = True
+        cluster_id = str(cluster["cluster_id"])
+        observation = (
+            f"Cluster {cluster_id}: size={cluster['size']}, representative="
+            f"{cluster['representative_message_id']}, mean_distance="
+            f"{cluster['mean_distance_to_representative']}."
+        )
+        yield _record(context, record_id=f"cluster-{cluster_id}", scope_type="cluster",
+                      scope_id=cluster_id, observation=observation,
+                      method="M04 deterministic message clustering",
+                      limitations=list(artifact["warnings"]))
+    for assignment in artifact["assignments"]:
+        if not assignment["is_noise"]:
+            continue
+        emitted = True
+        message_id = str(assignment["message_id"])
+        yield _record(context, record_id=f"noise-{message_id}", scope_type="message",
+                      scope_id=message_id,
+                      observation=f"Message {message_id} was classified as clustering noise.",
+                      method="M04 explicit clustering degradation",
+                      limitations=["No non-noise cluster assignment was available."])
+    if not emitted:
+        yield from _adapt_generic(context, artifact)
+
+
+def _adapt_m05(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
+    emitted = False
+    for alignment in artifact["cluster_alignments"]:
+        emitted = True
+        cluster_id = str(alignment["cluster_id"])
+        identities = [row["identity_on_paired_bytes"] for row in alignment["rows"]
+                      if row["identity_on_paired_bytes"] is not None]
+        mean_identity = sum(identities) / len(identities) if identities else None
+        observation = (
+            f"Cluster {cluster_id} alignment: messages={alignment['message_count']}, "
+            f"reference_length={alignment['reference_length']}, columns="
+            f"{alignment['column_count']}, mean_paired_identity={mean_identity}."
+        )
+        yield _record(context, record_id=f"alignment-{cluster_id}", scope_type="cluster",
+                      scope_id=cluster_id, observation=observation,
+                      method="M05 deterministic global alignment",
+                      limitations=list(artifact["warnings"]))
+    for item in artifact["unaligned_messages"]:
+        emitted = True
+        message_id = str(item["message_id"])
+        yield _record(context, record_id=f"unaligned-{message_id}", scope_type="message",
+                      scope_id=message_id,
+                      observation=f"Message {message_id} was not aligned: {item['reason']}.",
+                      method="M05 explicit alignment degradation", limitations=[str(item["reason"])])
+    if not emitted:
+        yield from _adapt_generic(context, artifact)
+
+
+def _adapt_m06(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
+    emitted = False
+    for cluster in artifact["cluster_formats"]:
+        cluster_id = str(cluster["cluster_id"])
+        for field in cluster["field_candidates"]:
+            emitted = True
+            field_id = str(field["field_id"])
+            observation = (
+                f"Cluster {cluster_id} field {field_id}: columns "
+                f"[{field['alignment_start']}, {field['alignment_end']}), "
+                f"classification={field['classification']}, width={field['width_columns']}, "
+                f"mean_entropy={field['mean_entropy_bits']} bits."
+            )
+            yield _record(context, record_id=f"cluster-{cluster_id}-{field_id}",
+                          scope_type="field_candidate", scope_id=field_id,
+                          observation=observation, method="M06 aligned-column statistics",
+                          limitations=list(artifact["warnings"]))
+        for boundary in cluster["boundary_candidates"]:
+            emitted = True
+            column = boundary["alignment_column"]
+            record_id = f"cluster-{cluster_id}-boundary-{column}"
+            observation = (
+                f"Cluster {cluster_id} boundary candidate at alignment column {column} "
+                f"between {boundary['left_field_id']} and {boundary['right_field_id']}; "
+                f"reasons={','.join(boundary['reasons'])}."
+            )
+            yield _record(context, record_id=record_id, scope_type="boundary_candidate",
+                          scope_id=f"{cluster_id}:{column}", observation=observation,
+                          method="M06 deterministic boundary inference",
+                          limitations=list(artifact["warnings"]))
+        for hypothesis in cluster["length_hypotheses"]:
+            emitted = True
+            hypothesis_id = str(hypothesis["hypothesis_id"])
+            observation = (
+                f"Cluster {cluster_id} length hypothesis {hypothesis_id}: "
+                f"{hypothesis['width_bytes']}-byte {hypothesis['byteorder']} field, "
+                f"relation={hypothesis['relation']}, samples={hypothesis['sample_count']}, "
+                f"exact_match_ratio={hypothesis['exact_match_ratio']}."
+            )
+            yield _record(context, record_id=f"cluster-{cluster_id}-{hypothesis_id}",
+                          scope_type="length_hypothesis", scope_id=hypothesis_id,
+                          observation=observation, method="M06 exact length-relation inference",
+                          limitations=list(artifact["warnings"]))
+    if not emitted:
+        yield from _adapt_generic(context, artifact)
+
+
 def _adapt_m07(context: dict[str, Any], artifact: dict[str, Any]) -> Iterator[dict[str, Any]]:
     for item in artifact["observations"]:
         fields = ", ".join(f"{field['field']}={field['value']}" for field in item["field_evidence"])
@@ -286,6 +428,14 @@ def _normalize(context: dict[str, Any], artifact: dict[str, Any]) -> Iterable[di
         return _adapt_m01(context, artifact)
     if module == "M02":
         return _adapt_m02(context, artifact)
+    if module == "M03":
+        return _adapt_m03(context, artifact)
+    if module == "M04":
+        return _adapt_m04(context, artifact)
+    if module == "M05":
+        return _adapt_m05(context, artifact)
+    if module == "M06":
+        return _adapt_m06(context, artifact)
     if module == "M07":
         return _adapt_m07(context, artifact)
     if module == "M08":

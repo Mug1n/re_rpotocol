@@ -1,12 +1,148 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/schemas/m09-flow-features.schema.json",
+  "title": "M09 FlowFeatures",
   "type": "object",
+  "additionalProperties": false,
   "required": ["schema_version", "source", "status", "parameters", "feature_definition", "metrics", "flows", "unavailable_features", "warnings"],
   "properties": {
     "schema_version": {"const": "0.1"},
+    "source": {"$ref": "#/$defs/source"},
     "status": {"enum": ["ok", "partial", "empty", "insufficient_metadata"]},
-    "flows": {"type": "array", "items": {"type": "object", "required": ["flow_id", "packet_count", "byte_count", "directional", "packet_length", "integrity"]}},
-    "unavailable_features": {"type": "array"}, "warnings": {"type": "array", "items": {"type": "string"}}
+    "parameters": {"$ref": "#/$defs/parameters"},
+    "feature_definition": {"$ref": "#/$defs/featureDefinition"},
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["flow_count", "packet_count"],
+      "properties": {
+        "flow_count": {"type": "integer", "minimum": 0},
+        "packet_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "flows": {"type": "array", "items": {"$ref": "#/$defs/flow"}},
+    "unavailable_features": {"type": "array", "items": {"$ref": "#/$defs/unavailable"}},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "nonNegativeNumber": {"type": "number", "minimum": 0},
+    "nullableNonNegativeNumber": {"type": ["number", "null"], "minimum": 0},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["module", "artifact_path", "artifact_sha256", "record_count", "schema_version"],
+      "properties": {
+        "module": {"const": "M01"},
+        "artifact_path": {"type": "string", "minLength": 1},
+        "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "record_count": {"type": "integer", "minimum": 0},
+        "schema_version": {"const": "0.1"}
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["retransmission_policy", "burst_gap_seconds", "length_basis", "direction_role_mapping", "quantile_method"],
+      "properties": {
+        "retransmission_policy": {"enum": ["include", "exclude"]},
+        "burst_gap_seconds": {"$ref": "#/$defs/nonNegativeNumber"},
+        "length_basis": {"const": "captured_length"},
+        "direction_role_mapping": {"const": "node_relative"},
+        "quantile_method": {"const": "nearest_rank"}
+      }
+    },
+    "featureDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "time_unit", "byte_range", "direction"],
+      "properties": {
+        "version": {"const": "0.1"},
+        "time_unit": {"const": "seconds"},
+        "byte_range": {"const": "captured packet length"},
+        "direction": {"const": "node_relative"}
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["count", "min", "max", "mean", "median", "p95", "sum"],
+      "properties": {
+        "count": {"type": "integer", "minimum": 0},
+        "min": {"$ref": "#/$defs/nullableNonNegativeNumber"},
+        "max": {"$ref": "#/$defs/nullableNonNegativeNumber"},
+        "mean": {"$ref": "#/$defs/nullableNonNegativeNumber"},
+        "median": {"$ref": "#/$defs/nullableNonNegativeNumber"},
+        "p95": {"$ref": "#/$defs/nullableNonNegativeNumber"},
+        "sum": {"$ref": "#/$defs/nonNegativeNumber"}
+      }
+    },
+    "directional": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["packet_count", "bytes", "length"],
+      "properties": {
+        "packet_count": {"type": "integer", "minimum": 0},
+        "bytes": {"type": "integer", "minimum": 0},
+        "length": {"$ref": "#/$defs/summary"}
+      }
+    },
+    "flow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["flow_id", "packet_ids", "packet_count", "byte_count", "directional", "packet_length", "duration_seconds", "packet_interarrival_seconds", "interarrival_cv", "rate_bytes_per_second", "direction_switches", "node0_to_node1_byte_ratio", "burst", "integrity"],
+      "properties": {
+        "flow_id": {"type": "string", "minLength": 1},
+        "packet_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "packet_count": {"type": "integer", "minimum": 0},
+        "byte_count": {"type": "integer", "minimum": 0},
+        "directional": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["node0_to_node1", "node1_to_node0"],
+          "properties": {
+            "node0_to_node1": {"$ref": "#/$defs/directional"},
+            "node1_to_node0": {"$ref": "#/$defs/directional"}
+          }
+        },
+        "packet_length": {"$ref": "#/$defs/summary"},
+        "duration_seconds": {"$ref": "#/$defs/nullableNonNegativeNumber"},
+        "packet_interarrival_seconds": {"$ref": "#/$defs/summary"},
+        "interarrival_cv": {"$ref": "#/$defs/nullableNonNegativeNumber"},
+        "rate_bytes_per_second": {"$ref": "#/$defs/nullableNonNegativeNumber"},
+        "direction_switches": {"type": "integer", "minimum": 0},
+        "node0_to_node1_byte_ratio": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "burst": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["gap_seconds", "count", "max_packets"],
+          "properties": {
+            "gap_seconds": {"$ref": "#/$defs/nonNegativeNumber"},
+            "count": {"type": "integer", "minimum": 0},
+            "max_packets": {"type": ["integer", "null"], "minimum": 1}
+          }
+        },
+        "integrity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["truncated_packets", "retransmission_packets", "out_of_order_packets", "gap_or_loss_packets"],
+          "properties": {
+            "truncated_packets": {"type": "integer", "minimum": 0},
+            "retransmission_packets": {"type": "integer", "minimum": 0},
+            "out_of_order_packets": {"type": "integer", "minimum": 0},
+            "gap_or_loss_packets": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "unavailable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["flow_id", "feature", "reason_code"],
+      "properties": {
+        "flow_id": {"type": "string", "minLength": 1},
+        "feature": {"enum": ["packet_length_statistics", "directional_statistics", "duration_iat_rate_burst"]},
+        "reason_code": {"enum": ["captured_length_missing", "endpoint_mapping_missing", "timestamp_missing_or_invalid"]}
+      }
+    }
   }
 }
-

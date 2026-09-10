@@ -1,6 +1,6 @@
 # M11 有条件行为分类
 
-只有提供固定维特征、一个明确标签维度和互斥的 `group_id` 时，M11 才会训练可选的 Random Forest 基线；否则输出 `insufficient_labels`，不会产生准确率。
+只有提供固定维、有限数值特征、一个明确标签维度和互斥的 `group_id` 时，M11 才会训练可选的 Random Forest 基线；训练/测试分组还必须各自包含全部类别，否则输出 `insufficient_labels`，不会产生准确率。
 
 输入 JSON 采用：`{"schema_version":"0.1","feature_definition_version":"0.1","rows":[{"id":"…","group_id":"…","labels":{"application":"…"},"features":{"byte_count":12.0}}]}`。一次只选择一个标签维度，不能混用 `application` 与 `vpn_status`，也不能用聚类 ID 作为标签。
 
@@ -8,5 +8,4 @@
 python experiments/M11/run.py rows.json --task application --output-dir runs/m11
 ```
 
-缺少 scikit-learn 时返回 `dependency_unavailable`，不伪装训练或评估已经完成。
-
+输入拒绝重复 ID、特征列漂移、NaN/Inf/布尔值和 `cluster_id` 标签。训练成功后输出目录同时包含 `classification.json` 与 `model.joblib`，JSON 记录模型长度和 SHA-256；两者经严格 Schema 校验后原子发布。缺少 scikit-learn/joblib 时返回 `dependency_unavailable`，不伪装训练或评估已经完成。
