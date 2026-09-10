@@ -12,6 +12,13 @@ import hashlib
 import json
 from pathlib import Path
 
+import jsonschema
+
+
+ROOT = Path(__file__).resolve().parents[1]
+ACCEPTANCE_SCHEMA = ROOT / "research" / "acceptance.schema.json"
+EXPECTED_MODULES = {f"M{index:02d}" for index in range(1, 12)}
+
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -62,12 +69,22 @@ def verify_model(manifest: dict, deterministic: dict) -> None:
 
 def verify(manifest_path: Path) -> tuple[str, str]:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8-sig"))
-    if manifest.get("schema_version") != "0.1":
-        raise ValueError("unsupported manifest schema")
+    try:
+        jsonschema.validate(manifest, json.loads(ACCEPTANCE_SCHEMA.read_text(encoding="utf-8")))
+    except jsonschema.ValidationError as exc:
+        raise ValueError(f"acceptance manifest schema violation: {exc.message}") from exc
     for item in manifest["input"].values():
         verify_record(item)
     deterministic = manifest["deterministic_report"]
     verify_record(deterministic["manifest"])
+    report = json.loads(Path(deterministic["manifest"]["path"]).read_text(encoding="utf-8"))
+    report_inputs = {item["module"]: item for item in report.get("inputs", [])}
+    if set(manifest["input"]) != set(report_inputs):
+        raise ValueError("acceptance input modules do not match the deterministic report")
+    for module, item in manifest["input"].items():
+        report_item = report_inputs[module]
+        if item["sha256"] != report_item["artifact_sha256"] or item.get("schema_version") != report_item["schema_version"]:
+            raise ValueError(f"acceptance input does not match M12 record: {module}")
     if deterministic.get("generation_mode") != "deterministic":
         raise ValueError("unexpected unvalidated model generation mode")
     verify_model(manifest, deterministic)
@@ -101,6 +118,9 @@ def main(argv: list[str] | None = None) -> int:
     if model_status != "invoked":
         print(f"acceptance: BLOCKED: semantic model status={model_status}")
         return 3
+    if run_status == "complete" and set(json.loads(args.manifest.read_text(encoding="utf-8"))["input"]) != EXPECTED_MODULES:
+        print("acceptance: FAIL: complete status requires M01 through M11")
+        return 2
     if run_status != "complete":
         print(f"acceptance: PARTIAL: deterministic module coverage status={run_status}")
         return 3

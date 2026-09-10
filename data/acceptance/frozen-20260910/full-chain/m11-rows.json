@@ -1,0 +1,348 @@
+{
+  "schema_version": "0.1",
+  "feature_definition_version": "0.1",
+  "rows": [
+    {
+      "id": "download-01-d8f9c37a5714-tcp-flow-0",
+      "group_id": "download-01",
+      "labels": {
+        "action_type": "download"
+      },
+      "features": {
+        "packet_count": 13,
+        "byte_count": 1076,
+        "duration_seconds": 0.0106697,
+        "rate_bytes_per_second": 100846.32182723038,
+        "direction_switches": 9,
+        "node0_to_node1_byte_ratio": 0.4154275092936803,
+        "burst_count": 1,
+        "burst_max_packets": 13,
+        "iat_mean": 0.0008891416666666667,
+        "iat_p95": 0.0097088
+      }
+    },
+    {
+      "id": "download-02-91acab9db0a1-tcp-flow-0",
+      "group_id": "download-02",
+      "labels": {
+        "action_type": "download"
+      },
+      "features": {
+        "packet_count": 13,
+        "byte_count": 1076,
+        "duration_seconds": 0.0110107,
+        "rate_bytes_per_second": 97723.12387041697,
+        "direction_switches": 9,
+        "node0_to_node1_byte_ratio": 0.4154275092936803,
+        "burst_count": 1,
+        "burst_max_packets": 13,
+        "iat_mean": 0.0009175583333333332,
+        "iat_p95": 0.0103229
+      }
+    },
+    {
+      "id": "download-03-ddfc5a5dc1d4-tcp-flow-0",
+      "group_id": "download-03",
+      "labels": {
+        "action_type": "download"
+      },
+      "features": {
+        "packet_count": 13,
+        "byte_count": 1076,
+        "duration_seconds": 0.010377,
+        "rate_bytes_per_second": 103690.85477498312,
+        "direction_switches": 9,
+        "node0_to_node1_byte_ratio": 0.4154275092936803,
+        "burst_count": 1,
+        "burst_max_packets": 13,
+        "iat_mean": 0.00086475,
+        "iat_p95": 0.0096353
+      }
+    },
+    {
+      "id": "download-04-1f954832ad91-tcp-flow-0",
+      "group_id": "download-04",
+      "labels": {
+        "action_type": "download"
+      },
+      "features": {
+        "packet_count": 13,
+        "byte_count": 1076,
+        "duration_seconds": 0.0009913,
+        "rate_bytes_per_second": 1085443.357207707,
+        "direction_switches": 9,
+        "node0_to_node1_byte_ratio": 0.4154275092936803,
+        "burst_count": 1,
+        "burst_max_packets": 13,
+        "iat_mean": 8.260833333333334e-05,
+        "iat_p95": 0.0004483
+      }
+    },
+    {
+      "id": "download-05-230e4abd0f69-tcp-flow-0",
+      "group_id": "download-05",
+      "labels": {
+        "action_type": "download"
+      },
+      "features": {
+        "packet_count": 13,
+        "byte_count": 1076,
+        "duration_seconds": 0.0008829,
+        "rate_bytes_per_second": 1218711.0658058668,
+        "direction_switches": 9,
+        "node0_to_node1_byte_ratio": 0.4154275092936803,
+        "burst_count": 1,
+        "burst_max_packets": 13,
+        "iat_mean": 7.3575e-05,
+        "iat_p95": 0.0004853
+      }
+    },
+    {
+      "id": "download-06-e827ef76c8b5-tcp-flow-0",
+      "group_id": "download-06",
+      "labels": {
+        "action_type": "download"
+      },
+      "features": {
+        "packet_count": 13,
+        "byte_count": 1076,
+        "duration_seconds": 0.0009514,
+        "rate_bytes_per_second": 1130964.893840656,
+        "direction_switches": 9,
+        "node0_to_node1_byte_ratio": 0.4154275092936803,
+        "burst_count": 1,
+        "burst_max_packets": 13,
+        "iat_mean": 7.928333333333334e-05,
+        "iat_p95": 0.0005145
+      }
+    },
+    {
+      "id": "upload-01-577e2dba26fb-tcp-flow-0",
+      "group_id": "upload-01",
+      "labels": {
+        "action_type": "upload"
+      },
+      "features": {
+        "packet_count": 15,
+        "byte_count": 1231,
+        "duration_seconds": 0.0127271,
+        "rate_bytes_per_second": 96722.7412372025,
+        "direction_switches": 11,
+        "node0_to_node1_byte_ratio": 0.4703493095044679,
+        "burst_count": 1,
+        "burst_max_packets": 15,
+        "iat_mean": 0.0009090785714285716,
+        "iat_p95": 0.0102724
+      }
+    },
+    {
+      "id": "upload-02-8567cfc36079-tcp-flow-0",
+      "group_id": "upload-02",
+      "labels": {
+        "action_type": "upload"
+      },
+      "features": {
+        "packet_count": 15,
+        "byte_count": 1231,
+        "duration_seconds": 0.0036141,
+        "rate_bytes_per_second": 340610.38709498907,
+        "direction_switches": 11,
+        "node0_to_node1_byte_ratio": 0.4703493095044679,
+        "burst_count": 1,
+        "burst_max_packets": 15,
+        "iat_mean": 0.00025815,
+        "iat_p95": 0.0028245
+      }
+    },
+    {
+      "id": "upload-03-ce7da042c563-tcp-flow-0",
+      "group_id": "upload-03",
+      "labels": {
+        "action_type": "upload"
+      },
+      "features": {
+        "packet_count": 15,
+        "byte_count": 1231,
+        "duration_seconds": 0.0028323,
+        "rate_bytes_per_second": 434629.10002471495,
+        "direction_switches": 11,
+        "node0_to_node1_byte_ratio": 0.4703493095044679,
+        "burst_count": 1,
+        "burst_max_packets": 15,
+        "iat_mean": 0.00020230714285714288,
+        "iat_p95": 0.0022479
+      }
+    },
+    {
+      "id": "upload-04-81de2cd471b9-tcp-flow-0",
+      "group_id": "upload-04",
+      "labels": {
+        "action_type": "upload"
+      },
+      "features": {
+        "packet_count": 15,
+        "byte_count": 1231,
+        "duration_seconds": 0.0121921,
+        "rate_bytes_per_second": 100967.01962746368,
+        "direction_switches": 11,
+        "node0_to_node1_byte_ratio": 0.4703493095044679,
+        "burst_count": 1,
+        "burst_max_packets": 15,
+        "iat_mean": 0.0008708642857142856,
+        "iat_p95": 0.0101281
+      }
+    },
+    {
+      "id": "upload-05-2cfaccf6b7a7-tcp-flow-0",
+      "group_id": "upload-05",
+      "labels": {
+        "action_type": "upload"
+      },
+      "features": {
+        "packet_count": 15,
+        "byte_count": 1231,
+        "duration_seconds": 0.0117126,
+        "rate_bytes_per_second": 105100.49007052234,
+        "direction_switches": 11,
+        "node0_to_node1_byte_ratio": 0.4703493095044679,
+        "burst_count": 1,
+        "burst_max_packets": 15,
+        "iat_mean": 0.0008366142857142856,
+        "iat_p95": 0.0098699
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-tcp-flow-0",
+      "group_id": "upload-06",
+      "labels": {
+        "action_type": "upload"
+      },
+      "features": {
+        "packet_count": 15,
+        "byte_count": 1231,
+        "duration_seconds": 0.0026291,
+        "rate_bytes_per_second": 468221.0642425164,
+        "direction_switches": 11,
+        "node0_to_node1_byte_ratio": 0.4703493095044679,
+        "burst_count": 1,
+        "burst_max_packets": 15,
+        "iat_mean": 0.00018779285714285717,
+        "iat_p95": 0.0020985
+      }
+    },
+    {
+      "id": "periodic-01-ea9a3ab5d2aa-tcp-flow-0",
+      "group_id": "periodic-01",
+      "labels": {
+        "action_type": "periodic"
+      },
+      "features": {
+        "packet_count": 31,
+        "byte_count": 2828,
+        "duration_seconds": 1.0138261,
+        "rate_bytes_per_second": 2789.433020120512,
+        "direction_switches": 20,
+        "node0_to_node1_byte_ratio": 0.3606789250353607,
+        "burst_count": 1,
+        "burst_max_packets": 31,
+        "iat_mean": 0.033794203333333335,
+        "iat_p95": 0.25069
+      }
+    },
+    {
+      "id": "periodic-02-7e496d2d9050-tcp-flow-0",
+      "group_id": "periodic-02",
+      "labels": {
+        "action_type": "periodic"
+      },
+      "features": {
+        "packet_count": 31,
+        "byte_count": 2828,
+        "duration_seconds": 1.0047825,
+        "rate_bytes_per_second": 2814.539465008597,
+        "direction_switches": 20,
+        "node0_to_node1_byte_ratio": 0.3606789250353607,
+        "burst_count": 1,
+        "burst_max_packets": 31,
+        "iat_mean": 0.033492749999999995,
+        "iat_p95": 0.2507079
+      }
+    },
+    {
+      "id": "periodic-03-3c4913b0e1ee-tcp-flow-0",
+      "group_id": "periodic-03",
+      "labels": {
+        "action_type": "periodic"
+      },
+      "features": {
+        "packet_count": 31,
+        "byte_count": 2828,
+        "duration_seconds": 1.0049443,
+        "rate_bytes_per_second": 2814.086313042424,
+        "direction_switches": 20,
+        "node0_to_node1_byte_ratio": 0.3606789250353607,
+        "burst_count": 1,
+        "burst_max_packets": 31,
+        "iat_mean": 0.033498143333333334,
+        "iat_p95": 0.2506987
+      }
+    },
+    {
+      "id": "periodic-04-af55cea12972-tcp-flow-0",
+      "group_id": "periodic-04",
+      "labels": {
+        "action_type": "periodic"
+      },
+      "features": {
+        "packet_count": 31,
+        "byte_count": 2828,
+        "duration_seconds": 1.0040227,
+        "rate_bytes_per_second": 2816.669384068707,
+        "direction_switches": 20,
+        "node0_to_node1_byte_ratio": 0.3606789250353607,
+        "burst_count": 1,
+        "burst_max_packets": 31,
+        "iat_mean": 0.03346742333333333,
+        "iat_p95": 0.2505282
+      }
+    },
+    {
+      "id": "periodic-05-fba132fb247d-tcp-flow-0",
+      "group_id": "periodic-05",
+      "labels": {
+        "action_type": "periodic"
+      },
+      "features": {
+        "packet_count": 31,
+        "byte_count": 2828,
+        "duration_seconds": 1.0044769,
+        "rate_bytes_per_second": 2815.3957547455793,
+        "direction_switches": 20,
+        "node0_to_node1_byte_ratio": 0.3606789250353607,
+        "burst_count": 1,
+        "burst_max_packets": 31,
+        "iat_mean": 0.03348256333333333,
+        "iat_p95": 0.2507951
+      }
+    },
+    {
+      "id": "periodic-06-03f364ea380f-tcp-flow-0",
+      "group_id": "periodic-06",
+      "labels": {
+        "action_type": "periodic"
+      },
+      "features": {
+        "packet_count": 31,
+        "byte_count": 2828,
+        "duration_seconds": 1.0135984,
+        "rate_bytes_per_second": 2790.0596528171313,
+        "direction_switches": 20,
+        "node0_to_node1_byte_ratio": 0.3606789250353607,
+        "burst_count": 1,
+        "burst_max_packets": 31,
+        "iat_mean": 0.03378661333333333,
+        "iat_p95": 0.2506271
+      }
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "module": "M09-compatible-feature-rows",
+    "artifact_path": "data\\acceptance\\frozen-20260910\\full-chain\\m11-rows.json",
+    "artifact_sha256": "213c0259a019b07756cb10ee7be412fbf53387eacc36457773c7d2f90fb9b33c",
+    "record_count": 18,
+    "schema_version": "0.1"
+  },
+  "status": "ok",
+  "parameters": {
+    "algorithm": "random_forest",
+    "random_seed": 17,
+    "split_strategy": "grouped_holdout",
+    "test_fraction": 0.25
+  },
+  "task": {
+    "label_dimension": "action_type",
+    "classes": [
+      "download",
+      "periodic",
+      "upload"
+    ],
+    "unknown_rejection": "not implemented; no unsupported labels are predicted",
+    "feature_schema_version": "0.1"
+  },
+  "split": {
+    "group_key": "group_id",
+    "train_count": 13,
+    "test_count": 5,
+    "train_groups": [
+      "download-01",
+      "download-02",
+      "download-04",
+      "download-06",
+      "periodic-01",
+      "periodic-04",
+      "periodic-05",
+      "periodic-06",
+      "upload-01",
+      "upload-02",
+      "upload-03",
+      "upload-04",
+      "upload-05"
+    ],
+    "test_groups": [
+      "download-03",
+      "download-05",
+      "periodic-02",
+      "periodic-03",
+      "upload-06"
+    ],
+    "group_overlap": [],
+    "random_seed": 17
+  },
+  "model": {
+    "algorithm": "RandomForestClassifier",
+    "parameters": {
+      "n_estimators": 100,
+      "random_state": 17,
+      "n_jobs": 1
+    },
+    "feature_names": [
+      "burst_count",
+      "burst_max_packets",
+      "byte_count",
+      "direction_switches",
+      "duration_seconds",
+      "iat_mean",
+      "iat_p95",
+      "node0_to_node1_byte_ratio",
+      "packet_count",
+      "rate_bytes_per_second"
+    ],
+    "dependency": {
+      "name": "scikit-learn",
+      "version": "1.7.2"
+    },
+    "artifact": {
+      "artifact_ref": "model.joblib",
+      "sha256": "a0aec65b69d6cd567793852d29011a34f831f317bb5633a0924c187c487cfc1c",
+      "length": 86497,
+      "format": "joblib"
+    }
+  },
+  "metrics": {
+    "macro_f1": 1.0,
+    "per_class": {
+      "download": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2.0
+      },
+      "periodic": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2.0
+      },
+      "upload": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5.0
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "download",
+        "periodic",
+        "upload"
+      ],
+      "values": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  "predictions": [
+    {
+      "scope_id": "download-03-ddfc5a5dc1d4-tcp-flow-0",
+      "predicted_label": "download",
+      "score_type": "class_probability",
+      "score": 0.92,
+      "rejected": false
+    },
+    {
+      "scope_id": "download-05-230e4abd0f69-tcp-flow-0",
+      "predicted_label": "download",
+      "score_type": "class_probability",
+      "score": 0.97,
+      "rejected": false
+    },
+    {
+      "scope_id": "upload-06-ccbfdfa0eee3-tcp-flow-0",
+      "predicted_label": "upload",
+      "score_type": "class_probability",
+      "score": 0.96,
+      "rejected": false
+    },
+    {
+      "scope_id": "periodic-02-7e496d2d9050-tcp-flow-0",
+      "predicted_label": "periodic",
+      "score_type": "class_probability",
+      "score": 0.99,
+      "rejected": false
+    },
+    {
+      "scope_id": "periodic-03-3c4913b0e1ee-tcp-flow-0",
+      "predicted_label": "periodic",
+      "score_type": "class_probability",
+      "score": 0.99,
+      "rejected": false
+    }
+  ],
+  "leakage_checks": {
+    "groups_disjoint": true,
+    "preprocessing_fit_scope": "training_only when a model is trained",
+    "cluster_id_not_used_as_label": true
+  },
+  "warnings": []
+}

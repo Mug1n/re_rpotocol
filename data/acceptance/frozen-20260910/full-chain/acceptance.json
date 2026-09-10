@@ -1,0 +1,174 @@
+{
+  "schema_version": "0.1",
+  "status": "complete",
+  "input": {
+    "M01": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
+      "sha256": "e236f49ff1c96489ae2973f31b88270953303bb9ed90182d90d97bbb724b3ac7",
+      "length": 13907,
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    "M02": {
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m02\\features.json",
+      "sha256": "160d3606bc4eaa3c7a77f35653d358374e2e50b24d9fac61ada8a086360bac48",
+      "length": 27998,
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    "M03": {
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m03\\framing.json",
+      "sha256": "3f7796ccb23bbd329f1308864fdd797d4165406e62226b9a77e0ccb55102c645",
+      "length": 2770,
+      "schema_version": "0.1",
+      "status": "partial"
+    },
+    "M04": {
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m04\\clusters.json",
+      "sha256": "31f6ec894017f28331817a87633c5d1ebdd5fc9c659d1c8f7ff048115326c03f",
+      "length": 1715,
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    "M05": {
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m05\\alignments.json",
+      "sha256": "313b081c8911e77f7bbf42b4958260f7b97c25cef74c610460cb1f8a586d2b04",
+      "length": 1625,
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    "M06": {
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m06\\format.json",
+      "sha256": "4ee1dd835beb8526c8c91b210b4b794b87a3c835fcfa57ccc0ba5ac07e6190af",
+      "length": 1653,
+      "schema_version": "0.1",
+      "status": "empty"
+    },
+    "M07": {
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m07\\protocols.json",
+      "sha256": "d38700eaa02e2e1b48ec75d900af5379de38c23b5f6ceb19a38c18a22b6d48cf",
+      "length": 2219,
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    "M08": {
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m08\\recovery.json",
+      "sha256": "5b41ed43d4adc0fd71aef62724efd8a5415643707eb07f8fdd92b512e56ca1d7",
+      "length": 2325,
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    "M09": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\m09\\flow_features.json",
+      "sha256": "566e1cfb2ae26b4f945ec02806b9c96b27cfe03df5723a1cacc646a1fecd1b1e",
+      "length": 3285,
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    "M10": {
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m10\\behaviors.json",
+      "sha256": "855b061ecd8a6a37c601de4553e132e51250f6377cb9ebc6f0f0ed97d98e58b8",
+      "length": 1638,
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    "M11": {
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
+      "sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
+      "length": 4402,
+      "schema_version": "0.1",
+      "status": "ok"
+    }
+  },
+  "deterministic_report": {
+    "manifest": {
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m12\\report_manifest.json",
+      "sha256": "2162b8b45653a383388ef8d169334c4e365055e4be3f47a184a50801b1a71719",
+      "length": 5067
+    },
+    "status": "complete",
+    "generation_mode": "deterministic"
+  },
+  "recovery": {
+    "status": "matched",
+    "recovery_id": "m08-215ff970eee6-0000",
+    "expected_sha256": "215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07",
+    "recovered": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\recovery\\recovered\\m08-215ff970eee6-0000.bin",
+      "sha256": "215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07",
+      "length": 101
+    },
+    "truth": {
+      "path": "data\\acceptance\\frozen-20260910\\truth\\download-01.json",
+      "sha256": "52d7081a5e6afa999cb40495def4309c5894f929105503dc22a6e2f51f028a11",
+      "length": 222
+    }
+  },
+  "classification": {
+    "evaluation": {
+      "path": "data\\acceptance\\frozen-20260910\\classification\\model-run\\evaluation.json",
+      "sha256": "127a533fc4a47acb0384472a5f88ddbdc6794070c3eed825653a90abedf6372e",
+      "length": 3666
+    },
+    "prediction": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\upload-06-prediction.json",
+      "sha256": "38bcdfe082851981571bebab79cb500158b274f121051414c027f435b3eb51ce",
+      "length": 981
+    },
+    "model": {
+      "path": "data\\acceptance\\frozen-20260910\\classification\\model-run\\model.joblib",
+      "sha256": "4e7b6dcdeed8310556fdfe163a42dac645e8abf201cfd9aa63390b6c7398dfa5",
+      "length": 172177
+    },
+    "test_macro_f1": 1.0,
+    "validation_macro_f1": 1.0
+  },
+  "model": {
+    "status": "invoked",
+    "model": "deepseek-v4-flash",
+    "request": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\api-run\\model\\request.json",
+      "sha256": "51add36c7deee9545e29d76918ec1a6a77be7f93a5ce5869cb6c9a732ac9ac7a"
+    },
+    "response": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\api-run\\model\\response.json",
+      "sha256": "a102473647141e4e7a372944d15c5d2285e3410ff8e5122e4afc623c853587cc"
+    },
+    "claims": [
+      {
+        "text": "The input was a pcapng file of 1844 bytes and was processed with status ok.",
+        "evidence_ids": [
+          "evidence-m01-33abe24df5cbad28"
+        ]
+      },
+      {
+        "text": "Flow download-01-d8f9c37a5714-tcp-flow-0 contained 13 packets totaling 1076 bytes over a duration of 0.0106697 seconds.",
+        "evidence_ids": [
+          "evidence-m09-2c7a111907a1d04b"
+        ]
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 228,
+      "completion_tokens": 109,
+      "total_tokens": 337,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 228
+    },
+    "limitations": [
+      "Model claims are bounded to cited deterministic evidence."
+    ],
+    "manifest": {
+      "path": "data\\acceptance\\frozen-20260910\\integration\\api-run\\model\\model_manifest.json",
+      "sha256": "2a2213548e5b68a097a9836c46d012d6849f18f01954b434a67a8425d30152f9"
+    }
+  },
+  "limitations": [
+    "The classifier was assessed on a small self-controlled frozen batch.",
+    "No semantic model claim is emitted without a verified local model invocation and bounded validator.",
+    "Module statuses may still record honest partial or empty observations; complete means all M01--M11 artifact contracts were supplied."
+  ]
+}
