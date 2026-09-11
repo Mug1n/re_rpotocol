@@ -47,7 +47,7 @@ Expected final line is `acceptance: PASS`. The output paths must not already exi
 
 ### Known limits
 
-- Current host has TShark/Capinfos 4.6.8 in ignored `third_party/Wireshark/`; all 168 tests pass with `WIRESHARK_HOME` set. M01/M07 remain verified frozen reuse in `profiles/acceptance.json` for offline reproducibility.
+- Current host has TShark/Capinfos 4.6.8 in ignored `third_party/Wireshark/`; all 183 tests pass with `WIRESHARK_HOME` set. M01/M07 remain verified frozen reuse in `profiles/acceptance.json` for offline reproducibility.
 - Npcap is not installed, so existing captures can be analyzed but live interface capture is not part of this host verification.
 - The 18 loopback captures are small controlled evidence, not broad classifier validation.
 - Brotli and no-key TLS/SSH remain explicit unsupported/skipped cases.

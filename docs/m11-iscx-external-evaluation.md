@@ -105,24 +105,36 @@ M11 只接受含固定维数值特征、明确标签维度和互斥 `group_id` �
 
 ## 7. 复跑命令
 
-前置：本机 Wireshark（提供 `tshark` / `capinfos`），以及 `scikit-learn`、`joblib`。
+仓库已用 `scripts/reproduce_iscx_evaluation.py` 固化完整协议。脚本不联网、不下载数据、不覆盖已有输出；没有原始包时也能先复核已提交证据：
 
 ```powershell
-# 1) 获取归档并解出抓包（2026-09-11 实测可用；需网络）
-curl -L -o tmp\kaggle\iscx-vpn-2g.zip https://www.kaggle.com/api/v1/datasets/download/mitu1957264/iscx-vpn
-#    解压到 tmp\kaggle\iscx-vpn\*.pcap，并与 manifest.json 的 sha256 核对
+# 离线检查 manifest、会话折分、行数、混淆矩阵及全部派生指标
+python -B scripts\reproduce_iscx_evaluation.py verify
 
-# 2) 逐会话跑 M01 -> M09，生成 flow 特征（每个抓包先截断到 20000 包）
-python -B tmp\iscx-work\run_pipeline.py
-
-# 3) 合并带标签行、按会话 2 折互补切分、两折各跑一次 M11
-python -B tmp\iscx-work\train_m11.py
-
-# 4) 从临时输出重新生成被追踪的证据文件
-python -B tmp\iscx-work\emit_artifact.py
+# 可选：同时核对已经下载的 2.3 GB 归档
+python -B scripts\reproduce_iscx_evaluation.py verify `
+  --archive tmp\kaggle\iscx-vpn-2g.zip
 ```
 
-`tmp/` 不进入 Git，上述三个驱动脚本是本次评测的临时工具；`emit_artifact.py` 会把 `tmp/iscx-work/` 的结果收敛成 `data/external/iscx-vpn-2016/` 下可追踪的 `manifest.json` 与 `evaluation.json`。
+完整复跑前置：解压后的原始 PCAP 根目录、本机 Wireshark（`tshark` / `capinfos`），以及 `scikit-learn`、`joblib`。原始文件可以处于任意子目录，但每个 manifest `session_id` 必须唯一匹配同名 `.pcap` / `.pcapng` / `.cap`。`prepare` 会先核验全部源抓包的字节数和 SHA-256，再按 manifest 记录的 20000 包上限截断，依次执行 M01 → M09 → M11 特征构造，并生成两折数据：
+
+```powershell
+python -B scripts\reproduce_iscx_evaluation.py prepare `
+  --raw-root tmp\kaggle\iscx-vpn `
+  --work-root tmp\iscx-reproduction `
+  --tshark third_party\Wireshark\tshark.exe `
+  --capinfos third_party\Wireshark\capinfos.exe
+
+python -B scripts\reproduce_iscx_evaluation.py train `
+  --work-root tmp\iscx-reproduction `
+  --run-root tmp\iscx-runs `
+  --output tmp\iscx-evaluation-rebuilt.json
+
+python -B scripts\reproduce_iscx_evaluation.py verify `
+  --evaluation tmp\iscx-evaluation-rebuilt.json
+```
+
+输出目录必须不存在，避免旧结果混入新一轮证据。M09 JSON 内记录上游 artifact 路径，因此其**文件哈希可能随工作目录改变**；脚本把该哈希保留为诊断信息，但严格门禁使用源/截断抓包哈希、flow 数、会话分组与最终指标，不虚称任意目录下可得到逐字节相同的 M09 JSON。
 
 ## 8. 与本地冻结闭环的关系
 

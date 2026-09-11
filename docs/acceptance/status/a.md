@@ -29,7 +29,7 @@
 ## 测试与环境
 
 - Python 3.13.9；当前主机在 Git 忽略的 `third_party/Wireshark/` 中安装 Wireshark/TShark/Capinfos 4.6.8。
-- 设置 `WIRESHARK_HOME=third_party/Wireshark` 后，M01～M12 加 `experiments/tests` 顺序回归共 168 项全部通过，0 项跳过；M01 的 20 项真实工具与契约测试全部执行。
+- 设置 `WIRESHARK_HOME=third_party/Wireshark` 后，M01～M12 加 `experiments/tests` 顺序回归共 183 项全部通过，0 项跳过；M01 的 20 项真实工具与契约测试全部执行。
 - 新增 A pipeline 5/5、M12（含模型负例）23/23、B payload 16/16 均通过。
 - 干净提交打包并在新解压目录复跑：独立 gate PASS，统一 acceptance profile 成功，恢复哈希保持 `215ff...c07`；包内提交 `91e52dc`，495 个跟踪文件。
 

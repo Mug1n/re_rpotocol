@@ -1,38 +1,30 @@
 # C handoffs
 
-## C3-independent-model-verifier-001
+本页只保留当前可消费交付；早期 `blocked` / `partial` 交接可从 Git 历史追溯。
 
-- Consumer: final acceptance. Input: `data/acceptance/frozen-20260910/integration/api-run/run_manifest.json`.
-- C verifies model-manifest, request and response hashes; requires `key_persisted=false`, parses raw response claims, and permits only evidence IDs in the deterministic M12 evidence file.
-- Current outcome is non-pass: `PARTIAL` because M02--M08 and M10--M11 are not included in the same M12 input coverage.
+## C3-abc-acceptance-final
 
-## C3-full-chain-001
+- Consumer：最终验收与演示。
+- Artifact：`reports/acceptance/2026-09-11-abc/acceptance.json`。
+- Re-run：`python -B scripts/verify_acceptance.py reports/acceptance/2026-09-11-abc/acceptance.json`，预期 `acceptance: PASS`（退出码 0）。
+- Boundary：PASS 证明输入、M01～M12、恢复、分类和模型记录的哈希绑定与规则一致；不把 M03 的 partial 或 M06 的 empty 伪装成语义成功。
 
-- Consumer: final acceptance. Artifact: `data/acceptance/frozen-20260910/full-chain/acceptance.json`.
-- The acceptance schema requires a hash-bound input record, deterministic report, recovery, classification and model record. The verifier cross-checks that all M01--M11 entries equal M12's own input records.
-- Re-run: `python -B scripts/verify_acceptance.py data/acceptance/frozen-20260910/full-chain/acceptance.json` returns `acceptance: PASS` (exit 0).
-- Scope note: full coverage is proven; M03 remains partial and M06 empty for this one response flow, and those are preserved as module limitations.
+## C1-frozen-captures-final
 
-## C-public-replay-001
+- Consumers：A、B 与最终验收。
+- Artifact：`data/acceptance/frozen-20260910/manifest.json`，含 18 个独立 loopback HTTP PCAPNG；`truth/` 独立保存响应哈希和操作，分析模块不得读取 truth。
+- Partition：download/upload/periodic 各 4 train、1 validation、1 test；每项任务使用独立 `group_id`。
+- Re-capture：先启动 `scripts/acceptance_http_server.py`，再运行 `python -B scripts/capture_acceptance_samples.py --tshark <path> --output-root data/acceptance/frozen-<date>`；输出目录必须不存在，现场重采需要 Npcap。
 
-- Artifact: `reports/public-samples/2026-09-10-c-public-evaluation-final/README.md` and `summary.json`, with 21 linked per-sample reports.
-- Re-run used the frozen local corpus and TShark for capture inputs; no replay or external network traffic occurred.
-- Result: 21 `completed_with_limits`, 0 module failures. The merger independently rejects any missing/duplicate artifact or mismatch against the frozen public-manifest SHA-256 and byte size.
+## C2-m11-final
 
-## C2-feature-adapter-001
+- Consumers：A 与最终验收。
+- Code：`experiments/M11/` 提供 build/prepare/train/evaluate/predict 闭环；模型、特征版本和输入均由哈希绑定。
+- Controlled artifacts：`data/acceptance/frozen-20260910/classification/` 与 `integration/upload-06-prediction.json`。
+- External evidence：`data/external/iscx-vpn-2016/manifest.json`、`evaluation.json`；`python -B scripts/reproduce_iscx_evaluation.py verify` 可离线复核，`prepare` / `train` 在提供哈希匹配的原始抓包后完整复跑。
+- Boundary：ISCX 数字仅表示真实 VPN 抓包上的 application 分类基线，不表示 VPN/non-VPN 分类能力。
 
-- producer：C；consumer：A；任务：C2；code_ref：`c7f7fc099be97d5358350430f441450b9db57d22`（`codex/acceptance-c-behavior`）。
-- 代码：`experiments/M11/build_rows.py` 将 M09 流记录转为固定版本、无标签特征行；`experiments/M11/predict.py` 只接受模型 artifact 哈希与特征版本均一致的无标签输入。
-- 重跑：`python -B -m unittest discover -s experiments/M11/tests -v`；2026-09-10 退出码 0，11 项通过。
-- 消费检查：A 应使用已保存的 `classification.json`/`model.joblib` 和未含标签的 M09 特征行运行 `predict.py`，并将 prediction artifact 加入运行清单；尚不可将此测试用模型当作真实采集分类结论。
-- 未完成：没有来自 B 的可采集服务、冻结的主 DAT/正文与独立 truth，也没有 A 的运行清单契约。因此 C1 的真实采集和 C3 的独立全链验收均未开始，不存在可交付的验收批次。
+## C-public-replay-final
 
-尚无可供 A/B 消费的冻结采集批次。待 B 交付服务后，首批记录将包含相对路径、SHA-256、任务/分组、独立 truth 及重跑命令；标签不会写入分析输入。
-
-## C1-capture-001
-
-- producer：C；consumers：A、B；任务：C1；code_ref：待本批提交。
-- artifact：`data/acceptance/frozen-20260910/manifest.json`，含 18 个独立 loopback HTTP PCAPNG；`truth/` 中每个任务独立记录响应哈希和操作。分析模块不得读取 truth。
-- 分区：download/upload/periodic 各 4 train、1 validation、1 test；每项任务独立 group_id。
-- 重跑：先按 B-G1-local-001 启动服务，再运行 `python -B scripts/capture_acceptance_samples.py --tshark <path> --output-root data/acceptance/frozen-<date>`；输出目录必须为新目录。
-- 已验证：所有 capture SHA-256 与 manifest 一致、文件非空；`upload-01.pcapng` 的 TShark TCP conversation 显示 15 个帧、1231 bytes。周期任务使用同一 keep-alive HTTP 连接连续发出四次请求。
+- Artifact：`reports/public-samples/2026-09-10-c-public-evaluation-final/README.md` 与 `summary.json`，关联 21 个样例报告。
+- Result：21 个 `completed_with_limits`、0 个模块失败；合并器拒绝缺失、重复或与冻结 manifest 大小/SHA-256 不符的输入。

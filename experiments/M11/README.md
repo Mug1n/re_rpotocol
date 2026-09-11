@@ -53,3 +53,5 @@ python experiments/M11/evaluate.py run/classification.json held-out-labeled-rows
 ## 外部真实流量评测
 
 在 ISCX VPN-nonVPN 2016 的真实 OpenVPN 抓包上，用 2 折会话不交叠切分评 `task=application`，得到 macro-F1 0.4995（多数类基线 0.3040），证据见 [data/external/iscx-vpn-2016/](../../data/external/iscx-vpn-2016/)，协议、结果与限制见 [docs/m11-iscx-external-evaluation.md](../../docs/m11-iscx-external-evaluation.md)。该评测只覆盖业务分类维度，不代表 VPN 状态分类，也不替代验收闭环中的 M11 证据。
+
+已追踪的复跑入口是 `scripts/reproduce_iscx_evaluation.py`：`verify` 无需原始包即可检查已提交证据，`prepare` 从哈希匹配的原始抓包重建两折数据，`train` 训练两折并生成新的 evaluation JSON。脚本不自动下载约 2.3 GB 的原始归档，也不会覆盖已有输出。

@@ -108,7 +108,7 @@ python -m unittest discover -s experiments\tests -v
 ```
 
 各模块 CLI 均拒绝覆盖已存在的输出目录。临时结果放在 `tmp/`，该目录不会进入 Git。
-当前集成环境共发现 168 项测试；设置 `WIRESHARK_HOME=third_party/Wireshark` 后 168 项全部通过、0 项跳过。正式 ABC 清单另由 `scripts/verify_acceptance.py` 返回 `acceptance: PASS`。
+当前集成环境共发现 183 项测试；设置 `WIRESHARK_HOME=third_party/Wireshark` 后 183 项全部通过、0 项跳过。正式 ABC 清单另由 `scripts/verify_acceptance.py` 返回 `acceptance: PASS`。ISCX 外部评测可先用 `python -B scripts/reproduce_iscx_evaluation.py verify` 离线核验证据；提供原始抓包后再用同一脚本的 `prepare`、`train` 子命令完整复跑。
 
 ## 核心原则
 

@@ -1,31 +1,22 @@
 # C status
 
-## 2026-09-10 actual C1/C2/C3 evidence update
+更新时间：2026-09-11。下列状态取代本文件此前的阶段性 `blocked` 记录；历史过程保留在 Git 提交中。
 
-- C1: 18 frozen local loopback HTTP PCAPNG samples exist under `data/acceptance/frozen-20260910/`, with six each for download/upload/periodic and fixed 4/1/1 train/validation/test groups. Capture hashes and non-empty files were checked.
-- C2: `classification/model-run/evaluation.json` records a hash-bound RandomForest model and tiny controlled validation/test macro-F1 values of 1.0. `integration/upload-06-label-free.json` contains no labels; its hash-validated model prediction is in `integration/upload-06-prediction.json`.
-- C3: `integration/recovery/recovery.json` recovered 101 bytes for download-01; `integration/run/run_manifest.json` confirms the recovered SHA-256 equals independent truth. It remains `partial` because the real semantic-model gate is blocked, not because recovery or classifier inference was skipped.
+## 当前结论
 
-## 2026-09-10 C3 model-evidence integration
+- C1 `complete`：`data/acceptance/frozen-20260910/` 保存 18 个本地回环 HTTP PCAPNG，download/upload/periodic 各 6 个，按任务固定为 4/1/1 train/validation/test。抓包、独立 truth、非空长度与 SHA-256 均已冻结。
+- C2 `complete`：M11 已具备固定 17 维特征、隔离标签准备、分组不泄漏训练、冻结模型推理及留出集评估。`classification/model-run/evaluation.json` 保存受控闭环指标；`integration/upload-06-label-free.json` 不含标签，预测结果单独保存。
+- C3 `complete`：正式 ABC 产物为 `reports/acceptance/2026-09-11-abc/acceptance.json`，`scripts/verify_acceptance.py` 返回 `acceptance: PASS`。恢复结果为 101 字节，SHA-256 `215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07`，并与独立 truth 一致。
+- 外部评测 `complete_with_limits`：ISCX VPN-nonVPN 2016 的 28 个 VPN 会话、1028 条 flow 完成 2 折会话不交叠业务分类评测，macro-F1 均值 0.4995，多数类基线 0.3040。它不覆盖 VPN 状态分类，也不替代正式 ABC 验收。
 
-- C's verifier now independently checks A's persisted DeepSeek request/response and model-manifest SHA-256 values, confirms that raw response JSON equals the recorded claims, and rejects citations outside M12's deterministic evidence set.
-- Positive run returned the required `PARTIAL` status (exit 3): model invocation, recovery and label-free classification verify, but M01--M11 coverage is incomplete.
-- Negative run changed only the recorded model-manifest SHA-256 and returned `acceptance: FAIL: model manifest hash mismatch` (exit 2).
+## 当前复核
 
-## 2026-09-10 complete M01--M11 acceptance chain
+- Python 3.13.9；TShark/Capinfos 4.6.8 位于 Git 忽略的 `third_party/Wireshark/`。
+- M01～M12 与共享回归共 183 项：183 通过、0 跳过。
+- `python -B scripts/reproduce_iscx_evaluation.py verify` 可在没有 2.3 GB 原始包时核验 ISCX manifest、折分、行数、混淆矩阵和派生指标；提供原始抓包后用 `prepare`、`train` 完整复跑。
 
-- `data/acceptance/frozen-20260910/full-chain/acceptance.json` binds one real download-01 sample to all M01--M11 artifacts, M12's complete deterministic report, the independently matched recovery, C2's label-free prediction, and the previously recorded bounded DeepSeek response.
-- `python -B scripts/verify_acceptance.py data/acceptance/frozen-20260910/full-chain/acceptance.json` exited 0 with `acceptance: PASS`.
-- C added `research/acceptance.schema.json`, frozen-manifest checks and behavior-acceptance checks. Three C-specific tests and 17 M12 regression tests passed.
-- This means artifact coverage is complete, not that every module learned a semantic result: M03 records a partial framing result and M06 records an honest empty result for this single small response flow.
+## 保留限制
 
-## 2026-09-10 public-corpus replay
-
-- C reran the frozen 21-sample public corpus offline in three independent batches (NetPlier 9, BinaryInferno 6, Wireshark 6) and merged only results whose input size and SHA-256 exactly matched `data/external/test-samples-manifest.json`.
-- Final evidence: `reports/public-samples/2026-09-10-c-public-evaluation-final/`. All 21 samples are `completed_with_limits`; there are zero module failures. Limits remain explicit: M11 is not applicable without safe grouped behavior labels, and every M12 report is partial for inputs that lack full prerequisites.
-
-- role：C；更新时间：2026-09-10；分支：`codex/acceptance-c-behavior`；基线：`a935fbdba601ce163f7c4d44c806c09efdc71246`。
-- C2：`ready_for_consumer`（代码层）。新增 M09→固定特征行适配及模型哈希校验的新输入推理入口；`python -B -m unittest discover -s experiments/M11/tests -v` 于 2026-09-10 退出码 0，11 项通过。尚待冻结的训练/验证/测试分区与真实采集数据后才能形成真实分类指标。
-- C1：`ready_for_consumer`。基于 B 的本地回环服务实际采集 18 个 HTTP PCAPNG（下载/上传/周期各 6），冻结于 `data/acceptance/frozen-20260910/`。每类按 4/1/1 固定 train/validation/test，输入哈希与非空长度均已复核；truth 与分析输入分文件保存。TShark 4.6.8、Npcap loopback 接口 10。尚待 B 对正文恢复做独立语义核对，以及 A 消费主例。
-- C3：`blocked`。A 的 `scripts/analyze.py`、运行清单 Schema 和真实模型调用记录尚未交付；独立验收脚本无法对不存在的入口假称通过。
-- 本批修改：`experiments/M11/build_rows.py`、`experiments/M11/predict.py`、`experiments/M11/tests/test_predict.py`、`experiments/M11/README.md`、本状态和交接文件。未生成或提交任何伪造数据、模型、预测或验收报告。
+- 当前主机没有 Npcap，因此可复跑保存抓包，但不能现场重新采集接口流量。
+- ISCX 原始抓包不进入 Git；实际归档来自记录的 Kaggle 镜像，与失效的 UNB 官方归档未作独立字节等价证明。
+- 三位成员实名贡献、最终 PPT 截图与演示录像仍需人工确认。
