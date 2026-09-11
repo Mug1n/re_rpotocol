@@ -4,7 +4,7 @@
   "title": "M6 FormatInferenceResult",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "source", "status", "parameters", "cluster_formats", "unaligned_messages", "metrics", "warnings"],
+    "required": ["schema_version", "source", "status", "parameters", "cluster_formats", "unaligned_messages", "metrics", "warnings"],
   "properties": {
     "schema_version": {"const": "0.1"},
     "source": {
@@ -34,6 +34,7 @@
       }
     },
     "cluster_formats": {"type": "array", "items": {"$ref": "#/$defs/clusterFormat"}},
+    "ranked_boundary_candidates": {"type": "array", "items": {"$ref": "#/$defs/rankedBoundaryCandidate"}},
     "unaligned_messages": {
       "type": "array",
       "items": {
@@ -54,12 +55,23 @@
         "analyzed_message_count": {"type": "integer", "minimum": 0},
         "field_candidate_count": {"type": "integer", "minimum": 0},
         "boundary_candidate_count": {"type": "integer", "minimum": 0},
-        "length_hypothesis_count": {"type": "integer", "minimum": 0}
+        "length_hypothesis_count": {"type": "integer", "minimum": 0},
+        "displayed_boundary_candidate_count": {"type": "integer", "minimum": 0}
       }
     },
     "warnings": {"type": "array", "items": {"type": "string"}}
   },
   "$defs": {
+    "rankedBoundaryCandidate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["candidate_id", "position", "confidence", "evidence"],
+      "properties": {
+        "candidate_id": {"type": "string", "minLength": 1},
+        "position": {"type": "object", "additionalProperties": false, "required": ["reference", "offset"], "properties": {"reference": {"enum": ["start", "end"]}, "offset": {"type": "integer", "minimum": 0}}},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "evidence": {"enum": ["inferred_length_prefix", "inferred_fixed_overhead"]}
+      }
+    },
     "columnStatistic": {
       "type": "object",
       "additionalProperties": false,

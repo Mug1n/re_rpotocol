@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1",
+  "status": "complete",
+  "corpus_id": "wireshark-ubx-sample-heldout-v1",
+  "truth_used_after_analysis": true,
+  "input_sha256": "47497f62366e95028ae85776d734f950a57184415e18009cd711a0eda2e351da",
+  "boundary_metrics": {
+    "exclude_outer_boundaries": true,
+    "boundary_true_positive": 638,
+    "boundary_precision": 1.0,
+    "boundary_recall": 1.0,
+    "boundary_f1": 1.0,
+    "exact_message_matches": 639,
+    "expected_message_count": 639,
+    "complete_message_match_rate": 1.0
+  },
+  "type_metrics": {
+    "scored_message_count": 639,
+    "ari": 1.0,
+    "nmi": 1.0
+  },
+  "field_metrics": {
+    "candidate_selection": "high_confidence_framing",
+    "candidate_count": 1917,
+    "truth_boundary_count": 2556,
+    "matched": 1917,
+    "precision": 1.0,
+    "recall": 0.75
+  },
+  "ambiguity": {
+    "framing_candidate_count": 3,
+    "unparsed_ranges": [],
+    "m04_noise_count": 1
+  },
+  "limitations": [
+    "Truth is loaded only after run_pipeline completes.",
+    "Cluster IDs are compared as partitions, using ARI/NMI rather than their numeric names.",
+    "Field scores measure candidate internal boundaries; they do not prove field semantics."
+  ]
+}
