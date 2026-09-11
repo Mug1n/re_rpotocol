@@ -1,0 +1,498 @@
+{
+  "schema_version": "0.1",
+  "id": "upload-06-ccbfdfa0eee3",
+  "path": "data\\acceptance\\frozen-20260910\\captures\\upload-06.pcapng",
+  "sha256": "ccbfdfa0eee36d50bd356fac7d88fb157695859ac0c05acf873620b91961b042",
+  "length": 2064,
+  "format": "pcapng",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-PCAPNG-VALIDATED",
+      "observation": "validated 1 pcapng section(s) and all block lengths; capinfos reports PCAPNG."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": true,
+    "network_headers": true,
+    "flow_identity": true,
+    "direction": true,
+    "timestamps": true
+  },
+  "status": "ok",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 2064,
+      "artifact_ref": "data\\acceptance\\frozen-20260910\\captures\\upload-06.pcapng"
+    }
+  ],
+  "packets": [
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-1",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 0,
+      "timestamp_epoch": "1789044305.998055000",
+      "interface_id": 0,
+      "captured_length": 56,
+      "original_length": 56,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 49897,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 18080,
+      "tcp_seq_raw": 3970346974,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-2",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 1,
+      "timestamp_epoch": "1789044305.998113400",
+      "interface_id": 0,
+      "captured_length": 56,
+      "original_length": 56,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 18080,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 49897,
+      "tcp_seq_raw": 2624572822,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-3",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 2,
+      "timestamp_epoch": "1789044305.998143200",
+      "interface_id": 0,
+      "captured_length": 44,
+      "original_length": 44,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 49897,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 18080,
+      "tcp_seq_raw": 3970346975,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-4",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 3,
+      "timestamp_epoch": "1789044305.998207600",
+      "interface_id": 0,
+      "captured_length": 239,
+      "original_length": 239,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 49897,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 18080,
+      "tcp_seq_raw": 3970346975,
+      "tcp_payload_length": 195,
+      "payload_ref": "payloads/upload-06-ccbfdfa0eee3-packet-000004.bin",
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-5",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 4,
+      "timestamp_epoch": "1789044305.998232200",
+      "interface_id": 0,
+      "captured_length": 44,
+      "original_length": 44,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 18080,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 49897,
+      "tcp_seq_raw": 2624572823,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-6",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 5,
+      "timestamp_epoch": "1789044305.998248700",
+      "interface_id": 0,
+      "captured_length": 64,
+      "original_length": 64,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 49897,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 18080,
+      "tcp_seq_raw": 3970347170,
+      "tcp_payload_length": 20,
+      "payload_ref": "payloads/upload-06-ccbfdfa0eee3-packet-000006.bin",
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-7",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 6,
+      "timestamp_epoch": "1789044305.998256300",
+      "interface_id": 0,
+      "captured_length": 44,
+      "original_length": 44,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 18080,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 49897,
+      "tcp_seq_raw": 2624572823,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-8",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 7,
+      "timestamp_epoch": "1789044306.000354800",
+      "interface_id": 0,
+      "captured_length": 286,
+      "original_length": 286,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 18080,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 49897,
+      "tcp_seq_raw": 2624572823,
+      "tcp_payload_length": 242,
+      "payload_ref": "payloads/upload-06-ccbfdfa0eee3-packet-000008.bin",
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-9",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 8,
+      "timestamp_epoch": "1789044306.000396900",
+      "interface_id": 0,
+      "captured_length": 44,
+      "original_length": 44,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 49897,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 18080,
+      "tcp_seq_raw": 3970347190,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-10",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 9,
+      "timestamp_epoch": "1789044306.000436700",
+      "interface_id": 0,
+      "captured_length": 134,
+      "original_length": 134,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 18080,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 49897,
+      "tcp_seq_raw": 2624573065,
+      "tcp_payload_length": 90,
+      "payload_ref": "payloads/upload-06-ccbfdfa0eee3-packet-000010.bin",
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-11",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 10,
+      "timestamp_epoch": "1789044306.000450200",
+      "interface_id": 0,
+      "captured_length": 44,
+      "original_length": 44,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 49897,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 18080,
+      "tcp_seq_raw": 3970347190,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-12",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 11,
+      "timestamp_epoch": "1789044306.000491900",
+      "interface_id": 0,
+      "captured_length": 44,
+      "original_length": 44,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 18080,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 49897,
+      "tcp_seq_raw": 2624573155,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-13",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 12,
+      "timestamp_epoch": "1789044306.000507900",
+      "interface_id": 0,
+      "captured_length": 44,
+      "original_length": 44,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 49897,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 18080,
+      "tcp_seq_raw": 3970347190,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-14",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 13,
+      "timestamp_epoch": "1789044306.000635700",
+      "interface_id": 0,
+      "captured_length": 44,
+      "original_length": 44,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 49897,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 18080,
+      "tcp_seq_raw": 3970347190,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "upload-06-ccbfdfa0eee3-packet-15",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "index": 14,
+      "timestamp_epoch": "1789044306.000684100",
+      "interface_id": 0,
+      "captured_length": 44,
+      "original_length": 44,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "127.0.0.1",
+      "src_port": 18080,
+      "dst_ip": "127.0.0.1",
+      "dst_port": 49897,
+      "tcp_seq_raw": 2624573156,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    }
+  ],
+  "flows": [
+    {
+      "id": "upload-06-ccbfdfa0eee3-tcp-flow-0",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "transport": "tcp",
+      "tcp_stream": 0,
+      "node0": {
+        "ip": "127.0.0.1",
+        "port": 49897
+      },
+      "node1": {
+        "ip": "127.0.0.1",
+        "port": 18080
+      },
+      "packet_ids": [
+        "upload-06-ccbfdfa0eee3-packet-1",
+        "upload-06-ccbfdfa0eee3-packet-2",
+        "upload-06-ccbfdfa0eee3-packet-3",
+        "upload-06-ccbfdfa0eee3-packet-4",
+        "upload-06-ccbfdfa0eee3-packet-5",
+        "upload-06-ccbfdfa0eee3-packet-6",
+        "upload-06-ccbfdfa0eee3-packet-7",
+        "upload-06-ccbfdfa0eee3-packet-8",
+        "upload-06-ccbfdfa0eee3-packet-9",
+        "upload-06-ccbfdfa0eee3-packet-10",
+        "upload-06-ccbfdfa0eee3-packet-11",
+        "upload-06-ccbfdfa0eee3-packet-12",
+        "upload-06-ccbfdfa0eee3-packet-13",
+        "upload-06-ccbfdfa0eee3-packet-14",
+        "upload-06-ccbfdfa0eee3-packet-15"
+      ],
+      "first_timestamp_epoch": "1789044305.998055000",
+      "last_timestamp_epoch": "1789044306.000684100"
+    }
+  ],
+  "streams": [
+    {
+      "id": "upload-06-ccbfdfa0eee3-tcp-stream-0",
+      "source_id": "upload-06-ccbfdfa0eee3",
+      "flow_id": "upload-06-ccbfdfa0eee3-tcp-flow-0",
+      "tcp_stream": 0,
+      "node0": {
+        "ip": "127.0.0.1",
+        "port": 49897
+      },
+      "node1": {
+        "ip": "127.0.0.1",
+        "port": 18080
+      },
+      "packet_ids": [
+        "upload-06-ccbfdfa0eee3-packet-1",
+        "upload-06-ccbfdfa0eee3-packet-2",
+        "upload-06-ccbfdfa0eee3-packet-3",
+        "upload-06-ccbfdfa0eee3-packet-4",
+        "upload-06-ccbfdfa0eee3-packet-5",
+        "upload-06-ccbfdfa0eee3-packet-6",
+        "upload-06-ccbfdfa0eee3-packet-7",
+        "upload-06-ccbfdfa0eee3-packet-8",
+        "upload-06-ccbfdfa0eee3-packet-9",
+        "upload-06-ccbfdfa0eee3-packet-10",
+        "upload-06-ccbfdfa0eee3-packet-11",
+        "upload-06-ccbfdfa0eee3-packet-12",
+        "upload-06-ccbfdfa0eee3-packet-13",
+        "upload-06-ccbfdfa0eee3-packet-14",
+        "upload-06-ccbfdfa0eee3-packet-15"
+      ],
+      "directions": [
+        {
+          "direction": "node0_to_node1",
+          "length": 215,
+          "sha256": "8ad2eb1f0af76c55be19b383faedef1de07d3511b36b65bb2073a8c9942b9e98",
+          "artifact_ref": "streams/upload-06-ccbfdfa0eee3-tcp-0-node0_to_node1.bin"
+        },
+        {
+          "direction": "node1_to_node0",
+          "length": 332,
+          "sha256": "8eaea2be67f2840de6fc38eae60e92a5e214d2861f6e9ef7543828672d83e9ca",
+          "artifact_ref": "streams/upload-06-ccbfdfa0eee3-tcp-0-node1_to_node0.bin"
+        }
+      ],
+      "analysis": {
+        "retransmission_packets": 0,
+        "out_of_order_packets": 0,
+        "gap_or_loss_packets": 0,
+        "truncated_packets": 0
+      },
+      "reassembly_status": "complete"
+    }
+  ],
+  "warnings": [
+    "TShark did not populate frame.file_off; packet source offsets are null."
+  ]
+}

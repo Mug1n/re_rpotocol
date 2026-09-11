@@ -24,8 +24,14 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def artifact_path(value: str) -> Path:
+    """Resolve repository-relative manifest pointers independently of the CWD."""
+    path = Path(value)
+    return path if path.is_absolute() else ROOT / path
+
+
 def verify_record(item: dict) -> None:
-    path = Path(item["path"])
+    path = artifact_path(item["path"])
     if not path.is_file():
         raise ValueError(f"missing artifact: {path}")
     if path.stat().st_size != item["length"] or sha256(path) != item["sha256"]:
@@ -37,7 +43,7 @@ def verify_model(manifest: dict, deterministic: dict) -> None:
     if model.get("status") != "invoked":
         return
     pointer = model.get("manifest", {})
-    path = Path(pointer.get("path", ""))
+    path = artifact_path(pointer.get("path", ""))
     if not path.is_file() or sha256(path) != pointer.get("sha256"):
         raise ValueError("model manifest hash mismatch")
     persisted = json.loads(path.read_text(encoding="utf-8"))
@@ -45,13 +51,13 @@ def verify_model(manifest: dict, deterministic: dict) -> None:
         raise ValueError("model invocation manifest is inconsistent")
     for key in ("request", "response"):
         item = persisted.get(key, {})
-        artifact = Path(item.get("path", ""))
+        artifact = artifact_path(item.get("path", ""))
         if not artifact.is_file() or sha256(artifact) != item.get("sha256"):
             raise ValueError(f"model {key} hash mismatch")
-    request = json.loads(Path(persisted["request"]["path"]).read_text(encoding="utf-8"))
+    request = json.loads(artifact_path(persisted["request"]["path"]).read_text(encoding="utf-8"))
     if request.get("key_persisted") is not False or request.get("model") != model.get("model"):
         raise ValueError("model request provenance is invalid")
-    response = json.loads(Path(persisted["response"]["path"]).read_text(encoding="utf-8"))
+    response = json.loads(artifact_path(persisted["response"]["path"]).read_text(encoding="utf-8"))
     content = response.get("choices", [{}])[0].get("message", {}).get("content")
     try:
         raw_claims = json.loads(content).get("claims")
@@ -59,7 +65,7 @@ def verify_model(manifest: dict, deterministic: dict) -> None:
         raise ValueError("model response is not JSON claims") from exc
     if raw_claims != persisted.get("claims") or raw_claims != model.get("claims"):
         raise ValueError("model claims do not match the recorded raw response")
-    evidence_path = Path(deterministic["manifest"]["path"]).parent / "evidence.json"
+    evidence_path = artifact_path(deterministic["manifest"]["path"]).parent / "evidence.json"
     allowed = {item["evidence_id"] for item in json.loads(evidence_path.read_text(encoding="utf-8"))}
     if not raw_claims or any(not claim.get("text") or not claim.get("evidence_ids")
                              or any(item not in allowed for item in claim["evidence_ids"])
@@ -77,7 +83,7 @@ def verify(manifest_path: Path) -> tuple[str, str]:
         verify_record(item)
     deterministic = manifest["deterministic_report"]
     verify_record(deterministic["manifest"])
-    report = json.loads(Path(deterministic["manifest"]["path"]).read_text(encoding="utf-8"))
+    report = json.loads(artifact_path(deterministic["manifest"]["path"]).read_text(encoding="utf-8"))
     report_inputs = {item["module"]: item for item in report.get("inputs", [])}
     if set(manifest["input"]) != set(report_inputs):
         raise ValueError("acceptance input modules do not match the deterministic report")
@@ -98,7 +104,7 @@ def verify(manifest_path: Path) -> tuple[str, str]:
     classifier = manifest["classification"]
     for key in ("evaluation", "prediction", "model"):
         verify_record(classifier[key])
-    prediction = json.loads(Path(classifier["prediction"]["path"]).read_text(encoding="utf-8"))
+    prediction = json.loads(artifact_path(classifier["prediction"]["path"]).read_text(encoding="utf-8"))
     if prediction.get("model", {}).get("sha256") != classifier["model"]["sha256"]:
         raise ValueError("prediction is not bound to verified classifier model")
     if not prediction.get("predictions"):

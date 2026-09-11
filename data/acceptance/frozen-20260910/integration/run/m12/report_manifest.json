@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "status": "partial",
+  "inputs": [
+    {
+      "module": "M01",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
+      "artifact_sha256": "e236f49ff1c96489ae2973f31b88270953303bb9ed90182d90d97bbb724b3ac7",
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    {
+      "module": "M09",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\integration\\m09\\flow_features.json",
+      "artifact_sha256": "566e1cfb2ae26b4f945ec02806b9c96b27cfe03df5723a1cacc646a1fecd1b1e",
+      "schema_version": "0.1",
+      "status": "ok"
+    }
+  ],
+  "generation_mode": "deterministic",
+  "sections": {
+    "observed_facts": [
+      "evidence-m01-33abe24df5cbad28",
+      "evidence-m09-2c7a111907a1d04b"
+    ],
+    "interpretations": [],
+    "undetermined": [
+      "evidence-m01-33abe24df5cbad28"
+    ],
+    "recommendations": []
+  },
+  "truncation": {
+    "limit": 500,
+    "included": 2,
+    "omitted": 0
+  },
+  "warnings": [],
+  "report_sha256": "6293e9298a1f0d5a35c6616f2ce0ebca8a1081b22644bd73c3c439430e94a343"
+}

@@ -115,6 +115,25 @@ class FramingTests(unittest.TestCase):
                 header_size=4,
             )
 
+    def test_automatic_inference_finds_repeated_type_length_payload_frames(self):
+        data = b"\x01\x03abc\x02\x02de\x01\x04wxyz\x02\x01q"
+        messages, diagnostics, parameters = self.module.infer_length_prefixed(
+            data, stream_id="private", min_frames=3, max_header_size=6
+        )
+        self.assertEqual([(0, 5), (5, 9), (9, 15), (15, 18)], [
+            (item["start"], item["end"]) for item in messages
+        ])
+        self.assertEqual("M03-INFERRED-LENGTH-PREFIX", diagnostics[0]["rule_id"])
+        self.assertEqual(1, parameters["selected"]["length_offset"])
+
+    def test_automatic_inference_refuses_non_repeating_bytes(self):
+        messages, diagnostics, parameters = self.module.infer_length_prefixed(
+            b"\x00\xff\x10\x93\x81\x00\x7f", stream_id="private", min_frames=3
+        )
+        self.assertEqual([], messages)
+        self.assertEqual("M03-INFERENCE-INSUFFICIENT-EVIDENCE", diagnostics[0]["rule_id"])
+        self.assertEqual(0, parameters["candidate_count"])
+
 
 class CliTests(unittest.TestCase):
     def test_cli_writes_exact_message_artifacts_and_refuses_overwrite(self):

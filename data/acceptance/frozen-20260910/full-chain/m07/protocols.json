@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "module": "M01",
+    "artifact_path": "data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
+    "artifact_sha256": "e236f49ff1c96489ae2973f31b88270953303bb9ed90182d90d97bbb724b3ac7",
+    "record_id": "download-01-d8f9c37a5714",
+    "schema_version": "0.1"
+  },
+  "status": "ok",
+  "parameters": {
+    "decode_as": [],
+    "display_filter": null,
+    "timeout_seconds": 30.0,
+    "max_capture_bytes": 268435456,
+    "max_observations": 10000,
+    "max_tshark_output_bytes": 33554432
+  },
+  "tool": {
+    "path": "D:\\新建文件夹 (2)\\Wireshark\\tshark.exe",
+    "version": "TShark (Wireshark) 4.6.8 (v4.6.8-0-ge677bf052328)."
+  },
+  "observations": [
+    {
+      "observation_id": "m07-download-01-d8f9c37a5714-packet-4-http",
+      "scope_type": "packet",
+      "scope_id": "download-01-d8f9c37a5714-packet-4",
+      "protocol": "http",
+      "recognition_mode": "dissector",
+      "visibility": "application_visible",
+      "field_evidence": [
+        {
+          "field": "http.request.method",
+          "value": "GET"
+        },
+        {
+          "field": "http.host",
+          "value": "127.0.0.1:18080"
+        },
+        {
+          "field": "http.request.uri",
+          "value": "/download"
+        }
+      ],
+      "limitations": []
+    },
+    {
+      "observation_id": "m07-download-01-d8f9c37a5714-packet-8-http",
+      "scope_type": "packet",
+      "scope_id": "download-01-d8f9c37a5714-packet-8",
+      "protocol": "http",
+      "recognition_mode": "dissector",
+      "visibility": "application_visible",
+      "field_evidence": [
+        {
+          "field": "http.request.uri",
+          "value": "/download"
+        },
+        {
+          "field": "http.response.code",
+          "value": "200"
+        },
+        {
+          "field": "http.content_type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ],
+      "limitations": []
+    }
+  ],
+  "unknown_scopes": [],
+  "artifacts": [],
+  "metrics": {
+    "observation_count": 2,
+    "unknown_scope_count": 0,
+    "processed_record_count": 13,
+    "truncated": false
+  },
+  "warnings": []
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "framing_path": "reports\\acceptance\\2026-09-11-abc\\run\\m03\\framing.json",
+    "framing_sha256": "9a88329ec8e91d857ba4fc299f4982fee31c76e1cf64373ab7cb7dafcdad618d",
+    "stream_id": "payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6",
+    "message_count": 1
+  },
+  "status": "ok",
+  "parameters": {
+    "algorithm": "dbscan_precomputed",
+    "eps": 0.25,
+    "min_samples": 2,
+    "max_messages": 1000,
+    "length_weight": 0.2,
+    "histogram_weight": 0.4,
+    "prefix_weight": 0.4,
+    "prefix_length": 16,
+    "distance_formula": "weighted normalized length + byte-histogram total variation + prefix mismatch"
+  },
+  "assignments": [
+    {
+      "message_id": "payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000",
+      "length": 101,
+      "cluster_id": -1,
+      "is_noise": true,
+      "distance_to_representative": null
+    }
+  ],
+  "clusters": [],
+  "metrics": {
+    "cluster_count": 0,
+    "noise_count": 1,
+    "noise_ratio": 1.0,
+    "silhouette": null
+  },
+  "warnings": [
+    "Clusters are statistical groups, not protocol types or business labels.",
+    "The precomputed distance matrix requires O(n^2) memory."
+  ]
+}

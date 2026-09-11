@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/schemas/analysis-profile.schema.json",
+  "title": "Analysis Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "description", "stages"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "profile_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$"},
+    "description": {"type": "string", "minLength": 1},
+    "stages": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "PAYLOAD_SOURCES", "M08", "M09", "M10", "M11", "M12"]}},
+    "reuse": {"type": "object", "additionalProperties": false, "properties": {
+      "m01": {"type": "string", "minLength": 1}, "m07": {"type": "string", "minLength": 1}, "m11": {"type": "string", "minLength": 1}
+    }},
+    "structure": {"type": "object", "additionalProperties": false, "required": ["source", "rule", "rule_origin", "parameters"], "properties": {
+      "source": {"enum": ["input", "first_http_body", "longest_m01_stream_direction"]}, "rule": {"enum": ["fixed", "delimiter", "length", "infer"]},
+      "rule_origin": {"enum": ["protocol_declared", "format_documented", "manual_hypothesis", "automatically_inferred"]}, "parameters": {"type": "object"}
+    }},
+    "m02": {"type": "object"}, "m04": {"type": "object"}, "m07": {"type": "object"},
+    "m12": {"type": "object", "additionalProperties": false, "properties": {
+      "max_evidence": {"type": "integer", "minimum": 1}, "max_input_bytes": {"type": "integer", "minimum": 1}
+    }},
+    "classifier": {"type": "object", "additionalProperties": false, "required": ["evaluation"], "properties": {"evaluation": {"type": "string", "minLength": 1}}},
+    "model": {"type": "object", "additionalProperties": false, "properties": {"name": {"type": "string", "minLength": 1}}},
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  }
+}

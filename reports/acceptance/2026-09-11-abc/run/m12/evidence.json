@@ -1,0 +1,308 @@
+[
+  {
+    "evidence_id": "evidence-m01-33abe24df5cbad28",
+    "module": "M01",
+    "source_ref": {
+      "module": "M01",
+      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
+      "artifact_sha256": "e236f49ff1c96489ae2973f31b88270953303bb9ed90182d90d97bbb724b3ac7",
+      "record_id": "download-01-d8f9c37a5714",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "input",
+      "id": "download-01-d8f9c37a5714"
+    },
+    "observation": "Input format=pcapng, status=ok, length=1844 bytes.",
+    "method": "M01 validated input artifact",
+    "limitations": [
+      "TShark did not populate frame.file_off; packet source offsets are null."
+    ]
+  },
+  {
+    "evidence_id": "evidence-m02-0cdca5494bffc7b4",
+    "module": "M02",
+    "source_ref": {
+      "module": "M02",
+      "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m02\\features.json",
+      "artifact_sha256": "6f7541d10152829fe8ebf63d4e284b19cf24874643d6253acc47279f1c848b99",
+      "record_id": "download-01-d8f9c37a5714",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "input",
+      "id": "download-01-d8f9c37a5714"
+    },
+    "observation": "Byte features: length=1844, entropy=5.602570253042867 bits/byte, printable_ascii_ratio=0.5075921908893709, zero_ratio=0.2603036876355748.",
+    "method": "M02 deterministic byte features",
+    "limitations": [
+      "Entropy alone cannot distinguish encryption, compression, and random data."
+    ]
+  },
+  {
+    "evidence_id": "evidence-m03-ba4c4be655afd3ca",
+    "module": "M03",
+    "source_ref": {
+      "module": "M03",
+      "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m03\\framing.json",
+      "artifact_sha256": "9a88329ec8e91d857ba4fc299f4982fee31c76e1cf64373ab7cb7dafcdad618d",
+      "record_id": "payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "message",
+      "id": "payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000"
+    },
+    "observation": "Message payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000 framed by fixed rule at byte range [0, 101); length=101 bytes.",
+    "method": "M03 deterministic framing",
+    "limitations": [
+      "A configured framing rule is a hypothesis; accepted boundaries are not protocol truth."
+    ]
+  },
+  {
+    "evidence_id": "evidence-m04-943ed22f475236eb",
+    "module": "M04",
+    "source_ref": {
+      "module": "M04",
+      "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m04\\clusters.json",
+      "artifact_sha256": "dc2525e5904581d9357739d595b4d0163b8adc85048dd18e61d4e619532b5266",
+      "record_id": "noise-payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "message",
+      "id": "payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000"
+    },
+    "observation": "Message payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000 was classified as clustering noise.",
+    "method": "M04 explicit clustering degradation",
+    "limitations": [
+      "No non-noise cluster assignment was available."
+    ]
+  },
+  {
+    "evidence_id": "evidence-m05-9a6e5b73d436bb3c",
+    "module": "M05",
+    "source_ref": {
+      "module": "M05",
+      "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m05\\alignments.json",
+      "artifact_sha256": "d41459777f500843afeae6e509c3b7fcdc3666b5332f2b824d2046e5d8a587de",
+      "record_id": "unaligned-payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "message",
+      "id": "payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000"
+    },
+    "observation": "Message payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000 was not aligned: m04_noise.",
+    "method": "M05 explicit alignment degradation",
+    "limitations": [
+      "m04_noise"
+    ]
+  },
+  {
+    "evidence_id": "evidence-m06-55c2bb6a3b3fd119",
+    "module": "M06",
+    "source_ref": {
+      "module": "M06",
+      "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m06\\format.json",
+      "artifact_sha256": "38d264c7e6d532ef3ec8f7460b6c25abe654b06a6faf4218856583e0e128d7c8",
+      "record_id": "format.json",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "artifact",
+      "id": "format.json"
+    },
+    "observation": "M06 artifact status=empty.",
+    "method": "M06 validated artifact adapter",
+    "limitations": [
+      "Field candidates are statistical runs, not confirmed protocol semantics.",
+      "Length hypotheses require exact relations in the observed sample but may still be coincidental.",
+      "Small clusters, low-quality M05 alignments, compression, or encryption can make boundaries unreliable."
+    ]
+  },
+  {
+    "evidence_id": "evidence-m07-17508147355916ad",
+    "module": "M07",
+    "source_ref": {
+      "module": "M07",
+      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m07\\protocols.json",
+      "artifact_sha256": "d38700eaa02e2e1b48ec75d900af5379de38c23b5f6ceb19a38c18a22b6d48cf",
+      "record_id": "m07-download-01-d8f9c37a5714-packet-4-http",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "packet",
+      "id": "download-01-d8f9c37a5714-packet-4"
+    },
+    "observation": "Protocol http observed with visibility=application_visible; http.request.method=GET, http.host=127.0.0.1:18080, http.request.uri=/download.",
+    "method": "dissector",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m07-d837db017019d85d",
+    "module": "M07",
+    "source_ref": {
+      "module": "M07",
+      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m07\\protocols.json",
+      "artifact_sha256": "d38700eaa02e2e1b48ec75d900af5379de38c23b5f6ceb19a38c18a22b6d48cf",
+      "record_id": "m07-download-01-d8f9c37a5714-packet-8-http",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "packet",
+      "id": "download-01-d8f9c37a5714-packet-8"
+    },
+    "observation": "Protocol http observed with visibility=application_visible; http.request.uri=/download, http.response.code=200, http.content_type=text/plain; charset=utf-8.",
+    "method": "dissector",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m08-ac99a096ee300743",
+    "module": "M08",
+    "source_ref": {
+      "module": "M08",
+      "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m08\\0000\\recovery.json",
+      "artifact_sha256": "1fee6019ca5ff86dc243100fc0af1f01aee6f0b72e29415a98c57eb9aee5f6fc",
+      "record_id": "m08-215ff970eee6-0000",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "byte_range",
+      "id": "m08-215ff970eee6-0000"
+    },
+    "observation": "Recovered 101 bytes via utf8; completeness=complete.",
+    "method": "protocol_declared",
+    "limitations": [
+      "strict validation completed for every recorded transformation"
+    ]
+  },
+  {
+    "evidence_id": "evidence-m09-2c7a111907a1d04b",
+    "module": "M09",
+    "source_ref": {
+      "module": "M09",
+      "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m09\\flow_features.json",
+      "artifact_sha256": "15f1b13ff2d1e6aca137c89ffb2ccfd79c2378f381cacc841574ecf9ac0b7e2e",
+      "record_id": "download-01-d8f9c37a5714-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "flow",
+      "id": "download-01-d8f9c37a5714-tcp-flow-0"
+    },
+    "observation": "Flow download-01-d8f9c37a5714-tcp-flow-0: 13 packets, 1076 bytes, duration=0.0106697 seconds.",
+    "method": "M09 deterministic flow features",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m10-027ffd5981f90765",
+    "module": "M10",
+    "source_ref": {
+      "module": "M10",
+      "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m10\\behaviors.json",
+      "artifact_sha256": "f2fb9671285a671d001c8a31dea0865d43fee4e3f384396db23872a6acc74862",
+      "record_id": "download-01-d8f9c37a5714-tcp-flow-0:bursty_transfer",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "flow",
+      "id": "download-01-d8f9c37a5714-tcp-flow-0"
+    },
+    "observation": "Traffic pattern bursty_transfer observed for flow download-01-d8f9c37a5714-tcp-flow-0; values={\"max_burst_packets\":13}; thresholds={\"min_burst_packets\":3}.",
+    "method": "M10 deterministic threshold rule",
+    "limitations": [
+      "Bursting is a traffic pattern only."
+    ]
+  },
+  {
+    "evidence_id": "evidence-m11-17069fae633fd52b",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
+      "artifact_sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
+      "record_id": "prediction-1-download-05-230e4abd0f69-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "download-05-230e4abd0f69-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for download-05-230e4abd0f69-tcp-flow-0: label=download, score=0.97, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-71dbaaa88f28d15c",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
+      "artifact_sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
+      "record_id": "prediction-0-download-03-ddfc5a5dc1d4-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "download-03-ddfc5a5dc1d4-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for download-03-ddfc5a5dc1d4-tcp-flow-0: label=download, score=0.92, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-b5b3eb2fdaf7bd96",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
+      "artifact_sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
+      "record_id": "prediction-3-periodic-02-7e496d2d9050-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "periodic-02-7e496d2d9050-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for periodic-02-7e496d2d9050-tcp-flow-0: label=periodic, score=0.99, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-cdb2978e3d53a92a",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
+      "artifact_sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
+      "record_id": "prediction-2-upload-06-ccbfdfa0eee3-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "upload-06-ccbfdfa0eee3-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for upload-06-ccbfdfa0eee3-tcp-flow-0: label=upload, score=0.96, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-ebd82a86598c50cf",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
+      "artifact_sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
+      "record_id": "prediction-4-periodic-03-3c4913b0e1ee-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "periodic-03-3c4913b0e1ee-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for periodic-03-3c4913b0e1ee-tcp-flow-0: label=periodic, score=0.99, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  }
+]

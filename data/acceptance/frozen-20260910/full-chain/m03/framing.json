@@ -1,0 +1,96 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "id": "download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb",
+    "path": "data\\acceptance\\frozen-20260910\\integration\\m01\\streams\\download-01-d8f9c37a5714-tcp-0-node1_to_node0.bin",
+    "sha256": "38c0c8258fcb622ad3b00b3973aa9ec8d113e82a81f763d6e41c7afad78bf022",
+    "length": 353
+  },
+  "status": "partial",
+  "rule": "fixed",
+  "parameters": {
+    "frame_size": 101,
+    "start_offset": 0
+  },
+  "messages": [
+    {
+      "id": "download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb-message-000000",
+      "stream_id": "download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb",
+      "start": 0,
+      "end": 101,
+      "length": 101,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-FIXED-LENGTH",
+          "frame_size": 101
+        }
+      ],
+      "artifact_ref": "messages/download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb-message-000000.bin"
+    },
+    {
+      "id": "download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb-message-000001",
+      "stream_id": "download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb",
+      "start": 101,
+      "end": 202,
+      "length": 101,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-FIXED-LENGTH",
+          "frame_size": 101
+        }
+      ],
+      "artifact_ref": "messages/download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb-message-000001.bin"
+    },
+    {
+      "id": "download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb-message-000002",
+      "stream_id": "download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb",
+      "start": 202,
+      "end": 303,
+      "length": 101,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-FIXED-LENGTH",
+          "frame_size": 101
+        }
+      ],
+      "artifact_ref": "messages/download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb-message-000002.bin"
+    }
+  ],
+  "unparsed_ranges": [
+    {
+      "start": 303,
+      "end": 353,
+      "length": 50,
+      "reason": "not_accepted_by_rule"
+    }
+  ],
+  "diagnostics": [
+    {
+      "offset": 0,
+      "rule_id": "M03-FIXED-LENGTH",
+      "accepted": true
+    },
+    {
+      "offset": 101,
+      "rule_id": "M03-FIXED-LENGTH",
+      "accepted": true
+    },
+    {
+      "offset": 202,
+      "rule_id": "M03-FIXED-LENGTH",
+      "accepted": true
+    },
+    {
+      "offset": 303,
+      "rule_id": "M03-FIXED-TRAILING-PARTIAL",
+      "accepted": false,
+      "available_length": 50
+    }
+  ],
+  "warnings": [
+    "A configured framing rule is a hypothesis; accepted boundaries are not protocol truth."
+  ]
+}

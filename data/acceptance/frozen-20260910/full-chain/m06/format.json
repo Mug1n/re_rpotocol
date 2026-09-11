@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "alignments_path": "data\\acceptance\\frozen-20260910\\full-chain\\m05\\alignments.json",
+    "alignments_sha256": "313b081c8911e77f7bbf42b4958260f7b97c25cef74c610460cb1f8a586d2b04",
+    "stream_id": "download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb",
+    "message_count": 3,
+    "aligned_message_count": 0
+  },
+  "status": "empty",
+  "parameters": {
+    "method": "aligned_column_statistics",
+    "min_cluster_samples": 2,
+    "min_presence_ratio": 0.5,
+    "length_widths": [
+      1,
+      2,
+      4
+    ],
+    "min_relation_samples": 3,
+    "max_length_overhead": 64
+  },
+  "cluster_formats": [],
+  "unaligned_messages": [
+    {
+      "message_id": "download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb-message-000000",
+      "reason": "m04_noise"
+    },
+    {
+      "message_id": "download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb-message-000001",
+      "reason": "m04_noise"
+    },
+    {
+      "message_id": "download-01-d8f9c37a5714-tcp-0-node1_to_node0-38c0c8258fcb-message-000002",
+      "reason": "m04_noise"
+    }
+  ],
+  "metrics": {
+    "analyzed_cluster_count": 0,
+    "analyzed_message_count": 0,
+    "field_candidate_count": 0,
+    "boundary_candidate_count": 0,
+    "length_hypothesis_count": 0
+  },
+  "warnings": [
+    "Field candidates are statistical runs, not confirmed protocol semantics.",
+    "Length hypotheses require exact relations in the observed sample but may still be coincidental.",
+    "Small clusters, low-quality M05 alignments, compression, or encryption can make boundaries unreliable."
+  ]
+}

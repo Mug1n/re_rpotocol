@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "id": "payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6",
+    "path": "reports\\acceptance\\2026-09-11-abc\\run\\payloads\\payloads\\payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000.bin",
+    "sha256": "215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07",
+    "length": 101
+  },
+  "status": "complete",
+  "rule": "fixed",
+  "parameters": {
+    "frame_size": 101,
+    "start_offset": 0
+  },
+  "messages": [
+    {
+      "id": "payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000",
+      "stream_id": "payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6",
+      "start": 0,
+      "end": 101,
+      "length": 101,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-FIXED-LENGTH",
+          "frame_size": 101
+        }
+      ],
+      "artifact_ref": "messages/payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000.bin"
+    }
+  ],
+  "unparsed_ranges": [],
+  "diagnostics": [
+    {
+      "offset": 0,
+      "rule_id": "M03-FIXED-LENGTH",
+      "accepted": true
+    }
+  ],
+  "warnings": [
+    "A configured framing rule is a hypothesis; accepted boundaries are not protocol truth."
+  ]
+}
