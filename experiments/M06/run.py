@@ -18,6 +18,61 @@ from typing import Any
 SCHEMA_VERSION = "0.1"
 
 
+def rank_framing_boundaries(framing: dict[str, Any] | None) -> list[dict[str, Any]]:
+    """Return non-overlapping high-confidence boundaries implied by M03.
+
+    This deliberately consumes only an already inferred framing hypothesis.  It
+    does not name a protocol or inspect any external truth.  For a repeated
+    payload-length relation, the length field itself, the payload start, and a
+    fixed trailing overhead are much stronger evidence than a local entropy
+    fluctuation inside an aligned payload.
+    """
+    selected = (framing or {}).get("parameters", {}).get("selected", {})
+    if selected.get("length_mode") != "payload":
+        return []
+    try:
+        offset = int(selected["length_offset"])
+        width = int(selected["length_width"])
+        overhead = int(selected["header_size"])
+    except (KeyError, TypeError, ValueError):
+        return []
+    if offset < 0 or width not in (1, 2, 4, 8) or overhead < offset + width:
+        return []
+    candidates = [
+        {"candidate_id": "framing-length-start", "position": {"reference": "start", "offset": offset},
+         "confidence": 1.0, "evidence": "inferred_length_prefix"},
+        {"candidate_id": "framing-payload-start", "position": {"reference": "start", "offset": offset + width},
+         "confidence": 1.0, "evidence": "inferred_length_prefix"},
+    ]
+    trailing = overhead - (offset + width)
+    if trailing:
+        candidates.append(
+            {"candidate_id": "framing-trailer-start", "position": {"reference": "end", "offset": trailing},
+             "confidence": 0.95, "evidence": "inferred_fixed_overhead"}
+        )
+    return candidates
+
+
+def _load_framing_from_alignments(source: Path, alignments: dict[str, Any]) -> dict[str, Any] | None:
+    """Best-effort provenance walk M06 -> M05 -> M04 -> M03."""
+    clusters_record = alignments.get("source", {}).get("clusters_path")
+    if not isinstance(clusters_record, str):
+        return None
+    clusters_path = Path(clusters_record)
+    candidates = [clusters_path, source.parent / clusters_path]
+    for candidate in candidates:
+        if candidate.is_file():
+            clusters = json.loads(candidate.read_text(encoding="utf-8"))
+            framing_record = clusters.get("source", {}).get("framing_path")
+            if not isinstance(framing_record, str):
+                return None
+            framing_path = Path(framing_record)
+            for framing_candidate in (framing_path, candidate.parent / framing_path):
+                if framing_candidate.is_file():
+                    return json.loads(framing_candidate.read_text(encoding="utf-8"))
+    return None
+
+
 def _entropy(values: list[int]) -> float:
     if not values:
         return 0.0
@@ -312,6 +367,7 @@ def analyze_alignments(
     if destination.exists():
         raise FileExistsError(f"output directory already exists: {destination}")
     alignments = json.loads(source.read_text(encoding="utf-8"))
+    ranked_boundaries = rank_framing_boundaries(_load_framing_from_alignments(source, alignments))
     parameters = {
         "min_cluster_samples": min_cluster_samples,
         "min_presence_ratio": min_presence_ratio,
@@ -355,6 +411,7 @@ def analyze_alignments(
         "status": "empty" if not clusters else "ok",
         "parameters": {"method": "aligned_column_statistics", **parameters},
         "cluster_formats": clusters,
+        "ranked_boundary_candidates": ranked_boundaries,
         "unaligned_messages": unaligned,
         "metrics": {
             "analyzed_cluster_count": len(clusters),
@@ -366,10 +423,12 @@ def analyze_alignments(
             "length_hypothesis_count": sum(
                 len(cluster["length_hypotheses"]) for cluster in clusters
             ),
+            "displayed_boundary_candidate_count": len(ranked_boundaries),
         },
         "warnings": [
             "Field candidates are statistical runs, not confirmed protocol semantics.",
             "Length hypotheses require exact relations in the observed sample but may still be coincidental.",
+            "Displayed boundary candidates are restricted to high-confidence framing relations; the per-cluster statistical candidates remain available for investigation.",
             "Small clusters, low-quality M05 alignments, compression, or encryption can make boundaries unreliable.",
         ],
     }

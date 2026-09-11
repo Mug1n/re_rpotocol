@@ -1,0 +1,1515 @@
+# 协议与流量分析报告
+
+## 观测事实
+
+- [evidence-m01-3d3c7eb0a49c7ea6] Input format=raw_bytes, status=ok, length=37878 bytes.
+- [evidence-m02-6f02bb36fdc6bafb] Byte features: length=37878, entropy=5.729363569357516 bits/byte, printable_ascii_ratio=0.17023074079940861, zero_ratio=0.3059295633349174.
+- [evidence-m03-00099d057a8f53a1] Message held_out.ubx-47497f62366e-message-000220 framed by infer rule at byte range [12964, 13016); length=52 bytes.
+- [evidence-m03-001d699becd3164b] Message held_out.ubx-47497f62366e-message-000599 framed by infer rule at byte range [35642, 35654); length=12 bytes.
+- [evidence-m03-002cb9be1bb6ca6f] Message held_out.ubx-47497f62366e-message-000395 framed by infer rule at byte range [23298, 23310); length=12 bytes.
+- [evidence-m03-00f0854b5bcd2bc9] Message held_out.ubx-47497f62366e-message-000354 framed by infer rule at byte range [20580, 20680); length=100 bytes.
+- [evidence-m03-01539b0313673774] Message held_out.ubx-47497f62366e-message-000107 framed by infer rule at byte range [6908, 6934); length=26 bytes.
+- [evidence-m03-0184e13dafb8ccdc] Message held_out.ubx-47497f62366e-message-000084 framed by infer rule at byte range [5476, 5528); length=52 bytes.
+- [evidence-m03-01e2447728ac8faa] Message held_out.ubx-47497f62366e-message-000499 framed by infer rule at byte range [29290, 29318); length=28 bytes.
+- [evidence-m03-021182c004bac0f3] Message held_out.ubx-47497f62366e-message-000019 framed by infer rule at byte range [1146, 1174); length=28 bytes.
+- [evidence-m03-037c3b21467b31d5] Message held_out.ubx-47497f62366e-message-000503 framed by infer rule at byte range [29498, 29522); length=24 bytes.
+- [evidence-m03-03abc1db29991dd7] Message held_out.ubx-47497f62366e-message-000191 framed by infer rule at byte range [11208, 11220); length=12 bytes.
+- [evidence-m03-04214dddd6ed21d4] Message held_out.ubx-47497f62366e-message-000325 framed by infer rule at byte range [18834, 18862); length=28 bytes.
+- [evidence-m03-049248d3eb8961c1] Message held_out.ubx-47497f62366e-message-000349 framed by infer rule at byte range [20196, 20248); length=52 bytes.
+- [evidence-m03-049a06e265ad17dc] Message held_out.ubx-47497f62366e-message-000424 framed by infer rule at byte range [24858, 24870); length=12 bytes.
+- [evidence-m03-04f312634156f830] Message held_out.ubx-47497f62366e-message-000394 framed by infer rule at byte range [23102, 23298); length=196 bytes.
+- [evidence-m03-05ad38920f782e78] Message held_out.ubx-47497f62366e-message-000273 framed by infer rule at byte range [16006, 16030); length=24 bytes.
+- [evidence-m03-05f18cdde4d87f29] Message held_out.ubx-47497f62366e-message-000010 framed by infer rule at byte range [706, 718); length=12 bytes.
+- [evidence-m03-0647fb087db21e0f] Message held_out.ubx-47497f62366e-message-000129 framed by infer rule at byte range [7984, 8036); length=52 bytes.
+- [evidence-m03-064bbaaca9c9922f] Message held_out.ubx-47497f62366e-message-000569 framed by infer rule at byte range [33470, 33494); length=24 bytes.
+- [evidence-m03-067be9ead41aa66f] Message held_out.ubx-47497f62366e-message-000102 framed by infer rule at byte range [6478, 6674); length=196 bytes.
+- [evidence-m03-0688a4765d5394fb] Message held_out.ubx-47497f62366e-message-000483 framed by infer rule at byte range [28560, 28584); length=24 bytes.
+- [evidence-m03-07ad59f035250a08] Message held_out.ubx-47497f62366e-message-000475 framed by infer rule at byte range [28026, 28050); length=24 bytes.
+- [evidence-m03-07e8436e9ddd2696] Message held_out.ubx-47497f62366e-message-000467 framed by infer rule at byte range [27696, 27708); length=12 bytes.
+- [evidence-m03-07f6dc1c2a6e7908] Message held_out.ubx-47497f62366e-message-000223 framed by infer rule at byte range [13140, 13168); length=28 bytes.
+- [evidence-m03-0803e2f69ab39c6e] Message held_out.ubx-47497f62366e-message-000470 framed by infer rule at byte range [27836, 27860); length=24 bytes.
+- [evidence-m03-084d1ec5b38ccc9d] Message held_out.ubx-47497f62366e-message-000131 framed by infer rule at byte range [8064, 8092); length=28 bytes.
+- [evidence-m03-0866931de15b56de] Message held_out.ubx-47497f62366e-message-000506 framed by infer rule at byte range [29650, 29674); length=24 bytes.
+- [evidence-m03-092e00bcafe2a2d6] Message held_out.ubx-47497f62366e-message-000518 framed by infer rule at byte range [30362, 30388); length=26 bytes.
+- [evidence-m03-09aa0c06f94b3570] Message held_out.ubx-47497f62366e-message-000271 framed by infer rule at byte range [15878, 15906); length=28 bytes.
+- [evidence-m03-09ac5ee94b2bec17] Message held_out.ubx-47497f62366e-message-000328 framed by infer rule at byte range [18986, 19086); length=100 bytes.
+- [evidence-m03-09db77a95890d28d] Message held_out.ubx-47497f62366e-message-000416 framed by infer rule at byte range [24252, 24264); length=12 bytes.
+- [evidence-m03-0a21519ca0d4f854] Message held_out.ubx-47497f62366e-message-000423 framed by infer rule at byte range [24662, 24858); length=196 bytes.
+- [evidence-m03-0aa784b46ec3ea19] Message held_out.ubx-47497f62366e-message-000230 framed by infer rule at byte range [13400, 13584); length=184 bytes.
+- [evidence-m03-0b166b7a2eb320bc] Message held_out.ubx-47497f62366e-message-000558 framed by infer rule at byte range [32744, 32844); length=100 bytes.
+- [evidence-m03-0b16fa15886cbc71] Message held_out.ubx-47497f62366e-message-000544 framed by infer rule at byte range [32082, 32134); length=52 bytes.
+- [evidence-m03-0b267de46760da53] Message held_out.ubx-47497f62366e-message-000583 framed by infer rule at byte range [34452, 34476); length=24 bytes.
+- [evidence-m03-0bcd8810e1e4d93d] Message held_out.ubx-47497f62366e-message-000356 framed by infer rule at byte range [20704, 20732); length=28 bytes.
+- [evidence-m03-0be4a311e157c493] Message held_out.ubx-47497f62366e-message-000471 framed by infer rule at byte range [27860, 27886); length=26 bytes.
+- [evidence-m03-0c1a9cacc003970a] Message held_out.ubx-47497f62366e-message-000535 framed by infer rule at byte range [31412, 31632); length=220 bytes.
+- [evidence-m03-0c4784945d528ad1] Message held_out.ubx-47497f62366e-message-000329 framed by infer rule at byte range [19086, 19110); length=24 bytes.
+- [evidence-m03-0d4af3c196d34f80] Message held_out.ubx-47497f62366e-message-000614 framed by infer rule at byte range [36548, 36604); length=56 bytes.
+- [evidence-m03-0dea3828ec5d247b] Message held_out.ubx-47497f62366e-message-000265 framed by infer rule at byte range [15524, 15550); length=26 bytes.
+- [evidence-m03-0df8da767ea4387c] Message held_out.ubx-47497f62366e-message-000412 framed by infer rule at byte range [24116, 24140); length=24 bytes.
+- [evidence-m03-0e26d1585777e1ef] Message held_out.ubx-47497f62366e-message-000570 framed by infer rule at byte range [33494, 33594); length=100 bytes.
+- [evidence-m03-0e6d126f34a5f5f5] Message held_out.ubx-47497f62366e-message-000510 framed by infer rule at byte range [29826, 29854); length=28 bytes.
+- [evidence-m03-0efc3a7225c60696] Message held_out.ubx-47497f62366e-message-000346 framed by infer rule at byte range [19962, 20158); length=196 bytes.
+- [evidence-m03-0f08ad46ff901217] Message held_out.ubx-47497f62366e-message-000422 framed by infer rule at byte range [24638, 24662); length=24 bytes.
+- [evidence-m03-0f3506b0a7a4dfa5] Message held_out.ubx-47497f62366e-message-000058 framed by infer rule at byte range [3838, 3894); length=56 bytes.
+- [evidence-m03-0f3dfcbc60c5f14d] Message held_out.ubx-47497f62366e-message-000432 framed by infer rule at byte range [25312, 25336); length=24 bytes.
+- [evidence-m03-0f746434114eefdf] Message held_out.ubx-47497f62366e-message-000347 framed by infer rule at byte range [20158, 20170); length=12 bytes.
+- [evidence-m03-0f89b8e362db4551] Message held_out.ubx-47497f62366e-message-000000 framed by infer rule at byte range [0, 28); length=28 bytes.
+- [evidence-m03-0f960906137ba56a] Message held_out.ubx-47497f62366e-message-000117 framed by infer rule at byte range [7372, 7400); length=28 bytes.
+- [evidence-m03-0ffd2ec05eda405a] Message held_out.ubx-47497f62366e-message-000095 framed by infer rule at byte range [6132, 6144); length=12 bytes.
+- [evidence-m03-0fff58f4a673bb7d] Message held_out.ubx-47497f62366e-message-000207 framed by infer rule at byte range [11958, 12142); length=184 bytes.
+- [evidence-m03-1042389502c7c2f8] Message held_out.ubx-47497f62366e-message-000605 framed by infer rule at byte range [36010, 36022); length=12 bytes.
+- [evidence-m03-10499e032225b99a] Message held_out.ubx-47497f62366e-message-000079 framed by infer rule at byte range [5328, 5340); length=12 bytes.
+- [evidence-m03-1063905b2955f436] Message held_out.ubx-47497f62366e-message-000259 framed by infer rule at byte range [15056, 15104); length=48 bytes.
+- [evidence-m03-108fca406c2b89e5] Message held_out.ubx-47497f62366e-message-000152 framed by infer rule at byte range [9060, 9112); length=52 bytes.
+- [evidence-m03-10c379fc79265cdc] Message held_out.ubx-47497f62366e-message-000417 framed by infer rule at byte range [24264, 24290); length=26 bytes.
+- [evidence-m03-10cc9a7a6a5a05ba] Message held_out.ubx-47497f62366e-message-000228 framed by infer rule at byte range [13324, 13372); length=48 bytes.
+- [evidence-m03-10d1e5a73a749531] Message held_out.ubx-47497f62366e-message-000018 framed by infer rule at byte range [1122, 1146); length=24 bytes.
+- [evidence-m03-11f96b19cafa62d5] Message held_out.ubx-47497f62366e-message-000585 framed by infer rule at byte range [34504, 34556); length=52 bytes.
+- [evidence-m03-1221c3f95dcb41d6] Message held_out.ubx-47497f62366e-message-000591 framed by infer rule at byte range [34906, 34962); length=56 bytes.
+- [evidence-m03-125757b3f2a9690b] Message held_out.ubx-47497f62366e-message-000408 framed by infer rule at byte range [23780, 23976); length=196 bytes.
+- [evidence-m03-12e1907b0473e5de] Message held_out.ubx-47497f62366e-message-000520 framed by infer rule at byte range [30488, 30512); length=24 bytes.
+- [evidence-m03-13b212246b4de599] Message held_out.ubx-47497f62366e-message-000363 framed by infer rule at byte range [21170, 21194); length=24 bytes.
+- [evidence-m03-13b6ddb2c907d6f2] Message held_out.ubx-47497f62366e-message-000032 framed by infer rule at byte range [2088, 2100); length=12 bytes.
+- [evidence-m03-13d1ec89207d3723] Message held_out.ubx-47497f62366e-message-000592 framed by infer rule at byte range [34962, 35194); length=232 bytes.
+- [evidence-m03-143aceb0a20abc5e] Message held_out.ubx-47497f62366e-message-000160 framed by infer rule at byte range [9380, 9408); length=28 bytes.
+- [evidence-m03-144b8a17fe6c5a07] Message held_out.ubx-47497f62366e-message-000195 framed by infer rule at byte range [11324, 11424); length=100 bytes.
+- [evidence-m03-14968354df951985] Message held_out.ubx-47497f62366e-message-000105 framed by infer rule at byte range [6712, 6896); length=184 bytes.
+- [evidence-m03-1496a6234b1398fd] Message held_out.ubx-47497f62366e-message-000087 framed by infer rule at byte range [5584, 5636); length=52 bytes.
+- [evidence-m03-14a1936a377bc600] Message held_out.ubx-47497f62366e-message-000536 framed by infer rule at byte range [31632, 31644); length=12 bytes.
+- [evidence-m03-14ef7ac3e972182a] Message held_out.ubx-47497f62366e-message-000538 framed by infer rule at byte range [31672, 31892); length=220 bytes.
+- [evidence-m03-15616ea8f97bcf45] Message held_out.ubx-47497f62366e-message-000618 framed by infer rule at byte range [36708, 36760); length=52 bytes.
+- [evidence-m03-159e9ae09feee80e] Message held_out.ubx-47497f62366e-message-000054 framed by infer rule at byte range [3662, 3688); length=26 bytes.
+- [evidence-m03-159fbad1d1d869f2] Message held_out.ubx-47497f62366e-message-000382 framed by infer rule at byte range [22200, 22396); length=196 bytes.
+- [evidence-m03-15adc73cff625a14] Message held_out.ubx-47497f62366e-message-000529 framed by infer rule at byte range [31002, 31222); length=220 bytes.
+- [evidence-m03-1607fccaf2eccaa5] Message held_out.ubx-47497f62366e-message-000384 framed by infer rule at byte range [22408, 22508); length=100 bytes.
+- [evidence-m03-1666505b27f29052] Message held_out.ubx-47497f62366e-message-000120 framed by infer rule at byte range [7524, 7552); length=28 bytes.
+- [evidence-m03-169d5d5f85a2d8d7] Message held_out.ubx-47497f62366e-message-000426 framed by infer rule at byte range [24898, 24950); length=52 bytes.
+- [evidence-m03-16dcd32c845eeeb8] Message held_out.ubx-47497f62366e-message-000040 framed by infer rule at byte range [2716, 2772); length=56 bytes.
+- [evidence-m03-171cc557b8c2d8c2] Message held_out.ubx-47497f62366e-message-000378 framed by infer rule at byte range [22072, 22096); length=24 bytes.
+- [evidence-m03-1778683bb9cb6f21] Message held_out.ubx-47497f62366e-message-000402 framed by infer rule at byte range [23568, 23596); length=28 bytes.
+- [evidence-m03-17b697f5d8d9cd23] Message held_out.ubx-47497f62366e-message-000440 framed by infer rule at byte range [25874, 26082); length=208 bytes.
+- [evidence-m03-17cb45856c2d0424] Message held_out.ubx-47497f62366e-message-000357 framed by infer rule at byte range [20732, 20784); length=52 bytes.
+- [evidence-m03-194a418edca4fa25] Message held_out.ubx-47497f62366e-message-000522 framed by infer rule at byte range [30540, 30592); length=52 bytes.
+- [evidence-m03-197ebd0ca507c715] Message held_out.ubx-47497f62366e-message-000615 framed by infer rule at byte range [36604, 36632); length=28 bytes.
+- [evidence-m03-19992c5ef8bb3985] Message held_out.ubx-47497f62366e-message-000249 framed by infer rule at byte range [14548, 14596); length=48 bytes.
+- [evidence-m03-19e67fd499cd53a4] Message held_out.ubx-47497f62366e-message-000011 framed by infer rule at byte range [718, 818); length=100 bytes.
+- [evidence-m03-19fcb427c6a901fa] Message held_out.ubx-47497f62366e-message-000554 framed by infer rule at byte range [32458, 32484); length=26 bytes.
+- [evidence-m03-1a4c7d1fe4e3d1b4] Message held_out.ubx-47497f62366e-message-000236 framed by infer rule at byte range [13960, 14060); length=100 bytes.
+- [evidence-m03-1a4d638733fc566d] Message held_out.ubx-47497f62366e-message-000358 framed by infer rule at byte range [20784, 20980); length=196 bytes.
+- [evidence-m03-1a7e5c1df29a18fa] Message held_out.ubx-47497f62366e-message-000425 framed by infer rule at byte range [24870, 24898); length=28 bytes.
+- [evidence-m03-1ab1d7021ed0e37c] Message held_out.ubx-47497f62366e-message-000524 framed by infer rule at byte range [30618, 30838); length=220 bytes.
+- [evidence-m03-1c292d66e7030eff] Message held_out.ubx-47497f62366e-message-000004 framed by infer rule at byte range [282, 294); length=12 bytes.
+- [evidence-m03-1ca3b16d5265c0a1] Message held_out.ubx-47497f62366e-message-000073 framed by infer rule at byte range [4762, 4934); length=172 bytes.
+- [evidence-m03-1d99f4bc4c889571] Message held_out.ubx-47497f62366e-message-000280 framed by infer rule at byte range [16442, 16470); length=28 bytes.
+- [evidence-m03-1dc36f21816e18cd] Message held_out.ubx-47497f62366e-message-000233 framed by infer rule at byte range [13780, 13836); length=56 bytes.
+- [evidence-m03-1dc6d016e4b0bb60] Message held_out.ubx-47497f62366e-message-000321 framed by infer rule at byte range [18714, 18726); length=12 bytes.
+- [evidence-m03-1de310be2a3babea] Message held_out.ubx-47497f62366e-message-000206 framed by infer rule at byte range [11930, 11958); length=28 bytes.
+- [evidence-m03-1e980d53b9be73a8] Message held_out.ubx-47497f62366e-message-000099 framed by infer rule at byte range [6256, 6440); length=184 bytes.
+- [evidence-m03-1ec91d8580e1291d] Message held_out.ubx-47497f62366e-message-000427 framed by infer rule at byte range [24950, 24976); length=26 bytes.
+- [evidence-m03-1f31683e13c47e50] Message held_out.ubx-47497f62366e-message-000579 framed by infer rule at byte range [34084, 34096); length=12 bytes.
+- [evidence-m03-1f72ed567c688f83] Message held_out.ubx-47497f62366e-message-000048 framed by infer rule at byte range [3376, 3388); length=12 bytes.
+- [evidence-m03-1f87d898c98d4a7d] Message held_out.ubx-47497f62366e-message-000047 framed by infer rule at byte range [3204, 3376); length=172 bytes.
+- [evidence-m03-1f94e882cad9d8b2] Message held_out.ubx-47497f62366e-message-000410 framed by infer rule at byte range [23988, 24016); length=28 bytes.
+- [evidence-m03-1fffe85ac7547523] Message held_out.ubx-47497f62366e-message-000454 framed by infer rule at byte range [26748, 26848); length=100 bytes.
+- [evidence-m03-20c40df5930d68a7] Message held_out.ubx-47497f62366e-message-000474 framed by infer rule at byte range [27926, 28026); length=100 bytes.
+- [evidence-m03-222d75fe18756d3e] Message held_out.ubx-47497f62366e-message-000165 framed by infer rule at byte range [9698, 9710); length=12 bytes.
+- [evidence-m03-22530ee3241ff654] Message held_out.ubx-47497f62366e-message-000352 framed by infer rule at byte range [20332, 20528); length=196 bytes.
+- [evidence-m03-22a87e0fddd4c8d5] Message held_out.ubx-47497f62366e-message-000472 framed by infer rule at byte range [27886, 27898); length=12 bytes.
+- [evidence-m03-234e665882b3ad6c] Message held_out.ubx-47497f62366e-message-000335 framed by infer rule at byte range [19434, 19642); length=208 bytes.
+- [evidence-m03-2413d572dad1c0b2] Message held_out.ubx-47497f62366e-message-000365 framed by infer rule at byte range [21222, 21274); length=52 bytes.
+- [evidence-m03-242d52601290b0b2] Message held_out.ubx-47497f62366e-message-000313 framed by infer rule at byte range [18214, 18240); length=26 bytes.
+- [evidence-m03-25b5d4a623f799b9] Message held_out.ubx-47497f62366e-message-000330 framed by infer rule at byte range [19110, 19136); length=26 bytes.
+- [evidence-m03-25d805ee4199e1ff] Message held_out.ubx-47497f62366e-message-000140 framed by infer rule at byte range [8464, 8488); length=24 bytes.
+- [evidence-m03-25e23a7f90a5c61b] Message held_out.ubx-47497f62366e-message-000556 framed by infer rule at byte range [32704, 32716); length=12 bytes.
+- [evidence-m03-25ed26eb31d600fb] Message held_out.ubx-47497f62366e-message-000141 framed by infer rule at byte range [8488, 8514); length=26 bytes.
+- [evidence-m03-26d6d1348a17c6c3] Message held_out.ubx-47497f62366e-message-000575 framed by infer rule at byte range [33724, 33772); length=48 bytes.
+- [evidence-m03-2745cc109aac6a2f] Message held_out.ubx-47497f62366e-message-000322 framed by infer rule at byte range [18726, 18754); length=28 bytes.
+- [evidence-m03-275be8a6c781d418] Message held_out.ubx-47497f62366e-message-000597 framed by infer rule at byte range [35358, 35410); length=52 bytes.
+- [evidence-m03-278575c8634e70a1] Message held_out.ubx-47497f62366e-message-000442 framed by infer rule at byte range [26094, 26122); length=28 bytes.
+- [evidence-m03-27a6c225b860e2dc] Message held_out.ubx-47497f62366e-message-000001 framed by infer rule at byte range [28, 84); length=56 bytes.
+- [evidence-m03-2814d23d4fa0219f] Message held_out.ubx-47497f62366e-message-000083 framed by infer rule at byte range [5448, 5476); length=28 bytes.
+- [evidence-m03-288556909b9d2c6b] Message held_out.ubx-47497f62366e-message-000451 framed by infer rule at byte range [26644, 26670); length=26 bytes.
+- [evidence-m03-2899d91ce1983434] Message held_out.ubx-47497f62366e-message-000097 framed by infer rule at byte range [6172, 6228); length=56 bytes.
+- [evidence-m03-28f25dc9f5ff0a2a] Message held_out.ubx-47497f62366e-message-000065 framed by infer rule at byte range [4318, 4490); length=172 bytes.
+- [evidence-m03-28ff146fbfa5e9e3] Message held_out.ubx-47497f62366e-message-000493 framed by infer rule at byte range [29034, 29060); length=26 bytes.
+- [evidence-m03-29b7a0ea9a7d80a8] Message held_out.ubx-47497f62366e-message-000430 framed by infer rule at byte range [25184, 25212); length=28 bytes.
+- [evidence-m03-29d24c9508885f8a] Message held_out.ubx-47497f62366e-message-000568 framed by infer rule at byte range [33370, 33470); length=100 bytes.
+- [evidence-m03-2a8cc104f246bbe2] Message held_out.ubx-47497f62366e-message-000567 framed by infer rule at byte range [33342, 33370); length=28 bytes.
+- [evidence-m03-2aa385b3b059f316] Message held_out.ubx-47497f62366e-message-000078 framed by infer rule at byte range [5156, 5328); length=172 bytes.
+- [evidence-m03-2b5126ca86a721cf] Message held_out.ubx-47497f62366e-message-000231 framed by infer rule at byte range [13584, 13596); length=12 bytes.
+- [evidence-m03-2b5eaa4e3f0550cb] Message held_out.ubx-47497f62366e-message-000527 framed by infer rule at byte range [30878, 30978); length=100 bytes.
+- [evidence-m03-2b6f704781fa038b] Message held_out.ubx-47497f62366e-message-000134 framed by infer rule at byte range [8172, 8200); length=28 bytes.
+- [evidence-m03-2c08eb7c3c34ff03] Message held_out.ubx-47497f62366e-message-000312 framed by infer rule at byte range [18202, 18214); length=12 bytes.
+- [evidence-m03-2d0f5eb009b76f01] Message held_out.ubx-47497f62366e-message-000534 framed by infer rule at byte range [31386, 31412); length=26 bytes.
+- [evidence-m03-2d487546e30e2c49] Message held_out.ubx-47497f62366e-message-000400 framed by infer rule at byte range [23488, 23540); length=52 bytes.
+- [evidence-m03-2d8eda8701ac91b5] Message held_out.ubx-47497f62366e-message-000386 framed by infer rule at byte range [22532, 22728); length=196 bytes.
+- [evidence-m03-2e7a41464ba4d5cf] Message held_out.ubx-47497f62366e-message-000076 framed by infer rule at byte range [4972, 5144); length=172 bytes.
+- [evidence-m03-2eb0301b9f705b73] Message held_out.ubx-47497f62366e-message-000215 framed by infer rule at byte range [12546, 12730); length=184 bytes.
+- [evidence-m03-2f25622b7dc38659] Message held_out.ubx-47497f62366e-message-000397 framed by infer rule at byte range [23338, 23438); length=100 bytes.
+- [evidence-m03-2fec877c7caa3119] Message held_out.ubx-47497f62366e-message-000415 framed by infer rule at byte range [24224, 24252); length=28 bytes.
+- [evidence-m03-300617fea6840c56] Message held_out.ubx-47497f62366e-message-000146 framed by infer rule at byte range [8674, 8870); length=196 bytes.
+- [evidence-m03-30a4133400139c6e] Message held_out.ubx-47497f62366e-message-000243 framed by infer rule at byte range [14268, 14316); length=48 bytes.
+- [evidence-m03-30bed047240c196a] Message held_out.ubx-47497f62366e-message-000362 framed by infer rule at byte range [21070, 21170); length=100 bytes.
+- [evidence-m03-30c4a0f9a8a1405c] Message held_out.ubx-47497f62366e-message-000229 framed by infer rule at byte range [13372, 13400); length=28 bytes.
+- [evidence-m03-3153cb7752ae3ecf] Message held_out.ubx-47497f62366e-message-000175 framed by infer rule at byte range [10202, 10254); length=52 bytes.
+- [evidence-m03-316e40bf9575568b] Message held_out.ubx-47497f62366e-message-000638 framed by infer rule at byte range [37826, 37878); length=52 bytes.
+- [evidence-m03-3198f66801525382] Message held_out.ubx-47497f62366e-message-000128 framed by infer rule at byte range [7956, 7984); length=28 bytes.
+- [evidence-m03-31afb7a016578597] Message held_out.ubx-47497f62366e-message-000370 framed by infer rule at byte range [21572, 21600); length=28 bytes.
+- [evidence-m03-31daaaf40c1cce10] Message held_out.ubx-47497f62366e-message-000323 framed by infer rule at byte range [18754, 18782); length=28 bytes.
+- [evidence-m03-333320000c9a0533] Message held_out.ubx-47497f62366e-message-000123 framed by infer rule at byte range [7676, 7704); length=28 bytes.
+- [evidence-m03-334ea05ca40446a3] Message held_out.ubx-47497f62366e-message-000505 framed by infer rule at byte range [29550, 29650); length=100 bytes.
+- [evidence-m03-33903cbd6fbbfe85] Message held_out.ubx-47497f62366e-message-000586 framed by infer rule at byte range [34556, 34788); length=232 bytes.
+- [evidence-m03-33bcfb4f7ec64aa6] Message held_out.ubx-47497f62366e-message-000031 framed by infer rule at byte range [1916, 2088); length=172 bytes.
+- [evidence-m03-33e1ab841935c17c] Message held_out.ubx-47497f62366e-message-000267 framed by infer rule at byte range [15602, 15786); length=184 bytes.
+- [evidence-m03-341624e08bf6590c] Message held_out.ubx-47497f62366e-message-000182 framed by infer rule at byte range [10470, 10522); length=52 bytes.
+- [evidence-m03-347999ed763439ee] Message held_out.ubx-47497f62366e-message-000320 framed by infer rule at byte range [18518, 18714); length=196 bytes.
+- [evidence-m03-350a918bbe8c8195] Message held_out.ubx-47497f62366e-message-000029 framed by infer rule at byte range [1834, 1860); length=26 bytes.
+- [evidence-m03-352200171b005c3c] Message held_out.ubx-47497f62366e-message-000044 framed by infer rule at byte range [2994, 3166); length=172 bytes.
+- [evidence-m03-353af97906e23621] Message held_out.ubx-47497f62366e-message-000486 framed by infer rule at byte range [28710, 28734); length=24 bytes.
+- [evidence-m03-359cc3f8e01e46fe] Message held_out.ubx-47497f62366e-message-000169 framed by infer rule at byte range [9944, 10044); length=100 bytes.
+- [evidence-m03-35e26cf5897bae37] Message held_out.ubx-47497f62366e-message-000478 framed by infer rule at byte range [28282, 28310); length=28 bytes.
+- [evidence-m03-36aa6372807e6474] Message held_out.ubx-47497f62366e-message-000035 framed by infer rule at byte range [2298, 2310); length=12 bytes.
+- [evidence-m03-36ac1605bc9158d7] Message held_out.ubx-47497f62366e-message-000602 framed by infer rule at byte range [35694, 35750); length=56 bytes.
+- [evidence-m03-3750d94e2a425f4b] Message held_out.ubx-47497f62366e-message-000127 framed by infer rule at byte range [7928, 7956); length=28 bytes.
+- [evidence-m03-3761e430c6da7e5e] Message held_out.ubx-47497f62366e-message-000498 framed by infer rule at byte range [29262, 29290); length=28 bytes.
+- [evidence-m03-3786d6cf16527a25] Message held_out.ubx-47497f62366e-message-000278 framed by infer rule at byte range [16234, 16418); length=184 bytes.
+- [evidence-m03-38277b011acac8ee] Message held_out.ubx-47497f62366e-message-000281 framed by infer rule at byte range [16470, 16522); length=52 bytes.
+- [evidence-m03-38340d9c028a49d9] Message held_out.ubx-47497f62366e-message-000466 framed by infer rule at byte range [27476, 27696); length=220 bytes.
+- [evidence-m03-38d1b40a21efc1b0] Message held_out.ubx-47497f62366e-message-000542 framed by infer rule at byte range [32032, 32056); length=24 bytes.
+- [evidence-m03-39702d8d63ed3f95] Message held_out.ubx-47497f62366e-message-000034 framed by infer rule at byte range [2126, 2298); length=172 bytes.
+- [evidence-m03-39cedc912bdee579] Message held_out.ubx-47497f62366e-message-000561 framed by infer rule at byte range [33100, 33112); length=12 bytes.
+- [evidence-m03-3bc46df3fac8eced] Message held_out.ubx-47497f62366e-message-000056 framed by infer rule at byte range [3788, 3812); length=24 bytes.
+- [evidence-m03-3e048bdfb1fdcd37] Message held_out.ubx-47497f62366e-message-000282 framed by infer rule at byte range [16522, 16550); length=28 bytes.
+- [evidence-m03-3e362a61d23c9162] Message held_out.ubx-47497f62366e-message-000596 framed by infer rule at byte range [35330, 35358); length=28 bytes.
+- [evidence-m03-3e602dd6584d4c7c] Message held_out.ubx-47497f62366e-message-000116 framed by infer rule at byte range [7316, 7372); length=56 bytes.
+- [evidence-m03-3e9afa91b9585a59] Message held_out.ubx-47497f62366e-message-000253 framed by infer rule at byte range [14700, 14884); length=184 bytes.
+- [evidence-m03-403cfc403f98b5e4] Message held_out.ubx-47497f62366e-message-000480 framed by infer rule at byte range [28410, 28434); length=24 bytes.
+- [evidence-m03-406529b65e3a3e99] Message held_out.ubx-47497f62366e-message-000457 framed by infer rule at byte range [27080, 27092); length=12 bytes.
+- [evidence-m03-40dfb7c4416819b8] Message held_out.ubx-47497f62366e-message-000333 framed by infer rule at byte range [19214, 19422); length=208 bytes.
+- [evidence-m03-40f9c644e439be35] Message held_out.ubx-47497f62366e-message-000339 framed by infer rule at byte range [19734, 19762); length=28 bytes.
+- [evidence-m03-4192e256b6c456f7] Message held_out.ubx-47497f62366e-message-000484 framed by infer rule at byte range [28584, 28610); length=26 bytes.
+- [evidence-m03-4201f02c562f3529] Message held_out.ubx-47497f62366e-message-000338 framed by infer rule at byte range [19682, 19734); length=52 bytes.
+- [evidence-m03-425cfa9379b942f5] Message held_out.ubx-47497f62366e-message-000208 framed by infer rule at byte range [12142, 12154); length=12 bytes.
+- [evidence-m03-42620c21b28fb825] Message held_out.ubx-47497f62366e-message-000013 framed by infer rule at byte range [842, 870); length=28 bytes.
+- [evidence-m03-43415c7c5b0d44bd] Message held_out.ubx-47497f62366e-message-000051 framed by infer rule at byte range [3512, 3538); length=26 bytes.
+- [evidence-m03-438cec7d63a2e83b] Message held_out.ubx-47497f62366e-message-000130 framed by infer rule at byte range [8036, 8064); length=28 bytes.
+- [evidence-m03-441b8dd660dfec27] Message held_out.ubx-47497f62366e-message-000502 framed by infer rule at byte range [29398, 29498); length=100 bytes.
+- [evidence-m03-44bb3df35601e728] Message held_out.ubx-47497f62366e-message-000088 framed by infer rule at byte range [5636, 5664); length=28 bytes.
+- [evidence-m03-4585b74b62b8d081] Message held_out.ubx-47497f62366e-message-000060 framed by infer rule at byte range [4066, 4078); length=12 bytes.
+- [evidence-m03-458a3f21120d8fa4] Message held_out.ubx-47497f62366e-message-000461 framed by infer rule at byte range [27244, 27270); length=26 bytes.
+- [evidence-m03-461fa3a31fb56e38] Message held_out.ubx-47497f62366e-message-000308 framed by infer rule at byte range [17856, 17882); length=26 bytes.
+- [evidence-m03-46493b0463fa9876] Message held_out.ubx-47497f62366e-message-000411 framed by infer rule at byte range [24016, 24116); length=100 bytes.
+- [evidence-m03-48e633e59b1314ea] Message held_out.ubx-47497f62366e-message-000057 framed by infer rule at byte range [3812, 3838); length=26 bytes.
+- [evidence-m03-49b113f204f87ec4] Message held_out.ubx-47497f62366e-message-000368 framed by infer rule at byte range [21494, 21520); length=26 bytes.
+- [evidence-m03-4aa4124812f62f58] Message held_out.ubx-47497f62366e-message-000376 framed by infer rule at byte range [21948, 21972); length=24 bytes.
+- [evidence-m03-4af858c9498c6f29] Message held_out.ubx-47497f62366e-message-000560 framed by infer rule at byte range [32868, 33100); length=232 bytes.
+- [evidence-m03-4b504839d74009df] Message held_out.ubx-47497f62366e-message-000258 framed by infer rule at byte range [15028, 15056); length=28 bytes.
+- [evidence-m03-4bc126581e082b67] Message held_out.ubx-47497f62366e-message-000053 framed by infer rule at byte range [3638, 3662); length=24 bytes.
+- [evidence-m03-4be38404124c9437] Message held_out.ubx-47497f62366e-message-000151 framed by infer rule at byte range [9034, 9060); length=26 bytes.
+- [evidence-m03-4c15a3226904afda] Message held_out.ubx-47497f62366e-message-000254 framed by infer rule at byte range [14884, 14896); length=12 bytes.
+- [evidence-m03-4c39c8a371cc313f] Message held_out.ubx-47497f62366e-message-000016 framed by infer rule at byte range [994, 1022); length=28 bytes.
+- [evidence-m03-4c4b5a6f95a83420] Message held_out.ubx-47497f62366e-message-000500 framed by infer rule at byte range [29318, 29370); length=52 bytes.
+- [evidence-m03-4c80f391aebbe532] Message held_out.ubx-47497f62366e-message-000139 framed by infer rule at byte range [8364, 8464); length=100 bytes.
+- [evidence-m03-4cd1dff5fcc2b86b] Message held_out.ubx-47497f62366e-message-000245 framed by infer rule at byte range [14416, 14440); length=24 bytes.
+- [evidence-m03-4cf903109b2e7214] Message held_out.ubx-47497f62366e-message-000059 framed by infer rule at byte range [3894, 4066); length=172 bytes.
+- [evidence-m03-4d838d3ad27663c5] Message held_out.ubx-47497f62366e-message-000326 framed by infer rule at byte range [18862, 18962); length=100 bytes.
+- [evidence-m03-4e220cc66867b40c] Message held_out.ubx-47497f62366e-message-000211 framed by infer rule at byte range [12394, 12442); length=48 bytes.
+- [evidence-m03-4efadb0cd6c3a8fd] Message held_out.ubx-47497f62366e-message-000075 framed by infer rule at byte range [4946, 4972); length=26 bytes.
+- [evidence-m03-4f50ee6329d20ccb] Message held_out.ubx-47497f62366e-message-000533 framed by infer rule at byte range [31362, 31386); length=24 bytes.
+- [evidence-m03-5004be01e69fe83f] Message held_out.ubx-47497f62366e-message-000635 framed by infer rule at byte range [37674, 37774); length=100 bytes.
+- [evidence-m03-506776c3151c8e1d] Message held_out.ubx-47497f62366e-message-000167 framed by infer rule at byte range [9894, 9918); length=24 bytes.
+- [evidence-m03-50f5a136ca918aea] Message held_out.ubx-47497f62366e-message-000559 framed by infer rule at byte range [32844, 32868); length=24 bytes.
+- [evidence-m03-521a063958b2a37c] Message held_out.ubx-47497f62366e-message-000509 framed by infer rule at byte range [29802, 29826); length=24 bytes.
+- [evidence-m03-5295ab8b87af8352] Message held_out.ubx-47497f62366e-message-000210 framed by infer rule at byte range [12338, 12394); length=56 bytes.
+- [evidence-m03-52a50ef8ed2af422] Message held_out.ubx-47497f62366e-message-000468 framed by infer rule at byte range [27708, 27736); length=28 bytes.
+- [evidence-m03-532b15ad7d2eb809] Message held_out.ubx-47497f62366e-message-000042 framed by infer rule at byte range [2956, 2968); length=12 bytes.
+- [evidence-m03-5378f13c8d76f5aa] Message held_out.ubx-47497f62366e-message-000588 framed by infer rule at byte range [34800, 34826); length=26 bytes.
+- [evidence-m03-538cc19b62f524f3] Message held_out.ubx-47497f62366e-message-000439 framed by infer rule at byte range [25850, 25874); length=24 bytes.
+- [evidence-m03-53a38b2e9ff45d97] Message held_out.ubx-47497f62366e-message-000093 framed by infer rule at byte range [5932, 5960); length=28 bytes.
+- [evidence-m03-53c9c97a6c3b6595] Message held_out.ubx-47497f62366e-message-000406 framed by infer rule at byte range [23702, 23754); length=52 bytes.
+- [evidence-m03-543f5b873eb5e76d] Message held_out.ubx-47497f62366e-message-000154 framed by infer rule at byte range [9140, 9168); length=28 bytes.
+- [evidence-m03-546f8479f8d68004] Message held_out.ubx-47497f62366e-message-000626 framed by infer rule at byte range [37114, 37162); length=48 bytes.
+- [evidence-m03-5473f9cba032c944] Message held_out.ubx-47497f62366e-message-000547 framed by infer rule at byte range [32190, 32242); length=52 bytes.
+- [evidence-m03-548f4d2c2a1fcf63] Message held_out.ubx-47497f62366e-message-000389 framed by infer rule at byte range [22768, 22796); length=28 bytes.
+- [evidence-m03-54fea3b792a274dd] Message held_out.ubx-47497f62366e-message-000514 framed by infer rule at byte range [30198, 30210); length=12 bytes.
+- [evidence-m03-5621dcbaeb453993] Message held_out.ubx-47497f62366e-message-000488 framed by infer rule at byte range [28760, 28860); length=100 bytes.
+- [evidence-m03-5674e8dfd3bdf425] Message held_out.ubx-47497f62366e-message-000512 framed by infer rule at byte range [29954, 29978); length=24 bytes.
+- [evidence-m03-5699b2a022154130] Message held_out.ubx-47497f62366e-message-000287 framed by infer rule at byte range [16728, 16828); length=100 bytes.
+- [evidence-m03-56d764a6b39f08f1] Message held_out.ubx-47497f62366e-message-000043 framed by infer rule at byte range [2968, 2994); length=26 bytes.
+- [evidence-m03-56e25a2be198584b] Message held_out.ubx-47497f62366e-message-000251 framed by infer rule at byte range [14624, 14672); length=48 bytes.
+- [evidence-m03-570d7f4b3cc78122] Message held_out.ubx-47497f62366e-message-000122 framed by infer rule at byte range [7652, 7676); length=24 bytes.
+- [evidence-m03-574ec9af053aadfa] Message held_out.ubx-47497f62366e-message-000434 framed by infer rule at byte range [25436, 25462); length=26 bytes.
+- [evidence-m03-57589c499bc2f466] Message held_out.ubx-47497f62366e-message-000595 framed by infer rule at byte range [35306, 35330); length=24 bytes.
+- [evidence-m03-585701dd1c1a2d69] Message held_out.ubx-47497f62366e-message-000222 framed by infer rule at byte range [13116, 13140); length=24 bytes.
+- [evidence-m03-58b2bbe6c8802a7e] Message held_out.ubx-47497f62366e-message-000204 framed by infer rule at byte range [11854, 11882); length=28 bytes.
+- [evidence-m03-58bd9e385159ddda] Message held_out.ubx-47497f62366e-message-000158 framed by infer rule at byte range [9302, 9328); length=26 bytes.
+- [evidence-m03-58d89fcf8fd37d9a] Message held_out.ubx-47497f62366e-message-000246 framed by infer rule at byte range [14440, 14468); length=28 bytes.
+- [evidence-m03-58e7120891ae04ee] Message held_out.ubx-47497f62366e-message-000020 framed by infer rule at byte range [1174, 1230); length=56 bytes.
+- [evidence-m03-58f5de2976d438c0] Message held_out.ubx-47497f62366e-message-000101 framed by infer rule at byte range [6452, 6478); length=26 bytes.
+- [evidence-m03-58fbbbcbda23ef8f] Message held_out.ubx-47497f62366e-message-000563 framed by infer rule at byte range [33140, 33240); length=100 bytes.
+- [evidence-m03-59b3a222902d83b4] Message held_out.ubx-47497f62366e-message-000237 framed by infer rule at byte range [14060, 14084); length=24 bytes.
+- [evidence-m03-5a7c480c35f650c8] Message held_out.ubx-47497f62366e-message-000038 framed by infer rule at byte range [2520, 2532); length=12 bytes.
+- [evidence-m03-5af63907862c2481] Message held_out.ubx-47497f62366e-message-000205 framed by infer rule at byte range [11882, 11930); length=48 bytes.
+- [evidence-m03-5b37264ff3ec6eea] Message held_out.ubx-47497f62366e-message-000573 framed by infer rule at byte range [33644, 33696); length=52 bytes.
+- [evidence-m03-5b90931c52a5a112] Message held_out.ubx-47497f62366e-message-000607 framed by infer rule at byte range [36122, 36146); length=24 bytes.
+- [evidence-m03-5bc5d36b6c9aa110] Message held_out.ubx-47497f62366e-message-000148 framed by infer rule at byte range [8882, 8910); length=28 bytes.
+- [evidence-m03-5c51b88afd4a8e11] Message held_out.ubx-47497f62366e-message-000334 framed by infer rule at byte range [19422, 19434); length=12 bytes.
+- [evidence-m03-5e001d5869a4b86f] Message held_out.ubx-47497f62366e-message-000171 framed by infer rule at byte range [10068, 10094); length=26 bytes.
+- [evidence-m03-5e0dbb61f0f1d4e9] Message held_out.ubx-47497f62366e-message-000613 framed by infer rule at byte range [36496, 36548); length=52 bytes.
+- [evidence-m03-5e5b142324f15619] Message held_out.ubx-47497f62366e-message-000317 framed by infer rule at byte range [18418, 18442); length=24 bytes.
+- [evidence-m03-5ec36a504410e2de] Message held_out.ubx-47497f62366e-message-000495 framed by infer rule at byte range [29160, 29184); length=24 bytes.
+- [evidence-m03-5edb6c9c612b453f] Message held_out.ubx-47497f62366e-message-000302 framed by infer rule at byte range [17452, 17552); length=100 bytes.
+- [evidence-m03-5f388a0ac5add99e] Message held_out.ubx-47497f62366e-message-000606 framed by infer rule at byte range [36022, 36122); length=100 bytes.
+- [evidence-m03-5f749cccb2b3c69e] Message held_out.ubx-47497f62366e-message-000345 framed by infer rule at byte range [19910, 19962); length=52 bytes.
+- [evidence-m03-5f84886748706fe3] Message held_out.ubx-47497f62366e-message-000413 framed by infer rule at byte range [24140, 24196); length=56 bytes.
+- [evidence-m03-5f85cf44ec841a53] Message held_out.ubx-47497f62366e-message-000355 framed by infer rule at byte range [20680, 20704); length=24 bytes.
+- [evidence-m03-5fdda1ba109e6b61] Message held_out.ubx-47497f62366e-message-000516 framed by infer rule at byte range [30238, 30338); length=100 bytes.
+- [evidence-m03-6009ddbd397fe12e] Message held_out.ubx-47497f62366e-message-000283 framed by infer rule at byte range [16550, 16578); length=28 bytes.
+- [evidence-m03-6018ae7fd87d66f1] Message held_out.ubx-47497f62366e-message-000138 framed by infer rule at byte range [8336, 8364); length=28 bytes.
+- [evidence-m03-601fe573a46643b8] Message held_out.ubx-47497f62366e-message-000293 framed by infer rule at byte range [16986, 17038); length=52 bytes.
+- [evidence-m03-6108f9924e20c56f] Message held_out.ubx-47497f62366e-message-000448 framed by infer rule at byte range [26494, 26520); length=26 bytes.
+- [evidence-m03-6116b07cdc536bba] Message held_out.ubx-47497f62366e-message-000108 framed by infer rule at byte range [6934, 6990); length=56 bytes.
+- [evidence-m03-615d873049ff0187] Message held_out.ubx-47497f62366e-message-000627 framed by infer rule at byte range [37162, 37218); length=56 bytes.
+- [evidence-m03-61ae200ba75cdf49] Message held_out.ubx-47497f62366e-message-000026 framed by infer rule at byte range [1624, 1650); length=26 bytes.
+- [evidence-m03-6241a9b8b4ad50d9] Message held_out.ubx-47497f62366e-message-000631 framed by infer rule at byte range [37322, 37378); length=56 bytes.
+- [evidence-m03-62adf581297809f4] Message held_out.ubx-47497f62366e-message-000452 framed by infer rule at byte range [26670, 26722); length=52 bytes.
+- [evidence-m03-63311ed21497ad01] Message held_out.ubx-47497f62366e-message-000174 framed by infer rule at byte range [10174, 10202); length=28 bytes.
+- [evidence-m03-636e7f6ef66010f0] Message held_out.ubx-47497f62366e-message-000611 framed by infer rule at byte range [36458, 36470); length=12 bytes.
+- [evidence-m03-637a099f24d5d4af] Message held_out.ubx-47497f62366e-message-000179 framed by infer rule at byte range [10362, 10414); length=52 bytes.
+- [evidence-m03-64b28c36093c9e2d] Message held_out.ubx-47497f62366e-message-000610 framed by infer rule at byte range [36226, 36458); length=232 bytes.
+- [evidence-m03-64d58792f5756f54] Message held_out.ubx-47497f62366e-message-000036 framed by infer rule at byte range [2310, 2336); length=26 bytes.
+- [evidence-m03-64d7db398fc801f2] Message held_out.ubx-47497f62366e-message-000364 framed by infer rule at byte range [21194, 21222); length=28 bytes.
+- [evidence-m03-6517f85be8274ad5] Message held_out.ubx-47497f62366e-message-000030 framed by infer rule at byte range [1860, 1916); length=56 bytes.
+- [evidence-m03-653a1ca360a81517] Message held_out.ubx-47497f62366e-message-000443 framed by infer rule at byte range [26122, 26330); length=208 bytes.
+- [evidence-m03-653fdb97ad7bd609] Message held_out.ubx-47497f62366e-message-000274 framed by infer rule at byte range [16030, 16130); length=100 bytes.
+- [evidence-m03-65527e3194d3200c] Message held_out.ubx-47497f62366e-message-000608 framed by infer rule at byte range [36146, 36174); length=28 bytes.
+- [evidence-m03-65f4259f2cfd277b] Message held_out.ubx-47497f62366e-message-000590 framed by infer rule at byte range [34878, 34906); length=28 bytes.
+- [evidence-m03-6607e5252549818d] Message held_out.ubx-47497f62366e-message-000295 framed by infer rule at byte range [17064, 17248); length=184 bytes.
+- [evidence-m03-669830b839eca41a] Message held_out.ubx-47497f62366e-message-000311 framed by infer rule at byte range [18006, 18202); length=196 bytes.
+- [evidence-m03-67b3911787a489a6] Message held_out.ubx-47497f62366e-message-000549 framed by infer rule at byte range [32270, 32298); length=28 bytes.
+- [evidence-m03-68127dc39115cab6] Message held_out.ubx-47497f62366e-message-000164 framed by infer rule at byte range [9514, 9698); length=184 bytes.
+- [evidence-m03-681903f9a4d72f3f] Message held_out.ubx-47497f62366e-message-000225 framed by infer rule at byte range [13220, 13248); length=28 bytes.
+- [evidence-m03-681c0ecff9e930e6] Message held_out.ubx-47497f62366e-message-000103 framed by infer rule at byte range [6674, 6686); length=12 bytes.
+- [evidence-m03-687a223c185326b4] Message held_out.ubx-47497f62366e-message-000562 framed by infer rule at byte range [33112, 33140); length=28 bytes.
+- [evidence-m03-69592b7dd3d11399] Message held_out.ubx-47497f62366e-message-000331 framed by infer rule at byte range [19136, 19188); length=52 bytes.
+- [evidence-m03-6a34c913ae6c3f25] Message held_out.ubx-47497f62366e-message-000298 framed by infer rule at byte range [17288, 17344); length=56 bytes.
+- [evidence-m03-6afae5d44854cdbf] Message held_out.ubx-47497f62366e-message-000393 framed by infer rule at byte range [23070, 23102); length=32 bytes.
+- [evidence-m03-6b556936702d5d51] Message held_out.ubx-47497f62366e-message-000632 framed by infer rule at byte range [37378, 37406); length=28 bytes.
+- [evidence-m03-6c01a7914c231252] Message held_out.ubx-47497f62366e-message-000348 framed by infer rule at byte range [20170, 20196); length=26 bytes.
+- [evidence-m03-6c906b091ea4a865] Message held_out.ubx-47497f62366e-message-000371 framed by infer rule at byte range [21600, 21700); length=100 bytes.
+- [evidence-m03-6c99ca003f44dfbb] Message held_out.ubx-47497f62366e-message-000037 framed by infer rule at byte range [2336, 2520); length=184 bytes.
+- [evidence-m03-6cb77293556494e5] Message held_out.ubx-47497f62366e-message-000291 framed by infer rule at byte range [16930, 16958); length=28 bytes.
+- [evidence-m03-6d010e933aaec10e] Message held_out.ubx-47497f62366e-message-000111 framed by infer rule at byte range [7116, 7140); length=24 bytes.
+- [evidence-m03-6d4f2d68893ff443] Message held_out.ubx-47497f62366e-message-000118 framed by infer rule at byte range [7400, 7500); length=100 bytes.
+- [evidence-m03-6eab94c0518a4628] Message held_out.ubx-47497f62366e-message-000374 framed by infer rule at byte range [21824, 21848); length=24 bytes.
+- [evidence-m03-6f3bd7e7b112ff56] Message held_out.ubx-47497f62366e-message-000366 framed by infer rule at byte range [21274, 21482); length=208 bytes.
+- [evidence-m03-6f44cf26168c91dc] Message held_out.ubx-47497f62366e-message-000279 framed by infer rule at byte range [16418, 16442); length=24 bytes.
+- [evidence-m03-70d551a414b00fd8] Message held_out.ubx-47497f62366e-message-000159 framed by infer rule at byte range [9328, 9380); length=52 bytes.
+- [evidence-m03-71504d6372d02ac9] Message held_out.ubx-47497f62366e-message-000581 framed by infer rule at byte range [34328, 34352); length=24 bytes.
+- [evidence-m03-719871c117a59151] Message held_out.ubx-47497f62366e-message-000260 framed by infer rule at byte range [15104, 15132); length=28 bytes.
+- [evidence-m03-7244300d85047a8c] Message held_out.ubx-47497f62366e-message-000147 framed by infer rule at byte range [8870, 8882); length=12 bytes.
+- [evidence-m03-72602766f841ff08] Message held_out.ubx-47497f62366e-message-000578 framed by infer rule at byte range [33852, 34084); length=232 bytes.
+- [evidence-m03-730e454a0da49bb5] Message held_out.ubx-47497f62366e-message-000594 framed by infer rule at byte range [35206, 35306); length=100 bytes.
+- [evidence-m03-73160f6ee6125b62] Message held_out.ubx-47497f62366e-message-000446 framed by infer rule at byte range [26370, 26470); length=100 bytes.
+- [evidence-m03-7357961e6cec917f] Message held_out.ubx-47497f62366e-message-000292 framed by infer rule at byte range [16958, 16986); length=28 bytes.
+- [evidence-m03-738a1c1ab2773ebf] Message held_out.ubx-47497f62366e-message-000421 framed by infer rule at byte range [24538, 24638); length=100 bytes.
+- [evidence-m03-7399e93dc6ff6d8c] Message held_out.ubx-47497f62366e-message-000198 framed by infer rule at byte range [11504, 11688); length=184 bytes.
+- [evidence-m03-744421c3d9a51c6e] Message held_out.ubx-47497f62366e-message-000497 framed by infer rule at byte range [29210, 29262); length=52 bytes.
+- [evidence-m03-74483dfa4bf0ce58] Message held_out.ubx-47497f62366e-message-000266 framed by infer rule at byte range [15550, 15602); length=52 bytes.
+- [evidence-m03-7490d4cc5400f40a] Message held_out.ubx-47497f62366e-message-000574 framed by infer rule at byte range [33696, 33724); length=28 bytes.
+- [evidence-m03-750e126c453ef69c] Message held_out.ubx-47497f62366e-message-000332 framed by infer rule at byte range [19188, 19214); length=26 bytes.
+- [evidence-m03-75a38b97291dd00a] Message held_out.ubx-47497f62366e-message-000168 framed by infer rule at byte range [9918, 9944); length=26 bytes.
+- [evidence-m03-75bb7677bf2f0d46] Message held_out.ubx-47497f62366e-message-000369 framed by infer rule at byte range [21520, 21572); length=52 bytes.
+- [evidence-m03-75bb79d7d43d7c5e] Message held_out.ubx-47497f62366e-message-000540 framed by infer rule at byte range [31904, 31932); length=28 bytes.
+- [evidence-m03-75dfb698c5e36eb5] Message held_out.ubx-47497f62366e-message-000081 framed by infer rule at byte range [5368, 5420); length=52 bytes.
+- [evidence-m03-76420d180bbec974] Message held_out.ubx-47497f62366e-message-000504 framed by infer rule at byte range [29522, 29550); length=28 bytes.
+- [evidence-m03-766ead8b14b5435e] Message held_out.ubx-47497f62366e-message-000189 framed by infer rule at byte range [11012, 11024); length=12 bytes.
+- [evidence-m03-7693993a0f3869bc] Message held_out.ubx-47497f62366e-message-000180 framed by infer rule at byte range [10414, 10442); length=28 bytes.
+- [evidence-m03-76cea8554803c753] Message held_out.ubx-47497f62366e-message-000433 framed by infer rule at byte range [25336, 25436); length=100 bytes.
+- [evidence-m03-77002c87d563cb2e] Message held_out.ubx-47497f62366e-message-000564 framed by infer rule at byte range [33240, 33264); length=24 bytes.
+- [evidence-m03-77262dd1b7153382] Message held_out.ubx-47497f62366e-message-000252 framed by infer rule at byte range [14672, 14700); length=28 bytes.
+- [evidence-m03-7749dc4a72946633] Message held_out.ubx-47497f62366e-message-000024 framed by infer rule at byte range [1440, 1612); length=172 bytes.
+- [evidence-m03-794dbc5b02bc8b6d] Message held_out.ubx-47497f62366e-message-000361 framed by infer rule at byte range [21018, 21070); length=52 bytes.
+- [evidence-m03-79c2ea71db8366de] Message held_out.ubx-47497f62366e-message-000227 framed by infer rule at byte range [13296, 13324); length=28 bytes.
+- [evidence-m03-7a6a55a6dc2b76a9] Message held_out.ubx-47497f62366e-message-000270 framed by infer rule at byte range [15826, 15878); length=52 bytes.
+- [evidence-m03-7a9c49412744f26b] Message held_out.ubx-47497f62366e-message-000571 framed by infer rule at byte range [33594, 33618); length=24 bytes.
+- [evidence-m03-7ab1c62a198a4d91] Message held_out.ubx-47497f62366e-message-000022 framed by infer rule at byte range [1402, 1414); length=12 bytes.
+- [evidence-m03-7af58b0daf0accc5] Message held_out.ubx-47497f62366e-message-000015 framed by infer rule at byte range [970, 994); length=24 bytes.
+- [evidence-m03-7b339706685f9f72] Message held_out.ubx-47497f62366e-message-000186 framed by infer rule at byte range [10744, 10772); length=28 bytes.
+- [evidence-m03-7ba8f0c3b98777bf] Message held_out.ubx-47497f62366e-message-000256 framed by infer rule at byte range [14952, 14980); length=28 bytes.
+- [evidence-m03-7c741a1bd4e0d9fd] Message held_out.ubx-47497f62366e-message-000420 framed by infer rule at byte range [24510, 24538); length=28 bytes.
+- [evidence-m03-7cdd55f2f1a9b4fd] Message held_out.ubx-47497f62366e-message-000224 framed by infer rule at byte range [13168, 13220); length=52 bytes.
+- [evidence-m03-7dd73bb6fed29233] Message held_out.ubx-47497f62366e-message-000074 framed by infer rule at byte range [4934, 4946); length=12 bytes.
+- [evidence-m03-7df33a1785a9b24e] Message held_out.ubx-47497f62366e-message-000045 framed by infer rule at byte range [3166, 3178); length=12 bytes.
+- [evidence-m03-7e18079c4ff5b125] Message held_out.ubx-47497f62366e-message-000629 framed by infer rule at byte range [37242, 37270); length=28 bytes.
+- [evidence-m03-7e8e991ccf6e0827] Message held_out.ubx-47497f62366e-message-000276 framed by infer rule at byte range [16154, 16182); length=28 bytes.
+- [evidence-m03-7edf337966390a22] Message held_out.ubx-47497f62366e-message-000221 framed by infer rule at byte range [13016, 13116); length=100 bytes.
+- [evidence-m03-7f35e85ff30dc898] Message held_out.ubx-47497f62366e-message-000090 framed by infer rule at byte range [5720, 5748); length=28 bytes.
+- [evidence-m03-7fa3e5ac34d446a5] Message held_out.ubx-47497f62366e-message-000622 framed by infer rule at byte range [36910, 36958); length=48 bytes.
+- [evidence-m03-7fe4802edf0edf44] Message held_out.ubx-47497f62366e-message-000199 framed by infer rule at byte range [11688, 11700); length=12 bytes.
+- [evidence-m03-807eb571890fcc21] Message held_out.ubx-47497f62366e-message-000192 framed by infer rule at byte range [11220, 11246); length=26 bytes.
+- [evidence-m03-81688c37fbafa216] Message held_out.ubx-47497f62366e-message-000157 framed by infer rule at byte range [9246, 9302); length=56 bytes.
+- [evidence-m03-823724a2c16976e4] Message held_out.ubx-47497f62366e-message-000543 framed by infer rule at byte range [32056, 32082); length=26 bytes.
+- [evidence-m03-825250dfcb19a68b] Message held_out.ubx-47497f62366e-message-000277 framed by infer rule at byte range [16182, 16234); length=52 bytes.
+- [evidence-m03-8396fde76159439b] Message held_out.ubx-47497f62366e-message-000238 framed by infer rule at byte range [14084, 14112); length=28 bytes.
+- [evidence-m03-83be2d07c5c36922] Message held_out.ubx-47497f62366e-message-000447 framed by infer rule at byte range [26470, 26494); length=24 bytes.
+- [evidence-m03-84368e8e4552869e] Message held_out.ubx-47497f62366e-message-000263 framed by infer rule at byte range [15328, 15512); length=184 bytes.
+- [evidence-m03-85186d66fe373a0b] Message held_out.ubx-47497f62366e-message-000296 framed by infer rule at byte range [17248, 17260); length=12 bytes.
+- [evidence-m03-85272c45a1ac3360] Message held_out.ubx-47497f62366e-message-000063 framed by infer rule at byte range [4278, 4290); length=12 bytes.
+- [evidence-m03-85552dee72edec6f] Message held_out.ubx-47497f62366e-message-000214 framed by infer rule at byte range [12518, 12546); length=28 bytes.
+- [evidence-m03-85f2db8d61969ac2] Message held_out.ubx-47497f62366e-message-000444 framed by infer rule at byte range [26330, 26342); length=12 bytes.
+- [evidence-m03-86009053d5175d55] Message held_out.ubx-47497f62366e-message-000242 framed by infer rule at byte range [14240, 14268); length=28 bytes.
+- [evidence-m03-8627b989cc86335d] Message held_out.ubx-47497f62366e-message-000143 framed by infer rule at byte range [8566, 8594); length=28 bytes.
+- [evidence-m03-867bdf4d6999c1f3] Message held_out.ubx-47497f62366e-message-000327 framed by infer rule at byte range [18962, 18986); length=24 bytes.
+- [evidence-m03-87323e54cff3a2fa] Message held_out.ubx-47497f62366e-message-000017 framed by infer rule at byte range [1022, 1122); length=100 bytes.
+- [evidence-m03-87f889f68e7d77fb] Message held_out.ubx-47497f62366e-message-000115 framed by infer rule at byte range [7290, 7316); length=26 bytes.
+- [evidence-m03-88025a24f5f9c34f] Message held_out.ubx-47497f62366e-message-000244 framed by infer rule at byte range [14316, 14416); length=100 bytes.
+- [evidence-m03-88d0c29e5aef5c36] Message held_out.ubx-47497f62366e-message-000161 framed by infer rule at byte range [9408, 9436); length=28 bytes.
+- [evidence-m03-89373235e69c4aa3] Message held_out.ubx-47497f62366e-message-000521 framed by infer rule at byte range [30512, 30540); length=28 bytes.
+- [evidence-m03-8a8c7d177d29450c] Message held_out.ubx-47497f62366e-message-000577 framed by infer rule at byte range [33800, 33852); length=52 bytes.
+- [evidence-m03-8b900c543eba1dac] Message held_out.ubx-47497f62366e-message-000572 framed by infer rule at byte range [33618, 33644); length=26 bytes.
+- [evidence-m03-8c1d5ce53bfb0f75] Message held_out.ubx-47497f62366e-message-000046 framed by infer rule at byte range [3178, 3204); length=26 bytes.
+- [evidence-m03-8c7ee15ea6cddbbf] Message held_out.ubx-47497f62366e-message-000612 framed by infer rule at byte range [36470, 36496); length=26 bytes.
+- [evidence-m03-8cd659757ee70978] Message held_out.ubx-47497f62366e-message-000145 framed by infer rule at byte range [8622, 8674); length=52 bytes.
+- [evidence-m03-8d48452b17482aee] Message held_out.ubx-47497f62366e-message-000391 framed by infer rule at byte range [22848, 22874); length=26 bytes.
+- [evidence-m03-8e0a6edd8421d377] Message held_out.ubx-47497f62366e-message-000299 framed by infer rule at byte range [17344, 17372); length=28 bytes.
+- [evidence-m03-8e8319c23752012a] Message held_out.ubx-47497f62366e-message-000501 framed by infer rule at byte range [29370, 29398); length=28 bytes.
+- [evidence-m03-8fd8ab6bc962c8ae] Message held_out.ubx-47497f62366e-message-000050 framed by infer rule at byte range [3488, 3512); length=24 bytes.
+- [evidence-m03-90c30e44d8a54160] Message held_out.ubx-47497f62366e-message-000633 framed by infer rule at byte range [37406, 37662); length=256 bytes.
+- [evidence-m03-90fcaae92f55fb46] Message held_out.ubx-47497f62366e-message-000589 framed by infer rule at byte range [34826, 34878); length=52 bytes.
+- [evidence-m03-9116c895555a0018] Message held_out.ubx-47497f62366e-message-000552 framed by infer rule at byte range [32378, 32406); length=28 bytes.
+- [evidence-m03-91ca51dc112db6e1] Message held_out.ubx-47497f62366e-message-000021 framed by infer rule at byte range [1230, 1402); length=172 bytes.
+- [evidence-m03-921cebcecebc8771] Message held_out.ubx-47497f62366e-message-000133 framed by infer rule at byte range [8144, 8172); length=28 bytes.
+- [evidence-m03-926f6d07ff25bb2d] Message held_out.ubx-47497f62366e-message-000359 framed by infer rule at byte range [20980, 20992); length=12 bytes.
+- [evidence-m03-92b1b431bf353a3e] Message held_out.ubx-47497f62366e-message-000201 framed by infer rule at byte range [11726, 11778); length=52 bytes.
+- [evidence-m03-92b704b33013fcb9] Message held_out.ubx-47497f62366e-message-000062 framed by infer rule at byte range [4106, 4278); length=172 bytes.
+- [evidence-m03-942888ff22cf305a] Message held_out.ubx-47497f62366e-message-000082 framed by infer rule at byte range [5420, 5448); length=28 bytes.
+- [evidence-m03-94af4f6e800c2660] Message held_out.ubx-47497f62366e-message-000624 framed by infer rule at byte range [36986, 37086); length=100 bytes.
+- [evidence-m03-94e5b2b301ea118a] Message held_out.ubx-47497f62366e-message-000526 framed by infer rule at byte range [30850, 30878); length=28 bytes.
+- [evidence-m03-953c78fc2a7842d3] Message held_out.ubx-47497f62366e-message-000012 framed by infer rule at byte range [818, 842); length=24 bytes.
+- [evidence-m03-9629ca9f422619e6] Message held_out.ubx-47497f62366e-message-000517 framed by infer rule at byte range [30338, 30362); length=24 bytes.
+- [evidence-m03-965f362109d9257c] Message held_out.ubx-47497f62366e-message-000033 framed by infer rule at byte range [2100, 2126); length=26 bytes.
+- [evidence-m03-96e9469e12b8b9ff] Message held_out.ubx-47497f62366e-message-000336 framed by infer rule at byte range [19642, 19654); length=12 bytes.
+- [evidence-m03-972551ceffc694ee] Message held_out.ubx-47497f62366e-message-000481 framed by infer rule at byte range [28434, 28460); length=26 bytes.
+- [evidence-m03-9798d37ec11536b8] Message held_out.ubx-47497f62366e-message-000342 framed by infer rule at byte range [19802, 19854); length=52 bytes.
+- [evidence-m03-98096bf065a8e89f] Message held_out.ubx-47497f62366e-message-000530 framed by infer rule at byte range [31222, 31234); length=12 bytes.
+- [evidence-m03-98412e923a94a63b] Message held_out.ubx-47497f62366e-message-000316 framed by infer rule at byte range [18318, 18418); length=100 bytes.
+- [evidence-m03-986541e2d6c27a1b] Message held_out.ubx-47497f62366e-message-000418 framed by infer rule at byte range [24290, 24498); length=208 bytes.
+- [evidence-m03-98727138664b9068] Message held_out.ubx-47497f62366e-message-000178 framed by infer rule at byte range [10336, 10362); length=26 bytes.
+- [evidence-m03-992645f5e289369d] Message held_out.ubx-47497f62366e-message-000379 framed by infer rule at byte range [22096, 22122); length=26 bytes.
+- [evidence-m03-9983daf8cd4a2b66] Message held_out.ubx-47497f62366e-message-000193 framed by infer rule at byte range [11246, 11298); length=52 bytes.
+- [evidence-m03-9b2b6082c2733679] Message held_out.ubx-47497f62366e-message-000459 framed by infer rule at byte range [27120, 27220); length=100 bytes.
+- [evidence-m03-9b36f53ba35c4338] Message held_out.ubx-47497f62366e-message-000216 framed by infer rule at byte range [12730, 12742); length=12 bytes.
+- [evidence-m03-9b57c82b8952698f] Message held_out.ubx-47497f62366e-message-000305 framed by infer rule at byte range [17760, 17772); length=12 bytes.
+- [evidence-m03-9b80f098f36ae7c0] Message held_out.ubx-47497f62366e-message-000297 framed by infer rule at byte range [17260, 17288); length=28 bytes.
+- [evidence-m03-9ba83ef135df935b] Message held_out.ubx-47497f62366e-message-000546 framed by infer rule at byte range [32162, 32190); length=28 bytes.
+- [evidence-m03-9bb7450aa90ffdcf] Message held_out.ubx-47497f62366e-message-000173 framed by infer rule at byte range [10146, 10174); length=28 bytes.
+- [evidence-m03-9c3e0a8c8f991db3] Message held_out.ubx-47497f62366e-message-000089 framed by infer rule at byte range [5664, 5720); length=56 bytes.
+- [evidence-m03-9c49847263dac6fd] Message held_out.ubx-47497f62366e-message-000070 framed by infer rule at byte range [4612, 4712); length=100 bytes.
+- [evidence-m03-9c72ec7907648f37] Message held_out.ubx-47497f62366e-message-000428 framed by infer rule at byte range [24976, 25172); length=196 bytes.
+- [evidence-m03-9c8b5cc8ce6e10c7] Message held_out.ubx-47497f62366e-message-000436 framed by infer rule at byte range [25670, 25722); length=52 bytes.
+- [evidence-m03-9d4c2944195921ee] Message held_out.ubx-47497f62366e-message-000455 framed by infer rule at byte range [26848, 26872); length=24 bytes.
+- [evidence-m03-9dc7a64c16065698] Message held_out.ubx-47497f62366e-message-000375 framed by infer rule at byte range [21848, 21948); length=100 bytes.
+- [evidence-m03-9de5f15fe82cd7e3] Message held_out.ubx-47497f62366e-message-000557 framed by infer rule at byte range [32716, 32744); length=28 bytes.
+- [evidence-m03-9e8df9b261f8bf10] Message held_out.ubx-47497f62366e-message-000112 framed by infer rule at byte range [7140, 7166); length=26 bytes.
+- [evidence-m03-9f1bd2e9509656bf] Message held_out.ubx-47497f62366e-message-000104 framed by infer rule at byte range [6686, 6712); length=26 bytes.
+- [evidence-m03-a056836c25d885cb] Message held_out.ubx-47497f62366e-message-000616 framed by infer rule at byte range [36632, 36680); length=48 bytes.
+- [evidence-m03-a0ca564b12420235] Message held_out.ubx-47497f62366e-message-000009 framed by infer rule at byte range [534, 706); length=172 bytes.
+- [evidence-m03-a0de033c06269803] Message held_out.ubx-47497f62366e-message-000513 framed by infer rule at byte range [29978, 30198); length=220 bytes.
+- [evidence-m03-a23161c757806f27] Message held_out.ubx-47497f62366e-message-000068 framed by infer rule at byte range [4530, 4586); length=56 bytes.
+- [evidence-m03-a261e2401648f564] Message held_out.ubx-47497f62366e-message-000489 framed by infer rule at byte range [28860, 28884); length=24 bytes.
+- [evidence-m03-a4849b8015daed23] Message held_out.ubx-47497f62366e-message-000137 framed by infer rule at byte range [8280, 8336); length=56 bytes.
+- [evidence-m03-a51bafec90662d16] Message held_out.ubx-47497f62366e-message-000441 framed by infer rule at byte range [26082, 26094); length=12 bytes.
+- [evidence-m03-a59345d62dbf65eb] Message held_out.ubx-47497f62366e-message-000630 framed by infer rule at byte range [37270, 37322); length=52 bytes.
+- [evidence-m03-a59bc34682d6b89c] Message held_out.ubx-47497f62366e-message-000006 framed by infer rule at byte range [322, 494); length=172 bytes.
+- [evidence-m03-a6e3d1af154aa059] Message held_out.ubx-47497f62366e-message-000353 framed by infer rule at byte range [20528, 20580); length=52 bytes.
+- [evidence-m03-a7b43bc946f7aa67] Message held_out.ubx-47497f62366e-message-000367 framed by infer rule at byte range [21482, 21494); length=12 bytes.
+- [evidence-m03-a7c86cf572f29b02] Message held_out.ubx-47497f62366e-message-000318 framed by infer rule at byte range [18442, 18490); length=48 bytes.
+- [evidence-m03-a7fe6d7d03fb4751] Message held_out.ubx-47497f62366e-message-000519 framed by infer rule at byte range [30388, 30488); length=100 bytes.
+- [evidence-m03-a809a69a4cf06e5f] Message held_out.ubx-47497f62366e-message-000383 framed by infer rule at byte range [22396, 22408); length=12 bytes.
+- [evidence-m03-a820b175bb4ada88] Message held_out.ubx-47497f62366e-message-000387 framed by infer rule at byte range [22728, 22740); length=12 bytes.
+- [evidence-m03-a8eef3407da0cefe] Message held_out.ubx-47497f62366e-message-000429 framed by infer rule at byte range [25172, 25184); length=12 bytes.
+- [evidence-m03-a993f3bf849e7247] Message held_out.ubx-47497f62366e-message-000445 framed by infer rule at byte range [26342, 26370); length=28 bytes.
+- [evidence-m03-a9fcefd71739550d] Message held_out.ubx-47497f62366e-message-000407 framed by infer rule at byte range [23754, 23780); length=26 bytes.
+- [evidence-m03-aa266002f92253e0] Message held_out.ubx-47497f62366e-message-000176 framed by infer rule at byte range [10254, 10280); length=26 bytes.
+- [evidence-m03-aa8fe7d97c94aefe] Message held_out.ubx-47497f62366e-message-000539 framed by infer rule at byte range [31892, 31904); length=12 bytes.
+- [evidence-m03-aaa08e18c4f476a1] Message held_out.ubx-47497f62366e-message-000067 framed by infer rule at byte range [4502, 4530); length=28 bytes.
+- [evidence-m03-aaae4ef536a3b161] Message held_out.ubx-47497f62366e-message-000203 framed by infer rule at byte range [11806, 11854); length=48 bytes.
+- [evidence-m03-aba35aa6421ebd6c] Message held_out.ubx-47497f62366e-message-000337 framed by infer rule at byte range [19654, 19682); length=28 bytes.
+- [evidence-m03-ac61736170e990e6] Message held_out.ubx-47497f62366e-message-000431 framed by infer rule at byte range [25212, 25312); length=100 bytes.
+- [evidence-m03-aca471930cd5e031] Message held_out.ubx-47497f62366e-message-000396 framed by infer rule at byte range [23310, 23338); length=28 bytes.
+- [evidence-m03-acc6f8b95a6d647f] Message held_out.ubx-47497f62366e-message-000492 framed by infer rule at byte range [29010, 29034); length=24 bytes.
+- [evidence-m03-acdadcedc7841be1] Message held_out.ubx-47497f62366e-message-000617 framed by infer rule at byte range [36680, 36708); length=28 bytes.
+- [evidence-m03-ad1bf5d62ede2a07] Message held_out.ubx-47497f62366e-message-000390 framed by infer rule at byte range [22796, 22848); length=52 bytes.
+- [evidence-m03-ad614f9c994b3f1a] Message held_out.ubx-47497f62366e-message-000593 framed by infer rule at byte range [35194, 35206); length=12 bytes.
+- [evidence-m03-ad77fc69fbf0a4e2] Message held_out.ubx-47497f62366e-message-000482 framed by infer rule at byte range [28460, 28560); length=100 bytes.
+- [evidence-m03-addfefff324144c2] Message held_out.ubx-47497f62366e-message-000155 framed by infer rule at byte range [9168, 9220); length=52 bytes.
+- [evidence-m03-ae05a91d52d96d6d] Message held_out.ubx-47497f62366e-message-000177 framed by infer rule at byte range [10280, 10336); length=56 bytes.
+- [evidence-m03-ae36ec0267dfd6e1] Message held_out.ubx-47497f62366e-message-000226 framed by infer rule at byte range [13248, 13296); length=48 bytes.
+- [evidence-m03-af99c86802fc3da1] Message held_out.ubx-47497f62366e-message-000582 framed by infer rule at byte range [34352, 34452); length=100 bytes.
+- [evidence-m03-b12a6f37b474597d] Message held_out.ubx-47497f62366e-message-000039 framed by infer rule at byte range [2532, 2716); length=184 bytes.
+- [evidence-m03-b16982470e41066a] Message held_out.ubx-47497f62366e-message-000096 framed by infer rule at byte range [6144, 6172); length=28 bytes.
+- [evidence-m03-b177522178ff6aa8] Message held_out.ubx-47497f62366e-message-000580 framed by infer rule at byte range [34096, 34328); length=232 bytes.
+- [evidence-m03-b1d23bd4ab3a78df] Message held_out.ubx-47497f62366e-message-000286 framed by infer rule at byte range [16702, 16728); length=26 bytes.
+- [evidence-m03-b25ca620c8e95843] Message held_out.ubx-47497f62366e-message-000257 framed by infer rule at byte range [14980, 15028); length=48 bytes.
+- [evidence-m03-b28d75e0f8756284] Message held_out.ubx-47497f62366e-message-000388 framed by infer rule at byte range [22740, 22768); length=28 bytes.
+- [evidence-m03-b2aeee689337ca57] Message held_out.ubx-47497f62366e-message-000398 framed by infer rule at byte range [23438, 23462); length=24 bytes.
+- [evidence-m03-b2fdbe41aec69e1a] Message held_out.ubx-47497f62366e-message-000262 framed by infer rule at byte range [15316, 15328); length=12 bytes.
+- [evidence-m03-b3058f3a6492d5ed] Message held_out.ubx-47497f62366e-message-000541 framed by infer rule at byte range [31932, 32032); length=100 bytes.
+- [evidence-m03-b3ad553a5e7523e2] Message held_out.ubx-47497f62366e-message-000098 framed by infer rule at byte range [6228, 6256); length=28 bytes.
+- [evidence-m03-b3aec1d5a797d324] Message held_out.ubx-47497f62366e-message-000609 framed by infer rule at byte range [36174, 36226); length=52 bytes.
+- [evidence-m03-b3c7aa8438a347ba] Message held_out.ubx-47497f62366e-message-000324 framed by infer rule at byte range [18782, 18834); length=52 bytes.
+- [evidence-m03-b4c9ee5ff0babfad] Message held_out.ubx-47497f62366e-message-000185 framed by infer rule at byte range [10732, 10744); length=12 bytes.
+- [evidence-m03-b56caa9e362658d7] Message held_out.ubx-47497f62366e-message-000121 framed by infer rule at byte range [7552, 7652); length=100 bytes.
+- [evidence-m03-b59bc476121c21a2] Message held_out.ubx-47497f62366e-message-000183 framed by infer rule at byte range [10522, 10548); length=26 bytes.
+- [evidence-m03-b5d7f9faa2688041] Message held_out.ubx-47497f62366e-message-000438 framed by infer rule at byte range [25750, 25850); length=100 bytes.
+- [evidence-m03-b6cf13697764bedb] Message held_out.ubx-47497f62366e-message-000600 framed by infer rule at byte range [35654, 35682); length=28 bytes.
+- [evidence-m03-b9094316873e7a80] Message held_out.ubx-47497f62366e-message-000465 framed by infer rule at byte range [27450, 27476); length=26 bytes.
+- [evidence-m03-b92ae2053c676da7] Message held_out.ubx-47497f62366e-message-000435 framed by infer rule at byte range [25462, 25670); length=208 bytes.
+- [evidence-m03-b9a62fafc1006747] Message held_out.ubx-47497f62366e-message-000264 framed by infer rule at byte range [15512, 15524); length=12 bytes.
+- [evidence-m03-ba025650868c5a8a] Message held_out.ubx-47497f62366e-message-000487 framed by infer rule at byte range [28734, 28760); length=26 bytes.
+- [evidence-m03-ba19b0ded9e07617] Message held_out.ubx-47497f62366e-message-000341 framed by infer rule at byte range [19774, 19802); length=28 bytes.
+- [evidence-m03-ba20dcbba30c1993] Message held_out.ubx-47497f62366e-message-000194 framed by infer rule at byte range [11298, 11324); length=26 bytes.
+- [evidence-m03-ba89938823c79dae] Message held_out.ubx-47497f62366e-message-000344 framed by infer rule at byte range [19882, 19910); length=28 bytes.
+- [evidence-m03-bac66dba68775db4] Message held_out.ubx-47497f62366e-message-000307 framed by infer rule at byte range [17800, 17856); length=56 bytes.
+- [evidence-m03-bbd7f95135f8ca65] Message held_out.ubx-47497f62366e-message-000373 framed by infer rule at byte range [21724, 21824); length=100 bytes.
+- [evidence-m03-bbe43b3efddb303e] Message held_out.ubx-47497f62366e-message-000094 framed by infer rule at byte range [5960, 6132); length=172 bytes.
+- [evidence-m03-bbff1cfd85128870] Message held_out.ubx-47497f62366e-message-000091 framed by infer rule at byte range [5748, 5920); length=172 bytes.
+- [evidence-m03-bcd8b1b3271c40b1] Message held_out.ubx-47497f62366e-message-000350 framed by infer rule at byte range [20248, 20276); length=28 bytes.
+- [evidence-m03-bce566a1dfec2cf4] Message held_out.ubx-47497f62366e-message-000187 framed by infer rule at byte range [10772, 10828); length=56 bytes.
+- [evidence-m03-bd39f0930a5ecb28] Message held_out.ubx-47497f62366e-message-000069 framed by infer rule at byte range [4586, 4612); length=26 bytes.
+- [evidence-m03-bdb987ecbaab6465] Message held_out.ubx-47497f62366e-message-000584 framed by infer rule at byte range [34476, 34504); length=28 bytes.
+- [evidence-m03-be40185440f2cc05] Message held_out.ubx-47497f62366e-message-000377 framed by infer rule at byte range [21972, 22072); length=100 bytes.
+- [evidence-m03-be4094856e8d98c8] Message held_out.ubx-47497f62366e-message-000218 framed by infer rule at byte range [12926, 12938); length=12 bytes.
+- [evidence-m03-bf1d25c35d6f6c2b] Message held_out.ubx-47497f62366e-message-000625 framed by infer rule at byte range [37086, 37114); length=28 bytes.
+- [evidence-m03-bf801223d9e72e18] Message held_out.ubx-47497f62366e-message-000462 framed by infer rule at byte range [27270, 27322); length=52 bytes.
+- [evidence-m03-bfba000f932fd8c7] Message held_out.ubx-47497f62366e-message-000003 framed by infer rule at byte range [110, 282); length=172 bytes.
+- [evidence-m03-c02bebc21fa4964d] Message held_out.ubx-47497f62366e-message-000212 framed by infer rule at byte range [12442, 12470); length=28 bytes.
+- [evidence-m03-c0d9063017380901] Message held_out.ubx-47497f62366e-message-000340 framed by infer rule at byte range [19762, 19774); length=12 bytes.
+- [evidence-m03-c20c2bcfdb3f997e] Message held_out.ubx-47497f62366e-message-000637 framed by infer rule at byte range [37798, 37826); length=28 bytes.
+- [evidence-m03-c237c7dd3aa4ae86] Message held_out.ubx-47497f62366e-message-000508 framed by infer rule at byte range [29702, 29802); length=100 bytes.
+- [evidence-m03-c23920cef941eb10] Message held_out.ubx-47497f62366e-message-000437 framed by infer rule at byte range [25722, 25750); length=28 bytes.
+- [evidence-m03-c29d189c405d95ac] Message held_out.ubx-47497f62366e-message-000545 framed by infer rule at byte range [32134, 32162); length=28 bytes.
+- [evidence-m03-c2b224486ec812df] Message held_out.ubx-47497f62366e-message-000041 framed by infer rule at byte range [2772, 2956); length=184 bytes.
+- [evidence-m03-c2fb4d6965ae51e1] Message held_out.ubx-47497f62366e-message-000014 framed by infer rule at byte range [870, 970); length=100 bytes.
+- [evidence-m03-c324c40a68ba3670] Message held_out.ubx-47497f62366e-message-000464 framed by infer rule at byte range [27350, 27450); length=100 bytes.
+- [evidence-m03-c32e34fcdba157ef] Message held_out.ubx-47497f62366e-message-000125 framed by infer rule at byte range [7804, 7828); length=24 bytes.
+- [evidence-m03-c3e6282358da8411] Message held_out.ubx-47497f62366e-message-000300 framed by infer rule at byte range [17372, 17424); length=52 bytes.
+- [evidence-m03-c440c4f98f8a869b] Message held_out.ubx-47497f62366e-message-000086 framed by infer rule at byte range [5556, 5584); length=28 bytes.
+- [evidence-m03-c46d99f1fce42226] Message held_out.ubx-47497f62366e-message-000319 framed by infer rule at byte range [18490, 18518); length=28 bytes.
+- [evidence-m03-c508f530cbdba476] Message held_out.ubx-47497f62366e-message-000071 framed by infer rule at byte range [4712, 4736); length=24 bytes.
+- [evidence-m03-c6c25f709abde12b] Message held_out.ubx-47497f62366e-message-000181 framed by infer rule at byte range [10442, 10470); length=28 bytes.
+- [evidence-m03-c6f95781e193c80e] Message held_out.ubx-47497f62366e-message-000197 framed by infer rule at byte range [11448, 11504); length=56 bytes.
+- [evidence-m03-c7556789cc0d6a4e] Message held_out.ubx-47497f62366e-message-000548 framed by infer rule at byte range [32242, 32270); length=28 bytes.
+- [evidence-m03-c7d17f9f17e4283c] Message held_out.ubx-47497f62366e-message-000142 framed by infer rule at byte range [8514, 8566); length=52 bytes.
+
+## 解释与假设
+
+- 未生成解释假设；确定性证据保持权威。
+
+## 无法判断
+
+- 未提供以下模块的经校验证据：M07、M08、M09、M10、M11。
+- [evidence-m01-3d3c7eb0a49c7ea6] File extension does not define the internal format.
+- [evidence-m01-3d3c7eb0a49c7ea6] Unavailable or partial metadata: direction, flow_identity, network_headers, packet_boundaries, timestamps
+- [evidence-m02-6f02bb36fdc6bafb] Entropy alone cannot distinguish encryption, compression, and random data.
+- [evidence-m03-00099d057a8f53a1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-00099d057a8f53a1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-001d699becd3164b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-001d699becd3164b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-002cb9be1bb6ca6f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-002cb9be1bb6ca6f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-00f0854b5bcd2bc9] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-00f0854b5bcd2bc9] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-01539b0313673774] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-01539b0313673774] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0184e13dafb8ccdc] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0184e13dafb8ccdc] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-01e2447728ac8faa] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-01e2447728ac8faa] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-021182c004bac0f3] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-021182c004bac0f3] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-037c3b21467b31d5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-037c3b21467b31d5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-03abc1db29991dd7] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-03abc1db29991dd7] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-04214dddd6ed21d4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-04214dddd6ed21d4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-049248d3eb8961c1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-049248d3eb8961c1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-049a06e265ad17dc] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-049a06e265ad17dc] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-04f312634156f830] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-04f312634156f830] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-05ad38920f782e78] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-05ad38920f782e78] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-05f18cdde4d87f29] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-05f18cdde4d87f29] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0647fb087db21e0f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0647fb087db21e0f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-064bbaaca9c9922f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-064bbaaca9c9922f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-067be9ead41aa66f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-067be9ead41aa66f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0688a4765d5394fb] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0688a4765d5394fb] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-07ad59f035250a08] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-07ad59f035250a08] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-07e8436e9ddd2696] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-07e8436e9ddd2696] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-07f6dc1c2a6e7908] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-07f6dc1c2a6e7908] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0803e2f69ab39c6e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0803e2f69ab39c6e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-084d1ec5b38ccc9d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-084d1ec5b38ccc9d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0866931de15b56de] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0866931de15b56de] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-092e00bcafe2a2d6] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-092e00bcafe2a2d6] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-09aa0c06f94b3570] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-09aa0c06f94b3570] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-09ac5ee94b2bec17] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-09ac5ee94b2bec17] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-09db77a95890d28d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-09db77a95890d28d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0a21519ca0d4f854] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0a21519ca0d4f854] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0aa784b46ec3ea19] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0aa784b46ec3ea19] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0b166b7a2eb320bc] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0b166b7a2eb320bc] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0b16fa15886cbc71] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0b16fa15886cbc71] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0b267de46760da53] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0b267de46760da53] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0bcd8810e1e4d93d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0bcd8810e1e4d93d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0be4a311e157c493] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0be4a311e157c493] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0c1a9cacc003970a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0c1a9cacc003970a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0c4784945d528ad1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0c4784945d528ad1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0d4af3c196d34f80] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0d4af3c196d34f80] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0dea3828ec5d247b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0dea3828ec5d247b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0df8da767ea4387c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0df8da767ea4387c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0e26d1585777e1ef] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0e26d1585777e1ef] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0e6d126f34a5f5f5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0e6d126f34a5f5f5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0efc3a7225c60696] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0efc3a7225c60696] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0f08ad46ff901217] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0f08ad46ff901217] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0f3506b0a7a4dfa5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0f3506b0a7a4dfa5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0f3dfcbc60c5f14d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0f3dfcbc60c5f14d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0f746434114eefdf] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0f746434114eefdf] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0f89b8e362db4551] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0f89b8e362db4551] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0f960906137ba56a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0f960906137ba56a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0ffd2ec05eda405a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0ffd2ec05eda405a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-0fff58f4a673bb7d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-0fff58f4a673bb7d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1042389502c7c2f8] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1042389502c7c2f8] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-10499e032225b99a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-10499e032225b99a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1063905b2955f436] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1063905b2955f436] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-108fca406c2b89e5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-108fca406c2b89e5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-10c379fc79265cdc] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-10c379fc79265cdc] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-10cc9a7a6a5a05ba] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-10cc9a7a6a5a05ba] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-10d1e5a73a749531] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-10d1e5a73a749531] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-11f96b19cafa62d5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-11f96b19cafa62d5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1221c3f95dcb41d6] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1221c3f95dcb41d6] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-125757b3f2a9690b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-125757b3f2a9690b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-12e1907b0473e5de] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-12e1907b0473e5de] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-13b212246b4de599] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-13b212246b4de599] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-13b6ddb2c907d6f2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-13b6ddb2c907d6f2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-13d1ec89207d3723] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-13d1ec89207d3723] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-143aceb0a20abc5e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-143aceb0a20abc5e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-144b8a17fe6c5a07] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-144b8a17fe6c5a07] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-14968354df951985] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-14968354df951985] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1496a6234b1398fd] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1496a6234b1398fd] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-14a1936a377bc600] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-14a1936a377bc600] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-14ef7ac3e972182a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-14ef7ac3e972182a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-15616ea8f97bcf45] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-15616ea8f97bcf45] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-159e9ae09feee80e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-159e9ae09feee80e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-159fbad1d1d869f2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-159fbad1d1d869f2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-15adc73cff625a14] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-15adc73cff625a14] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1607fccaf2eccaa5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1607fccaf2eccaa5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1666505b27f29052] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1666505b27f29052] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-169d5d5f85a2d8d7] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-169d5d5f85a2d8d7] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-16dcd32c845eeeb8] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-16dcd32c845eeeb8] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-171cc557b8c2d8c2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-171cc557b8c2d8c2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1778683bb9cb6f21] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1778683bb9cb6f21] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-17b697f5d8d9cd23] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-17b697f5d8d9cd23] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-17cb45856c2d0424] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-17cb45856c2d0424] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-194a418edca4fa25] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-194a418edca4fa25] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-197ebd0ca507c715] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-197ebd0ca507c715] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-19992c5ef8bb3985] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-19992c5ef8bb3985] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-19e67fd499cd53a4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-19e67fd499cd53a4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-19fcb427c6a901fa] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-19fcb427c6a901fa] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1a4c7d1fe4e3d1b4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1a4c7d1fe4e3d1b4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1a4d638733fc566d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1a4d638733fc566d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1a7e5c1df29a18fa] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1a7e5c1df29a18fa] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1ab1d7021ed0e37c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1ab1d7021ed0e37c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1c292d66e7030eff] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1c292d66e7030eff] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1ca3b16d5265c0a1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1ca3b16d5265c0a1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1d99f4bc4c889571] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1d99f4bc4c889571] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1dc36f21816e18cd] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1dc36f21816e18cd] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1dc6d016e4b0bb60] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1dc6d016e4b0bb60] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1de310be2a3babea] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1de310be2a3babea] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1e980d53b9be73a8] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1e980d53b9be73a8] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1ec91d8580e1291d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1ec91d8580e1291d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1f31683e13c47e50] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1f31683e13c47e50] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1f72ed567c688f83] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1f72ed567c688f83] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1f87d898c98d4a7d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1f87d898c98d4a7d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1f94e882cad9d8b2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1f94e882cad9d8b2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-1fffe85ac7547523] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-1fffe85ac7547523] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-20c40df5930d68a7] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-20c40df5930d68a7] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-222d75fe18756d3e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-222d75fe18756d3e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-22530ee3241ff654] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-22530ee3241ff654] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-22a87e0fddd4c8d5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-22a87e0fddd4c8d5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-234e665882b3ad6c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-234e665882b3ad6c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2413d572dad1c0b2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2413d572dad1c0b2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-242d52601290b0b2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-242d52601290b0b2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-25b5d4a623f799b9] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-25b5d4a623f799b9] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-25d805ee4199e1ff] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-25d805ee4199e1ff] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-25e23a7f90a5c61b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-25e23a7f90a5c61b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-25ed26eb31d600fb] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-25ed26eb31d600fb] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-26d6d1348a17c6c3] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-26d6d1348a17c6c3] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2745cc109aac6a2f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2745cc109aac6a2f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-275be8a6c781d418] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-275be8a6c781d418] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-278575c8634e70a1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-278575c8634e70a1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-27a6c225b860e2dc] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-27a6c225b860e2dc] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2814d23d4fa0219f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2814d23d4fa0219f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-288556909b9d2c6b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-288556909b9d2c6b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2899d91ce1983434] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2899d91ce1983434] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-28f25dc9f5ff0a2a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-28f25dc9f5ff0a2a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-28ff146fbfa5e9e3] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-28ff146fbfa5e9e3] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-29b7a0ea9a7d80a8] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-29b7a0ea9a7d80a8] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-29d24c9508885f8a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-29d24c9508885f8a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2a8cc104f246bbe2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2a8cc104f246bbe2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2aa385b3b059f316] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2aa385b3b059f316] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2b5126ca86a721cf] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2b5126ca86a721cf] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2b5eaa4e3f0550cb] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2b5eaa4e3f0550cb] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2b6f704781fa038b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2b6f704781fa038b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2c08eb7c3c34ff03] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2c08eb7c3c34ff03] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2d0f5eb009b76f01] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2d0f5eb009b76f01] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2d487546e30e2c49] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2d487546e30e2c49] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2d8eda8701ac91b5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2d8eda8701ac91b5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2e7a41464ba4d5cf] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2e7a41464ba4d5cf] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2eb0301b9f705b73] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2eb0301b9f705b73] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2f25622b7dc38659] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2f25622b7dc38659] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-2fec877c7caa3119] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-2fec877c7caa3119] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-300617fea6840c56] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-300617fea6840c56] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-30a4133400139c6e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-30a4133400139c6e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-30bed047240c196a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-30bed047240c196a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-30c4a0f9a8a1405c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-30c4a0f9a8a1405c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-3153cb7752ae3ecf] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-3153cb7752ae3ecf] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-316e40bf9575568b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-316e40bf9575568b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-3198f66801525382] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-3198f66801525382] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-31afb7a016578597] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-31afb7a016578597] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-31daaaf40c1cce10] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-31daaaf40c1cce10] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-333320000c9a0533] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-333320000c9a0533] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-334ea05ca40446a3] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-334ea05ca40446a3] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-33903cbd6fbbfe85] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-33903cbd6fbbfe85] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-33bcfb4f7ec64aa6] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-33bcfb4f7ec64aa6] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-33e1ab841935c17c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-33e1ab841935c17c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-341624e08bf6590c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-341624e08bf6590c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-347999ed763439ee] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-347999ed763439ee] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-350a918bbe8c8195] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-350a918bbe8c8195] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-352200171b005c3c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-352200171b005c3c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-353af97906e23621] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-353af97906e23621] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-359cc3f8e01e46fe] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-359cc3f8e01e46fe] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-35e26cf5897bae37] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-35e26cf5897bae37] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-36aa6372807e6474] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-36aa6372807e6474] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-36ac1605bc9158d7] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-36ac1605bc9158d7] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-3750d94e2a425f4b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-3750d94e2a425f4b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-3761e430c6da7e5e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-3761e430c6da7e5e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-3786d6cf16527a25] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-3786d6cf16527a25] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-38277b011acac8ee] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-38277b011acac8ee] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-38340d9c028a49d9] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-38340d9c028a49d9] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-38d1b40a21efc1b0] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-38d1b40a21efc1b0] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-39702d8d63ed3f95] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-39702d8d63ed3f95] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-39cedc912bdee579] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-39cedc912bdee579] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-3bc46df3fac8eced] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-3bc46df3fac8eced] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-3e048bdfb1fdcd37] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-3e048bdfb1fdcd37] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-3e362a61d23c9162] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-3e362a61d23c9162] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-3e602dd6584d4c7c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-3e602dd6584d4c7c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-3e9afa91b9585a59] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-3e9afa91b9585a59] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-403cfc403f98b5e4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-403cfc403f98b5e4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-406529b65e3a3e99] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-406529b65e3a3e99] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-40dfb7c4416819b8] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-40dfb7c4416819b8] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-40f9c644e439be35] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-40f9c644e439be35] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4192e256b6c456f7] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4192e256b6c456f7] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4201f02c562f3529] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4201f02c562f3529] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-425cfa9379b942f5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-425cfa9379b942f5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-42620c21b28fb825] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-42620c21b28fb825] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-43415c7c5b0d44bd] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-43415c7c5b0d44bd] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-438cec7d63a2e83b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-438cec7d63a2e83b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-441b8dd660dfec27] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-441b8dd660dfec27] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-44bb3df35601e728] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-44bb3df35601e728] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4585b74b62b8d081] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4585b74b62b8d081] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-458a3f21120d8fa4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-458a3f21120d8fa4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-461fa3a31fb56e38] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-461fa3a31fb56e38] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-46493b0463fa9876] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-46493b0463fa9876] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-48e633e59b1314ea] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-48e633e59b1314ea] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-49b113f204f87ec4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-49b113f204f87ec4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4aa4124812f62f58] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4aa4124812f62f58] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4af858c9498c6f29] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4af858c9498c6f29] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4b504839d74009df] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4b504839d74009df] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4bc126581e082b67] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4bc126581e082b67] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4be38404124c9437] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4be38404124c9437] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4c15a3226904afda] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4c15a3226904afda] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4c39c8a371cc313f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4c39c8a371cc313f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4c4b5a6f95a83420] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4c4b5a6f95a83420] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4c80f391aebbe532] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4c80f391aebbe532] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4cd1dff5fcc2b86b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4cd1dff5fcc2b86b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4cf903109b2e7214] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4cf903109b2e7214] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4d838d3ad27663c5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4d838d3ad27663c5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4e220cc66867b40c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4e220cc66867b40c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4efadb0cd6c3a8fd] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4efadb0cd6c3a8fd] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-4f50ee6329d20ccb] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-4f50ee6329d20ccb] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5004be01e69fe83f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5004be01e69fe83f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-506776c3151c8e1d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-506776c3151c8e1d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-50f5a136ca918aea] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-50f5a136ca918aea] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-521a063958b2a37c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-521a063958b2a37c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5295ab8b87af8352] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5295ab8b87af8352] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-52a50ef8ed2af422] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-52a50ef8ed2af422] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-532b15ad7d2eb809] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-532b15ad7d2eb809] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5378f13c8d76f5aa] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5378f13c8d76f5aa] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-538cc19b62f524f3] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-538cc19b62f524f3] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-53a38b2e9ff45d97] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-53a38b2e9ff45d97] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-53c9c97a6c3b6595] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-53c9c97a6c3b6595] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-543f5b873eb5e76d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-543f5b873eb5e76d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-546f8479f8d68004] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-546f8479f8d68004] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5473f9cba032c944] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5473f9cba032c944] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-548f4d2c2a1fcf63] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-548f4d2c2a1fcf63] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-54fea3b792a274dd] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-54fea3b792a274dd] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5621dcbaeb453993] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5621dcbaeb453993] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5674e8dfd3bdf425] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5674e8dfd3bdf425] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5699b2a022154130] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5699b2a022154130] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-56d764a6b39f08f1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-56d764a6b39f08f1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-56e25a2be198584b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-56e25a2be198584b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-570d7f4b3cc78122] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-570d7f4b3cc78122] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-574ec9af053aadfa] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-574ec9af053aadfa] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-57589c499bc2f466] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-57589c499bc2f466] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-585701dd1c1a2d69] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-585701dd1c1a2d69] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-58b2bbe6c8802a7e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-58b2bbe6c8802a7e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-58bd9e385159ddda] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-58bd9e385159ddda] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-58d89fcf8fd37d9a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-58d89fcf8fd37d9a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-58e7120891ae04ee] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-58e7120891ae04ee] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-58f5de2976d438c0] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-58f5de2976d438c0] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-58fbbbcbda23ef8f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-58fbbbcbda23ef8f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-59b3a222902d83b4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-59b3a222902d83b4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5a7c480c35f650c8] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5a7c480c35f650c8] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5af63907862c2481] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5af63907862c2481] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5b37264ff3ec6eea] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5b37264ff3ec6eea] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5b90931c52a5a112] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5b90931c52a5a112] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5bc5d36b6c9aa110] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5bc5d36b6c9aa110] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5c51b88afd4a8e11] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5c51b88afd4a8e11] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5e001d5869a4b86f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5e001d5869a4b86f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5e0dbb61f0f1d4e9] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5e0dbb61f0f1d4e9] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5e5b142324f15619] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5e5b142324f15619] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5ec36a504410e2de] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5ec36a504410e2de] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5edb6c9c612b453f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5edb6c9c612b453f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5f388a0ac5add99e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5f388a0ac5add99e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5f749cccb2b3c69e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5f749cccb2b3c69e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5f84886748706fe3] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5f84886748706fe3] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5f85cf44ec841a53] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5f85cf44ec841a53] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-5fdda1ba109e6b61] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-5fdda1ba109e6b61] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6009ddbd397fe12e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6009ddbd397fe12e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6018ae7fd87d66f1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6018ae7fd87d66f1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-601fe573a46643b8] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-601fe573a46643b8] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6108f9924e20c56f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6108f9924e20c56f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6116b07cdc536bba] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6116b07cdc536bba] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-615d873049ff0187] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-615d873049ff0187] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-61ae200ba75cdf49] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-61ae200ba75cdf49] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6241a9b8b4ad50d9] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6241a9b8b4ad50d9] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-62adf581297809f4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-62adf581297809f4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-63311ed21497ad01] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-63311ed21497ad01] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-636e7f6ef66010f0] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-636e7f6ef66010f0] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-637a099f24d5d4af] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-637a099f24d5d4af] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-64b28c36093c9e2d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-64b28c36093c9e2d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-64d58792f5756f54] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-64d58792f5756f54] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-64d7db398fc801f2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-64d7db398fc801f2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6517f85be8274ad5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6517f85be8274ad5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-653a1ca360a81517] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-653a1ca360a81517] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-653fdb97ad7bd609] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-653fdb97ad7bd609] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-65527e3194d3200c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-65527e3194d3200c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-65f4259f2cfd277b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-65f4259f2cfd277b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6607e5252549818d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6607e5252549818d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-669830b839eca41a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-669830b839eca41a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-67b3911787a489a6] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-67b3911787a489a6] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-68127dc39115cab6] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-68127dc39115cab6] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-681903f9a4d72f3f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-681903f9a4d72f3f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-681c0ecff9e930e6] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-681c0ecff9e930e6] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-687a223c185326b4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-687a223c185326b4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-69592b7dd3d11399] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-69592b7dd3d11399] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6a34c913ae6c3f25] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6a34c913ae6c3f25] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6afae5d44854cdbf] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6afae5d44854cdbf] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6b556936702d5d51] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6b556936702d5d51] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6c01a7914c231252] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6c01a7914c231252] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6c906b091ea4a865] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6c906b091ea4a865] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6c99ca003f44dfbb] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6c99ca003f44dfbb] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6cb77293556494e5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6cb77293556494e5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6d010e933aaec10e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6d010e933aaec10e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6d4f2d68893ff443] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6d4f2d68893ff443] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6eab94c0518a4628] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6eab94c0518a4628] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6f3bd7e7b112ff56] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6f3bd7e7b112ff56] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-6f44cf26168c91dc] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-6f44cf26168c91dc] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-70d551a414b00fd8] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-70d551a414b00fd8] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-71504d6372d02ac9] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-71504d6372d02ac9] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-719871c117a59151] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-719871c117a59151] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7244300d85047a8c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7244300d85047a8c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-72602766f841ff08] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-72602766f841ff08] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-730e454a0da49bb5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-730e454a0da49bb5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-73160f6ee6125b62] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-73160f6ee6125b62] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7357961e6cec917f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7357961e6cec917f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-738a1c1ab2773ebf] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-738a1c1ab2773ebf] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7399e93dc6ff6d8c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7399e93dc6ff6d8c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-744421c3d9a51c6e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-744421c3d9a51c6e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-74483dfa4bf0ce58] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-74483dfa4bf0ce58] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7490d4cc5400f40a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7490d4cc5400f40a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-750e126c453ef69c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-750e126c453ef69c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-75a38b97291dd00a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-75a38b97291dd00a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-75bb7677bf2f0d46] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-75bb7677bf2f0d46] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-75bb79d7d43d7c5e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-75bb79d7d43d7c5e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-75dfb698c5e36eb5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-75dfb698c5e36eb5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-76420d180bbec974] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-76420d180bbec974] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-766ead8b14b5435e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-766ead8b14b5435e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7693993a0f3869bc] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7693993a0f3869bc] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-76cea8554803c753] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-76cea8554803c753] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-77002c87d563cb2e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-77002c87d563cb2e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-77262dd1b7153382] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-77262dd1b7153382] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7749dc4a72946633] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7749dc4a72946633] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-794dbc5b02bc8b6d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-794dbc5b02bc8b6d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-79c2ea71db8366de] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-79c2ea71db8366de] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7a6a55a6dc2b76a9] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7a6a55a6dc2b76a9] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7a9c49412744f26b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7a9c49412744f26b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7ab1c62a198a4d91] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7ab1c62a198a4d91] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7af58b0daf0accc5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7af58b0daf0accc5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7b339706685f9f72] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7b339706685f9f72] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7ba8f0c3b98777bf] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7ba8f0c3b98777bf] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7c741a1bd4e0d9fd] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7c741a1bd4e0d9fd] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7cdd55f2f1a9b4fd] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7cdd55f2f1a9b4fd] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7dd73bb6fed29233] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7dd73bb6fed29233] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7df33a1785a9b24e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7df33a1785a9b24e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7e18079c4ff5b125] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7e18079c4ff5b125] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7e8e991ccf6e0827] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7e8e991ccf6e0827] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7edf337966390a22] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7edf337966390a22] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7f35e85ff30dc898] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7f35e85ff30dc898] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7fa3e5ac34d446a5] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7fa3e5ac34d446a5] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-7fe4802edf0edf44] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-7fe4802edf0edf44] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-807eb571890fcc21] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-807eb571890fcc21] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-81688c37fbafa216] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-81688c37fbafa216] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-823724a2c16976e4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-823724a2c16976e4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-825250dfcb19a68b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-825250dfcb19a68b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-8396fde76159439b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-8396fde76159439b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-83be2d07c5c36922] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-83be2d07c5c36922] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-84368e8e4552869e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-84368e8e4552869e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-85186d66fe373a0b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-85186d66fe373a0b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-85272c45a1ac3360] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-85272c45a1ac3360] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-85552dee72edec6f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-85552dee72edec6f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-85f2db8d61969ac2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-85f2db8d61969ac2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-86009053d5175d55] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-86009053d5175d55] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-8627b989cc86335d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-8627b989cc86335d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-867bdf4d6999c1f3] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-867bdf4d6999c1f3] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-87323e54cff3a2fa] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-87323e54cff3a2fa] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-87f889f68e7d77fb] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-87f889f68e7d77fb] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-88025a24f5f9c34f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-88025a24f5f9c34f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-88d0c29e5aef5c36] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-88d0c29e5aef5c36] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-89373235e69c4aa3] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-89373235e69c4aa3] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-8a8c7d177d29450c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-8a8c7d177d29450c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-8b900c543eba1dac] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-8b900c543eba1dac] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-8c1d5ce53bfb0f75] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-8c1d5ce53bfb0f75] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-8c7ee15ea6cddbbf] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-8c7ee15ea6cddbbf] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-8cd659757ee70978] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-8cd659757ee70978] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-8d48452b17482aee] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-8d48452b17482aee] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-8e0a6edd8421d377] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-8e0a6edd8421d377] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-8e8319c23752012a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-8e8319c23752012a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-8fd8ab6bc962c8ae] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-8fd8ab6bc962c8ae] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-90c30e44d8a54160] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-90c30e44d8a54160] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-90fcaae92f55fb46] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-90fcaae92f55fb46] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9116c895555a0018] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9116c895555a0018] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-91ca51dc112db6e1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-91ca51dc112db6e1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-921cebcecebc8771] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-921cebcecebc8771] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-926f6d07ff25bb2d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-926f6d07ff25bb2d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-92b1b431bf353a3e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-92b1b431bf353a3e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-92b704b33013fcb9] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-92b704b33013fcb9] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-942888ff22cf305a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-942888ff22cf305a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-94af4f6e800c2660] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-94af4f6e800c2660] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-94e5b2b301ea118a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-94e5b2b301ea118a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-953c78fc2a7842d3] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-953c78fc2a7842d3] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9629ca9f422619e6] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9629ca9f422619e6] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-965f362109d9257c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-965f362109d9257c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-96e9469e12b8b9ff] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-96e9469e12b8b9ff] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-972551ceffc694ee] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-972551ceffc694ee] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9798d37ec11536b8] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9798d37ec11536b8] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-98096bf065a8e89f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-98096bf065a8e89f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-98412e923a94a63b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-98412e923a94a63b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-986541e2d6c27a1b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-986541e2d6c27a1b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-98727138664b9068] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-98727138664b9068] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-992645f5e289369d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-992645f5e289369d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9983daf8cd4a2b66] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9983daf8cd4a2b66] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9b2b6082c2733679] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9b2b6082c2733679] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9b36f53ba35c4338] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9b36f53ba35c4338] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9b57c82b8952698f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9b57c82b8952698f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9b80f098f36ae7c0] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9b80f098f36ae7c0] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9ba83ef135df935b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9ba83ef135df935b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9bb7450aa90ffdcf] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9bb7450aa90ffdcf] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9c3e0a8c8f991db3] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9c3e0a8c8f991db3] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9c49847263dac6fd] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9c49847263dac6fd] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9c72ec7907648f37] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9c72ec7907648f37] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9c8b5cc8ce6e10c7] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9c8b5cc8ce6e10c7] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9d4c2944195921ee] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9d4c2944195921ee] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9dc7a64c16065698] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9dc7a64c16065698] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9de5f15fe82cd7e3] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9de5f15fe82cd7e3] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9e8df9b261f8bf10] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9e8df9b261f8bf10] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-9f1bd2e9509656bf] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-9f1bd2e9509656bf] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a056836c25d885cb] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a056836c25d885cb] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a0ca564b12420235] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a0ca564b12420235] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a0de033c06269803] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a0de033c06269803] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a23161c757806f27] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a23161c757806f27] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a261e2401648f564] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a261e2401648f564] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a4849b8015daed23] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a4849b8015daed23] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a51bafec90662d16] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a51bafec90662d16] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a59345d62dbf65eb] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a59345d62dbf65eb] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a59bc34682d6b89c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a59bc34682d6b89c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a6e3d1af154aa059] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a6e3d1af154aa059] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a7b43bc946f7aa67] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a7b43bc946f7aa67] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a7c86cf572f29b02] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a7c86cf572f29b02] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a7fe6d7d03fb4751] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a7fe6d7d03fb4751] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a809a69a4cf06e5f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a809a69a4cf06e5f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a820b175bb4ada88] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a820b175bb4ada88] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a8eef3407da0cefe] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a8eef3407da0cefe] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a993f3bf849e7247] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a993f3bf849e7247] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-a9fcefd71739550d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-a9fcefd71739550d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-aa266002f92253e0] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-aa266002f92253e0] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-aa8fe7d97c94aefe] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-aa8fe7d97c94aefe] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-aaa08e18c4f476a1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-aaa08e18c4f476a1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-aaae4ef536a3b161] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-aaae4ef536a3b161] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-aba35aa6421ebd6c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-aba35aa6421ebd6c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-ac61736170e990e6] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-ac61736170e990e6] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-aca471930cd5e031] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-aca471930cd5e031] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-acc6f8b95a6d647f] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-acc6f8b95a6d647f] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-acdadcedc7841be1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-acdadcedc7841be1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-ad1bf5d62ede2a07] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-ad1bf5d62ede2a07] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-ad614f9c994b3f1a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-ad614f9c994b3f1a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-ad77fc69fbf0a4e2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-ad77fc69fbf0a4e2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-addfefff324144c2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-addfefff324144c2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-ae05a91d52d96d6d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-ae05a91d52d96d6d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-ae36ec0267dfd6e1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-ae36ec0267dfd6e1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-af99c86802fc3da1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-af99c86802fc3da1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b12a6f37b474597d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b12a6f37b474597d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b16982470e41066a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b16982470e41066a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b177522178ff6aa8] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b177522178ff6aa8] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b1d23bd4ab3a78df] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b1d23bd4ab3a78df] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b25ca620c8e95843] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b25ca620c8e95843] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b28d75e0f8756284] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b28d75e0f8756284] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b2aeee689337ca57] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b2aeee689337ca57] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b2fdbe41aec69e1a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b2fdbe41aec69e1a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b3058f3a6492d5ed] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b3058f3a6492d5ed] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b3ad553a5e7523e2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b3ad553a5e7523e2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b3aec1d5a797d324] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b3aec1d5a797d324] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b3c7aa8438a347ba] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b3c7aa8438a347ba] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b4c9ee5ff0babfad] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b4c9ee5ff0babfad] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b56caa9e362658d7] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b56caa9e362658d7] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b59bc476121c21a2] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b59bc476121c21a2] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b5d7f9faa2688041] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b5d7f9faa2688041] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b6cf13697764bedb] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b6cf13697764bedb] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b9094316873e7a80] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b9094316873e7a80] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b92ae2053c676da7] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b92ae2053c676da7] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-b9a62fafc1006747] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-b9a62fafc1006747] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-ba025650868c5a8a] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-ba025650868c5a8a] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-ba19b0ded9e07617] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-ba19b0ded9e07617] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-ba20dcbba30c1993] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-ba20dcbba30c1993] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-ba89938823c79dae] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-ba89938823c79dae] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-bac66dba68775db4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-bac66dba68775db4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-bbd7f95135f8ca65] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-bbd7f95135f8ca65] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-bbe43b3efddb303e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-bbe43b3efddb303e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-bbff1cfd85128870] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-bbff1cfd85128870] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-bcd8b1b3271c40b1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-bcd8b1b3271c40b1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-bce566a1dfec2cf4] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-bce566a1dfec2cf4] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-bd39f0930a5ecb28] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-bd39f0930a5ecb28] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-bdb987ecbaab6465] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-bdb987ecbaab6465] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-be40185440f2cc05] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-be40185440f2cc05] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-be4094856e8d98c8] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-be4094856e8d98c8] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-bf1d25c35d6f6c2b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-bf1d25c35d6f6c2b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-bf801223d9e72e18] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-bf801223d9e72e18] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-bfba000f932fd8c7] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-bfba000f932fd8c7] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c02bebc21fa4964d] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c02bebc21fa4964d] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c0d9063017380901] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c0d9063017380901] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c20c2bcfdb3f997e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c20c2bcfdb3f997e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c237c7dd3aa4ae86] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c237c7dd3aa4ae86] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c23920cef941eb10] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c23920cef941eb10] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c29d189c405d95ac] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c29d189c405d95ac] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c2b224486ec812df] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c2b224486ec812df] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c2fb4d6965ae51e1] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c2fb4d6965ae51e1] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c324c40a68ba3670] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c324c40a68ba3670] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c32e34fcdba157ef] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c32e34fcdba157ef] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c3e6282358da8411] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c3e6282358da8411] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c440c4f98f8a869b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c440c4f98f8a869b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c46d99f1fce42226] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c46d99f1fce42226] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c508f530cbdba476] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c508f530cbdba476] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c6c25f709abde12b] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c6c25f709abde12b] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c6f95781e193c80e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c6f95781e193c80e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c7556789cc0d6a4e] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c7556789cc0d6a4e] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+- [evidence-m03-c7d17f9f17e4283c] Framing boundaries are hypotheses, not protocol truth.
+- [evidence-m03-c7d17f9f17e4283c] Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed.
+
+## 后续建议
+
+- 获取缺失模块的合法 artifact 后重新生成报告。

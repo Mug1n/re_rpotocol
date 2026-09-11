@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "held_out.ubx-47497f62366e",
+  "path": "data\\external\\wireshark-ubx-true\\heldout-v1\\held_out.ubx.bin",
+  "sha256": "47497f62366e95028ae85776d734f950a57184415e18009cd711a0eda2e351da",
+  "length": 37878,
+  "format": "raw_bytes",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-NO-KNOWN-MAGIC",
+      "observation": "No validated capture/container signature; filename suffix was not used as proof."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": false,
+    "network_headers": false,
+    "flow_identity": false,
+    "direction": false,
+    "timestamps": false
+  },
+  "status": "ok",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 37878,
+      "artifact_ref": "payloads/held_out.ubx-47497f62366e.bin"
+    }
+  ],
+  "packets": [],
+  "flows": [],
+  "streams": [],
+  "warnings": [
+    "File extension does not define the internal format."
+  ]
+}

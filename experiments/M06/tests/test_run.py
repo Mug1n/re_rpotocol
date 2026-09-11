@@ -87,6 +87,14 @@ class InferenceTests(unittest.TestCase):
         result = self.module.analyze_cluster(cluster)
         self.assertEqual([], result["length_hypotheses"])
 
+    def test_inferred_payload_length_ranks_only_structural_boundaries(self):
+        candidates = self.module.rank_framing_boundaries({"parameters": {"selected": {
+            "length_mode": "payload", "length_offset": 4, "length_width": 2, "header_size": 8
+        }}})
+        self.assertEqual(["framing-length-start", "framing-payload-start", "framing-trailer-start"], [item["candidate_id"] for item in candidates])
+        self.assertEqual([4, 6], [item["position"]["offset"] for item in candidates[:2]])
+        self.assertEqual({"reference": "end", "offset": 2}, candidates[2]["position"])
+
     def test_invalid_offset_mapping_is_rejected(self):
         cluster = synthetic_cluster()
         cluster["rows"][0]["cells"][1][0] = 7

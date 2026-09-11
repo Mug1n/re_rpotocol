@@ -75,17 +75,29 @@ def evaluate(source: Path, truth_path: Path, profile: Path, output: Path) -> dic
         type_metrics.update({"ari": adjusted_rand_index(type_truth, type_predicted),
                              "nmi": normalized_mutual_information(type_truth, type_predicted)})
     candidate_boundaries: set[tuple[int, int]] = set()
-    for cluster in formats.get("cluster_formats", []):
-        for candidate in cluster.get("field_candidates", []):
-            for key in ("reference_offset_start", "reference_offset_end"):
-                value = candidate.get(key)
-                if value is not None:
-                    for message in framing["messages"]:
-                        if assignments.get(message["id"]) == str(cluster.get("cluster_id")) and 0 < value < message["length"]:
-                            candidate_boundaries.add((message["start"], message["start"] + value))
+    ranked = formats.get("ranked_boundary_candidates", [])
+    if ranked:
+        for candidate in ranked:
+            position = candidate["position"]
+            for message in framing["messages"]:
+                value = (message["start"] + position["offset"] if position["reference"] == "start"
+                         else message["end"] - position["offset"])
+                if message["start"] < value < message["end"]:
+                    candidate_boundaries.add((message["start"], value))
+        candidate_selection = "high_confidence_framing"
+    else:
+        for cluster in formats.get("cluster_formats", []):
+            for candidate in cluster.get("field_candidates", []):
+                for key in ("reference_offset_start", "reference_offset_end"):
+                    value = candidate.get(key)
+                    if value is not None:
+                        for message in framing["messages"]:
+                            if assignments.get(message["id"]) == str(cluster.get("cluster_id")) and 0 < value < message["length"]:
+                                candidate_boundaries.add((message["start"], message["start"] + value))
+        candidate_selection = "all_statistical_candidates_legacy"
     expected_fields = _field_boundaries(truth)
     matched = len(candidate_boundaries & expected_fields)
-    field_metrics = {"candidate_count": len(candidate_boundaries), "truth_boundary_count": len(expected_fields),
+    field_metrics = {"candidate_selection": candidate_selection, "candidate_count": len(candidate_boundaries), "truth_boundary_count": len(expected_fields),
                      "matched": matched,
                      "precision": matched / len(candidate_boundaries) if candidate_boundaries else 0.0,
                      "recall": matched / len(expected_fields) if expected_fields else 1.0}
