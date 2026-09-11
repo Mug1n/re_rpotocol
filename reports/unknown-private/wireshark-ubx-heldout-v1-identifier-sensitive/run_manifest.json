@@ -1,0 +1,157 @@
+{
+  "schema_version": "0.1",
+  "run_id": "run-47497f62366e-unknown-private-identifier-sensitive",
+  "status": "complete",
+  "started_at": "2026-09-11T15:24:17.869755+00:00",
+  "elapsed_seconds": 30.781183,
+  "input": {
+    "path": "data\\external\\wireshark-ubx-true\\heldout-v1\\held_out.ubx.bin",
+    "sha256": "47497f62366e95028ae85776d734f950a57184415e18009cd711a0eda2e351da",
+    "length": 37878
+  },
+  "profile": {
+    "path": "profiles\\unknown-private-identifier-sensitive.json",
+    "sha256": "9abf512c7400fc75e5eac55f37b5c669e4079b870942e14883d436a1b9aab43c",
+    "profile_id": "unknown-private-identifier-sensitive",
+    "schema_version": "0.1"
+  },
+  "environment": {
+    "python": "3.13.9",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "tshark": {
+      "path": null,
+      "available": false,
+      "version": null
+    }
+  },
+  "stages": [
+    {
+      "stage": "M01",
+      "status": "completed",
+      "elapsed_seconds": 0.005385,
+      "reason": null
+    },
+    {
+      "stage": "M02",
+      "status": "completed",
+      "elapsed_seconds": 0.098151,
+      "reason": null
+    },
+    {
+      "stage": "M03",
+      "status": "completed",
+      "elapsed_seconds": 0.537844,
+      "reason": null
+    },
+    {
+      "stage": "M04",
+      "status": "completed",
+      "elapsed_seconds": 24.833171,
+      "reason": null
+    },
+    {
+      "stage": "M05",
+      "status": "completed",
+      "elapsed_seconds": 1.192248,
+      "reason": null
+    },
+    {
+      "stage": "M06",
+      "status": "completed",
+      "elapsed_seconds": 0.224583,
+      "reason": null
+    },
+    {
+      "stage": "M12",
+      "status": "completed",
+      "elapsed_seconds": 3.746046,
+      "reason": null
+    }
+  ],
+  "artifacts": [
+    {
+      "module": "M01",
+      "instance_id": "input",
+      "path": "reports\\unknown-private\\wireshark-ubx-heldout-v1-identifier-sensitive\\m01\\result.json",
+      "sha256": "42f58526620e130fe812caaba85035a48fb21b662bbe5b5281bc98d01af14910",
+      "length": 946,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {
+        "input_sha256": "47497f62366e95028ae85776d734f950a57184415e18009cd711a0eda2e351da"
+      }
+    },
+    {
+      "module": "M02",
+      "instance_id": "input",
+      "path": "reports\\unknown-private\\wireshark-ubx-heldout-v1-identifier-sensitive\\m02\\features.json",
+      "sha256": "bdd65cd844e80910606385de644c05cb920cd6246e515f0a134229dcffe14bdc",
+      "length": 1148909,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M03",
+      "instance_id": "structure",
+      "path": "reports\\unknown-private\\wireshark-ubx-heldout-v1-identifier-sensitive\\m03\\framing.json",
+      "sha256": "cf2ec115976288d1db40c1f729fbbc15c6f3aa265d44c8fd62892c0d14c3cbb1",
+      "length": 453440,
+      "schema_version": "0.1",
+      "status": "complete",
+      "scope": {
+        "rule_origin": "automatically_inferred",
+        "source": "input"
+      }
+    },
+    {
+      "module": "M04",
+      "instance_id": "structure",
+      "path": "reports\\unknown-private\\wireshark-ubx-heldout-v1-identifier-sensitive\\m04\\clusters.json",
+      "sha256": "4d1e5fc2fa5a239b2cf4dc1312c676531a04a2f3bec53a8854654c733ca5e2d6",
+      "length": 159443,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M05",
+      "instance_id": "structure",
+      "path": "reports\\unknown-private\\wireshark-ubx-heldout-v1-identifier-sensitive\\m05\\alignments.json",
+      "sha256": "c46446fcba9bc92bb350e766822dcc9108b0446c4376e7d08a90a6878fb17d35",
+      "length": 3261385,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M06",
+      "instance_id": "structure",
+      "path": "reports\\unknown-private\\wireshark-ubx-heldout-v1-identifier-sensitive\\m06\\format.json",
+      "sha256": "6ad1e533da361798e05282fa02d914c84d89b2ec372519d06c01a033200921ac",
+      "length": 611497,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M12",
+      "instance_id": "report",
+      "path": "reports\\unknown-private\\wireshark-ubx-heldout-v1-identifier-sensitive\\m12\\report_manifest.json",
+      "sha256": "466e854802c5e3b26f96d684d355b82f241c8eb4325a97e8bee139baf7cec7d1",
+      "length": 42358,
+      "schema_version": "0.1",
+      "status": "partial",
+      "scope": {}
+    }
+  ],
+  "model": {
+    "status": "not_requested"
+  },
+  "limitations": [
+    "This profile assumes repeated early bytes may act as a type discriminator; that is a statistical hypothesis, not a protocol definition.",
+    "Only repeated length-prefixed hypotheses that cover the complete input are accepted automatically.",
+    "Message clusters are statistical groups, not confirmed protocol message types.",
+    "Field candidates and length relations are hypotheses; encrypted, compressed, delimited, or fixed-length formats can correctly remain unframed."
+  ]
+}

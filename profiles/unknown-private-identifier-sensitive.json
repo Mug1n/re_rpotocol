@@ -1,0 +1,11 @@
+{
+  "schema_version": "0.1",
+  "profile_id": "unknown-private-identifier-sensitive",
+  "description": "Label-free unknown binary stream analysis that gives equal weight to the first four observed bytes when proposing message-type partitions. It contains no protocol name, field definition, truth label, or decoder output.",
+  "stages": ["M01", "M02", "M03", "M04", "M05", "M06", "M12"],
+  "structure": {"source": "input", "rule": "infer", "rule_origin": "automatically_inferred", "parameters": {"max_header_size": 12, "max_frame_length": 1048576, "min_frames": 3}},
+  "m02": {"window_size": 256, "window_step": 256},
+  "m04": {"eps": 0.05, "min_samples": 2, "length_weight": 0.0, "histogram_weight": 0.0, "prefix_weight": 1.0, "prefix_length": 4},
+  "m12": {"max_evidence": 500},
+  "limitations": ["This profile assumes repeated early bytes may act as a type discriminator; that is a statistical hypothesis, not a protocol definition.", "Only repeated length-prefixed hypotheses that cover the complete input are accepted automatically.", "Message clusters are statistical groups, not confirmed protocol message types.", "Field candidates and length relations are hypotheses; encrypted, compressed, delimited, or fixed-length formats can correctly remain unframed."]
+}
