@@ -1,0 +1,6 @@
+GET /download HTTP/1.1
+Accept-Encoding: identity
+Host: 127.0.0.1:18080
+User-Agent: Python-urllib/3.13
+Connection: close
+
