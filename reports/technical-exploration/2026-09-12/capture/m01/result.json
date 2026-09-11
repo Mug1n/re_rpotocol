@@ -1,0 +1,363 @@
+{
+  "schema_version": "0.1",
+  "id": "http-brotli-dc3957f2348a",
+  "path": "data\\external\\raw\\wireshark-v4.6.0\\http-brotli.pcapng",
+  "sha256": "dc3957f2348adc8f148cd776bef9e4bc2b3d062edc1b2aedc7c2a2b92b60b055",
+  "length": 1840,
+  "format": "pcapng",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-PCAPNG-VALIDATED",
+      "observation": "validated 1 pcapng section(s) and all block lengths; capinfos reports PCAPNG."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": true,
+    "network_headers": true,
+    "flow_identity": true,
+    "direction": true,
+    "timestamps": true
+  },
+  "status": "ok",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 1840,
+      "artifact_ref": "data\\external\\raw\\wireshark-v4.6.0\\http-brotli.pcapng"
+    }
+  ],
+  "packets": [
+    {
+      "id": "http-brotli-dc3957f2348a-packet-1",
+      "source_id": "http-brotli-dc3957f2348a",
+      "index": 0,
+      "timestamp_epoch": "1554560767.302443532",
+      "interface_id": 0,
+      "captured_length": 74,
+      "original_length": 74,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "192.168.122.1",
+      "src_port": 52074,
+      "dst_ip": "192.168.122.33",
+      "dst_port": 80,
+      "tcp_seq_raw": 1065353262,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "http-brotli-dc3957f2348a-packet-2",
+      "source_id": "http-brotli-dc3957f2348a",
+      "index": 1,
+      "timestamp_epoch": "1554560767.302735579",
+      "interface_id": 0,
+      "captured_length": 74,
+      "original_length": 74,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "192.168.122.33",
+      "src_port": 80,
+      "dst_ip": "192.168.122.1",
+      "dst_port": 52074,
+      "tcp_seq_raw": 572640220,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "http-brotli-dc3957f2348a-packet-3",
+      "source_id": "http-brotli-dc3957f2348a",
+      "index": 2,
+      "timestamp_epoch": "1554560767.302771697",
+      "interface_id": 0,
+      "captured_length": 66,
+      "original_length": 66,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "192.168.122.1",
+      "src_port": 52074,
+      "dst_ip": "192.168.122.33",
+      "dst_port": 80,
+      "tcp_seq_raw": 1065353263,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "http-brotli-dc3957f2348a-packet-4",
+      "source_id": "http-brotli-dc3957f2348a",
+      "index": 3,
+      "timestamp_epoch": "1554560767.302831684",
+      "interface_id": 0,
+      "captured_length": 173,
+      "original_length": 173,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "192.168.122.1",
+      "src_port": 52074,
+      "dst_ip": "192.168.122.33",
+      "dst_port": 80,
+      "tcp_seq_raw": 1065353263,
+      "tcp_payload_length": 107,
+      "payload_ref": "payloads/http-brotli-dc3957f2348a-packet-000004.bin",
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "http-brotli-dc3957f2348a-packet-5",
+      "source_id": "http-brotli-dc3957f2348a",
+      "index": 4,
+      "timestamp_epoch": "1554560767.302903972",
+      "interface_id": 0,
+      "captured_length": 66,
+      "original_length": 66,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "192.168.122.33",
+      "src_port": 80,
+      "dst_ip": "192.168.122.1",
+      "dst_port": 52074,
+      "tcp_seq_raw": 572640221,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "http-brotli-dc3957f2348a-packet-6",
+      "source_id": "http-brotli-dc3957f2348a",
+      "index": 5,
+      "timestamp_epoch": "1554560767.303114991",
+      "interface_id": 0,
+      "captured_length": 386,
+      "original_length": 386,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "192.168.122.33",
+      "src_port": 80,
+      "dst_ip": "192.168.122.1",
+      "dst_port": 52074,
+      "tcp_seq_raw": 572640221,
+      "tcp_payload_length": 320,
+      "payload_ref": "payloads/http-brotli-dc3957f2348a-packet-000006.bin",
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "http-brotli-dc3957f2348a-packet-7",
+      "source_id": "http-brotli-dc3957f2348a",
+      "index": 6,
+      "timestamp_epoch": "1554560767.303134706",
+      "interface_id": 0,
+      "captured_length": 66,
+      "original_length": 66,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "192.168.122.1",
+      "src_port": 52074,
+      "dst_ip": "192.168.122.33",
+      "dst_port": 80,
+      "tcp_seq_raw": 1065353370,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "http-brotli-dc3957f2348a-packet-8",
+      "source_id": "http-brotli-dc3957f2348a",
+      "index": 7,
+      "timestamp_epoch": "1554560767.303329201",
+      "interface_id": 0,
+      "captured_length": 66,
+      "original_length": 66,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "192.168.122.1",
+      "src_port": 52074,
+      "dst_ip": "192.168.122.33",
+      "dst_port": 80,
+      "tcp_seq_raw": 1065353370,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "http-brotli-dc3957f2348a-packet-9",
+      "source_id": "http-brotli-dc3957f2348a",
+      "index": 8,
+      "timestamp_epoch": "1554560767.303556762",
+      "interface_id": 0,
+      "captured_length": 66,
+      "original_length": 66,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "192.168.122.33",
+      "src_port": 80,
+      "dst_ip": "192.168.122.1",
+      "dst_port": 52074,
+      "tcp_seq_raw": 572640541,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    },
+    {
+      "id": "http-brotli-dc3957f2348a-packet-10",
+      "source_id": "http-brotli-dc3957f2348a",
+      "index": 9,
+      "timestamp_epoch": "1554560767.303577595",
+      "interface_id": 0,
+      "captured_length": 66,
+      "original_length": 66,
+      "truncated": false,
+      "source_file_offset": null,
+      "source_offset_reason": "frame.file_off was not populated by tshark",
+      "tcp_stream": 0,
+      "src_ip": "192.168.122.1",
+      "src_port": 52074,
+      "dst_ip": "192.168.122.33",
+      "dst_port": 80,
+      "tcp_seq_raw": 1065353371,
+      "tcp_payload_length": 0,
+      "payload_ref": null,
+      "analysis": {
+        "retransmission": false,
+        "out_of_order": false,
+        "gap_or_loss": false
+      }
+    }
+  ],
+  "flows": [
+    {
+      "id": "http-brotli-dc3957f2348a-tcp-flow-0",
+      "source_id": "http-brotli-dc3957f2348a",
+      "transport": "tcp",
+      "tcp_stream": 0,
+      "node0": {
+        "ip": "192.168.122.1",
+        "port": 52074
+      },
+      "node1": {
+        "ip": "192.168.122.33",
+        "port": 80
+      },
+      "packet_ids": [
+        "http-brotli-dc3957f2348a-packet-1",
+        "http-brotli-dc3957f2348a-packet-2",
+        "http-brotli-dc3957f2348a-packet-3",
+        "http-brotli-dc3957f2348a-packet-4",
+        "http-brotli-dc3957f2348a-packet-5",
+        "http-brotli-dc3957f2348a-packet-6",
+        "http-brotli-dc3957f2348a-packet-7",
+        "http-brotli-dc3957f2348a-packet-8",
+        "http-brotli-dc3957f2348a-packet-9",
+        "http-brotli-dc3957f2348a-packet-10"
+      ],
+      "first_timestamp_epoch": "1554560767.302443532",
+      "last_timestamp_epoch": "1554560767.303577595"
+    }
+  ],
+  "streams": [
+    {
+      "id": "http-brotli-dc3957f2348a-tcp-stream-0",
+      "source_id": "http-brotli-dc3957f2348a",
+      "flow_id": "http-brotli-dc3957f2348a-tcp-flow-0",
+      "tcp_stream": 0,
+      "node0": {
+        "ip": "192.168.122.1",
+        "port": 52074
+      },
+      "node1": {
+        "ip": "192.168.122.33",
+        "port": 80
+      },
+      "packet_ids": [
+        "http-brotli-dc3957f2348a-packet-1",
+        "http-brotli-dc3957f2348a-packet-2",
+        "http-brotli-dc3957f2348a-packet-3",
+        "http-brotli-dc3957f2348a-packet-4",
+        "http-brotli-dc3957f2348a-packet-5",
+        "http-brotli-dc3957f2348a-packet-6",
+        "http-brotli-dc3957f2348a-packet-7",
+        "http-brotli-dc3957f2348a-packet-8",
+        "http-brotli-dc3957f2348a-packet-9",
+        "http-brotli-dc3957f2348a-packet-10"
+      ],
+      "directions": [
+        {
+          "direction": "node0_to_node1",
+          "length": 107,
+          "sha256": "8369935b96b01cc6936aeb8f6c8c3dc2b870cb62b047a646a4153e9dc2e7b06b",
+          "artifact_ref": "streams/http-brotli-dc3957f2348a-tcp-0-node0_to_node1.bin"
+        },
+        {
+          "direction": "node1_to_node0",
+          "length": 320,
+          "sha256": "d0add9ae80b72848cc34c0a61995b331306b98d2fccbdac1b1ba829b12c74a94",
+          "artifact_ref": "streams/http-brotli-dc3957f2348a-tcp-0-node1_to_node0.bin"
+        }
+      ],
+      "analysis": {
+        "retransmission_packets": 0,
+        "out_of_order_packets": 0,
+        "gap_or_loss_packets": 0,
+        "truncated_packets": 0
+      },
+      "reassembly_status": "complete"
+    }
+  ],
+  "warnings": [
+    "TShark did not populate frame.file_off; packet source offsets are null."
+  ]
+}

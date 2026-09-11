@@ -1,0 +1,156 @@
+{
+  "schema_version": "0.1",
+  "run_id": "run-a3503a1b55c0-unknown-private",
+  "status": "complete",
+  "started_at": "2026-09-11T17:58:56.900438+00:00",
+  "elapsed_seconds": 3.55206,
+  "input": {
+    "path": "data\\external\\raw\\watchpat\\testdata.dat",
+    "sha256": "a3503a1b55c0cb67507bf28b552b2006f7ec8eb2f007c646723e3207c76426cc",
+    "length": 8469
+  },
+  "profile": {
+    "path": "C:\\Users\\33395\\Desktop\\开学作业\\re_rpotocol-main\\.c-work\\profiles\\unknown-private.json",
+    "sha256": "df64befc548b94fd2c0303402db7d1faaac0b49145b12f437afef04613dd76ee",
+    "profile_id": "unknown-private",
+    "schema_version": "0.1"
+  },
+  "environment": {
+    "python": "3.13.9",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "tshark": {
+      "path": null,
+      "available": false,
+      "version": null
+    }
+  },
+  "stages": [
+    {
+      "stage": "M01",
+      "status": "completed",
+      "elapsed_seconds": 0.006015,
+      "reason": null
+    },
+    {
+      "stage": "M02",
+      "status": "completed",
+      "elapsed_seconds": 0.023142,
+      "reason": null
+    },
+    {
+      "stage": "M03",
+      "status": "completed",
+      "elapsed_seconds": 0.087102,
+      "reason": null
+    },
+    {
+      "stage": "M04",
+      "status": "completed",
+      "elapsed_seconds": 0.774237,
+      "reason": null
+    },
+    {
+      "stage": "M05",
+      "status": "completed",
+      "elapsed_seconds": 0.171799,
+      "reason": null
+    },
+    {
+      "stage": "M06",
+      "status": "completed",
+      "elapsed_seconds": 0.064401,
+      "reason": null
+    },
+    {
+      "stage": "M12",
+      "status": "completed",
+      "elapsed_seconds": 2.31917,
+      "reason": null
+    }
+  ],
+  "artifacts": [
+    {
+      "module": "M01",
+      "instance_id": "input",
+      "path": "reports\\technical-exploration\\2026-09-12\\unknown_dat\\m01\\result.json",
+      "sha256": "bacbb40c0a8a2fef9a55a135501cbc2c7545b2c821430ddb6bcf18065ed3e0bb",
+      "length": 915,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {
+        "input_sha256": "a3503a1b55c0cb67507bf28b552b2006f7ec8eb2f007c646723e3207c76426cc"
+      }
+    },
+    {
+      "module": "M02",
+      "instance_id": "input",
+      "path": "reports\\technical-exploration\\2026-09-12\\unknown_dat\\m02\\features.json",
+      "sha256": "5e19383b77d8acb6ff29d39fb0954fd45b4b5e4a6f03afdd9c2e55e7f80595f6",
+      "length": 276832,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M03",
+      "instance_id": "structure",
+      "path": "reports\\technical-exploration\\2026-09-12\\unknown_dat\\m03\\framing.json",
+      "sha256": "71cc7b57b216120c1fabee30f8f107c5817541297c32e99d8bd0f26b19e11d10",
+      "length": 67662,
+      "schema_version": "0.1",
+      "status": "complete",
+      "scope": {
+        "rule_origin": "automatically_inferred",
+        "source": "input"
+      }
+    },
+    {
+      "module": "M04",
+      "instance_id": "structure",
+      "path": "reports\\technical-exploration\\2026-09-12\\unknown_dat\\m04\\clusters.json",
+      "sha256": "e5e1440c39a94c6e9efae9505580179bbdc64f2ada04e8cfce018ee1da1698a4",
+      "length": 25736,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M05",
+      "instance_id": "structure",
+      "path": "reports\\technical-exploration\\2026-09-12\\unknown_dat\\m05\\alignments.json",
+      "sha256": "9fae51818ccca5c644d4bc41c4d0ebaceff3fdfc5d7ec2131defdad114266c10",
+      "length": 1023424,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M06",
+      "instance_id": "structure",
+      "path": "reports\\technical-exploration\\2026-09-12\\unknown_dat\\m06\\format.json",
+      "sha256": "6630556253c1904821c5b273a7bea84c70e961ef0af1d78008fd5d53357c9532",
+      "length": 1651736,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M12",
+      "instance_id": "report",
+      "path": "reports\\technical-exploration\\2026-09-12\\unknown_dat\\m12\\report_manifest.json",
+      "sha256": "c16411b3af0a4242bd06b695e57aeedcca9ef3c94a97172570fdfca57a2367ab",
+      "length": 42262,
+      "schema_version": "0.1",
+      "status": "partial",
+      "scope": {}
+    }
+  ],
+  "model": {
+    "status": "not_requested"
+  },
+  "limitations": [
+    "Only repeated length-prefixed hypotheses that cover the complete input are accepted automatically.",
+    "Message clusters are statistical groups, not confirmed protocol message types.",
+    "Field candidates and length relations are hypotheses; encrypted, compressed, delimited, or fixed-length formats can correctly remain unframed."
+  ]
+}
