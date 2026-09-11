@@ -6,7 +6,7 @@
 
 ## 当前进度
 
-- M01 输入与预处理：已有可运行实现，并已收紧 packet/flow/stream Schema 与跨引用契约。抓包解析需要 TShark；当前复测环境未安装，因此 6 项真实工具测试被明确跳过。
+- M01 输入与预处理：已有可运行实现，并已收紧 packet/flow/stream Schema 与跨引用契约。当前集成主机使用项目外置工具目录中的 TShark 4.6.8 完成真实抓包复测，20 项 M01 测试全部通过；第三方二进制不进入 Git。
 - M02 二进制基础特征：已有标准库实现与边界测试。
 - M03 消息边界识别：长度字段、分隔符和固定长度规则基线已实现并通过带真值测试。
 - M04 消息聚类：依赖标准库的 DBSCAN 基线已实现，支持组合距离、噪声、真实消息代表、轮廓系数，以及可选 ARI/NMI。
@@ -35,7 +35,7 @@ python -B scripts/analyze.py --input data/acceptance/frozen-20260910/captures/do
 python -B scripts/verify_acceptance.py reports/acceptance/2026-09-11-abc/acceptance.json
 ```
 
-`profiles/acceptance.json` 在没有 TShark 的便携主机上复用并重新校验 C 冻结的 M01/M07，其他阶段重新运行。具备 Wireshark 的环境可使用不含 `reuse.m01/m07` 的 profile 并显式传入 `--tshark`。只有用户明确添加 `--invoke-model` 且进程内存在 `DEEPSEEK_API_KEY` 时才会发生外部模型调用。
+`profiles/acceptance.json` 为了离线可复核而复用并重新校验 C 冻结的 M01/M07，其他阶段重新运行。具备 Wireshark 的环境可单独现场重跑 M01，或使用不含 `reuse.m01/m07` 的 profile 并显式传入 `--tshark`。当前主机的路径是 `third_party/Wireshark/tshark.exe`，但该第三方安装目录不会上传；其他主机需自行安装。只有用户明确添加 `--invoke-model` 且进程内存在 `DEEPSEEK_API_KEY` 时才会发生外部模型调用。
 
 M01 对输入做内容探测，并在确认抓包后尝试提取包、流与双向 TCP 字节流：
 
@@ -108,7 +108,7 @@ python -m unittest discover -s experiments\tests -v
 ```
 
 各模块 CLI 均拒绝覆盖已存在的输出目录。临时结果放在 `tmp/`，该目录不会进入 Git。
-当前集成环境共发现 168 项测试：162 项通过，6 项因未检测到 TShark 而跳过；跳过项不计通过。正式 ABC 清单另由 `scripts/verify_acceptance.py` 返回 `acceptance: PASS`。
+当前集成环境共发现 168 项测试；设置 `WIRESHARK_HOME=third_party/Wireshark` 后 168 项全部通过、0 项跳过。正式 ABC 清单另由 `scripts/verify_acceptance.py` 返回 `acceptance: PASS`。
 
 ## 核心原则
 
@@ -123,4 +123,3 @@ python -m unittest discover -s experiments\tests -v
 1. 若课程另发指定 DAT，复核封装、协议字段、时间戳、方向和标签条件，并保留与当前冻结自采结果分开的报告。
 2. 在更多独立真实采集上补强 M09～M11；当前 18 个回环样例的指标不能外推为普适准确率。
 3. 由三位真实成员确认姓名、最终贡献比例、PPT 截图与录像；仓库保留待填模板，不编造人工信息。
-4. 在装有 TShark 的演示机从提交包新目录复跑，并核对同一恢复哈希。

@@ -6,7 +6,7 @@
 - tasks：A1～A3 / G0～G4 code path
 - code_ref：`91e52dcf3e213b1a0f1fd8c6296de50383a7b40e`
 - branch：`codex/acceptance-integration`
-- status：`ready_for_human_signoff`；独立代码 gate 已 PASS，但不代替真实成员签字、TShark 演示机复跑或课程指定 DAT。
+- status：`ready_for_human_signoff`；独立代码 gate 已 PASS，当前主机的 TShark 真实提取测试也已通过，但不代替真实成员签字、实时网卡采集或课程指定 DAT。
 
 ### Interfaces
 
@@ -41,11 +41,12 @@ Expected final line is `acceptance: PASS`. The output paths must not already exi
 
 - B：review that model claims do not exceed their cited deterministic observations and that protocol-declared framing is not called automatic discovery.
 - C：rerun the verifier, compare recovered bytes to frozen truth, and confirm prediction/model/source binding. This document does not claim that a human C member has signed.
-- Demonstrator：run the package in a new directory, provide a real TShark path if fresh capture extraction is required, and fill only verified member identities/contributions.
+- Demonstrator：run the package in a new directory, install TShark separately if fresh capture extraction is required, and fill only verified member identities/contributions. The local ignored path is `third_party/Wireshark/tshark.exe`.
 
 ### Known limits
 
-- Current host has no TShark; M01/M07 are verified frozen reuse in `profiles/acceptance.json`.
+- Current host has TShark/Capinfos 4.6.8 in ignored `third_party/Wireshark/`; all 168 tests pass with `WIRESHARK_HOME` set. M01/M07 remain verified frozen reuse in `profiles/acceptance.json` for offline reproducibility.
+- Npcap is not installed, so existing captures can be analyzed but live interface capture is not part of this host verification.
 - The 18 loopback captures are small controlled evidence, not broad classifier validation.
 - Brotli and no-key TLS/SSH remain explicit unsupported/skipped cases.
 - Human PPT finalization, screenshots/video and course-specific input are outside automated evidence.

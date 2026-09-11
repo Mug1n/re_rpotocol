@@ -23,7 +23,7 @@ Updated: 2026-09-11. Integration branch: `codex/acceptance-integration`.
 | AC04 random/damaged/encrypted | PASS in negative tests | Brotli/no-key encryption explicitly unsupported |
 | AC05 missing prerequisites | PASS in failure/degradation tests | missing model/tool never becomes acceptance success |
 | AC06 tampering/multi-source | PASS in hash and M12 multi-artifact tests | final acceptance currently selects one artifact per module |
-| AC07 clean-directory replay | partial | offline package replay PASS; fresh TShark extraction still needs an equipped host |
+| AC07 clean-directory replay | PASS for saved captures | offline package replay PASS; current host fresh M01/TShark extraction and all 168 tests PASS; live capture still needs Npcap |
 
 ## Remaining non-code signoff
 

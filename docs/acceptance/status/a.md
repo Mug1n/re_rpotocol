@@ -27,13 +27,14 @@
 
 ## 测试与环境
 
-- Python 3.13.9；当前主机不存在 `C:\Program Files\Wireshark\tshark.exe`/`capinfos.exe`。
-- M01～M12 加 `experiments/tests` 顺序回归共 168 项：162 通过、6 项 M01 工具测试因无 TShark 跳过；跳过不计通过。
+- Python 3.13.9；当前主机在 Git 忽略的 `third_party/Wireshark/` 中安装 Wireshark/TShark/Capinfos 4.6.8。
+- 设置 `WIRESHARK_HOME=third_party/Wireshark` 后，M01～M12 加 `experiments/tests` 顺序回归共 168 项全部通过，0 项跳过；M01 的 20 项真实工具与契约测试全部执行。
 - 新增 A pipeline 5/5、M12（含模型负例）23/23、B payload 16/16 均通过。
 - 干净提交打包并在新解压目录复跑：独立 gate PASS，统一 acceptance profile 成功，恢复哈希保持 `215ff...c07`；包内提交 `91e52dc`，495 个跟踪文件。
 
 ## 尚需人类/外部完成
 
-- 当前主机无法证明“新鲜 TShark 提取复跑”；acceptance profile 对 C 冻结的 TShark 4.6.8 M01/M07 做哈希与引用复核后复用。
+- 当前主机已从冻结的真实 `download-01.pcapng` 新鲜重跑 M01/TShark 并通过全部 M01 测试；`profiles/acceptance.json` 仍保留冻结 M01/M07 复用，以保证无工具主机也能离线复核。
+- 当前安装不含 Npcap，因此能够分析已有抓包，但不能把本机验证称为实时网卡采集。
 - 三位真实成员需确认姓名、实际贡献比例（合计 100%）、最终 PPT 截图和录像。模板没有虚构这些信息。
 - 若课程另发指定 DAT，需在独立报告中复跑，不能用当前自采主例代替。

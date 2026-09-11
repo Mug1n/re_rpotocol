@@ -14,6 +14,8 @@ python -B scripts/analyze.py --input data/acceptance/frozen-20260910/captures/do
 python -B scripts/verify_acceptance.py data/acceptance/frozen-20260910/full-chain/acceptance.json
 ```
 
+The current Windows integration host keeps Wireshark 4.6.8 at `third_party/Wireshark`, which is intentionally excluded from Git. Use `--tshark ".\third_party\Wireshark\tshark.exe"` and set `$env:WIRESHARK_HOME = "$PWD\third_party\Wireshark"` before the M01 test suite. Another checkout must install its own trusted Wireshark copy. Npcap is only required for live interface capture, not for reading saved PCAP/PCAPNG files.
+
 Output directories must be new. Use `--invoke-model` only when an authorized `DEEPSEEK_API_KEY` is in the current process environment; this can incur external processing or cost. Never store the key in the repository.
 
 To package a clean committed checkout:

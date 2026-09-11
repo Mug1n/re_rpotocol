@@ -16,4 +16,4 @@ python -B -m unittest discover -s experiments/tests -v
 python -B scripts/verify_acceptance.py data/acceptance/frozen-20260910/full-chain/acceptance.json
 ```
 
-Known environment limitation on the current integration host: Python 3.13.9 is available, but `C:\Program Files\Wireshark\tshark.exe` is absent. Six M01 tests that require Wireshark are skipped and are not counted as passed. Frozen C artifacts record the separate capture host's TShark 4.6.8 evidence. The controlled classifier metrics are not a claim of broad real-world generalization.
+The current integration host uses Python 3.13.9 and a Git-ignored Wireshark/TShark/Capinfos 4.6.8 installation under `third_party/Wireshark`. With `WIRESHARK_HOME` set to that directory, the sequential M01–M12 and shared regression suite reports 168 passed and 0 skipped. The frozen C artifacts still preserve the original capture host's TShark 4.6.8 evidence for offline reproducibility. Npcap is not installed on the current host, so this verifies saved-capture extraction rather than live interface capture. The controlled classifier metrics are not a claim of broad real-world generalization.
