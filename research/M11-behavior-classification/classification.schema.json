@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$defs": {
     "nonEmptyString": {"type": "string", "minLength": 1},
+    "nullableScore": {"oneOf": [{"type": "null"}, {"type": "number", "minimum": 0, "maximum": 1}]},
     "metricRow": {
       "type": "object", "required": ["precision", "recall", "f1-score", "support"], "additionalProperties": false,
       "properties": {
@@ -27,23 +28,41 @@
     },
     "status": {"enum": ["ok", "evaluation_only", "insufficient_labels", "dependency_unavailable", "empty"]},
     "parameters": {
-      "type": "object", "required": ["algorithm", "random_seed", "split_strategy", "test_fraction"], "additionalProperties": false,
-      "properties": {"algorithm": {"const": "random_forest"}, "random_seed": {"const": 17}, "split_strategy": {"const": "grouped_holdout"}, "test_fraction": {"const": 0.25}}
+      "type": "object",
+      "required": ["algorithm", "random_seed", "split_strategy", "cv_folds", "class_weight", "reject_threshold"],
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {"const": "random_forest"},
+        "random_seed": {"const": 17},
+        "split_strategy": {"enum": ["grouped_cv", "explicit_partition"]},
+        "cv_folds": {"type": "integer", "minimum": 2},
+        "class_weight": {"const": "balanced"},
+        "reject_threshold": {"type": "number", "minimum": 0, "maximum": 1}
+      }
     },
     "task": {
       "type": "object", "required": ["label_dimension", "classes", "unknown_rejection", "feature_schema_version"], "additionalProperties": false,
       "properties": {
         "label_dimension": {"$ref": "#/$defs/nonEmptyString"}, "classes": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
-        "unknown_rejection": {"$ref": "#/$defs/nonEmptyString"}, "feature_schema_version": {"const": "0.1"}
+        "unknown_rejection": {"$ref": "#/$defs/nonEmptyString"}, "feature_schema_version": {"$ref": "#/$defs/nonEmptyString"}
       }
     },
     "split": {
-      "type": "object", "required": ["group_key", "train_count", "test_count", "train_groups", "test_groups", "group_overlap", "random_seed"], "additionalProperties": false,
+      "type": "object",
+      "required": ["strategy", "group_key", "random_seed", "group_overlap", "train_count", "train_groups", "test_count", "test_groups", "validation_count", "validation_groups", "cv_folds"],
+      "additionalProperties": false,
       "properties": {
-        "group_key": {"const": "group_id"}, "train_count": {"type": "integer", "minimum": 0}, "test_count": {"type": "integer", "minimum": 0},
+        "strategy": {"enum": ["grouped_cv", "explicit_partition"]},
+        "group_key": {"const": "group_id"},
+        "train_count": {"type": "integer", "minimum": 0},
+        "test_count": {"type": "integer", "minimum": 0},
+        "validation_count": {"type": "integer", "minimum": 0},
         "train_groups": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
         "test_groups": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
-        "group_overlap": {"type": "array", "maxItems": 0}, "random_seed": {"const": 17}
+        "validation_groups": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+        "group_overlap": {"type": "array", "maxItems": 0},
+        "random_seed": {"const": 17},
+        "cv_folds": {"type": "integer", "minimum": 0}
       }
     },
     "model": {
@@ -54,8 +73,8 @@
           "properties": {
             "algorithm": {"const": "RandomForestClassifier"},
             "parameters": {
-              "type": "object", "required": ["n_estimators", "random_state", "n_jobs"], "additionalProperties": false,
-              "properties": {"n_estimators": {"const": 100}, "random_state": {"const": 17}, "n_jobs": {"const": 1}}
+              "type": "object", "required": ["n_estimators", "random_state", "n_jobs", "class_weight"], "additionalProperties": false,
+              "properties": {"n_estimators": {"const": 100}, "random_state": {"const": 17}, "n_jobs": {"const": 1}, "class_weight": {"const": "balanced"}}
             },
             "feature_names": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
             "dependency": {
@@ -77,7 +96,9 @@
       "oneOf": [
         {"type": "null"},
         {
-          "type": "object", "required": ["macro_f1", "per_class", "confusion_matrix"], "additionalProperties": false,
+          "type": "object",
+          "required": ["macro_f1", "per_class", "confusion_matrix", "validation_macro_f1", "cv_folds", "cv_macro_f1_mean", "cv_macro_f1_std", "cv_fold_scores", "majority_baseline"],
+          "additionalProperties": false,
           "properties": {
             "macro_f1": {"type": "number", "minimum": 0, "maximum": 1},
             "per_class": {"type": "object", "minProperties": 1, "additionalProperties": {"oneOf": [{"type": "number", "minimum": 0, "maximum": 1}, {"$ref": "#/$defs/metricRow"}]}},
@@ -87,7 +108,13 @@
                 "labels": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
                 "values": {"type": "array", "minItems": 2, "items": {"type": "array", "minItems": 2, "items": {"type": "integer", "minimum": 0}}}
               }
-            }
+            },
+            "validation_macro_f1": {"$ref": "#/$defs/nullableScore"},
+            "cv_folds": {"oneOf": [{"type": "null"}, {"type": "integer", "minimum": 0}]},
+            "cv_macro_f1_mean": {"$ref": "#/$defs/nullableScore"},
+            "cv_macro_f1_std": {"oneOf": [{"type": "null"}, {"type": "number", "minimum": 0}]},
+            "cv_fold_scores": {"oneOf": [{"type": "null"}, {"type": "array", "items": {"type": "number", "minimum": 0, "maximum": 1}}]},
+            "majority_baseline": {"type": "number", "minimum": 0, "maximum": 1}
           }
         }
       ]

@@ -83,7 +83,12 @@ class M11Tests(unittest.TestCase):
             output = root / "out"
             result = M11.analyze(source, output, task="application")
             self.assertEqual("ok", result["status"])
+            self.assertEqual("grouped_cv", result["parameters"]["split_strategy"])
+            self.assertEqual("grouped_cv", result["split"]["strategy"])
             self.assertFalse(set(result["split"]["train_groups"]) & set(result["split"]["test_groups"]))
+            self.assertGreaterEqual(result["metrics"]["cv_folds"], 1)
+            self.assertIsNotNone(result["metrics"]["cv_macro_f1_mean"])
+            self.assertEqual(len(result["metrics"]["cv_fold_scores"]), result["metrics"]["cv_folds"])
             model_path = output / "model.joblib"
             self.assertTrue(model_path.is_file())
             artifact = result["model"]["artifact"]
@@ -98,7 +103,46 @@ class M11Tests(unittest.TestCase):
         result = self.analyze_fixture(rows)
         self.assertEqual("insufficient_labels", result["status"])
         self.assertIsNone(result["model"])
-        self.assertTrue(any("preserved every class" in item for item in result["warnings"]))
+        self.assertTrue(any("preserve every class" in item for item in result["warnings"]))
+
+    def test_explicit_partition_honors_split_and_validation(self):
+        rows = []
+        for index in range(24):
+            label = "alpha" if index % 2 else "beta"
+            split = "train" if index < 12 else ("validation" if index < 18 else "test")
+            rows.append({
+                "id": str(index), "group_id": f"g{index}",
+                "labels": {"application": label}, "split": split,
+                "features": {"bytes": 100 if label == "alpha" else 1,
+                             "packets": 10 if label == "alpha" else 1},
+            })
+        result = self.analyze_fixture(rows)
+        self.assertEqual("ok", result["status"])
+        self.assertEqual("explicit_partition", result["parameters"]["split_strategy"])
+        self.assertEqual(12, result["split"]["train_count"])
+        self.assertEqual(6, result["split"]["test_count"])
+        self.assertEqual(6, result["split"]["validation_count"])
+        self.assertIsNotNone(result["metrics"]["validation_macro_f1"])
+
+    def test_rejection_threshold_marks_low_confidence_unknown(self):
+        predictions = M11._predict_with_rejection_probabilities(
+            ["a", "b"], [[0.9, 0.1], [0.4, 0.6]], ["x", "y"], 0.7)
+        self.assertEqual("x", predictions[0]["predicted_label"])
+        self.assertFalse(predictions[0]["rejected"])
+        self.assertEqual("unknown", predictions[1]["predicted_label"])
+        self.assertTrue(predictions[1]["rejected"])
+
+    def test_uninformative_features_do_not_score_perfectly(self):
+        rows = [
+            {"id": str(i), "group_id": f"g{i}",
+             "labels": {"application": "alpha" if i % 2 else "beta"},
+             "features": {"x": 1.0}}
+            for i in range(12)
+        ]
+        result = self.analyze_fixture(rows)
+        self.assertEqual("ok", result["status"])
+        self.assertLess(result["metrics"]["macro_f1"], 1.0)
+        self.assertIsNotNone(result["metrics"]["majority_baseline"])
 
     def test_cluster_id_is_forbidden_as_behavior_label(self):
         with self.assertRaisesRegex(ValueError, "cluster_id"):
