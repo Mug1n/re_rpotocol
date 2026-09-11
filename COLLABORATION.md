@@ -4,7 +4,14 @@
 
 > 三人团队的后续验收冲刺以 [三人团队验收协作计划](docs/plans/2026-09-10-1835-docs-three-person-acceptance-plan.md) 为分工与交接依据，以 [PDF验收闭环方案](docs/plans/2026-09-10-1827-feat-acceptance-closure-plan.md) 为验收标准。新计划明确 A（集成/报告/大模型）、B（协议/结构/还原）、C（数据/分类/独立验收）的文件所有权；下文既有记录保留作历史背景。
 
-更新日期：2026-09-10。本分支从 `origin/main` 的 `4d1f23e` 创建，现已汇合 M01～M12 的可运行基线、测试、JSON Schema、两个真实外部 DAT 及验证记录。课程尚未提供最终 DAT，因此当前结果用于开发与接口验证，不代表对隐藏数据的最终适配。
+更新日期：2026-09-11。集成分支 `codex/acceptance-integration` 汇合 C 的冻结数据/分类/独立验收与 B 的协议正文/恢复分支，并由 A 补齐单输入 profile、M12 多 artifact、受限模型适配和发布材料。正式证据位于 `reports/acceptance/2026-09-11-abc/`；课程尚未提供指定 DAT，因此不能把自采结果描述为隐藏数据验收。
+
+```powershell
+python -B scripts/analyze.py --input data/acceptance/frozen-20260910/captures/download-01.pcapng --profile profiles/acceptance.json --output-dir tmp/abc-run
+python -B scripts/verify_acceptance.py reports/acceptance/2026-09-11-abc/acceptance.json
+```
+
+第一条命令不读取 truth/标签；第二条由 C 的独立门禁读取已经分离组装的验收记录。当前集成主机没有 TShark，因此验收 profile 对 M01/M07 做哈希与引用复核后复用 C 冻结结果，其他阶段真实重跑。
 
 ## 当前链路
 
@@ -50,7 +57,7 @@ python -B -m unittest discover -s experiments\M12\tests -v
 python -B -m unittest discover -s experiments\tests -v
 ```
 
-当前环境共发现 136 项：130 项通过，6 项因未检测到 TShark 而跳过。覆盖公共样例完整性、M09～M11 严格契约、模型文件校验、M01～M11 到 M12 的记录级适配及双线跨模块集成。M02～M06 的运行代码只依赖 Python 标准库；抓包路径依赖 TShark，M11 成功训练路径依赖 scikit-learn/joblib，Schema 测试依赖 `jsonschema`。
+当前环境共发现 168 项：162 项通过，6 项因未检测到 TShark 而跳过。覆盖公共样例完整性、HTTP 多正文恢复、单输入入口、M09～M11 严格契约、模型文件校验、受限模型负例、M01～M11 到 M12 的记录级/多实例适配及 ABC 独立验收。M02～M06 的运行代码只依赖 Python 标准库；抓包路径依赖 TShark，M11 成功训练路径依赖 scikit-learn/joblib，Schema 测试依赖 `jsonschema`。
 
 ## 协作约定与已知限制
 

@@ -9,3 +9,13 @@
 *.md text eol=lf
 *.json text eol=lf
 *.txt text eol=lf
+
+# Frozen Windows acceptance records were hashed after CRLF serialization.
+# Preserve that canonical representation on every platform so their published
+# SHA-256 and byte lengths remain valid after checkout.
+data/acceptance/frozen-20260910/**/*.json text eol=crlf
+data/acceptance/frozen-20260910/**/*.md text eol=crlf
+
+# Formal run artifacts mix producer-native CRLF JSON, canonical LF manifests,
+# Markdown, captures and recovered bytes. Treat the evidence tree as bytes.
+reports/acceptance/** -text

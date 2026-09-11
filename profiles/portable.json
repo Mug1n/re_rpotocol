@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.1",
+  "profile_id": "portable",
+  "description": "Portable deterministic analysis for an arbitrary DAT or binary file without truth, labels, or network-tool assumptions.",
+  "stages": ["M01", "M02", "M08", "M12"],
+  "m02": {"window_size": 256, "window_step": 256},
+  "m12": {"max_evidence": 500},
+  "limitations": [
+    "Raw bytes without network metadata cannot establish protocol or behavior claims.",
+    "Successful strict decoding is a recovery candidate unless a protocol-declared source exists."
+  ]
+}

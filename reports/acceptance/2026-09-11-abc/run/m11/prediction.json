@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1",
+  "status": "ok",
+  "source": {
+    "evaluation_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\classification\\model-run\\evaluation.json",
+    "evaluation_sha256": "127a533fc4a47acb0384472a5f88ddbdc6794070c3eed825653a90abedf6372e",
+    "rows_path": "reports\\acceptance\\2026-09-11-abc\\run\\m11\\prediction-rows.json",
+    "rows_sha256": "bb42391c9b72f5c051d4290f43ca4f9f4d6a74fdbffc0d229c9d9b9a32ef8e7b"
+  },
+  "model": {
+    "artifact_ref": "model.joblib",
+    "sha256": "4e7b6dcdeed8310556fdfe163a42dac645e8abf201cfd9aa63390b6c7398dfa5",
+    "feature_definition_version": "0.1"
+  },
+  "predictions": [
+    {
+      "scope_id": "download-01-d8f9c37a5714-tcp-flow-0",
+      "predicted_label": "download",
+      "score_type": "class_probability",
+      "score": 0.985,
+      "rejected": false
+    }
+  ],
+  "warnings": [
+    "Predictions are not ground truth and this small controlled capture batch is not generalizable."
+  ]
+}

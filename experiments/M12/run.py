@@ -11,7 +11,7 @@ import shutil
 import sys
 import tempfile
 from pathlib import Path
-from typing import Any, Callable, Iterable, Iterator, Mapping
+from typing import Any, Callable, Iterable, Iterator, Mapping, Sequence
 
 import jsonschema
 
@@ -506,7 +506,14 @@ def _render_report(evidence: list[dict[str, Any]], missing_modules: list[str], m
     return report, sections
 
 
-def build_report(inputs: Mapping[str, str | Path], output_dir: str | Path, *, max_evidence: int = 500, max_input_bytes: int = DEFAULT_MAX_INPUT_BYTES, model_adapter: ModelAdapter | None = None) -> dict[str, Any]:
+def build_report(
+    inputs: Mapping[str, str | Path | Sequence[str | Path]],
+    output_dir: str | Path,
+    *,
+    max_evidence: int = 500,
+    max_input_bytes: int = DEFAULT_MAX_INPUT_BYTES,
+    model_adapter: ModelAdapter | None = None,
+) -> dict[str, Any]:
     destination = Path(output_dir)
     if destination.exists():
         raise FileExistsError(f"output directory already exists: {destination}")
@@ -514,16 +521,24 @@ def build_report(inputs: Mapping[str, str | Path], output_dir: str | Path, *, ma
         raise ValueError("max_evidence must be positive")
     if max_input_bytes <= 0:
         raise ValueError("max_input_bytes must be positive")
-    normalized_inputs = {str(module).upper(): Path(path) for module, path in inputs.items()}
+    normalized_inputs: list[tuple[str, Path]] = []
+    for raw_module, raw_paths in inputs.items():
+        module = str(raw_module).upper()
+        values = raw_paths if isinstance(raw_paths, (list, tuple)) else [raw_paths]
+        if not values:
+            raise ValueError(f"at least one artifact is required for module {module}")
+        normalized_inputs.extend((module, Path(path)) for path in values)
     if not normalized_inputs:
         raise ValueError("at least one input artifact is required")
+    identities = [(module, str(path.resolve())) for module, path in normalized_inputs]
+    if len(identities) != len(set(identities)):
+        raise ValueError("duplicate module artifact path")
     selected: dict[str, dict[str, Any]] = {}
     largest_first: list[tuple[bytes, str]] = []
     seen_ids: set[str] = set()
     omitted = 0
     manifest_inputs: list[dict[str, Any]] = []
-    for module in sorted(normalized_inputs):
-        path = normalized_inputs[module]
+    for module, path in sorted(normalized_inputs, key=lambda item: (item[0], str(item[1]))):
         schema_path = MODULE_SCHEMAS.get(module)
         if schema_path is None or not schema_path.is_file():
             raise ValueError(f"no installed schema for module {module}")
@@ -547,7 +562,8 @@ def build_report(inputs: Mapping[str, str | Path], output_dir: str | Path, *, ma
     model_claims: list[dict[str, Any]] = []
     if model_adapter is not None:
         warnings.append(MODEL_DISABLED_WARNING)
-    missing_modules = sorted(set(EXPECTED_MODULES) - set(normalized_inputs))
+    present_modules = {module for module, _ in normalized_inputs}
+    missing_modules = sorted(set(EXPECTED_MODULES) - present_modules)
     report, sections = _render_report(included, missing_modules, model_claims)
     report_bytes = report.encode("utf-8")
     manifest = {
@@ -585,15 +601,13 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    inputs: dict[str, Path] = {}
+    inputs: dict[str, list[Path]] = {}
     try:
         for value in args.input:
             module, separator, path = value.partition("=")
             if not separator or not module or not path:
                 raise ValueError("each --input must use MODULE=PATH")
-            if module.upper() in inputs:
-                raise ValueError(f"duplicate module input: {module.upper()}")
-            inputs[module.upper()] = Path(path)
+            inputs.setdefault(module.upper(), []).append(Path(path))
         build_report(inputs, args.output_dir, max_evidence=args.max_evidence, max_input_bytes=args.max_input_bytes)
     except (FileNotFoundError, FileExistsError, ValueError, jsonschema.ValidationError) as exc:
         print(f"m12: {exc}", file=sys.stderr)

@@ -353,6 +353,25 @@ class ReportTests(unittest.TestCase):
                     self.module.build_report({module: path}, root / f"out-{module}")
                 source.write_bytes(b"source evidence")
 
+    def test_multiple_artifacts_for_one_module_are_preserved(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            artifacts = self.make_all_modules(root)
+            second = root / "m08-second.json"
+            second.write_bytes(artifacts["M08"].read_bytes())
+            manifest = self.module.build_report(
+                {"M08": [artifacts["M08"], second]}, root / "multi-m08"
+            )
+            self.assertEqual(2, len(manifest["inputs"]))
+            self.assertEqual({str(artifacts["M08"]), str(second)}, {
+                item["artifact_path"] for item in manifest["inputs"]
+            })
+            with self.assertRaisesRegex(ValueError, "duplicate module artifact path"):
+                self.module.build_report(
+                    {"M08": [artifacts["M08"], artifacts["M08"]]},
+                    root / "duplicate-m08",
+                )
+
     def test_m01_m02_and_canonical_m08_m11_source_refs_are_hash_verified(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "clusters_path": "reports\\acceptance\\2026-09-11-abc\\run\\m04\\clusters.json",
+    "clusters_sha256": "dc2525e5904581d9357739d595b4d0163b8adc85048dd18e61d4e619532b5266",
+    "framing_path": "reports\\acceptance\\2026-09-11-abc\\run\\m03\\framing.json",
+    "framing_sha256": "9a88329ec8e91d857ba4fc299f4982fee31c76e1cf64373ab7cb7dafcdad618d",
+    "stream_id": "payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6",
+    "message_count": 1
+  },
+  "status": "ok",
+  "parameters": {
+    "algorithm": "needleman_wunsch_reference",
+    "match_score": 2,
+    "mismatch_score": -1,
+    "gap_score": -2,
+    "max_pair_cells": 2000000
+  },
+  "cluster_alignments": [],
+  "unaligned_messages": [
+    {
+      "message_id": "payload-download-01-d8f9c37a5714-tcp-stream-0-node1_to_node0-0000-215ff970eee6-message-000000",
+      "reason": "m04_noise"
+    }
+  ],
+  "metrics": {
+    "aligned_cluster_count": 0,
+    "aligned_message_count": 0,
+    "unaligned_message_count": 1,
+    "total_alignment_columns": 0,
+    "mean_identity_on_paired_bytes": null
+  },
+  "warnings": [
+    "Alignment columns are relative to each M04 representative, not a globally optimal multiple alignment.",
+    "Stable columns and high identity do not by themselves establish field semantics."
+  ]
+}
