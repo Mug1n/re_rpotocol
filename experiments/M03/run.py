@@ -262,6 +262,67 @@ def frame_fixed(
     return messages, diagnostics, {"frame_size": frame_size, "start_offset": start_offset}
 
 
+def infer_length_prefixed(
+    data: bytes,
+    *,
+    stream_id: str,
+    max_header_size: int = 12,
+    max_frame_length: int = 1024 * 1024,
+    min_frames: int = 3,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
+    """Conservatively discover a repeated length-prefixed framing hypothesis.
+
+    Only hypotheses that tile the entire stream from offset zero are accepted.
+    Coincidental byte values are therefore left unframed rather than presented
+    as protocol truth.
+    """
+    if max_header_size < 2 or max_frame_length <= 0 or min_frames < 2:
+        raise ValueError("invalid automatic framing limits")
+    candidates: list[tuple[tuple[int, int, int, int, int], list[dict[str, Any]], dict[str, Any]]] = []
+    for length_offset in range(min(8, max_header_size - 1) + 1):
+        for length_width in (1, 2, 4):
+            field_end = length_offset + length_width
+            if field_end > max_header_size or field_end > len(data):
+                continue
+            for header_size in range(field_end, min(max_header_size, len(data)) + 1):
+                for byteorder in ("big", "little"):
+                    for length_mode in ("payload", "frame"):
+                        messages, _diagnostics, parameters = frame_length_prefixed(
+                            data, stream_id=stream_id, magic=b"",
+                            length_offset=length_offset, length_width=length_width,
+                            byteorder=byteorder, length_mode=length_mode,
+                            header_size=header_size, max_frame_length=max_frame_length,
+                        )
+                        if len(messages) < min_frames or _unparsed_ranges(len(data), messages):
+                            continue
+                        score = (len(messages), len({item["length"] for item in messages}),
+                                 length_width, -header_size, -length_offset)
+                        candidates.append((score, messages, parameters))
+    if not candidates:
+        return [], [{"rule_id": "M03-INFERENCE-INSUFFICIENT-EVIDENCE", "accepted": False}], {
+            "method": "repeated_length_prefix_search", "candidate_count": 0,
+            "min_frames": min_frames, "max_header_size": max_header_size,
+        }
+    candidates.sort(key=lambda item: item[0], reverse=True)
+    _score, messages, parameters = candidates[0]
+    selected = {key: parameters[key] for key in (
+        "length_offset", "length_width", "byteorder", "length_mode", "header_size"
+    )}
+    for message in messages:
+        message["framing_evidence"] = [{
+            "rule_id": "M03-INFERRED-LENGTH-PREFIX", "selection": selected,
+            "basis": "repeated self-consistent length-prefixed frames cover the complete input",
+        }]
+    return messages, [{
+        "rule_id": "M03-INFERRED-LENGTH-PREFIX", "accepted": True,
+        "candidate_count": len(candidates), "selected": selected,
+    }], {
+        "method": "repeated_length_prefix_search", "candidate_count": len(candidates),
+        "min_frames": min_frames, "max_header_size": max_header_size,
+        "max_frame_length": max_frame_length, "selected": selected,
+    }
+
+
 def evaluate_framing(
     predicted: Iterable[tuple[int, int]],
     expected: Iterable[tuple[int, int]],
@@ -327,6 +388,10 @@ def analyze_file(
         messages, diagnostics, normalized = frame_fixed(
             data, stream_id=stream_id, **parameters
         )
+    elif rule == "infer":
+        messages, diagnostics, normalized = infer_length_prefixed(
+            data, stream_id=stream_id, **parameters
+        )
     else:
         raise ValueError(f"unknown rule: {rule}")
     uncovered = _unparsed_ranges(len(data), messages)
@@ -346,7 +411,8 @@ def analyze_file(
         "unparsed_ranges": uncovered,
         "diagnostics": diagnostics,
         "warnings": [
-            "A configured framing rule is a hypothesis; accepted boundaries are not protocol truth."
+            "Framing boundaries are hypotheses, not protocol truth.",
+            "Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed."
         ],
     }
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -372,10 +438,10 @@ def analyze_file(
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Frame a continuous byte stream using an explicit rule.")
+    parser = argparse.ArgumentParser(description="Frame a continuous byte stream using an explicit or conservative inferred rule.")
     parser.add_argument("input", type=Path)
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--rule", choices=("length", "delimiter", "fixed"), required=True)
+    parser.add_argument("--rule", choices=("length", "delimiter", "fixed", "infer"), required=True)
     parser.add_argument("--magic-hex", default="")
     parser.add_argument("--length-offset", type=int)
     parser.add_argument("--length-width", type=int)
@@ -389,10 +455,15 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--allow-empty", action="store_true")
     parser.add_argument("--frame-size", type=int)
     parser.add_argument("--start-offset", type=int, default=0)
+    parser.add_argument("--max-header-size", type=int, default=12)
+    parser.add_argument("--min-frames", type=int, default=3)
     return parser
 
 
 def _parameters_from_args(args: argparse.Namespace) -> dict[str, Any]:
+    if args.rule == "infer":
+        return {"max_header_size": args.max_header_size, "max_frame_length": args.max_frame_length,
+                "min_frames": args.min_frames}
     if args.rule == "length":
         if args.length_offset is None or args.length_width is None or args.header_size is None:
             raise ValueError("length rule requires --length-offset, --length-width, and --header-size")

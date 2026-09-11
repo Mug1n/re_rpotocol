@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.1",
+  "corpus_id": "wireshark-ubx-sample-heldout-v1",
+  "source_url": "https://gitlab.com/wireshark/wireshark/uploads/4f28724c211416eca9d4471aa205cafc/ubx_sample.pcap",
+  "pcap_sha256": "b73ea78d54bfba92ef3075b3212a9e328392c64d3e0b7111996efd080d86b506",
+  "tshark": "D:\\新建文件夹 (2)\\Wireshark\\tshark.exe",
+  "tshark_version": "TShark (Wireshark) 4.6.8 (v4.6.8-0-ge677bf052328).",
+  "truth_generator": "Wireshark UBX dissector via DLT_USER 148; generated separately from analysis",
+  "selection": {
+    "method": "capture-order modulo",
+    "holdout_modulus": 5,
+    "held_out_frame_count": 639,
+    "discovery_only_frame_count": 2559
+  },
+  "artifacts": {
+    "held_out_input": "held_out.ubx.bin",
+    "held_out_input_sha256": "47497f62366e95028ae85776d734f950a57184415e18009cd711a0eda2e351da",
+    "truth": "held_out.truth.json",
+    "discovery_only_input": "discovery_only.ubx.bin",
+    "discovery_only_sha256": "a6d735b5091cc32da5870628f2974ad1151c99786b00de63bbfd97684f540c50"
+  },
+  "independence": {
+    "analyzer_input": [
+      "held_out.ubx.bin"
+    ],
+    "not_supplied_to_analyzer": [
+      "held_out.truth.json",
+      "discovery_only.ubx.bin",
+      "UBX protocol specification",
+      "Wireshark dissector output"
+    ]
+  }
+}

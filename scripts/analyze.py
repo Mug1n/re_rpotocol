@@ -105,6 +105,8 @@ def _load_profile(path: Path) -> dict[str, Any]:
         raise ValueError("profile stage M03 requires a structure configuration")
     if profile.get("structure", {}).get("source") == "first_http_body" and "PAYLOAD_SOURCES" not in stages:
         raise ValueError("first_http_body structure requires PAYLOAD_SOURCES")
+    if profile.get("structure", {}).get("source") == "longest_m01_stream_direction" and "M01" not in stages:
+        raise ValueError("longest_m01_stream_direction structure requires M01")
     return profile
 
 
@@ -239,19 +241,34 @@ def run_pipeline(
         if "M03" in selected:
             structure = profile_data["structure"]
             structure_source = source
+            structure_scope: dict[str, Any] = {"rule_origin": structure["rule_origin"], "source": structure["source"]}
             if structure["source"] == "first_http_body":
                 if not payload_manifest or not payload_manifest.get("sources") or payload_manifest_path is None:
                     raise ValueError("no HTTP body is available for the configured structure stage")
                 first = payload_manifest["sources"][0]
                 structure_source = payload_manifest_path.parent / first["output"]["artifact_ref"]
+            elif structure["source"] == "longest_m01_stream_direction":
+                assert m01_path is not None
+                m01_data = _load_json(m01_path)
+                candidates = [
+                    (int(direction["length"]), stream, direction)
+                    for stream in m01_data.get("streams", [])
+                    if stream.get("reassembly_status") == "complete"
+                    for direction in stream.get("directions", [])
+                    if int(direction.get("length", 0)) > 0 and direction.get("artifact_ref")
+                ]
+                if not candidates:
+                    raise ValueError("M01 has no complete reassembled TCP stream direction for structure inference")
+                _length, stream, direction = max(candidates, key=lambda item: item[0])
+                structure_source = m01_path.parent / str(direction["artifact_ref"])
+                structure_scope.update({"stream_id": stream["id"], "direction": direction["direction"]})
             parameters = dict(structure["parameters"])
             if parameters.get("frame_size") == "source_length":
                 parameters["frame_size"] = structure_source.stat().st_size
             m03_path = destination / "m03" / "framing.json"
             m03 = execute("M03", lambda: analyze_framing(
                 structure_source, m03_path.parent, rule=structure["rule"], parameters=parameters))
-            add("M03", "structure", m03_path, m03,
-                {"rule_origin": structure["rule_origin"], "source": structure["source"]})
+            add("M03", "structure", m03_path, m03, structure_scope)
 
         if "M04" in selected:
             m04_path = destination / "m04" / "clusters.json"

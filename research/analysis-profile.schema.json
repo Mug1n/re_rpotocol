@@ -14,8 +14,8 @@
       "m01": {"type": "string", "minLength": 1}, "m07": {"type": "string", "minLength": 1}, "m11": {"type": "string", "minLength": 1}
     }},
     "structure": {"type": "object", "additionalProperties": false, "required": ["source", "rule", "rule_origin", "parameters"], "properties": {
-      "source": {"enum": ["input", "first_http_body"]}, "rule": {"enum": ["fixed", "delimiter", "length"]},
-      "rule_origin": {"enum": ["protocol_declared", "format_documented", "manual_hypothesis"]}, "parameters": {"type": "object"}
+      "source": {"enum": ["input", "first_http_body", "longest_m01_stream_direction"]}, "rule": {"enum": ["fixed", "delimiter", "length", "infer"]},
+      "rule_origin": {"enum": ["protocol_declared", "format_documented", "manual_hypothesis", "automatically_inferred"]}, "parameters": {"type": "object"}
     }},
     "m02": {"type": "object"}, "m04": {"type": "object"}, "m07": {"type": "object"},
     "m12": {"type": "object", "additionalProperties": false, "properties": {

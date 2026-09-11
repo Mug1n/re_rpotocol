@@ -29,7 +29,7 @@
       }
     },
     "status": {"enum": ["complete", "partial", "unframed", "empty"]},
-    "rule": {"enum": ["length", "delimiter", "fixed"]},
+    "rule": {"enum": ["length", "delimiter", "fixed", "infer"]},
     "parameters": {"type": "object"},
     "messages": {
       "type": "array",

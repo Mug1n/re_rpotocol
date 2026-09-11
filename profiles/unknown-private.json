@@ -1,0 +1,11 @@
+{
+  "schema_version": "0.1",
+  "profile_id": "unknown-private",
+  "description": "Conservative offline analysis of an unknown private binary stream. It infers only repeated self-consistent length-prefix framing, then clusters, aligns, and proposes field candidates without truth labels.",
+  "stages": ["M01", "M02", "M03", "M04", "M05", "M06", "M12"],
+  "structure": {"source": "input", "rule": "infer", "rule_origin": "automatically_inferred", "parameters": {"max_header_size": 12, "max_frame_length": 1048576, "min_frames": 3}},
+  "m02": {"window_size": 256, "window_step": 256},
+  "m04": {"eps": 0.35, "min_samples": 2, "prefix_length": 1},
+  "m12": {"max_evidence": 500},
+  "limitations": ["Only repeated length-prefixed hypotheses that cover the complete input are accepted automatically.", "Message clusters are statistical groups, not confirmed protocol message types.", "Field candidates and length relations are hypotheses; encrypted, compressed, delimited, or fixed-length formats can correctly remain unframed."]
+}
