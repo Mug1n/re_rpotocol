@@ -15,7 +15,7 @@ $stageRoot = Join-Path ([IO.Path]::GetTempPath()) ("re_rpotocol-package-" + [Gui
 $projectRoot = Join-Path $stageRoot 're_rpotocol'
 New-Item -ItemType Directory -Path $projectRoot | Out-Null
 try {
-    $tracked = @(git -C $repoRoot ls-files)
+    $tracked = @(git -C $repoRoot -c core.quotepath=false ls-files)
     if ($LASTEXITCODE -ne 0 -or $tracked.Count -eq 0) { throw 'No tracked files were found.' }
     $records = @()
     foreach ($relative in $tracked) {
