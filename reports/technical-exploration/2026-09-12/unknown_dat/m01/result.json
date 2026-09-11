@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "testdata-a3503a1b55c0",
+  "path": "data\\external\\raw\\watchpat\\testdata.dat",
+  "sha256": "a3503a1b55c0cb67507bf28b552b2006f7ec8eb2f007c646723e3207c76426cc",
+  "length": 8469,
+  "format": "raw_bytes",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-NO-KNOWN-MAGIC",
+      "observation": "No validated capture/container signature; filename suffix was not used as proof."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": false,
+    "network_headers": false,
+    "flow_identity": false,
+    "direction": false,
+    "timestamps": false
+  },
+  "status": "ok",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 8469,
+      "artifact_ref": "payloads/testdata-a3503a1b55c0.bin"
+    }
+  ],
+  "packets": [],
+  "flows": [],
+  "streams": [],
+  "warnings": [
+    "File extension does not define the internal format."
+  ]
+}

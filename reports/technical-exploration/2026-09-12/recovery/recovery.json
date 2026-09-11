@@ -1,0 +1,192 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "module": "course_fixture",
+    "artifact_path": "experiments\\M08\\fixtures\\nested-base64-gzip.dat",
+    "artifact_sha256": "77047b489fcdc676407303b859199b4401e8def876b8b2bdd0997b522cbbb5c6",
+    "record_id": "nested-base64-gzip.dat"
+  },
+  "status": "ok",
+  "parameters": {
+    "max_input_bytes": 67108864,
+    "max_depth": 3,
+    "max_output_bytes": 8388608,
+    "max_inflation_ratio": 100.0,
+    "max_artifacts": 32,
+    "min_printable_length": 4,
+    "enabled_decoders": [
+      "utf8",
+      "utf16",
+      "hex",
+      "base64",
+      "gzip",
+      "zlib"
+    ]
+  },
+  "recoveries": [
+    {
+      "recovery_id": "m08-77047b489fcd-0000",
+      "source_ref": {
+        "module": "course_fixture",
+        "artifact_path": "experiments\\M08\\fixtures\\nested-base64-gzip.dat",
+        "artifact_sha256": "77047b489fcdc676407303b859199b4401e8def876b8b2bdd0997b522cbbb5c6",
+        "record_id": "nested-base64-gzip.dat"
+      },
+      "source_range": {
+        "start": 0,
+        "end": 61
+      },
+      "basis": "strict_candidate",
+      "transformation_chain": [
+        {
+          "operation": "utf8",
+          "input_length": 61,
+          "output_length": 61,
+          "parameters": {},
+          "validation": "strict_decode"
+        }
+      ],
+      "output": {
+        "artifact_ref": "recovered/m08-77047b489fcd-0000.bin",
+        "sha256": "77047b489fcdc676407303b859199b4401e8def876b8b2bdd0997b522cbbb5c6",
+        "length": 61,
+        "media_type": "text/plain; charset=utf8"
+      },
+      "completeness": "candidate",
+      "evidence": [
+        "strict validation completed for every recorded transformation"
+      ]
+    },
+    {
+      "recovery_id": "m08-77047b489fcd-0001",
+      "source_ref": {
+        "module": "course_fixture",
+        "artifact_path": "experiments\\M08\\fixtures\\nested-base64-gzip.dat",
+        "artifact_sha256": "77047b489fcdc676407303b859199b4401e8def876b8b2bdd0997b522cbbb5c6",
+        "record_id": "nested-base64-gzip.dat"
+      },
+      "source_range": {
+        "start": 0,
+        "end": 61
+      },
+      "basis": "strict_candidate",
+      "transformation_chain": [
+        {
+          "operation": "base64",
+          "input_length": 61,
+          "output_length": 45,
+          "parameters": {},
+          "validation": "strict_alphabet_and_padding"
+        }
+      ],
+      "output": {
+        "artifact_ref": "recovered/m08-77047b489fcd-0001.bin",
+        "sha256": "94a64dc32feaf9661ae963d5a451ef4b3f232abbe265aa2475a87c62084e9592",
+        "length": 45,
+        "media_type": null
+      },
+      "completeness": "candidate",
+      "evidence": [
+        "strict validation completed for every recorded transformation"
+      ]
+    },
+    {
+      "recovery_id": "m08-77047b489fcd-0002",
+      "source_ref": {
+        "module": "course_fixture",
+        "artifact_path": "experiments\\M08\\fixtures\\nested-base64-gzip.dat",
+        "artifact_sha256": "77047b489fcdc676407303b859199b4401e8def876b8b2bdd0997b522cbbb5c6",
+        "record_id": "nested-base64-gzip.dat"
+      },
+      "source_range": {
+        "start": 0,
+        "end": 61
+      },
+      "basis": "validated_magic",
+      "transformation_chain": [
+        {
+          "operation": "base64",
+          "input_length": 61,
+          "output_length": 45,
+          "parameters": {},
+          "validation": "strict_alphabet_and_padding"
+        },
+        {
+          "operation": "gzip",
+          "input_length": 45,
+          "output_length": 24,
+          "parameters": {},
+          "validation": "container_integrity"
+        }
+      ],
+      "output": {
+        "artifact_ref": "recovered/m08-77047b489fcd-0002.bin",
+        "sha256": "b2bb5b15576f4fbee2abfdae8a74acd57dab268af6b3b57af0b0edcaa317821c",
+        "length": 24,
+        "media_type": null
+      },
+      "completeness": "complete",
+      "evidence": [
+        "strict validation completed for every recorded transformation"
+      ]
+    },
+    {
+      "recovery_id": "m08-77047b489fcd-0003",
+      "source_ref": {
+        "module": "course_fixture",
+        "artifact_path": "experiments\\M08\\fixtures\\nested-base64-gzip.dat",
+        "artifact_sha256": "77047b489fcdc676407303b859199b4401e8def876b8b2bdd0997b522cbbb5c6",
+        "record_id": "nested-base64-gzip.dat"
+      },
+      "source_range": {
+        "start": 0,
+        "end": 61
+      },
+      "basis": "validated_magic",
+      "transformation_chain": [
+        {
+          "operation": "base64",
+          "input_length": 61,
+          "output_length": 45,
+          "parameters": {},
+          "validation": "strict_alphabet_and_padding"
+        },
+        {
+          "operation": "gzip",
+          "input_length": 45,
+          "output_length": 24,
+          "parameters": {},
+          "validation": "container_integrity"
+        },
+        {
+          "operation": "utf8",
+          "input_length": 24,
+          "output_length": 24,
+          "parameters": {},
+          "validation": "strict_decode"
+        }
+      ],
+      "output": {
+        "artifact_ref": "recovered/m08-77047b489fcd-0002.bin",
+        "sha256": "b2bb5b15576f4fbee2abfdae8a74acd57dab268af6b3b57af0b0edcaa317821c",
+        "length": 24,
+        "media_type": "text/plain; charset=utf8"
+      },
+      "completeness": "complete",
+      "evidence": [
+        "strict validation completed for every recorded transformation"
+      ]
+    }
+  ],
+  "failed_attempts": [],
+  "skipped_sources": [],
+  "metrics": {
+    "recovery_count": 4,
+    "failed_attempt_count": 0,
+    "skipped_source_count": 0,
+    "output_bytes": 130
+  },
+  "warnings": [
+    "Successful decoding or decompression does not establish application semantics."
+  ]
+}

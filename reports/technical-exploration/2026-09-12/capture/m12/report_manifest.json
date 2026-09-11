@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1",
+  "status": "partial",
+  "inputs": [
+    {
+      "module": "M01",
+      "artifact_path": "reports\\technical-exploration\\2026-09-12\\capture\\m01\\result.json",
+      "artifact_sha256": "854b583a84c9a8efe95e21daab8074e48f93573e595754a53c031650f5b59d2a",
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    {
+      "module": "M02",
+      "artifact_path": "reports\\technical-exploration\\2026-09-12\\capture\\m02\\features.json",
+      "artifact_sha256": "0414c31006cc8934e726212e4dc783fa1e8e62d8e78a6cc997f05e6f7e90d794",
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    {
+      "module": "M07",
+      "artifact_path": "reports\\technical-exploration\\2026-09-12\\capture\\m07\\protocols.json",
+      "artifact_sha256": "32153e9bc1603f1a7b636dc28f25f44228e824cb4507e0dc4e7ed2089d5dfdd0",
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    {
+      "module": "M09",
+      "artifact_path": "reports\\technical-exploration\\2026-09-12\\capture\\m09\\flow_features.json",
+      "artifact_sha256": "5acdd8c738320e8b09af8c22baa9a040dd9755208ba2e0a6ba41834ff86aef20",
+      "schema_version": "0.1",
+      "status": "ok"
+    },
+    {
+      "module": "M10",
+      "artifact_path": "reports\\technical-exploration\\2026-09-12\\capture\\m10\\behaviors.json",
+      "artifact_sha256": "3cbc32d14b811e59762b0881ff7c1eb8b3a0080e3263c9d686b021d06eaeb879",
+      "schema_version": "0.1",
+      "status": "ok"
+    }
+  ],
+  "generation_mode": "deterministic",
+  "sections": {
+    "observed_facts": [
+      "evidence-m01-a52f39d02775c156",
+      "evidence-m02-000db3d41b153de6",
+      "evidence-m07-25c1b9a4f499ef50",
+      "evidence-m07-b1f201d3263b2e16",
+      "evidence-m09-65832a2be21bc6fc",
+      "evidence-m10-9db7a4253a256d7a"
+    ],
+    "interpretations": [],
+    "undetermined": [
+      "evidence-m01-a52f39d02775c156",
+      "evidence-m02-000db3d41b153de6",
+      "evidence-m10-9db7a4253a256d7a"
+    ],
+    "recommendations": []
+  },
+  "truncation": {
+    "limit": 500,
+    "included": 6,
+    "omitted": 0
+  },
+  "warnings": [],
+  "report_sha256": "637876f568eaa593fa6c98e67beeb3f13ce3ffd1bfddee50e3a811a7aeecd4db"
+}

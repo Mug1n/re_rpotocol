@@ -1,0 +1,111 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "module": "M01",
+    "artifact_path": "reports\\technical-exploration\\2026-09-12\\capture\\m01\\result.json",
+    "artifact_sha256": "854b583a84c9a8efe95e21daab8074e48f93573e595754a53c031650f5b59d2a",
+    "record_count": 1,
+    "schema_version": "0.1"
+  },
+  "status": "ok",
+  "parameters": {
+    "retransmission_policy": "include",
+    "burst_gap_seconds": 1.0,
+    "length_basis": "captured_length",
+    "direction_role_mapping": "node_relative",
+    "quantile_method": "nearest_rank"
+  },
+  "feature_definition": {
+    "version": "0.1",
+    "time_unit": "seconds",
+    "byte_range": "captured packet length",
+    "direction": "node_relative"
+  },
+  "metrics": {
+    "flow_count": 1,
+    "packet_count": 10
+  },
+  "flows": [
+    {
+      "flow_id": "http-brotli-dc3957f2348a-tcp-flow-0",
+      "packet_ids": [
+        "http-brotli-dc3957f2348a-packet-1",
+        "http-brotli-dc3957f2348a-packet-2",
+        "http-brotli-dc3957f2348a-packet-3",
+        "http-brotli-dc3957f2348a-packet-4",
+        "http-brotli-dc3957f2348a-packet-5",
+        "http-brotli-dc3957f2348a-packet-6",
+        "http-brotli-dc3957f2348a-packet-7",
+        "http-brotli-dc3957f2348a-packet-8",
+        "http-brotli-dc3957f2348a-packet-9",
+        "http-brotli-dc3957f2348a-packet-10"
+      ],
+      "packet_count": 10,
+      "byte_count": 1103,
+      "directional": {
+        "node0_to_node1": {
+          "packet_count": 6,
+          "bytes": 511,
+          "length": {
+            "count": 6,
+            "min": 66.0,
+            "max": 173.0,
+            "mean": 85.16666666666667,
+            "median": 66.0,
+            "p95": 173.0,
+            "sum": 511.0
+          }
+        },
+        "node1_to_node0": {
+          "packet_count": 4,
+          "bytes": 592,
+          "length": {
+            "count": 4,
+            "min": 66.0,
+            "max": 386.0,
+            "mean": 148.0,
+            "median": 70.0,
+            "p95": 386.0,
+            "sum": 592.0
+          }
+        }
+      },
+      "packet_length": {
+        "count": 10,
+        "min": 66.0,
+        "max": 386.0,
+        "mean": 110.3,
+        "median": 66.0,
+        "p95": 386.0,
+        "sum": 1103.0
+      },
+      "duration_seconds": 0.001134063,
+      "packet_interarrival_seconds": {
+        "count": 9,
+        "min": 1.9715e-05,
+        "max": 0.000292047,
+        "mean": 0.000126007,
+        "median": 7.2288e-05,
+        "p95": 0.000292047,
+        "sum": 0.001134063
+      },
+      "interarrival_cv": 0.7824356906504135,
+      "rate_bytes_per_second": 972609.105490612,
+      "direction_switches": 6,
+      "node0_to_node1_byte_ratio": 0.46328195829555757,
+      "burst": {
+        "gap_seconds": 1.0,
+        "count": 1,
+        "max_packets": 10
+      },
+      "integrity": {
+        "truncated_packets": 0,
+        "retransmission_packets": 0,
+        "out_of_order_packets": 0,
+        "gap_or_loss_packets": 0
+      }
+    }
+  ],
+  "unavailable_features": [],
+  "warnings": []
+}

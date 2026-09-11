@@ -1,0 +1,58 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "module": "M09",
+    "artifact_path": "reports\\technical-exploration\\2026-09-12\\capture\\m09\\flow_features.json",
+    "artifact_sha256": "5acdd8c738320e8b09af8c22baa9a040dd9755208ba2e0a6ba41834ff86aef20",
+    "record_count": 1,
+    "schema_version": "0.1"
+  },
+  "status": "ok",
+  "parameters": {
+    "version": "0.1",
+    "direction_dominance_ratio": 0.8,
+    "periodicity_max_iat_cv": 0.1,
+    "periodicity_min_iats": 3,
+    "bursty_min_packets": 3,
+    "long_lived_min_seconds": 60.0,
+    "intermittent_idle_min_seconds": 10.0
+  },
+  "rule_set": {
+    "version": "0.1",
+    "direction_dominance_ratio": 0.8,
+    "periodicity_max_iat_cv": 0.1,
+    "periodicity_min_iats": 3,
+    "bursty_min_packets": 3,
+    "long_lived_min_seconds": 60.0,
+    "intermittent_idle_min_seconds": 10.0
+  },
+  "metrics": {
+    "flow_count": 1,
+    "observation_count": 1
+  },
+  "observations": [
+    {
+      "behavior_id": "http-brotli-dc3957f2348a-tcp-flow-0:bursty_transfer",
+      "flow_id": "http-brotli-dc3957f2348a-tcp-flow-0",
+      "type": "bursty_transfer",
+      "observed_values": {
+        "max_burst_packets": 10
+      },
+      "thresholds": {
+        "min_burst_packets": 3
+      },
+      "evidence_refs": [
+        {
+          "record_id": "http-brotli-dc3957f2348a-tcp-flow-0",
+          "feature_definition_version": "0.1"
+        }
+      ],
+      "confidence_basis": "deterministic threshold rule",
+      "limitations": [
+        "Bursting is a traffic pattern only."
+      ]
+    }
+  ],
+  "insufficient_scopes": [],
+  "warnings": []
+}

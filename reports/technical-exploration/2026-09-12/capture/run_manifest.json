@@ -1,0 +1,137 @@
+{
+  "schema_version": "0.1",
+  "run_id": "run-dc3957f2348a-course-capture-observability",
+  "status": "complete",
+  "started_at": "2026-09-11T17:59:00.638557+00:00",
+  "elapsed_seconds": 1.680412,
+  "input": {
+    "path": "data\\external\\raw\\wireshark-v4.6.0\\http-brotli.pcapng",
+    "sha256": "dc3957f2348adc8f148cd776bef9e4bc2b3d062edc1b2aedc7c2a2b92b60b055",
+    "length": 1840
+  },
+  "profile": {
+    "path": "C:\\Users\\33395\\Desktop\\开学作业\\re_rpotocol-main\\.c-work\\profiles\\course-capture-observability.json",
+    "sha256": "5a93d46474fa9e109df356ecc9e0f023138e01ddbc15a1de8f831b93df592484",
+    "profile_id": "course-capture-observability",
+    "schema_version": "0.1"
+  },
+  "environment": {
+    "python": "3.13.9",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "tshark": {
+      "path": "D:\\新建文件夹 (2)\\Wireshark\\tshark.exe",
+      "available": true,
+      "version": "TShark (Wireshark) 4.6.8 (v4.6.8-0-ge677bf052328)."
+    }
+  },
+  "stages": [
+    {
+      "stage": "M01",
+      "status": "completed",
+      "elapsed_seconds": 0.474138,
+      "reason": null
+    },
+    {
+      "stage": "M02",
+      "status": "completed",
+      "elapsed_seconds": 0.011007,
+      "reason": null
+    },
+    {
+      "stage": "M07",
+      "status": "completed",
+      "elapsed_seconds": 0.498406,
+      "reason": null
+    },
+    {
+      "stage": "M09",
+      "status": "completed",
+      "elapsed_seconds": 0.124937,
+      "reason": null
+    },
+    {
+      "stage": "M10",
+      "status": "completed",
+      "elapsed_seconds": 0.084456,
+      "reason": null
+    },
+    {
+      "stage": "M12",
+      "status": "completed",
+      "elapsed_seconds": 0.401196,
+      "reason": null
+    }
+  ],
+  "artifacts": [
+    {
+      "module": "M01",
+      "instance_id": "input",
+      "path": "reports\\technical-exploration\\2026-09-12\\capture\\m01\\result.json",
+      "sha256": "854b583a84c9a8efe95e21daab8074e48f93573e595754a53c031650f5b59d2a",
+      "length": 11333,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {
+        "input_sha256": "dc3957f2348adc8f148cd776bef9e4bc2b3d062edc1b2aedc7c2a2b92b60b055"
+      }
+    },
+    {
+      "module": "M02",
+      "instance_id": "input",
+      "path": "reports\\technical-exploration\\2026-09-12\\capture\\m02\\features.json",
+      "sha256": "0414c31006cc8934e726212e4dc783fa1e8e62d8e78a6cc997f05e6f7e90d794",
+      "length": 79332,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M07",
+      "instance_id": "input",
+      "path": "reports\\technical-exploration\\2026-09-12\\capture\\m07\\protocols.json",
+      "sha256": "32153e9bc1603f1a7b636dc28f25f44228e824cb4507e0dc4e7ed2089d5dfdd0",
+      "length": 2208,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M09",
+      "instance_id": "flows",
+      "path": "reports\\technical-exploration\\2026-09-12\\capture\\m09\\flow_features.json",
+      "sha256": "5acdd8c738320e8b09af8c22baa9a040dd9755208ba2e0a6ba41834ff86aef20",
+      "length": 3110,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M10",
+      "instance_id": "flows",
+      "path": "reports\\technical-exploration\\2026-09-12\\capture\\m10\\behaviors.json",
+      "sha256": "3cbc32d14b811e59762b0881ff7c1eb8b3a0080e3263c9d686b021d06eaeb879",
+      "length": 1643,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M12",
+      "instance_id": "report",
+      "path": "reports\\technical-exploration\\2026-09-12\\capture\\m12\\report_manifest.json",
+      "sha256": "da20d6adbe628c0b4b97c0f759ec4fb0acda90cd816786bf5132e52e59bfedfc",
+      "length": 2240,
+      "schema_version": "0.1",
+      "status": "partial",
+      "scope": {}
+    }
+  ],
+  "model": {
+    "status": "not_requested"
+  },
+  "limitations": [
+    "Standard protocol recognition is performed only when the capture and dissector expose evidence.",
+    "Traffic behavior candidates are not application semantics, user identities, or maliciousness labels.",
+    "Encrypted payload plaintext is never claimed without explicit decryption material."
+  ]
+}

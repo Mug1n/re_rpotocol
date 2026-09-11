@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "status": "complete",
+  "dat": {
+    "path": "data\\external\\raw\\watchpat\\testdata.dat",
+    "sha256": "a3503a1b55c0cb67507bf28b552b2006f7ec8eb2f007c646723e3207c76426cc",
+    "manifest": "unknown_dat/run_manifest.json"
+  },
+  "recovery_input": {
+    "path": "experiments\\M08\\fixtures\\nested-base64-gzip.dat",
+    "sha256": "77047b489fcdc676407303b859199b4401e8def876b8b2bdd0997b522cbbb5c6"
+  },
+  "recovery": {
+    "status": "ok",
+    "recovery_count": 4,
+    "manifest": "recovery/recovery.json"
+  },
+  "capture": {
+    "status": "complete",
+    "path": "data\\external\\raw\\wireshark-v4.6.0\\http-brotli.pcapng",
+    "sha256": "dc3957f2348adc8f148cd776bef9e4bc2b3d062edc1b2aedc7c2a2b92b60b055",
+    "manifest": "capture/run_manifest.json"
+  },
+  "limitations": [
+    "Unknown-DAT framing, message groups, and field boundaries are hypotheses unless independently scored.",
+    "Successful decoding/decompression does not establish application semantics.",
+    "Encrypted payload plaintext requires explicit decryption material and is otherwise reported as unavailable."
+  ]
+}

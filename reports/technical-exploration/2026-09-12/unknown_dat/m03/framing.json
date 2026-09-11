@@ -1,0 +1,2158 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "id": "testdata-a3503a1b55c0",
+    "path": "data\\external\\raw\\watchpat\\testdata.dat",
+    "sha256": "a3503a1b55c0cb67507bf28b552b2006f7ec8eb2f007c646723e3207c76426cc",
+    "length": 8469
+  },
+  "status": "complete",
+  "rule": "infer",
+  "parameters": {
+    "method": "repeated_length_prefix_search",
+    "candidate_count": 4,
+    "min_frames": 3,
+    "max_header_size": 12,
+    "max_frame_length": 1048576,
+    "selected": {
+      "length_offset": 4,
+      "length_width": 1,
+      "byteorder": "big",
+      "length_mode": "payload",
+      "header_size": 12
+    }
+  },
+  "messages": [
+    {
+      "id": "testdata-a3503a1b55c0-message-000000",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 0,
+      "end": 199,
+      "length": 199,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000000.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000001",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 199,
+      "end": 342,
+      "length": 143,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000001.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000002",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 342,
+      "end": 416,
+      "length": 74,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000002.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000003",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 416,
+      "end": 515,
+      "length": 99,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000003.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000004",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 515,
+      "end": 558,
+      "length": 43,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000004.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000005",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 558,
+      "end": 573,
+      "length": 15,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000005.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000006",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 573,
+      "end": 710,
+      "length": 137,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000006.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000007",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 710,
+      "end": 723,
+      "length": 13,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000007.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000008",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 723,
+      "end": 797,
+      "length": 74,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000008.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000009",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 797,
+      "end": 872,
+      "length": 75,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000009.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000010",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 872,
+      "end": 1011,
+      "length": 139,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000010.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000011",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1011,
+      "end": 1023,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000011.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000012",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1023,
+      "end": 1290,
+      "length": 267,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000012.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000013",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1290,
+      "end": 1472,
+      "length": 182,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000013.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000014",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1472,
+      "end": 1484,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000014.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000015",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1484,
+      "end": 1496,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000015.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000016",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1496,
+      "end": 1571,
+      "length": 75,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000016.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000017",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1571,
+      "end": 1652,
+      "length": 81,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000017.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000018",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1652,
+      "end": 1668,
+      "length": 16,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000018.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000019",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1668,
+      "end": 1807,
+      "length": 139,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000019.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000020",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1807,
+      "end": 1821,
+      "length": 14,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000020.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000021",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1821,
+      "end": 1833,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000021.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000022",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1833,
+      "end": 1848,
+      "length": 15,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000022.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000023",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1848,
+      "end": 1983,
+      "length": 135,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000023.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000024",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1983,
+      "end": 1995,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000024.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000025",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 1995,
+      "end": 2009,
+      "length": 14,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000025.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000026",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 2009,
+      "end": 2022,
+      "length": 13,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000026.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000027",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 2022,
+      "end": 2161,
+      "length": 139,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000027.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000028",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 2161,
+      "end": 2173,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000028.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000029",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 2173,
+      "end": 2406,
+      "length": 233,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000029.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000030",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 2406,
+      "end": 2418,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000030.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000031",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 2418,
+      "end": 2447,
+      "length": 29,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000031.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000032",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 2447,
+      "end": 2712,
+      "length": 265,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000032.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000033",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 2712,
+      "end": 2979,
+      "length": 267,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000033.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000034",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 2979,
+      "end": 3161,
+      "length": 182,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000034.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000035",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 3161,
+      "end": 3173,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000035.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000036",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 3173,
+      "end": 3185,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000036.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000037",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 3185,
+      "end": 3258,
+      "length": 73,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000037.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000038",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 3258,
+      "end": 3451,
+      "length": 193,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000038.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000039",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 3451,
+      "end": 3590,
+      "length": 139,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000039.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000040",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 3590,
+      "end": 3602,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000040.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000041",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 3602,
+      "end": 3614,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000041.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000042",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 3614,
+      "end": 3689,
+      "length": 75,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000042.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000043",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 3689,
+      "end": 3829,
+      "length": 140,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000043.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000044",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 3829,
+      "end": 4062,
+      "length": 233,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000044.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000045",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 4062,
+      "end": 4324,
+      "length": 262,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000045.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000046",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 4324,
+      "end": 4336,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000046.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000047",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 4336,
+      "end": 4352,
+      "length": 16,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000047.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000048",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 4352,
+      "end": 4444,
+      "length": 92,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000048.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000049",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 4444,
+      "end": 4526,
+      "length": 82,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000049.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000050",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 4526,
+      "end": 4725,
+      "length": 199,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000050.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000051",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 4725,
+      "end": 4861,
+      "length": 136,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000051.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000052",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 4861,
+      "end": 4875,
+      "length": 14,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000052.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000053",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 4875,
+      "end": 5141,
+      "length": 266,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000053.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000054",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5141,
+      "end": 5153,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000054.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000055",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5153,
+      "end": 5166,
+      "length": 13,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000055.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000056",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5166,
+      "end": 5179,
+      "length": 13,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000056.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000057",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5179,
+      "end": 5254,
+      "length": 75,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000057.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000058",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5254,
+      "end": 5521,
+      "length": 267,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000058.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000059",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5521,
+      "end": 5620,
+      "length": 99,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000059.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000060",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5620,
+      "end": 5756,
+      "length": 136,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000060.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000061",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5756,
+      "end": 5768,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000061.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000062",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5768,
+      "end": 5780,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000062.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000063",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5780,
+      "end": 5792,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000063.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000064",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5792,
+      "end": 5866,
+      "length": 74,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000064.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000065",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5866,
+      "end": 5940,
+      "length": 74,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000065.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000066",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5940,
+      "end": 5952,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000066.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000067",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5952,
+      "end": 5964,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000067.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000068",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 5964,
+      "end": 6037,
+      "length": 73,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000068.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000069",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 6037,
+      "end": 6219,
+      "length": 182,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000069.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000070",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 6219,
+      "end": 6275,
+      "length": 56,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000070.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000071",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 6275,
+      "end": 6287,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000071.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000072",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 6287,
+      "end": 6299,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000072.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000073",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 6299,
+      "end": 6312,
+      "length": 13,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000073.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000074",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 6312,
+      "end": 6579,
+      "length": 267,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000074.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000075",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 6579,
+      "end": 6654,
+      "length": 75,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000075.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000076",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 6654,
+      "end": 6733,
+      "length": 79,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000076.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000077",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 6733,
+      "end": 6748,
+      "length": 15,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000077.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000078",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 6748,
+      "end": 7015,
+      "length": 267,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000078.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000079",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7015,
+      "end": 7153,
+      "length": 138,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000079.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000080",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7153,
+      "end": 7166,
+      "length": 13,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000080.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000081",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7166,
+      "end": 7178,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000081.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000082",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7178,
+      "end": 7277,
+      "length": 99,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000082.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000083",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7277,
+      "end": 7449,
+      "length": 172,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000083.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000084",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7449,
+      "end": 7462,
+      "length": 13,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000084.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000085",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7462,
+      "end": 7474,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000085.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000086",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7474,
+      "end": 7486,
+      "length": 12,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000086.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000087",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7486,
+      "end": 7600,
+      "length": 114,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000087.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000088",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7600,
+      "end": 7714,
+      "length": 114,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000088.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000089",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7714,
+      "end": 7730,
+      "length": 16,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000089.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000090",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7730,
+      "end": 7822,
+      "length": 92,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000090.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000091",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7822,
+      "end": 7904,
+      "length": 82,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000091.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000092",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 7904,
+      "end": 8103,
+      "length": 199,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000092.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000093",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 8103,
+      "end": 8243,
+      "length": 140,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000093.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000094",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 8243,
+      "end": 8385,
+      "length": 142,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000094.bin"
+    },
+    {
+      "id": "testdata-a3503a1b55c0-message-000095",
+      "stream_id": "testdata-a3503a1b55c0",
+      "start": 8385,
+      "end": 8469,
+      "length": 84,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 4,
+            "length_width": 1,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 12
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/testdata-a3503a1b55c0-message-000095.bin"
+    }
+  ],
+  "unparsed_ranges": [],
+  "diagnostics": [
+    {
+      "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+      "accepted": true,
+      "candidate_count": 4,
+      "selected": {
+        "length_offset": 4,
+        "length_width": 1,
+        "byteorder": "big",
+        "length_mode": "payload",
+        "header_size": 12
+      }
+    }
+  ],
+  "warnings": [
+    "Framing boundaries are hypotheses, not protocol truth.",
+    "Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed."
+  ]
+}

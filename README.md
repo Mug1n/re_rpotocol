@@ -108,7 +108,29 @@ python -m unittest discover -s experiments\tests -v
 ```
 
 各模块 CLI 均拒绝覆盖已存在的输出目录。临时结果放在 `tmp/`，该目录不会进入 Git。
-当前集成环境共发现 183 项测试；设置 `WIRESHARK_HOME=third_party/Wireshark` 后 183 项全部通过、0 项跳过。正式 ABC 清单另由 `scripts/verify_acceptance.py` 返回 `acceptance: PASS`。ISCX 外部评测可先用 `python -B scripts/reproduce_iscx_evaluation.py verify` 离线核验证据；提供原始抓包后再用同一脚本的 `prepare`、`train` 子命令完整复跑。
+当前集成环境在设置 `WIRESHARK_HOME=third_party/Wireshark` 后全部测试通过；正式 ABC 清单另由 `scripts/verify_acceptance.py` 返回 `acceptance: PASS`。ISCX 外部评测可先用 `python -B scripts/reproduce_iscx_evaluation.py verify` 离线核验证据；提供原始抓包后再用同一脚本的 `prepare`、`train` 子命令完整复跑。
+
+## 技术探索题专项演示
+
+项目提供了一个可复跑的专项入口，将题目要求拆成三条不能互相冒充的证据链：未知 `.dat` 的结构推断、受限数据恢复、以及抓包的标准协议识别与访问行为候选。Windows 上可使用：
+
+```powershell
+$env:PYTHONHOME = 'C:\Users\33395\anaconda4'
+python scripts\run_technical_exploration_demo.py `
+  --dat data\external\raw\watchpat\testdata.dat `
+  --recovery-input experiments\M08\fixtures\nested-base64-gzip.dat `
+  --capture data\external\raw\wireshark-v4.6.0\http-brotli.pcapng `
+  --tshark 'D:\新建文件夹 (2)\Wireshark\tshark.exe' `
+  --output-dir reports\technical-exploration\<new-run-id>
+```
+
+- `--dat` 进入 M01--M06、M12：内容探测、特征、自动消息边界、消息组、对齐与字段候选；候选不等于协议语义。
+- `--recovery-input` 进入 M08：仅接受可验证的 UTF-8/UTF-16、Hex、Base64、gzip/zlib 转换链。随仓库提供的 `.dat` 夹具可恢复 Base64→gzip→UTF-8 内容。
+- `--capture` 进入 M01、M02、M07、M09、M10、M12：TShark 的协议识别、流量统计和行为候选均附带可追溯证据。
+- 如显式传入 `--invoke-model` 且进程拥有 `DEEPSEEK_API_KEY`，大模型只可基于 M12 的哈希绑定证据产生带引用说明，不能替代解析、解密或真值评分。
+
+没有解密材料的 TLS/SSH/AES 等密文不会被伪装成明文：M08 会明确记录 `ENCRYPTED_WITHOUT_DECRYPTION_MATERIAL`。课程提供的新 `.dat` 可直接替换 `--dat` 后复跑。
+>>>>>>> origin/li3
 
 ## 核心原则
 
