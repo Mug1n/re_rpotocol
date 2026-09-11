@@ -1,7 +1,0 @@
-HTTP/1.1 200 OK
-Server: re_rpotocol-acceptance/0.1 Python/3.13.9
-Date: Thu, 10 Sep 2026 12:44:50 GMT
-Content-Type: text/plain; charset=utf-8
-Content-Length: 101
-X-Content-SHA256: 215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07
-

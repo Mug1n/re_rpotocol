@@ -1,0 +1,157 @@
+{
+  "schema_version": "0.1",
+  "run_id": "run-47497f62366e-unknown-private-identifier-sensitive",
+  "status": "complete",
+  "started_at": "2026-09-11T15:59:32.732259+00:00",
+  "elapsed_seconds": 30.330632,
+  "input": {
+    "path": "demo\\ubx-corpus\\held_out.ubx.bin",
+    "sha256": "47497f62366e95028ae85776d734f950a57184415e18009cd711a0eda2e351da",
+    "length": 37878
+  },
+  "profile": {
+    "path": "profiles\\unknown-private-identifier-sensitive.json",
+    "sha256": "9abf512c7400fc75e5eac55f37b5c669e4079b870942e14883d436a1b9aab43c",
+    "profile_id": "unknown-private-identifier-sensitive",
+    "schema_version": "0.1"
+  },
+  "environment": {
+    "python": "3.13.9",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "tshark": {
+      "path": null,
+      "available": false,
+      "version": null
+    }
+  },
+  "stages": [
+    {
+      "stage": "M01",
+      "status": "completed",
+      "elapsed_seconds": 0.004642,
+      "reason": null
+    },
+    {
+      "stage": "M02",
+      "status": "completed",
+      "elapsed_seconds": 0.080044,
+      "reason": null
+    },
+    {
+      "stage": "M03",
+      "status": "completed",
+      "elapsed_seconds": 0.475823,
+      "reason": null
+    },
+    {
+      "stage": "M04",
+      "status": "completed",
+      "elapsed_seconds": 24.48761,
+      "reason": null
+    },
+    {
+      "stage": "M05",
+      "status": "completed",
+      "elapsed_seconds": 1.194694,
+      "reason": null
+    },
+    {
+      "stage": "M06",
+      "status": "completed",
+      "elapsed_seconds": 0.225936,
+      "reason": null
+    },
+    {
+      "stage": "M12",
+      "status": "completed",
+      "elapsed_seconds": 3.724706,
+      "reason": null
+    }
+  ],
+  "artifacts": [
+    {
+      "module": "M01",
+      "instance_id": "input",
+      "path": "demo\\ubx-result\\m01\\result.json",
+      "sha256": "6f91db4703e3e439901656008ec08c51648399565657ac876ed7517bc2a6efdc",
+      "length": 916,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {
+        "input_sha256": "47497f62366e95028ae85776d734f950a57184415e18009cd711a0eda2e351da"
+      }
+    },
+    {
+      "module": "M02",
+      "instance_id": "input",
+      "path": "demo\\ubx-result\\m02\\features.json",
+      "sha256": "f619e8cd8004e93c11c3459d72ede6457ddee3269851cfe433fc483024abf58c",
+      "length": 1148879,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M03",
+      "instance_id": "structure",
+      "path": "demo\\ubx-result\\m03\\framing.json",
+      "sha256": "67c23f1bc04837084a41dda731b244dd71d1e65f12759daa43009990d99ccc0f",
+      "length": 453410,
+      "schema_version": "0.1",
+      "status": "complete",
+      "scope": {
+        "rule_origin": "automatically_inferred",
+        "source": "input"
+      }
+    },
+    {
+      "module": "M04",
+      "instance_id": "structure",
+      "path": "demo\\ubx-result\\m04\\clusters.json",
+      "sha256": "371b4030f49fe9c7115a7461f5f60c0038dd9438a55e3d7c45a7c0a7cea0e4ce",
+      "length": 159388,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M05",
+      "instance_id": "structure",
+      "path": "demo\\ubx-result\\m05\\alignments.json",
+      "sha256": "1d392520437df8f8df8970f8f192a6c5258421e5f29f8d11df843618efba983c",
+      "length": 3261275,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M06",
+      "instance_id": "structure",
+      "path": "demo\\ubx-result\\m06\\format.json",
+      "sha256": "4b171a4c7d4584a988c9cb99b27c113bd531c5a9bfc8f4ee5b3c1cfb61a12fab",
+      "length": 611442,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M12",
+      "instance_id": "report",
+      "path": "demo\\ubx-result\\m12\\report_manifest.json",
+      "sha256": "2905226b11d15e4ee58723929e17c81a08d477a22d2d3a6f2fb5889ba45fd26b",
+      "length": 42028,
+      "schema_version": "0.1",
+      "status": "partial",
+      "scope": {}
+    }
+  ],
+  "model": {
+    "status": "not_requested"
+  },
+  "limitations": [
+    "This profile assumes repeated early bytes may act as a type discriminator; that is a statistical hypothesis, not a protocol definition.",
+    "Only repeated length-prefixed hypotheses that cover the complete input are accepted automatically.",
+    "Message clusters are statistical groups, not confirmed protocol message types.",
+    "Field candidates and length relations are hypotheses; encrypted, compressed, delimited, or fixed-length formats can correctly remain unframed."
+  ]
+}
