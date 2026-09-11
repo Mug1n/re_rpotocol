@@ -18,10 +18,11 @@
 
 ## 正式结果
 
-- run：`reports/acceptance/2026-09-11-abc/run/run_manifest.json`，SHA-256 `5a60bb80e68af384c0ee79a02a12b3a468adb83b1b2579fdcf0e395f72daa267`。
-- acceptance：`reports/acceptance/2026-09-11-abc/acceptance.json`，SHA-256 `3058003e4264783e9721e1148aa898d487ee655dd57b50ec12d393be097ed8ef`。
+- run：`reports/acceptance/2026-09-11-abc/run/run_manifest.json`，SHA-256 `715d5b7e9e7d5d8ef379f2ba1306b317bb7795ef1c285d3ced583918559ef833`。
+- acceptance：`reports/acceptance/2026-09-11-abc/acceptance.json`，SHA-256 `95bf5b6c0ff7d8f418079ca75a56905f5453d2d5b62a64ef064e2c56f0fd9946`。
 - recovery：101 字节，SHA-256 `215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07`，与 C 独立 truth 一致。
-- label-free prediction：同一 `download-01` flow 预测为 `download`，score 0.985；分数仅为该模型类概率，不作普适置信度声明。
+- label-free prediction：同一 `download-01` flow 预测为 `download`，score 0.99；分数仅为该模型类概率，不作普适置信度声明。
+- 2026-09-11 复现修订：本记录在本主机原样重跑，M11 阶段改用 M11 原生 v0.2 分类器，并修掉 profile 复用路径记录中的绝对路径；run/acceptance 哈希因此更新，recovery 字节不变。
 - semantic model：复用并验证已授权的真实 `deepseek-v4-flash` 调用记录；未重新调用付费 API。
 - C gate：`python -B scripts/verify_acceptance.py reports/acceptance/2026-09-11-abc/acceptance.json` 返回 `acceptance: PASS`，退出码 0。
 

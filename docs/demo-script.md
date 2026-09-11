@@ -48,7 +48,7 @@ Get-Content -Raw tmp\demo-abc-run-01\m11\prediction.json
 Get-Content -Raw tmp\demo-abc-run-01\m12\report_manifest.json
 ```
 
-The recovered 101 bytes should have SHA-256 `215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07`. The same `download-01` flow receives the label-free prediction `download` with score 0.985. Describe that score as this controlled model's class probability for this flow, not a universal accuracy claim. M12 is a deterministic evidence report; the saved DeepSeek record is key-free and does not decide acceptance.
+The recovered 101 bytes should have SHA-256 `215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07`. The same `download-01` flow receives the label-free prediction `download` with score 0.99. Describe that score as this controlled model's class probability for this flow, not a universal accuracy claim. M12 is a deterministic evidence report; the saved DeepSeek record is key-free and does not decide acceptance.
 
 ## 8:00 to 9:00 Independent acceptance
 
@@ -56,7 +56,7 @@ The recovered 101 bytes should have SHA-256 `215ff970eee6a68f5e5a27bef8bea402682
 python -B scripts\assemble_acceptance.py `
   --run-manifest tmp\demo-abc-run-01\run_manifest.json `
   --truth data\acceptance\frozen-20260910\truth\download-01.json `
-  --classifier-evaluation data\acceptance\frozen-20260910\classification\model-run\evaluation.json `
+  --classifier-evaluation data\acceptance\frozen-20260910\classification\m11-v0.2\run\classification.json `
   --model-manifest data\acceptance\frozen-20260910\integration\api-run\model\model_manifest.json `
   --output tmp\demo-abc-acceptance-01.json
 python -B scripts\verify_acceptance.py tmp\demo-abc-acceptance-01.json

@@ -12,7 +12,7 @@
 
 初步建议：RF 作为后续有标签条件下的首选基线，XGBoost 作比较候选，SVM 仅在样本规模合适时考虑；此推荐是实现复杂度与数据形态的判断，不是性能排名。
 
-可用的数据集与论文线索：UNB 的 ISCXVPN2016 提供抓包及流 CSV，包含浏览、邮件、聊天、流媒体、文件传输、VoIP、P2P，并提供业务类别及 VPN/非 VPN 两个标签维度；本项目应分别定义和评测业务分类与 VPN 状态分类，不把二者混成单一任务。关联论文是 Gil 等的 “Characterization of Encrypted and VPN Traffic Using Time-Related Features”（ICISSP 2016）。官方页面说明采集环境和研究使用引用条件：[数据集与论文入口](https://www.unb.ca/cic/datasets/vpn.html)。该资料支持时间特征分类路线，不证明上述三个候选在本项目上的效果。
+可用的数据集与论文线索：UNB 的 ISCXVPN2016 提供抓包及流 CSV，包含浏览、邮件、聊天、流媒体、文件传输、VoIP、P2P，并提供业务类别及 VPN/非 VPN 两个标签维度；本项目应分别定义和评测业务分类与 VPN 状态分类，不把二者混成单一任务。（**已完成其中业务分类维度**：见 [docs/m11-iscx-external-evaluation.md](../../docs/m11-iscx-external-evaluation.md)——VPN 抓包、2 折会话不交叠、macro-F1 0.4995 对多数类 0.3040；VPN 状态维度仍未评测。）关联论文是 Gil 等的 “Characterization of Encrypted and VPN Traffic Using Time-Related Features”（ICISSP 2016）。官方页面说明采集环境和研究使用引用条件：[数据集与论文入口](https://www.unb.ca/cic/datasets/vpn.html)。该资料支持时间特征分类路线，不证明上述三个候选在本项目上的效果。
 
 公开集应用与年代可能不代表真实 DAT；VPN 标签和业务标签也不能混为同一概念。包级标签、流级标签与任务级标签应明确映射；M4 的无监督簇号不能直接充当业务真值。后续训练需按采集会话/时间或主机分组隔离，避免相邻流泄漏；预处理只在训练部分拟合，参见 [官方数据泄漏说明](https://scikit-learn.org/stable/common_pitfalls.html)。
 

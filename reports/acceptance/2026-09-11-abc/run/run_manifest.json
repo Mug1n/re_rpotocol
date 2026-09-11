@@ -2,8 +2,8 @@
   "schema_version": "0.1",
   "run_id": "run-d8f9c37a5714-acceptance",
   "status": "complete",
-  "started_at": "2026-09-11T07:52:43.556809+00:00",
-  "elapsed_seconds": 1.495958,
+  "started_at": "2026-09-11T13:57:50.601153+00:00",
+  "elapsed_seconds": 1.786312,
   "input": {
     "path": "data\\acceptance\\frozen-20260910\\captures\\download-01.pcapng",
     "sha256": "d8f9c37a57146377948b4792d7b0d86b8c95c83d8f23ffb6fabf445eb518f11f",
@@ -11,12 +11,12 @@
   },
   "profile": {
     "path": "profiles\\acceptance.json",
-    "sha256": "96f55b78f2ea68f351c91ab79c1c405d9d88650b6c66ee1163f0bc1f08b06c66",
+    "sha256": "4dfa13c047493a2809909899dce46a2bb3bdfa2c50e995a956f0be74a5e75502",
     "profile_id": "acceptance",
     "schema_version": "0.1"
   },
   "environment": {
-    "python": "3.13.9",
+    "python": "3.14.5",
     "platform": "Windows-11-10.0.26200-SP0",
     "tshark": {
       "path": null,
@@ -28,85 +28,85 @@
     {
       "stage": "M01",
       "status": "reused_verified",
-      "elapsed_seconds": 0.023905,
+      "elapsed_seconds": 0.022816,
       "reason": null
     },
     {
       "stage": "M02",
       "status": "completed",
-      "elapsed_seconds": 0.004629,
+      "elapsed_seconds": 0.00584,
       "reason": null
     },
     {
       "stage": "M07",
       "status": "reused_verified",
-      "elapsed_seconds": 0.000183,
+      "elapsed_seconds": 0.000154,
       "reason": null
     },
     {
       "stage": "PAYLOAD_SOURCES",
       "status": "completed",
-      "elapsed_seconds": 0.036713,
+      "elapsed_seconds": 0.03564,
       "reason": null
     },
     {
       "stage": "M08",
       "status": "completed",
-      "elapsed_seconds": 0.0691,
+      "elapsed_seconds": 0.070769,
       "reason": null
     },
     {
       "stage": "M03",
       "status": "completed",
-      "elapsed_seconds": 0.00155,
+      "elapsed_seconds": 0.001878,
       "reason": null
     },
     {
       "stage": "M04",
       "status": "completed",
-      "elapsed_seconds": 0.002234,
+      "elapsed_seconds": 0.002072,
       "reason": null
     },
     {
       "stage": "M05",
       "status": "completed",
-      "elapsed_seconds": 0.001874,
+      "elapsed_seconds": 0.001567,
       "reason": null
     },
     {
       "stage": "M06",
       "status": "completed",
-      "elapsed_seconds": 0.00154,
+      "elapsed_seconds": 0.001037,
       "reason": null
     },
     {
       "stage": "M09",
       "status": "completed",
-      "elapsed_seconds": 0.039871,
+      "elapsed_seconds": 0.040272,
       "reason": null
     },
     {
       "stage": "M10",
       "status": "completed",
-      "elapsed_seconds": 0.028371,
+      "elapsed_seconds": 0.025982,
       "reason": null
     },
     {
       "stage": "M11",
       "status": "reused_verified",
-      "elapsed_seconds": 0.000205,
+      "elapsed_seconds": 0.000187,
       "reason": null
     },
     {
       "stage": "M11_PREDICTION",
       "status": "completed",
-      "elapsed_seconds": 0.948631,
+      "elapsed_seconds": 1.28615,
       "reason": null
     },
     {
       "stage": "M12",
       "status": "completed",
-      "elapsed_seconds": 0.237932,
+      "elapsed_seconds": 0.218096,
       "reason": null
     }
   ],
@@ -114,7 +114,7 @@
     {
       "module": "M01",
       "instance_id": "input",
-      "path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
+      "path": "data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
       "sha256": "e236f49ff1c96489ae2973f31b88270953303bb9ed90182d90d97bbb724b3ac7",
       "length": 13907,
       "schema_version": "0.1",
@@ -136,7 +136,7 @@
     {
       "module": "M07",
       "instance_id": "input",
-      "path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m07\\protocols.json",
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m07\\protocols.json",
       "sha256": "d38700eaa02e2e1b48ec75d900af5379de38c23b5f6ceb19a38c18a22b6d48cf",
       "length": 2219,
       "schema_version": "0.1",
@@ -147,8 +147,8 @@
       "module": "PAYLOAD_SOURCES",
       "instance_id": "http",
       "path": "reports\\acceptance\\2026-09-11-abc\\run\\payloads\\payload_sources.json",
-      "sha256": "64fa82b83463c0163046f6f012115b9920df0341041a4bea1e7e1a7849f88d8f",
-      "length": 2266,
+      "sha256": "7e0a447b40d96b3e460bda09805c4a07a734b42c6c5888d0c19ec4c5437f53c5",
+      "length": 2202,
       "schema_version": "0.1",
       "status": "ok",
       "scope": {}
@@ -157,7 +157,7 @@
       "module": "M08",
       "instance_id": "recovery-0000",
       "path": "reports\\acceptance\\2026-09-11-abc\\run\\m08\\0000\\recovery.json",
-      "sha256": "1fee6019ca5ff86dc243100fc0af1f01aee6f0b72e29415a98c57eb9aee5f6fc",
+      "sha256": "7d46bd608aec11b2d0c6c222b175073607c7cddfeb7a1eb756d6dc175e2783fb",
       "length": 3117,
       "schema_version": "0.1",
       "status": "ok",
@@ -214,8 +214,8 @@
       "module": "M09",
       "instance_id": "flows",
       "path": "reports\\acceptance\\2026-09-11-abc\\run\\m09\\flow_features.json",
-      "sha256": "15f1b13ff2d1e6aca137c89ffb2ccfd79c2378f381cacc841574ecf9ac0b7e2e",
-      "length": 3317,
+      "sha256": "566e1cfb2ae26b4f945ec02806b9c96b27cfe03df5723a1cacc646a1fecd1b1e",
+      "length": 3285,
       "schema_version": "0.1",
       "status": "ok",
       "scope": {}
@@ -224,7 +224,7 @@
       "module": "M10",
       "instance_id": "flows",
       "path": "reports\\acceptance\\2026-09-11-abc\\run\\m10\\behaviors.json",
-      "sha256": "f2fb9671285a671d001c8a31dea0865d43fee4e3f384396db23872a6acc74862",
+      "sha256": "eb531240a35efd29f416d7b5588cb0b2c478140380ccc768b0c7165c8ed8facc",
       "length": 1632,
       "schema_version": "0.1",
       "status": "ok",
@@ -233,9 +233,9 @@
     {
       "module": "M11",
       "instance_id": "trained-classifier",
-      "path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
-      "sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
-      "length": 4402,
+      "path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "length": 7660,
       "schema_version": "0.1",
       "status": "ok",
       "scope": {}
@@ -244,18 +244,18 @@
       "module": "M11_PREDICTION",
       "instance_id": "new-input",
       "path": "reports\\acceptance\\2026-09-11-abc\\run\\m11\\prediction.json",
-      "sha256": "db973239e25e231661888f7bcc960d4c5a08ddfb9502902e35d50150bb0272fe",
-      "length": 1012,
+      "sha256": "64811820e53776def7d6e1ad36a75ba14935350ec21fecf1685277b7629f4086",
+      "length": 958,
       "schema_version": "0.1",
-      "status": "ok",
+      "status": "unknown",
       "scope": {}
     },
     {
       "module": "M12",
       "instance_id": "report",
       "path": "reports\\acceptance\\2026-09-11-abc\\run\\m12\\report_manifest.json",
-      "sha256": "9b8e1def93c81e00786498a5ddd26dedc6251b8b5b03f512e7217f52d80ceada",
-      "length": 4569,
+      "sha256": "e40e30753a7005eb34054e8c7cb95be84774e6c602673e6211011d9276b8bb42",
+      "length": 5007,
       "schema_version": "0.1",
       "status": "complete",
       "scope": {}

@@ -1,0 +1,305 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "module": "M09-compatible-feature-rows",
+    "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\prepared-rows.json",
+    "artifact_sha256": "88daa554618702b3303428efeb0e19cfa8a0743d185b6de639046e1bff8c7b05",
+    "record_count": 18,
+    "schema_version": "0.1"
+  },
+  "status": "ok",
+  "parameters": {
+    "algorithm": "random_forest",
+    "random_seed": 17,
+    "split_strategy": "grouped_cv",
+    "cv_folds": 5,
+    "class_weight": "balanced",
+    "reject_threshold": 0.5
+  },
+  "task": {
+    "label_dimension": "action_type",
+    "classes": [
+      "download",
+      "periodic",
+      "upload"
+    ],
+    "unknown_rejection": "max class probability below reject_threshold is labelled 'unknown'",
+    "feature_schema_version": "0.2"
+  },
+  "split": {
+    "strategy": "grouped_cv",
+    "group_key": "group_id",
+    "random_seed": 17,
+    "group_overlap": [],
+    "train_count": 18,
+    "train_groups": [
+      "download-01",
+      "download-02",
+      "download-03",
+      "download-04",
+      "download-05",
+      "download-06",
+      "periodic-01",
+      "periodic-02",
+      "periodic-03",
+      "periodic-04",
+      "periodic-05",
+      "periodic-06",
+      "upload-01",
+      "upload-02",
+      "upload-03",
+      "upload-04",
+      "upload-05",
+      "upload-06"
+    ],
+    "test_count": 0,
+    "test_groups": [],
+    "validation_count": 0,
+    "validation_groups": [],
+    "cv_folds": 5
+  },
+  "model": {
+    "algorithm": "RandomForestClassifier",
+    "parameters": {
+      "n_estimators": 100,
+      "random_state": 17,
+      "n_jobs": 1,
+      "class_weight": "balanced"
+    },
+    "feature_names": [
+      "burst_avg_packets",
+      "burst_count",
+      "burst_max_packets",
+      "byte_count",
+      "direction_switches_per_packet",
+      "duration_seconds",
+      "gap_or_loss_ratio",
+      "iat_cv",
+      "iat_mean",
+      "iat_p95",
+      "node0_to_node1_byte_ratio",
+      "node0_to_node1_packet_ratio",
+      "packet_count",
+      "packet_length_mean",
+      "packet_length_median",
+      "packet_length_p95",
+      "retransmission_ratio"
+    ],
+    "dependency": {
+      "name": "scikit-learn",
+      "version": "1.8.0"
+    },
+    "artifact": {
+      "artifact_ref": "model.joblib",
+      "sha256": "80220e1d05a9e6cacd6134e612bdbb09477e3fb83cc5cf29d6f2ed7ab4112836",
+      "length": 87041,
+      "format": "joblib"
+    }
+  },
+  "metrics": {
+    "macro_f1": 1.0,
+    "per_class": {
+      "download": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6.0
+      },
+      "periodic": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6.0
+      },
+      "upload": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 18.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 18.0
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "download",
+        "periodic",
+        "upload"
+      ],
+      "values": [
+        [
+          6,
+          0,
+          0
+        ],
+        [
+          0,
+          6,
+          0
+        ],
+        [
+          0,
+          0,
+          6
+        ]
+      ]
+    },
+    "validation_macro_f1": null,
+    "cv_folds": 5,
+    "cv_macro_f1_mean": 1.0,
+    "cv_macro_f1_std": 0.0,
+    "cv_fold_scores": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "majority_baseline": 0.3333333333333333
+  },
+  "predictions": [
+    {
+      "scope_id": "download-03-ddfc5a5dc1d4-tcp-flow-0",
+      "predicted_label": "download",
+      "score_type": "class_probability",
+      "score": 0.94,
+      "rejected": false
+    },
+    {
+      "scope_id": "periodic-02-7e496d2d9050-tcp-flow-0",
+      "predicted_label": "periodic",
+      "score_type": "class_probability",
+      "score": 1.0,
+      "rejected": false
+    },
+    {
+      "scope_id": "upload-01-577e2dba26fb-tcp-flow-0",
+      "predicted_label": "upload",
+      "score_type": "class_probability",
+      "score": 0.98,
+      "rejected": false
+    },
+    {
+      "scope_id": "upload-06-ccbfdfa0eee3-tcp-flow-0",
+      "predicted_label": "upload",
+      "score_type": "class_probability",
+      "score": 0.99,
+      "rejected": false
+    },
+    {
+      "scope_id": "download-02-91acab9db0a1-tcp-flow-0",
+      "predicted_label": "download",
+      "score_type": "class_probability",
+      "score": 0.96,
+      "rejected": false
+    },
+    {
+      "scope_id": "periodic-01-ea9a3ab5d2aa-tcp-flow-0",
+      "predicted_label": "periodic",
+      "score_type": "class_probability",
+      "score": 1.0,
+      "rejected": false
+    },
+    {
+      "scope_id": "periodic-06-03f364ea380f-tcp-flow-0",
+      "predicted_label": "periodic",
+      "score_type": "class_probability",
+      "score": 1.0,
+      "rejected": false
+    },
+    {
+      "scope_id": "upload-05-2cfaccf6b7a7-tcp-flow-0",
+      "predicted_label": "upload",
+      "score_type": "class_probability",
+      "score": 0.97,
+      "rejected": false
+    },
+    {
+      "scope_id": "download-01-d8f9c37a5714-tcp-flow-0",
+      "predicted_label": "download",
+      "score_type": "class_probability",
+      "score": 0.95,
+      "rejected": false
+    },
+    {
+      "scope_id": "download-06-e827ef76c8b5-tcp-flow-0",
+      "predicted_label": "download",
+      "score_type": "class_probability",
+      "score": 0.97,
+      "rejected": false
+    },
+    {
+      "scope_id": "periodic-05-fba132fb247d-tcp-flow-0",
+      "predicted_label": "periodic",
+      "score_type": "class_probability",
+      "score": 1.0,
+      "rejected": false
+    },
+    {
+      "scope_id": "upload-04-81de2cd471b9-tcp-flow-0",
+      "predicted_label": "upload",
+      "score_type": "class_probability",
+      "score": 0.96,
+      "rejected": false
+    },
+    {
+      "scope_id": "download-05-230e4abd0f69-tcp-flow-0",
+      "predicted_label": "download",
+      "score_type": "class_probability",
+      "score": 0.98,
+      "rejected": false
+    },
+    {
+      "scope_id": "periodic-04-af55cea12972-tcp-flow-0",
+      "predicted_label": "periodic",
+      "score_type": "class_probability",
+      "score": 1.0,
+      "rejected": false
+    },
+    {
+      "scope_id": "upload-03-ce7da042c563-tcp-flow-0",
+      "predicted_label": "upload",
+      "score_type": "class_probability",
+      "score": 0.97,
+      "rejected": false
+    },
+    {
+      "scope_id": "download-04-1f954832ad91-tcp-flow-0",
+      "predicted_label": "download",
+      "score_type": "class_probability",
+      "score": 0.98,
+      "rejected": false
+    },
+    {
+      "scope_id": "periodic-03-3c4913b0e1ee-tcp-flow-0",
+      "predicted_label": "periodic",
+      "score_type": "class_probability",
+      "score": 1.0,
+      "rejected": false
+    },
+    {
+      "scope_id": "upload-02-8567cfc36079-tcp-flow-0",
+      "predicted_label": "upload",
+      "score_type": "class_probability",
+      "score": 0.97,
+      "rejected": false
+    }
+  ],
+  "leakage_checks": {
+    "groups_disjoint": true,
+    "preprocessing_fit_scope": "training_only when a model is trained",
+    "cluster_id_not_used_as_label": true
+  },
+  "warnings": []
+}

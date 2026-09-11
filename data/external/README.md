@@ -10,3 +10,7 @@
 WatchPAT 样本包含生理传感器数据，虽然已经公开发布且未发现姓名、设备序列号或 BLE 地址字段，本项目仍只将其用于离线协议结构测试，不用于个人识别、医学判断或对外再发布。
 
 精确来源、提交、哈希和使用限制见 `manifest.json`；许可证原文位于 `licenses/`。
+
+## 只保留证据、不保留字节的评测集
+
+- `iscx-vpn-2016/`：ISCX VPN-nonVPN 2016 真实 OpenVPN 抓包在 M11 业务分类上的外部评测。原始抓包约 2.4 GB 且可从记录地址重新获取，因此只追踪来源证据与评测结果（`manifest.json` 记录归档与逐会话哈希、`evaluation.json` 记录指标与折切分），不追踪 `raw/` 字节。说明见 [docs/m11-iscx-external-evaluation.md](../../docs/m11-iscx-external-evaluation.md)。

@@ -4,7 +4,7 @@
     "module": "M01",
     "source_ref": {
       "module": "M01",
-      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
       "artifact_sha256": "e236f49ff1c96489ae2973f31b88270953303bb9ed90182d90d97bbb724b3ac7",
       "record_id": "download-01-d8f9c37a5714",
       "schema_version": "0.1"
@@ -126,7 +126,7 @@
     "module": "M07",
     "source_ref": {
       "module": "M07",
-      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m07\\protocols.json",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\full-chain\\m07\\protocols.json",
       "artifact_sha256": "d38700eaa02e2e1b48ec75d900af5379de38c23b5f6ceb19a38c18a22b6d48cf",
       "record_id": "m07-download-01-d8f9c37a5714-packet-4-http",
       "schema_version": "0.1"
@@ -144,7 +144,7 @@
     "module": "M07",
     "source_ref": {
       "module": "M07",
-      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m07\\protocols.json",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\full-chain\\m07\\protocols.json",
       "artifact_sha256": "d38700eaa02e2e1b48ec75d900af5379de38c23b5f6ceb19a38c18a22b6d48cf",
       "record_id": "m07-download-01-d8f9c37a5714-packet-8-http",
       "schema_version": "0.1"
@@ -163,7 +163,7 @@
     "source_ref": {
       "module": "M08",
       "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m08\\0000\\recovery.json",
-      "artifact_sha256": "1fee6019ca5ff86dc243100fc0af1f01aee6f0b72e29415a98c57eb9aee5f6fc",
+      "artifact_sha256": "7d46bd608aec11b2d0c6c222b175073607c7cddfeb7a1eb756d6dc175e2783fb",
       "record_id": "m08-215ff970eee6-0000",
       "schema_version": "0.1"
     },
@@ -183,7 +183,7 @@
     "source_ref": {
       "module": "M09",
       "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m09\\flow_features.json",
-      "artifact_sha256": "15f1b13ff2d1e6aca137c89ffb2ccfd79c2378f381cacc841574ecf9ac0b7e2e",
+      "artifact_sha256": "566e1cfb2ae26b4f945ec02806b9c96b27cfe03df5723a1cacc646a1fecd1b1e",
       "record_id": "download-01-d8f9c37a5714-tcp-flow-0",
       "schema_version": "0.1"
     },
@@ -201,7 +201,7 @@
     "source_ref": {
       "module": "M10",
       "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m10\\behaviors.json",
-      "artifact_sha256": "f2fb9671285a671d001c8a31dea0865d43fee4e3f384396db23872a6acc74862",
+      "artifact_sha256": "eb531240a35efd29f416d7b5588cb0b2c478140380ccc768b0c7165c8ed8facc",
       "record_id": "download-01-d8f9c37a5714-tcp-flow-0:bursty_transfer",
       "schema_version": "0.1"
     },
@@ -216,30 +216,66 @@
     ]
   },
   {
-    "evidence_id": "evidence-m11-17069fae633fd52b",
+    "evidence_id": "evidence-m11-026714f47e31ec2b",
     "module": "M11",
     "source_ref": {
       "module": "M11",
-      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
-      "artifact_sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
-      "record_id": "prediction-1-download-05-230e4abd0f69-tcp-flow-0",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-11-upload-04-81de2cd471b9-tcp-flow-0",
       "schema_version": "0.1"
     },
     "scope": {
       "type": "evaluation_scope",
-      "id": "download-05-230e4abd0f69-tcp-flow-0"
+      "id": "upload-04-81de2cd471b9-tcp-flow-0"
     },
-    "observation": "Evaluation prediction for download-05-230e4abd0f69-tcp-flow-0: label=download, score=0.97, rejected=False.",
+    "observation": "Evaluation prediction for upload-04-81de2cd471b9-tcp-flow-0: label=upload, score=0.96, rejected=False.",
     "method": "M11 grouped evaluation classifier",
     "limitations": []
   },
   {
-    "evidence_id": "evidence-m11-71dbaaa88f28d15c",
+    "evidence_id": "evidence-m11-1a5b6a6ac890c02a",
     "module": "M11",
     "source_ref": {
       "module": "M11",
-      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
-      "artifact_sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-15-download-04-1f954832ad91-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "download-04-1f954832ad91-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for download-04-1f954832ad91-tcp-flow-0: label=download, score=0.98, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-1e9db6073b72bfd6",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-13-periodic-04-af55cea12972-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "periodic-04-af55cea12972-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for periodic-04-af55cea12972-tcp-flow-0: label=periodic, score=1.0, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-2178447b26527aad",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
       "record_id": "prediction-0-download-03-ddfc5a5dc1d4-tcp-flow-0",
       "schema_version": "0.1"
     },
@@ -247,61 +283,259 @@
       "type": "evaluation_scope",
       "id": "download-03-ddfc5a5dc1d4-tcp-flow-0"
     },
-    "observation": "Evaluation prediction for download-03-ddfc5a5dc1d4-tcp-flow-0: label=download, score=0.92, rejected=False.",
+    "observation": "Evaluation prediction for download-03-ddfc5a5dc1d4-tcp-flow-0: label=download, score=0.94, rejected=False.",
     "method": "M11 grouped evaluation classifier",
     "limitations": []
   },
   {
-    "evidence_id": "evidence-m11-b5b3eb2fdaf7bd96",
+    "evidence_id": "evidence-m11-2444242144e5c006",
     "module": "M11",
     "source_ref": {
       "module": "M11",
-      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
-      "artifact_sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
-      "record_id": "prediction-3-periodic-02-7e496d2d9050-tcp-flow-0",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-5-periodic-01-ea9a3ab5d2aa-tcp-flow-0",
       "schema_version": "0.1"
     },
     "scope": {
       "type": "evaluation_scope",
-      "id": "periodic-02-7e496d2d9050-tcp-flow-0"
+      "id": "periodic-01-ea9a3ab5d2aa-tcp-flow-0"
     },
-    "observation": "Evaluation prediction for periodic-02-7e496d2d9050-tcp-flow-0: label=periodic, score=0.99, rejected=False.",
+    "observation": "Evaluation prediction for periodic-01-ea9a3ab5d2aa-tcp-flow-0: label=periodic, score=1.0, rejected=False.",
     "method": "M11 grouped evaluation classifier",
     "limitations": []
   },
   {
-    "evidence_id": "evidence-m11-cdb2978e3d53a92a",
+    "evidence_id": "evidence-m11-27ddf7b698b6c816",
     "module": "M11",
     "source_ref": {
       "module": "M11",
-      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
-      "artifact_sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
-      "record_id": "prediction-2-upload-06-ccbfdfa0eee3-tcp-flow-0",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-12-download-05-230e4abd0f69-tcp-flow-0",
       "schema_version": "0.1"
     },
     "scope": {
       "type": "evaluation_scope",
-      "id": "upload-06-ccbfdfa0eee3-tcp-flow-0"
+      "id": "download-05-230e4abd0f69-tcp-flow-0"
     },
-    "observation": "Evaluation prediction for upload-06-ccbfdfa0eee3-tcp-flow-0: label=upload, score=0.96, rejected=False.",
+    "observation": "Evaluation prediction for download-05-230e4abd0f69-tcp-flow-0: label=download, score=0.98, rejected=False.",
     "method": "M11 grouped evaluation classifier",
     "limitations": []
   },
   {
-    "evidence_id": "evidence-m11-ebd82a86598c50cf",
+    "evidence_id": "evidence-m11-357ec53410ea9e37",
     "module": "M11",
     "source_ref": {
       "module": "M11",
-      "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
-      "artifact_sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
-      "record_id": "prediction-4-periodic-03-3c4913b0e1ee-tcp-flow-0",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-16-periodic-03-3c4913b0e1ee-tcp-flow-0",
       "schema_version": "0.1"
     },
     "scope": {
       "type": "evaluation_scope",
       "id": "periodic-03-3c4913b0e1ee-tcp-flow-0"
     },
-    "observation": "Evaluation prediction for periodic-03-3c4913b0e1ee-tcp-flow-0: label=periodic, score=0.99, rejected=False.",
+    "observation": "Evaluation prediction for periodic-03-3c4913b0e1ee-tcp-flow-0: label=periodic, score=1.0, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-4b0cf7521eb6c375",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-7-upload-05-2cfaccf6b7a7-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "upload-05-2cfaccf6b7a7-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for upload-05-2cfaccf6b7a7-tcp-flow-0: label=upload, score=0.97, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-4c34222ed0eb89cf",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-8-download-01-d8f9c37a5714-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "download-01-d8f9c37a5714-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for download-01-d8f9c37a5714-tcp-flow-0: label=download, score=0.95, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-72cf39747820de9c",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-3-upload-06-ccbfdfa0eee3-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "upload-06-ccbfdfa0eee3-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for upload-06-ccbfdfa0eee3-tcp-flow-0: label=upload, score=0.99, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-789b8945d6635464",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-6-periodic-06-03f364ea380f-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "periodic-06-03f364ea380f-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for periodic-06-03f364ea380f-tcp-flow-0: label=periodic, score=1.0, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-80b219023562bb22",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-1-periodic-02-7e496d2d9050-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "periodic-02-7e496d2d9050-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for periodic-02-7e496d2d9050-tcp-flow-0: label=periodic, score=1.0, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-95e6aa102fb5a993",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-2-upload-01-577e2dba26fb-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "upload-01-577e2dba26fb-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for upload-01-577e2dba26fb-tcp-flow-0: label=upload, score=0.98, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-ad25e889f0bf55b2",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-10-periodic-05-fba132fb247d-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "periodic-05-fba132fb247d-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for periodic-05-fba132fb247d-tcp-flow-0: label=periodic, score=1.0, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-b6047337193f817c",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-9-download-06-e827ef76c8b5-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "download-06-e827ef76c8b5-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for download-06-e827ef76c8b5-tcp-flow-0: label=download, score=0.97, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-dc1e37c147444e25",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-4-download-02-91acab9db0a1-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "download-02-91acab9db0a1-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for download-02-91acab9db0a1-tcp-flow-0: label=download, score=0.96, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-e522ce584b0854d2",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-14-upload-03-ce7da042c563-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "upload-03-ce7da042c563-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for upload-03-ce7da042c563-tcp-flow-0: label=upload, score=0.97, rejected=False.",
+    "method": "M11 grouped evaluation classifier",
+    "limitations": []
+  },
+  {
+    "evidence_id": "evidence-m11-f14e3d560962805b",
+    "module": "M11",
+    "source_ref": {
+      "module": "M11",
+      "artifact_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "artifact_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "record_id": "prediction-17-upload-02-8567cfc36079-tcp-flow-0",
+      "schema_version": "0.1"
+    },
+    "scope": {
+      "type": "evaluation_scope",
+      "id": "upload-02-8567cfc36079-tcp-flow-0"
+    },
+    "observation": "Evaluation prediction for upload-02-8567cfc36079-tcp-flow-0: label=upload, score=0.97, rejected=False.",
     "method": "M11 grouped evaluation classifier",
     "limitations": []
   }

@@ -21,7 +21,7 @@
     "m12": {"type": "object", "additionalProperties": false, "properties": {
       "max_evidence": {"type": "integer", "minimum": 1}, "max_input_bytes": {"type": "integer", "minimum": 1}
     }},
-    "classifier": {"type": "object", "additionalProperties": false, "required": ["evaluation"], "properties": {"evaluation": {"type": "string", "minLength": 1}}},
+    "classifier": {"type": "object", "additionalProperties": false, "required": ["classification"], "properties": {"classification": {"type": "string", "minLength": 1}}},
     "model": {"type": "object", "additionalProperties": false, "properties": {"name": {"type": "string", "minLength": 1}}},
     "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
   }

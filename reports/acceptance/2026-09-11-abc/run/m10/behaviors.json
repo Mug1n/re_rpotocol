@@ -3,7 +3,7 @@
   "source": {
     "module": "M09",
     "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m09\\flow_features.json",
-    "artifact_sha256": "15f1b13ff2d1e6aca137c89ffb2ccfd79c2378f381cacc841574ecf9ac0b7e2e",
+    "artifact_sha256": "566e1cfb2ae26b4f945ec02806b9c96b27cfe03df5723a1cacc646a1fecd1b1e",
     "record_count": 1,
     "schema_version": "0.1"
   },

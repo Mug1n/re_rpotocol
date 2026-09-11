@@ -1,0 +1,218 @@
+{
+  "schema_version": "0.1",
+  "evaluation_id": "iscx-vpn-2016-m11-application",
+  "evaluated_at": "2026-09-11",
+  "module": "M11",
+  "task": "application",
+  "classifier": "M11 default RandomForest baseline",
+  "feature_set": {
+    "feature_definition_version": "0.2",
+    "feature_count": 17,
+    "feature_names": [
+      "packet_count",
+      "byte_count",
+      "packet_length_mean",
+      "packet_length_p95",
+      "packet_length_median",
+      "node0_to_node1_packet_ratio",
+      "node0_to_node1_byte_ratio",
+      "direction_switches_per_packet",
+      "duration_seconds",
+      "iat_mean",
+      "iat_p95",
+      "iat_cv",
+      "burst_count",
+      "burst_avg_packets",
+      "burst_max_packets",
+      "retransmission_ratio",
+      "gap_or_loss_ratio"
+    ]
+  },
+  "rows": {
+    "total": 1028,
+    "per_class": {
+      "chat": 190,
+      "mail": 143,
+      "voip": 279,
+      "ft": 199,
+      "streaming": 217
+    }
+  },
+  "split": {
+    "strategy": "explicit_partition",
+    "grouping": "capture session (group_id = pcap stem)",
+    "disjointness": "no capture session appears on both sides of a fold",
+    "folds": [
+      {
+        "fold": "f1",
+        "test_sessions": [
+          "vpn_aim_chat1b",
+          "vpn_email2b",
+          "vpn_facebook_chat1b",
+          "vpn_ftps_B",
+          "vpn_hangouts_audio1",
+          "vpn_hangouts_chat1b",
+          "vpn_icq_chat1b",
+          "vpn_sftp_B",
+          "vpn_skype_audio1",
+          "vpn_skype_chat1b",
+          "vpn_skype_files1b",
+          "vpn_spotify_A",
+          "vpn_vimeo_B"
+        ],
+        "test_rows": 411
+      },
+      {
+        "fold": "f2",
+        "test_sessions": [
+          "vpn_aim_chat1a",
+          "vpn_email2a",
+          "vpn_facebook_audio2",
+          "vpn_facebook_chat1a",
+          "vpn_ftps_A",
+          "vpn_hangouts_audio2",
+          "vpn_hangouts_chat1a",
+          "vpn_icq_chat1a",
+          "vpn_netflix_A",
+          "vpn_sftp_A",
+          "vpn_skype_audio2",
+          "vpn_skype_chat1a",
+          "vpn_skype_files1a",
+          "vpn_vimeo_A",
+          "vpn_youtube_A"
+        ],
+        "test_rows": 617
+      }
+    ]
+  },
+  "excluded_classes": {
+    "p2p": 1
+  },
+  "results": {
+    "folds": [
+      {
+        "fold": "f1",
+        "macro_f1": 0.472191122525415,
+        "majority_baseline": 0.2822384428223844,
+        "accuracy": 0.46715328467153283,
+        "per_class_f1": {
+          "chat": 0.48128342245989303,
+          "ft": 0.2754491017964072,
+          "mail": 0.8759124087591241,
+          "streaming": 0.4563106796116505,
+          "voip": 0.272
+        },
+        "confusion_matrix": {
+          "labels": [
+            "chat",
+            "ft",
+            "mail",
+            "streaming",
+            "voip"
+          ],
+          "values": [
+            [
+              45,
+              0,
+              1,
+              0,
+              12
+            ],
+            [
+              49,
+              23,
+              1,
+              35,
+              8
+            ],
+            [
+              12,
+              3,
+              60,
+              0,
+              0
+            ],
+            [
+              7,
+              20,
+              0,
+              47,
+              10
+            ],
+            [
+              16,
+              5,
+              0,
+              40,
+              17
+            ]
+          ]
+        },
+        "warnings": []
+      },
+      {
+        "fold": "f2",
+        "macro_f1": 0.5268453618076726,
+        "majority_baseline": 0.32576985413290116,
+        "accuracy": 0.5024311183144247,
+        "per_class_f1": {
+          "chat": 0.5611510791366906,
+          "ft": 0.5201465201465202,
+          "mail": 0.8152866242038217,
+          "streaming": 0.49429657794676807,
+          "voip": 0.24334600760456274
+        },
+        "confusion_matrix": {
+          "labels": [
+            "chat",
+            "ft",
+            "mail",
+            "streaming",
+            "voip"
+          ],
+          "values": [
+            [
+              78,
+              15,
+              15,
+              19,
+              5
+            ],
+            [
+              2,
+              71,
+              1,
+              1,
+              8
+            ],
+            [
+              2,
+              2,
+              64,
+              0,
+              0
+            ],
+            [
+              2,
+              47,
+              2,
+              65,
+              17
+            ],
+            [
+              62,
+              55,
+              7,
+              45,
+              32
+            ]
+          ]
+        },
+        "warnings": []
+      }
+    ],
+    "mean_test_macro_f1": 0.49951824216654384,
+    "mean_majority_baseline": 0.3040041484776428,
+    "lift_over_majority": 0.19551409368890105
+  }
+}

@@ -19,11 +19,13 @@
 
 | artifact | SHA-256 | result |
 |---|---|---|
-| `reports/acceptance/2026-09-11-abc/run/run_manifest.json` | `5a60bb80e68af384c0ee79a02a12b3a468adb83b1b2579fdcf0e395f72daa267` | 14 stages complete/reused; M01–M11 delivered to M12 |
+| `reports/acceptance/2026-09-11-abc/run/run_manifest.json` | `715d5b7e9e7d5d8ef379f2ba1306b317bb7795ef1c285d3ced583918559ef833` | 14 stages complete/reused; M01–M11 delivered to M12 |
 | `reports/acceptance/2026-09-11-abc/run/m08/0000/recovered/m08-215ff970eee6-0000.bin` | `215ff970eee6a68f5e5a27bef8bea4026824a1e45d2c6024e79812617dee7c07` | 101-byte truth match |
-| `reports/acceptance/2026-09-11-abc/run/m11/prediction.json` | `db973239e25e231661888f7bcc960d4c5a08ddfb9502902e35d50150bb0272fe` | same-input label-free `download`, score 0.985 |
-| `reports/acceptance/2026-09-11-abc/run/m12/report_manifest.json` | `9b8e1def93c81e00786498a5ddd26dedc6251b8b5b03f512e7217f52d80ceada` | complete M01–M11 coverage |
-| `reports/acceptance/2026-09-11-abc/acceptance.json` | `3058003e4264783e9721e1148aa898d487ee655dd57b50ec12d393be097ed8ef` | C verifier PASS |
+| `reports/acceptance/2026-09-11-abc/run/m11/prediction.json` | `64811820e53776def7d6e1ad36a75ba14935350ec21fecf1685277b7629f4086` | same-input label-free `download`, score 0.99 |
+| `reports/acceptance/2026-09-11-abc/run/m12/report_manifest.json` | `e40e30753a7005eb34054e8c7cb95be84774e6c602673e6211011d9276b8bb42` | complete M01–M11 coverage |
+| `reports/acceptance/2026-09-11-abc/acceptance.json` | `95bf5b6c0ff7d8f418079ca75a56905f5453d2d5b62a64ef064e2c56f0fd9946` | C verifier PASS |
+
+2026-09-11 复现修订：该记录在本主机原样重跑生成，M11 阶段由临时 C2 分类器改为 M11 原生 v0.2 分类器（`classification/m11-v0.2/`），并修掉 `analysis-profile` 复用路径的绝对路径记录（现全部为仓库相对路径）。因此上表 run/预测/M12/acceptance 四个哈希相对本节首次签署时已变，`m08` 恢复字节哈希不变。
 
 Source capture is C's frozen `download-01.pcapng`; truth is supplied only to `assemble_acceptance.py`, never to `analyze.py`. The persisted real DeepSeek records remain under `data/acceptance/frozen-20260910/integration/api-run/model/` and contain no API key.
 
@@ -31,7 +33,7 @@ Source capture is C's frozen `download-01.pcapng`; truth is supplied only to `as
 
 ```powershell
 python -B scripts/analyze.py --input data/acceptance/frozen-20260910/captures/download-01.pcapng --profile profiles/acceptance.json --output-dir tmp/abc-run
-python -B scripts/assemble_acceptance.py --run-manifest tmp/abc-run/run_manifest.json --truth data/acceptance/frozen-20260910/truth/download-01.json --classifier-evaluation data/acceptance/frozen-20260910/classification/model-run/evaluation.json --model-manifest data/acceptance/frozen-20260910/integration/api-run/model/model_manifest.json --output tmp/abc-acceptance.json
+python -B scripts/assemble_acceptance.py --run-manifest tmp/abc-run/run_manifest.json --truth data/acceptance/frozen-20260910/truth/download-01.json --classifier-evaluation data/acceptance/frozen-20260910/classification/m11-v0.2/run/classification.json --model-manifest data/acceptance/frozen-20260910/integration/api-run/model/model_manifest.json --output tmp/abc-acceptance.json
 python -B scripts/verify_acceptance.py tmp/abc-acceptance.json
 ```
 

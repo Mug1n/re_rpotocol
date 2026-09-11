@@ -1,22 +1,29 @@
 {
   "schema_version": "0.1",
-  "feature_definition_version": "0.1",
+  "feature_definition_version": "0.2",
   "source": {
     "module": "M09",
     "artifact_path": "reports\\acceptance\\2026-09-11-abc\\run\\m09\\flow_features.json",
-    "artifact_sha256": "15f1b13ff2d1e6aca137c89ffb2ccfd79c2378f381cacc841574ecf9ac0b7e2e"
+    "artifact_sha256": "566e1cfb2ae26b4f945ec02806b9c96b27cfe03df5723a1cacc646a1fecd1b1e"
   },
   "feature_names": [
     "packet_count",
     "byte_count",
-    "duration_seconds",
-    "rate_bytes_per_second",
-    "direction_switches",
+    "packet_length_mean",
+    "packet_length_p95",
+    "packet_length_median",
+    "node0_to_node1_packet_ratio",
     "node0_to_node1_byte_ratio",
-    "burst_count",
-    "burst_max_packets",
+    "direction_switches_per_packet",
+    "duration_seconds",
     "iat_mean",
-    "iat_p95"
+    "iat_p95",
+    "iat_cv",
+    "burst_count",
+    "burst_avg_packets",
+    "burst_max_packets",
+    "retransmission_ratio",
+    "gap_or_loss_ratio"
   ],
   "rows": [
     {
@@ -26,14 +33,21 @@
       "features": {
         "packet_count": 13.0,
         "byte_count": 1076.0,
-        "duration_seconds": 0.0106697,
-        "rate_bytes_per_second": 100846.32182723038,
-        "direction_switches": 9.0,
+        "packet_length_mean": 82.76923076923077,
+        "packet_length_p95": 296.0,
+        "packet_length_median": 44.0,
+        "node0_to_node1_packet_ratio": 0.5384615384615384,
         "node0_to_node1_byte_ratio": 0.4154275092936803,
-        "burst_count": 1.0,
-        "burst_max_packets": 13.0,
+        "direction_switches_per_packet": 0.75,
+        "duration_seconds": 0.0106697,
         "iat_mean": 0.0008891416666666667,
-        "iat_p95": 0.0097088
+        "iat_p95": 0.0097088,
+        "iat_cv": 2.993742378642516,
+        "burst_count": 1.0,
+        "burst_avg_packets": 13.0,
+        "burst_max_packets": 13.0,
+        "retransmission_ratio": 0.0,
+        "gap_or_loss_ratio": 0.0
       }
     }
   ],

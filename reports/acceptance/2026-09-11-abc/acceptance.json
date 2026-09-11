@@ -3,7 +3,7 @@
   "status": "complete",
   "input": {
     "M01": {
-      "path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
+      "path": "data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
       "sha256": "e236f49ff1c96489ae2973f31b88270953303bb9ed90182d90d97bbb724b3ac7",
       "length": 13907,
       "schema_version": "0.1",
@@ -45,7 +45,7 @@
       "status": "empty"
     },
     "M07": {
-      "path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m07\\protocols.json",
+      "path": "data\\acceptance\\frozen-20260910\\full-chain\\m07\\protocols.json",
       "sha256": "d38700eaa02e2e1b48ec75d900af5379de38c23b5f6ceb19a38c18a22b6d48cf",
       "length": 2219,
       "schema_version": "0.1",
@@ -53,29 +53,29 @@
     },
     "M08": {
       "path": "reports\\acceptance\\2026-09-11-abc\\run\\m08\\0000\\recovery.json",
-      "sha256": "1fee6019ca5ff86dc243100fc0af1f01aee6f0b72e29415a98c57eb9aee5f6fc",
+      "sha256": "7d46bd608aec11b2d0c6c222b175073607c7cddfeb7a1eb756d6dc175e2783fb",
       "length": 3117,
       "schema_version": "0.1",
       "status": "ok"
     },
     "M09": {
       "path": "reports\\acceptance\\2026-09-11-abc\\run\\m09\\flow_features.json",
-      "sha256": "15f1b13ff2d1e6aca137c89ffb2ccfd79c2378f381cacc841574ecf9ac0b7e2e",
-      "length": 3317,
+      "sha256": "566e1cfb2ae26b4f945ec02806b9c96b27cfe03df5723a1cacc646a1fecd1b1e",
+      "length": 3285,
       "schema_version": "0.1",
       "status": "ok"
     },
     "M10": {
       "path": "reports\\acceptance\\2026-09-11-abc\\run\\m10\\behaviors.json",
-      "sha256": "f2fb9671285a671d001c8a31dea0865d43fee4e3f384396db23872a6acc74862",
+      "sha256": "eb531240a35efd29f416d7b5588cb0b2c478140380ccc768b0c7165c8ed8facc",
       "length": 1632,
       "schema_version": "0.1",
       "status": "ok"
     },
     "M11": {
-      "path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\full-chain\\m11\\classification.json",
-      "sha256": "69b256c8f938b9ae3a945951ed27030f35f597a20f0e6123a8108651fb0a2bf4",
-      "length": 4402,
+      "path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "length": 7660,
       "schema_version": "0.1",
       "status": "ok"
     }
@@ -83,8 +83,8 @@
   "deterministic_report": {
     "manifest": {
       "path": "reports\\acceptance\\2026-09-11-abc\\run\\m12\\report_manifest.json",
-      "sha256": "9b8e1def93c81e00786498a5ddd26dedc6251b8b5b03f512e7217f52d80ceada",
-      "length": 4569
+      "sha256": "e40e30753a7005eb34054e8c7cb95be84774e6c602673e6211011d9276b8bb42",
+      "length": 5007
     },
     "status": "complete",
     "generation_mode": "deterministic"
@@ -106,22 +106,22 @@
   },
   "classification": {
     "evaluation": {
-      "path": "data\\acceptance\\frozen-20260910\\classification\\model-run\\evaluation.json",
-      "sha256": "127a533fc4a47acb0384472a5f88ddbdc6794070c3eed825653a90abedf6372e",
-      "length": 3666
+      "path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+      "sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
+      "length": 7660
     },
     "prediction": {
       "path": "reports\\acceptance\\2026-09-11-abc\\run\\m11\\prediction.json",
-      "sha256": "db973239e25e231661888f7bcc960d4c5a08ddfb9502902e35d50150bb0272fe",
-      "length": 1012
+      "sha256": "64811820e53776def7d6e1ad36a75ba14935350ec21fecf1685277b7629f4086",
+      "length": 958
     },
     "model": {
-      "path": "data\\acceptance\\frozen-20260910\\classification\\model-run\\model.joblib",
-      "sha256": "4e7b6dcdeed8310556fdfe163a42dac645e8abf201cfd9aa63390b6c7398dfa5",
-      "length": 172177
+      "path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\model.joblib",
+      "sha256": "80220e1d05a9e6cacd6134e612bdbb09477e3fb83cc5cf29d6f2ed7ab4112836",
+      "length": 87041
     },
     "test_macro_f1": 1.0,
-    "validation_macro_f1": 1.0
+    "validation_macro_f1": null
   },
   "model": {
     "status": "invoked",

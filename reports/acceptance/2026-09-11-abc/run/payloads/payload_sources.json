@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "source": {
     "module": "M01",
-    "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
+    "artifact_path": "data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
     "artifact_sha256": "e236f49ff1c96489ae2973f31b88270953303bb9ed90182d90d97bbb724b3ac7",
     "record_id": "download-01-d8f9c37a5714",
     "schema_version": "0.1"
@@ -38,7 +38,7 @@
         }
       ],
       "source_artifact": {
-        "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\integration\\m01\\streams\\download-01-d8f9c37a5714-tcp-0-node1_to_node0.bin",
+        "artifact_path": "data\\acceptance\\frozen-20260910\\integration\\m01\\streams\\download-01-d8f9c37a5714-tcp-0-node1_to_node0.bin",
         "artifact_sha256": "38c0c8258fcb622ad3b00b3973aa9ec8d113e82a81f763d6e41c7afad78bf022",
         "length": 353
       },

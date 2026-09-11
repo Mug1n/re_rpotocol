@@ -1,0 +1,727 @@
+{
+  "schema_version": "0.1",
+  "artifact_id": "iscx-vpn-2016",
+  "title": "ISCX VPN-nonVPN 2016 (application-class subset)",
+  "source_page": "https://www.unb.ca/cic/datasets/vpn.html",
+  "retrieved_from": "https://www.kaggle.com/api/v1/datasets/download/mitu1957264/iscx-vpn",
+  "retrieved_at": "2026-09-11",
+  "retrieval_method": "anonymous Kaggle dataset archive download over HTTPS (no account); the UNB host link redirects to a dataset index and no longer serves the archive",
+  "archive": {
+    "sha256": "63efacb7a221479f19f259603ec93a9943219f49cd88501f8cf32c3bcd0486da",
+    "bytes": 2336592297
+  },
+  "not_committed_reason": "raw captures total 2.4 GB and are re-obtainable from the recorded URL",
+  "traffic_type": "real OpenVPN-encrypted application traffic",
+  "label_space": "application class derived from the capture filename",
+  "sessions_total": 31,
+  "sessions_used": 28,
+  "sessions": [
+    {
+      "session_id": "vpn_aim_chat1a",
+      "application_label": "chat",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 7,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 178417,
+        "sha256": "3a685ee836ab57f6c44dbdb28e45c857b9ad7036773d80825bb3e45c74922294",
+        "packets": 1168,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 178417,
+        "sha256": "3a685ee836ab57f6c44dbdb28e45c857b9ad7036773d80825bb3e45c74922294"
+      },
+      "flow_features_sha256": "e4f74b66e0bfaab7291897f6bcb64a4e3bc29f3d3ea3791973309a47f22af602",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_aim_chat1b",
+      "application_label": "chat",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 6,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 190525,
+        "sha256": "e5f60bbdc06813675ba3e1c1dd6c4ea93971d4c8f6d67a9226ed85bab68c30cf",
+        "packets": 1287,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 190525,
+        "sha256": "e5f60bbdc06813675ba3e1c1dd6c4ea93971d4c8f6d67a9226ed85bab68c30cf"
+      },
+      "flow_features_sha256": "e6e6aa0007fa61623e2e5329f3713fbbcc299823c3aeb2555c0d8779803fa913",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_bittorrent",
+      "application_label": "p2p",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 27,
+      "used_in_evaluation": false,
+      "exclusion_reason": "class 'p2p' has a single capture session and cannot be held out group-disjointly",
+      "analysis_capture": {
+        "bytes": 16558868,
+        "sha256": "e23f98d129ba360751353ea0b91799ed413259623ae3d92eec4d2bd9140e5996",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 376187475,
+        "sha256": "4858b3f0020756c7abd5cd6ce2bfee91d31eec2e0e957966dca53c6cf1eccbba"
+      },
+      "flow_features_sha256": "98eee99269310c7f511a59109b7c710ec4f6bf1b496f1f710d3bc5b36cf4e2d8",
+      "held_out_in_folds": []
+    },
+    {
+      "session_id": "vpn_email2a",
+      "application_label": "mail",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 68,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 559048,
+        "sha256": "1a156940f0f434318479704f90b141a0246c92036219714993019cde28149d85",
+        "packets": 2707,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 559048,
+        "sha256": "1a156940f0f434318479704f90b141a0246c92036219714993019cde28149d85"
+      },
+      "flow_features_sha256": "cfd3d1d0aff590f822e17520d1fd215b1a52e09ec5632725947f071a1ae36254",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_email2b",
+      "application_label": "mail",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 75,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 7626146,
+        "sha256": "762f7b48825e6e7071c5fad90a8c26ebbb61cb25d5e71eeb9347c22a0e9c7c6f",
+        "packets": 18874,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 7626146,
+        "sha256": "762f7b48825e6e7071c5fad90a8c26ebbb61cb25d5e71eeb9347c22a0e9c7c6f"
+      },
+      "flow_features_sha256": "08086cf5c69c59707a69aa1fbc0631521be93fb8478f57dd13911b585689be9b",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_facebook_audio2",
+      "application_label": "voip",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 139,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 6501918,
+        "sha256": "ef40538afe08aa6d6d5bf573966af6d5c0304ddf276d1ef634c399186c823d98",
+        "packets": 15094,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 6501918,
+        "sha256": "ef40538afe08aa6d6d5bf573966af6d5c0304ddf276d1ef634c399186c823d98"
+      },
+      "flow_features_sha256": "ac17b3c535963df77ccd5e6797ab15b89daa8d0edb52f30eaa543c08ae2eedd8",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_facebook_chat1a",
+      "application_label": "chat",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 53,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 3396317,
+        "sha256": "5b4fc79048c150e045d45097f34616c91612d6bf1ec5a8a9d959486effa026ab",
+        "packets": 8801,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 3396317,
+        "sha256": "5b4fc79048c150e045d45097f34616c91612d6bf1ec5a8a9d959486effa026ab"
+      },
+      "flow_features_sha256": "152d2e81a452dae60a8c6bad1b02ba2df4045b447ab963f13f7e7205baa27635",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_facebook_chat1b",
+      "application_label": "chat",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 6,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 2594284,
+        "sha256": "f6ae91cc3b684af4841ad1593a1b08e57869a48843595b6c98149597613918d6",
+        "packets": 7567,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 2594284,
+        "sha256": "f6ae91cc3b684af4841ad1593a1b08e57869a48843595b6c98149597613918d6"
+      },
+      "flow_features_sha256": "57c690e85885b86bbb17ddeb4d3e781cd9955b0c071aa9739c3f5c800dbe3a73",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_ftps_A",
+      "application_label": "ft",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 26,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 17954285,
+        "sha256": "c3b5bc7d2349b81e2132b64adab660c26e77cba377d5d2fdd0dd6b1d18c4a959",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 94380369,
+        "sha256": "69f048a986f0de460c893e016d10e84aa5a63649b5066b654bca70b901eec983"
+      },
+      "flow_features_sha256": "96ab2f402dcf871e650dc8d6b7fd1f7bbe45614de19ce3258b3fb61a7dd5edc2",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_ftps_B",
+      "application_label": "ft",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 33,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 17913626,
+        "sha256": "c64311c802d4989af30ddfec10bd016fc2655b015af907f7ae9456e6cbc9265c",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 82635430,
+        "sha256": "4ced53ca8895deb0801cc450aad0b6c32534ad5c864fc71ae39233e78a073331"
+      },
+      "flow_features_sha256": "28a0b82f6ccc79933e5218fcf3cc6a00ef403f1d5299e88e2fd5d6342fad0480",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_hangouts_audio1",
+      "application_label": "voip",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 22,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 3696518,
+        "sha256": "6a6bb98c719696d76f7ba1e4b7120f27fe45fda8a2b1183806d4e8ae44a848e7",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 71870096,
+        "sha256": "523ceb26721c02a597f00743125e61257c987b2a4303afebdfce5f6871ebfa58"
+      },
+      "flow_features_sha256": "b4b713ecee71b0bdd4a752a7a31bdfdc088db76792db24f0f7b4245e1e46e872",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_hangouts_audio2",
+      "application_label": "voip",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 51,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 12600392,
+        "sha256": "50814ba6fbc1f1f046504678f812b4a388299c25133fc828d181733a35a2312e",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 97785336,
+        "sha256": "28632760a7657a770e61d413c5bfeefa66f7eb686b28a300508068e7fd1340ca"
+      },
+      "flow_features_sha256": "b467e8f86ced0a37361e23dde42b37dea25e6c6c343c10f292dbade238bdc356",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_hangouts_chat1a",
+      "application_label": "chat",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 54,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 11608311,
+        "sha256": "846932fa5aa1fb0d38b62d199ee280be9957a749486b365ad5d19d5b82abb3b1",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 13708539,
+        "sha256": "bc675d9f43ad26aba8b61b9e179261882862fb373a007c75812e645feaf4fc76"
+      },
+      "flow_features_sha256": "4bb41d4ef0606f0fbe5fb12a3991d83049d7d26f38f8adf838c73a7bb58b67e2",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_hangouts_chat1b",
+      "application_label": "chat",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 35,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 6194348,
+        "sha256": "e0429c54dd5b05e9156f932c38d192be8addc773acf7fb3cdef8e283f35e3fb7",
+        "packets": 17543,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 6194348,
+        "sha256": "e0429c54dd5b05e9156f932c38d192be8addc773acf7fb3cdef8e283f35e3fb7"
+      },
+      "flow_features_sha256": "53758a27c779e9b34db1991915013e94e9335ea06a345b022b765192b893c21a",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_icq_chat1a",
+      "application_label": "chat",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 6,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 486616,
+        "sha256": "db88a8dc370ee9baeb7924301ecc2818493b3405dcadb882fc3f1a69078ab4c5",
+        "packets": 4196,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 486616,
+        "sha256": "db88a8dc370ee9baeb7924301ecc2818493b3405dcadb882fc3f1a69078ab4c5"
+      },
+      "flow_features_sha256": "f58a3d59c50fb6ad2089e062fb6fadbe8d58358b4ff93bb30da86611fa42d351",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_icq_chat1b",
+      "application_label": "chat",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 2,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 419214,
+        "sha256": "27788de7e6b54fade74f61939737714f714ba7283a770df5e1cd013e89fbf1cc",
+        "packets": 3681,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 419214,
+        "sha256": "27788de7e6b54fade74f61939737714f714ba7283a770df5e1cd013e89fbf1cc"
+      },
+      "flow_features_sha256": "a87774c7a7ffdc1636936ca0039a9a8acffbfc24057cfe795298964bc0d83107",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_netflix_A",
+      "application_label": "streaming",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 75,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 16869290,
+        "sha256": "8dee3eb17d7c4e621866dfaba728667a20507bc50b4cc9237db591b6d17667af",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 806459199,
+        "sha256": "eb7bc6d06d10ebb7d9981f957a70ec4fd779f584b9a0b67814e1b07907c84a0d"
+      },
+      "flow_features_sha256": "8c7282a66b343120bf78e976fab69740f1a6efe18176b9bc7001f41e2fcb287c",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_sftp_A",
+      "application_label": "ft",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 5,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 17816508,
+        "sha256": "6b3778e262079b1c760e54d081cd5a182e50036933463235b4604a4f926d4b80",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 82275894,
+        "sha256": "fff704fee62577b104ba46cead5f8057ba861e64df9789a8b2cee19e8ed6dc44"
+      },
+      "flow_features_sha256": "64648ae82d3946de3d4df754f2afe253ab20f437f956361b32b0a31378ecef90",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_sftp_B",
+      "application_label": "ft",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 9,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 17864767,
+        "sha256": "885395405c69ccccade2dc853a9f71c23ffc1d75bf4d2a2413d4666a817ccf0e",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 17982779,
+        "sha256": "e463a35a076f4a9b0ce7887deaefde2c2f960925f642490258ec68b586c52a00"
+      },
+      "flow_features_sha256": "73a3579662d230d23c30f6484ecff91b5e59ffa799be58afd0cc1379735f475f",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_skype_audio1",
+      "application_label": "voip",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 56,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 2627125,
+        "sha256": "8d1bdc1ea2a7b08878476521b6bbe53e0639e7cc421ee079d92bc3b4c7e21258",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 49536856,
+        "sha256": "2b4df5698c0ebe6f37828f13a0417fac4f2a9f94f9ca0f7b651c8513c9496929"
+      },
+      "flow_features_sha256": "21738865ac94e55de689824498a1ef92aef67632b3e5f723d270f30d04e721e6",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_skype_audio2",
+      "application_label": "voip",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 11,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 2689614,
+        "sha256": "d434447dc86f2b58517d5375cf4a2f62a84cacda04e32d06197e9ec23f3b4c6b",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 49336707,
+        "sha256": "a35f936ecc9e1797a61f2b7b6efeb13b02911c78fc76e2ef71eb8df2ddc2503e"
+      },
+      "flow_features_sha256": "897143f0d1edce0967bbf59eab18b66dbe9961944a41faf8d2b9bde3de7e0c58",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_skype_chat1a",
+      "application_label": "chat",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 12,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 849211,
+        "sha256": "3b7edd244f2415dca5d09ce41a9a32da28e58eb6e5eca93b3501c62b2b26ca16",
+        "packets": 6973,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 849211,
+        "sha256": "3b7edd244f2415dca5d09ce41a9a32da28e58eb6e5eca93b3501c62b2b26ca16"
+      },
+      "flow_features_sha256": "48444cd52fd00cbcd0a44d57d215717844bf418c4362422e78d03f022a48afc7",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_skype_chat1b",
+      "application_label": "chat",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 9,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 1004428,
+        "sha256": "48ffb116ae5359fc9e2323f6d19e77a40a11a28e64aa591d60ef12f9bbc413a0",
+        "packets": 7602,
+        "truncated_to_packet_cap": false,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 1004428,
+        "sha256": "48ffb116ae5359fc9e2323f6d19e77a40a11a28e64aa591d60ef12f9bbc413a0"
+      },
+      "flow_features_sha256": "d508397a097398bffdd6b63ec2a383948d5aff30a4493da57cd481e96138ac8e",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_skype_files1a",
+      "application_label": "ft",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 52,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 5007191,
+        "sha256": "a39ad90b444bb49341589856ad38d0c8563330cea72916cefb0e57c1732ea0c7",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 9036193,
+        "sha256": "fc6912d5dd0cb7814cb8b1605cd1db7505e66844fad031f57a2cfdb921b03cda"
+      },
+      "flow_features_sha256": "5626bf50cfb46ee0d757e091bd442121ba924d78d3343a5e259d6db5019a3f1b",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_skype_files1b",
+      "application_label": "ft",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 74,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 4549568,
+        "sha256": "389d93b5cebed079bfbb6b7c73273d717d8fb0b2d2eb41ec259fda34435fdf9e",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 6690677,
+        "sha256": "37bbdaf33d18f2c0b5288b59d53533ea0bf9c5b0cbed1c16f5cae17f74231c63"
+      },
+      "flow_features_sha256": "1e2bb053dc0d496127c126d33bd0c86b9dab354843ac865c38bd5543684ba583",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_spotify_A",
+      "application_label": "streaming",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 38,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 17017749,
+        "sha256": "a9ce14ad4eef407e2b772911580c3b60b0f02b80c308a690e68282f66cd7ba44",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 103342155,
+        "sha256": "c9cf8dea7551b3ba54f16f5e7aa416409a1bb6e30867d27b9decbef05baaab37"
+      },
+      "flow_features_sha256": "4f4a7f2e6df7e8a3da6e8c1100f36ceae9e8f14d383d1745e7de1f0fb5795225",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_vimeo_A",
+      "application_label": "streaming",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 33,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 22263721,
+        "sha256": "76a6b7284297d24725a8f2e0c87cd76515a3a34e2f0966c27a7402365fb76106",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 124614526,
+        "sha256": "d03dbb15c7d938e81e7b2ce1a9606ba64c23ddd0ccc449de4d1e8d30dba047eb"
+      },
+      "flow_features_sha256": "ac0ece3f810cdfb9ee9b8c94e62fe2caf5432c39c5abf8a5d946d582b6d9d1be",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    },
+    {
+      "session_id": "vpn_vimeo_B",
+      "application_label": "streaming",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 46,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 22719173,
+        "sha256": "c347a3c09797a44e151d9e26e894ff05058313572605ecf74d61b92bc859d0fd",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 254576115,
+        "sha256": "963e9c150a37d843da77871ae8d864c3ce025e2e5ead651a8219b6a35cdeacf5"
+      },
+      "flow_features_sha256": "ba94805c1f092158ffc89e7a5e09980c415405bf5873989b5c2d1dfd0a15cb3d",
+      "held_out_in_folds": [
+        "f1"
+      ]
+    },
+    {
+      "session_id": "vpn_voipbuster1a",
+      "application_label": "voip",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 0,
+      "used_in_evaluation": false,
+      "exclusion_reason": "zero M09 flows were formed",
+      "analysis_capture": {
+        "bytes": 2816105,
+        "sha256": "889bd2e9728bb1b329438f3a363f9ef3776451c75558535c62ea4527d5a38855",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 51729420,
+        "sha256": "e8765d16adefba28752216c90f1f73a1398c73bb4fe9357b74ddd5031c67ac40"
+      },
+      "flow_features_sha256": "70c386db8431de8a85b676dd0a1ad3735d3e8a55f7eb345d1a8ff02033dba68b",
+      "held_out_in_folds": []
+    },
+    {
+      "session_id": "vpn_voipbuster1b",
+      "application_label": "voip",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 0,
+      "used_in_evaluation": false,
+      "exclusion_reason": "zero M09 flows were formed",
+      "analysis_capture": {
+        "bytes": 2809391,
+        "sha256": "170b434f5bd91b8ec4a3d14bf9eca0f4a019f3af7e8268a706d8ec5f37d9972f",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 51572271,
+        "sha256": "4c06066bdcd8af4354da7f4da35fb4929b2842fafb3bede16a7e78b27e7e2315"
+      },
+      "flow_features_sha256": "f12c806bbdc89c8b8a7d78b9be9e3f39b45c7337f7f2a4c074696889409aafac",
+      "held_out_in_folds": []
+    },
+    {
+      "session_id": "vpn_youtube_A",
+      "application_label": "streaming",
+      "label_basis": "capture filename token published with the dataset",
+      "flows": 25,
+      "used_in_evaluation": true,
+      "exclusion_reason": null,
+      "analysis_capture": {
+        "bytes": 18046434,
+        "sha256": "93a49fd8ba7f123d9b797d1e215468c162b2576b7ca9faa5f24aac46433900d2",
+        "packets": 20000,
+        "truncated_to_packet_cap": true,
+        "packet_cap": 20000
+      },
+      "source_capture": {
+        "bytes": 182232350,
+        "sha256": "df444c7eb1148a32baf8ccb29404aceb294423f9aac2aa9a0edb557a1c2be9b7"
+      },
+      "flow_features_sha256": "cfe603e2814c81872ed095aa29bb9818d2e1010a10c055fef14668cc15c9d880",
+      "held_out_in_folds": [
+        "f2"
+      ]
+    }
+  ]
+}

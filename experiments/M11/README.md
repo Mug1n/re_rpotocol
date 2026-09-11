@@ -49,3 +49,7 @@ python experiments/M11/evaluate.py run/classification.json held-out-labeled-rows
 ```
 
 完整闭环：`build_rows`（特征）→ `prepare_rows`（训练集标签/分组）→ `run`（训练）→ `evaluate`（留出集打分，验分类）→ `predict`（无标签推理）→ 类外样本验拒识。
+
+## 外部真实流量评测
+
+在 ISCX VPN-nonVPN 2016 的真实 OpenVPN 抓包上，用 2 折会话不交叠切分评 `task=application`，得到 macro-F1 0.4995（多数类基线 0.3040），证据见 [data/external/iscx-vpn-2016/](../../data/external/iscx-vpn-2016/)，协议、结果与限制见 [docs/m11-iscx-external-evaluation.md](../../docs/m11-iscx-external-evaluation.md)。该评测只覆盖业务分类维度，不代表 VPN 状态分类，也不替代验收闭环中的 M11 证据。

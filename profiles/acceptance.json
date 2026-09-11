@@ -6,10 +6,10 @@
   "reuse": {
     "m01": "data/acceptance/frozen-20260910/integration/m01/result.json",
     "m07": "data/acceptance/frozen-20260910/full-chain/m07/protocols.json",
-    "m11": "data/acceptance/frozen-20260910/full-chain/m11/classification.json"
+    "m11": "data/acceptance/frozen-20260910/classification/m11-v0.2/run/classification.json"
   },
   "structure": {"source": "first_http_body", "rule": "fixed", "rule_origin": "protocol_declared", "parameters": {"start_offset": 0, "frame_size": "source_length"}},
-  "classifier": {"evaluation": "data/acceptance/frozen-20260910/classification/model-run/evaluation.json"},
+  "classifier": {"classification": "data/acceptance/frozen-20260910/classification/m11-v0.2/run/classification.json"},
   "m02": {"window_size": 256, "window_step": 256}, "m12": {"max_evidence": 500}, "model": {"name": "deepseek-v4-flash"},
   "limitations": [
     "M01 and M07 are verified frozen TShark artifacts because this portable host has no TShark installation.",

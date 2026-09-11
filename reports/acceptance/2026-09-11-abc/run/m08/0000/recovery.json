@@ -66,7 +66,7 @@
       ],
       "source_context": {
         "payload_sources_path": "reports\\acceptance\\2026-09-11-abc\\run\\payloads\\payload_sources.json",
-        "payload_sources_sha256": "64fa82b83463c0163046f6f012115b9920df0341041a4bea1e7e1a7849f88d8f",
+        "payload_sources_sha256": "7e0a447b40d96b3e460bda09805c4a07a734b42c6c5888d0c19ec4c5437f53c5",
         "protocol": "http",
         "recognition_basis": "strict_http_start_line_and_framing_headers",
         "stream_id": "download-01-d8f9c37a5714-tcp-stream-0",

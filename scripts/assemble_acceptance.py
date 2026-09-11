@@ -92,8 +92,9 @@ def assemble(run_path: Path, truth_path: Path, evaluation_path: Path,
     if not prediction.get("predictions"):
         raise ValueError("prediction artifact is empty")
     evaluation = load(evaluation_path)
-    model_path = evaluation_path.parent / evaluation.get("model", {}).get("artifact_ref", "")
-    if not model_path.is_file() or sha256(model_path) != evaluation.get("model", {}).get("sha256"):
+    artifact = evaluation.get("model", {}).get("artifact", {})
+    model_path = evaluation_path.parent / str(artifact.get("artifact_ref", ""))
+    if not model_path.is_file() or sha256(model_path) != artifact.get("sha256"):
         raise ValueError("classifier evaluation does not bind its model")
     if prediction.get("model", {}).get("sha256") != sha256(model_path):
         raise ValueError("prediction does not bind the evaluated classifier")
@@ -115,8 +116,8 @@ def assemble(run_path: Path, truth_path: Path, evaluation_path: Path,
                      "truth": record(truth_path)},
         "classification": {"evaluation": record(evaluation_path), "prediction": record(prediction_path),
                            "model": record(model_path),
-                           "test_macro_f1": evaluation.get("test", {}).get("macro_f1"),
-                           "validation_macro_f1": evaluation.get("validation", {}).get("macro_f1")},
+                           "test_macro_f1": evaluation.get("metrics", {}).get("macro_f1"),
+                           "validation_macro_f1": evaluation.get("metrics", {}).get("validation_macro_f1")},
         "model": {**model, "manifest": record(model_manifest_path)},
         "limitations": list(run.get("limitations", [])) + [
             "The persisted model call is replayed and hash-verified; this assembly does not make a second paid API call.",

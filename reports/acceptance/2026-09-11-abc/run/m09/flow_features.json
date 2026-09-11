@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "source": {
     "module": "M01",
-    "artifact_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
+    "artifact_path": "data\\acceptance\\frozen-20260910\\integration\\m01\\result.json",
     "artifact_sha256": "e236f49ff1c96489ae2973f31b88270953303bb9ed90182d90d97bbb724b3ac7",
     "record_count": 1,
     "schema_version": "0.1"

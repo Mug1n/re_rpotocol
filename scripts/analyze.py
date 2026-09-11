@@ -34,10 +34,10 @@ from experiments.M08.run import analyze_payload_source, analyze_recovery
 from experiments.M09.run import analyze as analyze_flow_features
 from experiments.M10.run import analyze as analyze_behaviors
 from experiments.M11.build_rows import build as build_m11_rows
+from experiments.M11.predict import predict as predict_m11
 from experiments.M12.deepseek_adapter import invoke as invoke_deepseek
 from experiments.M12.run import build_report
 from experiments.payload_sources import extract_payload_sources
-from scripts.predict_acceptance_classifier import predict as predict_c2
 
 PROFILE_SCHEMA = ROOT / "research" / "analysis-profile.schema.json"
 RUN_SCHEMA = ROOT / "research" / "run-manifest.schema.json"
@@ -69,8 +69,11 @@ def _resolve_profile_path(profile_path: Path, value: str) -> Path:
     candidate = Path(value)
     if candidate.is_absolute():
         return candidate
-    from_cwd = Path.cwd() / candidate
-    return from_cwd if from_cwd.exists() else profile_path.parent / candidate
+    # Keep the profile-relative string form when it already resolves from the
+    # working directory so recorded artifact paths stay host-independent.
+    if (Path.cwd() / candidate).exists():
+        return candidate
+    return profile_path.parent / candidate
 
 
 def _tool_record(tshark: Path | None) -> dict[str, Any]:
@@ -288,11 +291,11 @@ def run_pipeline(
                 if classifier:
                     rows_path = destination / "m11" / "prediction-rows.json"
                     prediction_path = destination / "m11" / "prediction.json"
-                    evaluation = _resolve_profile_path(profile_file, classifier["evaluation"])
+                    classification = _resolve_profile_path(profile_file, classifier["classification"])
 
                     def run_prediction() -> dict[str, Any]:
                         build_m11_rows(m09_path, rows_path)
-                        return predict_c2(evaluation, rows_path, prediction_path)
+                        return predict_m11(classification, rows_path, prediction_path)
 
                     prediction = execute("M11_PREDICTION", run_prediction)
                     add("M11_PREDICTION", "new-input", prediction_path, prediction)

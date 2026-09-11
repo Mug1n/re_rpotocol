@@ -1,27 +1,26 @@
 {
   "schema_version": "0.1",
-  "status": "ok",
   "source": {
-    "evaluation_path": "D:\\CodexProjects\\re_rpotocol\\data\\acceptance\\frozen-20260910\\classification\\model-run\\evaluation.json",
-    "evaluation_sha256": "127a533fc4a47acb0384472a5f88ddbdc6794070c3eed825653a90abedf6372e",
+    "classification_path": "data\\acceptance\\frozen-20260910\\classification\\m11-v0.2\\run\\classification.json",
+    "classification_sha256": "5f18af38d0af3700ee61d16d93d5f24733fa371d2163e92a488c984cb660f7ad",
     "rows_path": "reports\\acceptance\\2026-09-11-abc\\run\\m11\\prediction-rows.json",
-    "rows_sha256": "bb42391c9b72f5c051d4290f43ca4f9f4d6a74fdbffc0d229c9d9b9a32ef8e7b"
+    "rows_sha256": "366e89eb2061c146d23b38678829bc7da6fbab0e27d8df003d799f04e12c999a"
   },
   "model": {
     "artifact_ref": "model.joblib",
-    "sha256": "4e7b6dcdeed8310556fdfe163a42dac645e8abf201cfd9aa63390b6c7398dfa5",
-    "feature_definition_version": "0.1"
+    "sha256": "80220e1d05a9e6cacd6134e612bdbb09477e3fb83cc5cf29d6f2ed7ab4112836",
+    "feature_definition_version": "0.2"
   },
   "predictions": [
     {
       "scope_id": "download-01-d8f9c37a5714-tcp-flow-0",
       "predicted_label": "download",
       "score_type": "class_probability",
-      "score": 0.985,
+      "score": 0.99,
       "rejected": false
     }
   ],
   "warnings": [
-    "Predictions are not ground truth and this small controlled capture batch is not generalizable."
+    "Predictions are model outputs for new inputs and do not assert ground truth."
   ]
 }
