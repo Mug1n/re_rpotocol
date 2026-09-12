@@ -1,13 +1,16 @@
 {
   "schema_version": "0.1",
   "profile_id": "course-capture-observability",
-  "description": "Evidence-bound analysis of a supplied capture: content detection, packet/flow extraction, standard-protocol observations, traffic statistics, and conservative access-behavior candidates.",
-  "stages": ["M01", "M02", "M07", "M09", "M10", "M12"],
+  "description": "Evidence-bound analysis of a supplied capture: content detection, packet/flow extraction, standard-protocol observations, traffic statistics, conservative access-behavior candidates, and conditional access-behavior type classification.",
+  "stages": ["M01", "M02", "M07", "M09", "M10", "M11", "M12"],
   "m02": {"window_size": 256, "window_step": 256},
   "m12": {"max_evidence": 500},
+  "reuse": {"m11": "data/acceptance/frozen-20260910/classification/m11-v0.2/run/classification.json"},
+  "classifier": {"classification": "data/acceptance/frozen-20260910/classification/m11-v0.2/run/classification.json"},
   "limitations": [
     "Standard protocol recognition is performed only when the capture and dissector expose evidence.",
     "Traffic behavior candidates are not application semantics, user identities, or maliciousness labels.",
+    "Access-behavior type candidates come from a frozen classifier trained on external labelled flows; a score below the rejection threshold is reported as unknown rather than forced into a class.",
     "Encrypted payload plaintext is never claimed without explicit decryption material."
   ]
 }

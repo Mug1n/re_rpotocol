@@ -56,7 +56,7 @@
       "type": "object", "additionalProperties": false,
       "required": ["operation", "input_length", "output_length", "parameters", "validation"],
       "properties": {
-        "operation": {"enum": ["utf8", "utf16", "hex", "base64", "gzip", "zlib"]},
+        "operation": {"enum": ["utf8", "utf16", "hex", "base64", "gzip", "zlib", "declared_plaintext_region"]},
         "input_length": {"type": "integer", "minimum": 0}, "output_length": {"type": "integer", "minimum": 0},
         "parameters": {"type": "object"}, "validation": {"type": "string", "minLength": 1}
       }

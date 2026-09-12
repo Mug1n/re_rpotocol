@@ -1,9 +1,12 @@
 # M08 受限内容恢复
 
-对一个明确的字节来源执行严格 UTF-8/UTF-16、Hex、Base64、gzip 与 zlib 检测，保存每层转换、输出哈希、半开区间来源和安全限制。成功解码只表示候选内容，不表示协议语义；TLS/SSH 没有解密材料时使用 `--encrypted-protocol` 明确跳过。
+对一个明确的字节来源执行严格 UTF-8/UTF-16、Hex、Base64、gzip 与 zlib 检测，保存每层转换、输出哈希、半开区间来源和安全限制。成功解码只表示候选内容，不表示协议语义。
+
+`--encrypted-protocol tls` 时另有一条并列通路：按调用方声明的 RFC 8446 记录布局切分输入，只恢复协议声明为明文的区域（5 字节记录头、保护边界之前的握手明文、`change_cipher_spec` 哑元），受保护区域以 `DECLARED_PROTECTED_REGION` 记入 `skipped_sources` 并附字节区间与数量，全程不解密。声明布局必须严格铺满输入，否则回落到既有的整体拒绝 `ENCRYPTED_WITHOUT_DECRYPTION_MATERIAL`。`ssh` 尚无声明布局，一律走拒绝：这是有意的范围界定。
 
 ```powershell
 python experiments\M08\run.py <bytes> --output-dir <new-directory> --expected-sha256 <sha256>
+python experiments\M08\run.py <bytes> --output-dir <new-directory> --encrypted-protocol tls
 python experiments\payload_sources.py <m01-result.json> --output-dir <new-payload-directory>
 python experiments\M08\run.py --payload-sources <payload_sources.json> --payload-source-id <source-id> --output-dir <new-recovery-directory>
 python -B -m unittest discover -s experiments\M08\tests -v

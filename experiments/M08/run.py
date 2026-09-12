@@ -15,7 +15,7 @@ import tempfile
 import zlib
 from collections import deque
 from pathlib import Path
-from typing import Any
+from typing import Any, NamedTuple
 
 import jsonschema
 
@@ -33,6 +33,133 @@ SCHEMA_VERSION = "0.1"
 HEX_PATTERN = re.compile(rb"(?:[0-9A-Fa-f]{2}\s*)+")
 BASE64_PATTERN = re.compile(rb"[A-Za-z0-9+/]*={0,2}")
 DEFAULT_MAX_INPUT_BYTES = 64 * 1024 * 1024
+
+# Protocol layouts a caller may declare for an input it already knows to be
+# encrypted. Everything here comes from the protocol document; none of it is
+# inferred from the bytes, so the declared regions are labelled
+# ``protocol_declared`` wherever they surface.
+DECLARED_PROTOCOL_LAYOUTS: dict[str, dict[str, Any]] = {
+    "tls": {
+        "layout_id": "tls_record_header_5b",
+        "header_size": 5,
+        "length_offset": 3,
+        "length_width": 2,
+        "byteorder": "big",
+        "content_types": {
+            0x14: "change_cipher_spec",
+            0x15: "alert",
+            0x16: "handshake",
+            0x17: "application_data",
+        },
+        "handshake_types": {
+            0x01: "ClientHello",
+            0x02: "ServerHello",
+            0x08: "EncryptedExtensions",
+            0x0B: "Certificate",
+            0x14: "Finished",
+        },
+        "unprotected_content_types": (0x14,),
+        "unprotected_until_protection_boundary": 0x16,
+        "protection_boundary_content_type": 0x17,
+    },
+}
+
+
+def _declared_plaintext_regions(
+    data: bytes, protocol: str | None
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]] | None:
+    """Split a declared-layout stream into unprotected and protected regions.
+
+    Returns ``(plaintext, protected)`` when the declared layout tiles the whole
+    input exactly, and ``None`` otherwise so the caller keeps its refusal
+    behaviour. Every decision below reads a field of a record header, which the
+    declared layout marks unprotected; no protected byte is used to classify
+    anything, and nothing is decrypted.
+    """
+    layout = DECLARED_PROTOCOL_LAYOUTS.get(protocol or "")
+    if layout is None or not data:
+        return None
+    header = layout["header_size"]
+    records: list[tuple[int, int, int, int]] = []
+    offset = 0
+    while offset < len(data):
+        if offset + header > len(data):
+            return None
+        end = offset + header + int.from_bytes(
+            data[offset + layout["length_offset"]:offset + layout["length_width"] + layout["length_offset"]],
+            layout["byteorder"],
+        )
+        if end > len(data):
+            return None
+        records.append((offset, end, data[offset], end - offset - header))
+        offset = end
+    if len(records) < 2:
+        return None
+
+    plaintext: list[dict[str, Any]] = []
+    protected: list[dict[str, Any]] = []
+    past_boundary = False
+    for index, (start, end, content_type, declared_length) in enumerate(records):
+        common = {
+            "record_index": index,
+            "content_type": content_type,
+            "content_type_name": layout["content_types"].get(content_type),
+            "declared_length": declared_length,
+        }
+        plaintext.append({**common, "role": "record_header", "start": start, "end": start + header})
+        if end == start + header:
+            pass
+        elif content_type in layout["unprotected_content_types"]:
+            plaintext.append({**common, "role": "change_cipher_spec", "start": start + header, "end": end})
+        elif content_type == layout["unprotected_until_protection_boundary"] and not past_boundary:
+            handshake_type = data[start + header]
+            plaintext.append({
+                **common, "role": "handshake_plaintext", "start": start + header, "end": end,
+                "handshake_type": handshake_type,
+                "handshake_type_name": layout["handshake_types"].get(handshake_type),
+            })
+        else:
+            protected.append({**common, "role": "protected", "start": start + header, "end": end})
+        if content_type == layout["protection_boundary_content_type"]:
+            past_boundary = True
+    return plaintext, protected
+
+
+def _declared_region_groups(protocol: str, plaintext: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Group declared plaintext regions by role, in a stable order."""
+    layout_id = DECLARED_PROTOCOL_LAYOUTS[protocol]["layout_id"]
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for region in plaintext:
+        grouped.setdefault(region["role"], []).append(region)
+    groups: list[dict[str, Any]] = []
+    for role in ("record_header", "handshake_plaintext", "change_cipher_spec"):
+        regions = grouped.get(role)
+        if not regions:
+            continue
+        total = sum(region["end"] - region["start"] for region in regions)
+        evidence = [
+            f"declared layout {layout_id}: role {role}, {len(regions)} region(s), {total} bytes; "
+            "the plaintext/protected split is declared by the caller, not inferred from the bytes"
+        ]
+        for region in regions:
+            line = (
+                f"record #{region['record_index']} [{region['start']}, {region['end']}) "
+                f"content_type=0x{region['content_type']:02x}"
+                f"{' ' + region['content_type_name'] if region['content_type_name'] else ''}"
+            )
+            if role == "handshake_plaintext":
+                line += (
+                    f" handshake_type=0x{region['handshake_type']:02x}"
+                    f"{' ' + region['handshake_type_name'] if region['handshake_type_name'] else ''}"
+                )
+            evidence.append(line + f" declared_length={region['declared_length']}")
+        groups.append({
+            "role": role,
+            "regions": regions,
+            "ranges": [{"start": region["start"], "end": region["end"]} for region in regions],
+            "evidence": evidence,
+        })
+    return groups
 
 
 def _decompress_limited(data: bytes, *, wbits: int, max_output_bytes: int, max_ratio: float) -> bytes:
@@ -87,6 +214,99 @@ def _step(operation: str, before: bytes, after: bytes, validation: str) -> dict[
         "parameters": {},
         "validation": validation,
     }
+
+
+class _Candidate(NamedTuple):
+    """One admitted recovery, before it is staged and written.
+
+    ``source_ranges`` overrides the recorded provenance when the recovery is not
+    the whole input (declared regions are disjoint); ``evidence`` overrides the
+    generic validation line.
+    """
+
+    recovered: bytes
+    chain: list[dict[str, Any]]
+    basis: str
+    media_type: str | None
+    source_ranges: list[dict[str, int]] | None = None
+    evidence: list[str] | None = None
+
+
+def _publish(
+    result: dict[str, Any],
+    destination: Path,
+    data: bytes,
+    source_sha256: str,
+    source_ref: dict[str, Any],
+    candidates: list[_Candidate],
+    admitted_output_hashes: dict[str, int],
+    *,
+    source_ranges: list[dict[str, int]] | None,
+    source_context: dict[str, Any] | None,
+    max_artifacts: int,
+    source_completeness: str,
+) -> dict[str, Any]:
+    """Stage the admitted artifacts and publish recovery.json atomically."""
+    staging = Path(tempfile.mkdtemp(prefix=f".{destination.name}.tmp-", dir=destination.parent))
+    try:
+        recovered_dir = staging / "recovered"
+        recovered_dir.mkdir()
+        unique_chains: set[tuple[str, tuple[str, ...]]] = set()
+        artifact_refs: dict[str, str] = {}
+        for candidate in candidates:
+            operations = tuple(step["operation"] for step in candidate.chain)
+            output_sha = hashlib.sha256(candidate.recovered).hexdigest()
+            identity = (output_sha, operations)
+            if identity in unique_chains or len(result["recoveries"]) >= max_artifacts:
+                continue
+            unique_chains.add(identity)
+            recovery_id = f"m08-{source_sha256[:12]}-{len(result['recoveries']):04d}"
+            artifact_ref = artifact_refs.get(output_sha)
+            if artifact_ref is None:
+                artifact = recovered_dir / f"{recovery_id}.bin"
+                artifact.write_bytes(candidate.recovered)
+                artifact_ref = artifact.relative_to(staging).as_posix()
+                artifact_refs[output_sha] = artifact_ref
+            ranges = candidate.source_ranges if candidate.source_ranges is not None else source_ranges
+            recovery = {
+                "recovery_id": recovery_id,
+                "source_ref": source_ref,
+                "source_range": (
+                    {"start": ranges[0]["start"], "end": ranges[-1]["end"]}
+                    if candidate.source_ranges else {"start": 0, "end": len(data)}
+                ),
+                "basis": candidate.basis,
+                "transformation_chain": candidate.chain,
+                "output": {"artifact_ref": artifact_ref, "sha256": output_sha,
+                           "length": len(candidate.recovered), "media_type": candidate.media_type},
+                "completeness": (
+                    "partial" if source_completeness == "partial"
+                    else "complete" if candidate.basis in ("validated_magic", "protocol_declared")
+                    else "candidate"
+                ),
+                "evidence": candidate.evidence
+                or ["strict validation completed for every recorded transformation"],
+            }
+            if ranges is not None:
+                recovery["source_ranges"] = ranges
+            if source_context is not None:
+                recovery["source_context"] = source_context
+            result["recoveries"].append(recovery)
+        if result["recoveries"]:
+            result["status"] = "partial" if result["failed_attempts"] or result["skipped_sources"] else "ok"
+        result["metrics"] = {
+            "recovery_count": len(result["recoveries"]),
+            "failed_attempt_count": len(result["failed_attempts"]),
+            "skipped_source_count": len(result["skipped_sources"]),
+            "output_bytes": sum(admitted_output_hashes.values()),
+        }
+        jsonschema.validate(result, json.loads(OUTPUT_SCHEMA.read_text(encoding="utf-8")))
+        (staging / "recovery.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        staging.replace(destination)
+        return result
+    except Exception:
+        shutil.rmtree(staging, ignore_errors=True)
+        raise
 
 
 def analyze_recovery(
@@ -158,7 +378,42 @@ def analyze_recovery(
         "metrics": {"recovery_count": 0, "failed_attempt_count": 0, "skipped_source_count": 0, "output_bytes": 0},
         "warnings": ["Successful decoding or decompression does not establish application semantics."],
     }
-    if encrypted_protocol or unsupported_content_encoding:
+    candidates: list[_Candidate] = []
+    admitted_output_hashes: dict[str, int] = {}
+    admitted_output_bytes = 0
+
+    def admit_candidate(
+        recovered: bytes,
+        chain: list[dict[str, Any]],
+        basis: str,
+        media_type: str | None,
+        operation: str,
+        span: dict[str, int] | None = None,
+        evidence: list[str] | None = None,
+    ) -> bool:
+        nonlocal admitted_output_bytes
+        if len(candidates) >= max_artifacts:
+            return False
+        output_sha = hashlib.sha256(recovered).hexdigest()
+        if output_sha not in admitted_output_hashes:
+            if admitted_output_bytes + len(recovered) > max_output_bytes:
+                result["failed_attempts"].append({
+                    "source_ref": source_ref,
+                    "operation": operation,
+                    "reason_code": "TOTAL_OUTPUT_BYTES",
+                })
+                return False
+            admitted_output_hashes[output_sha] = len(recovered)
+            admitted_output_bytes += len(recovered)
+        candidates.append(_Candidate(recovered, chain, basis, media_type, span, evidence))
+        return True
+
+    declared = (
+        _declared_plaintext_regions(data, encrypted_protocol)
+        if encrypted_protocol is not None and not unsupported_content_encoding
+        else None
+    )
+    if unsupported_content_encoding or (encrypted_protocol is not None and declared is None):
         skipped = {
             "source_ref": source_ref,
             "reason_code": (
@@ -176,37 +431,56 @@ def analyze_recovery(
         if source_context is not None:
             skipped["source_context"] = source_context
         result["skipped_sources"].append(skipped)
+    elif declared is not None:
+        assert encrypted_protocol is not None
+        plaintext_regions, protected_regions = declared
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        result["warnings"].append(
+            "Declared plaintext regions follow the protocol layout supplied by the caller; the "
+            "plaintext/protected split is not inferred from the bytes, and protected bytes are refused."
+        )
+        result["skipped_sources"].append({
+            "source_ref": source_ref,
+            "reason_code": "DECLARED_PROTECTED_REGION",
+            "detail": (
+                f"{len(protected_regions)} declared-protected region(s), "
+                f"{sum(region['end'] - region['start'] for region in protected_regions)} bytes, "
+                "were refused: the payloads past the protection boundary are encrypted and no "
+                "decryption material was supplied."
+            ),
+            "source_ranges": [
+                {"start": region["start"], "end": region["end"]} for region in protected_regions
+            ],
+        })
+        for group in _declared_region_groups(encrypted_protocol, plaintext_regions):
+            recovered = b"".join(data[region["start"]:region["end"]] for region in group["regions"])
+            admit_candidate(
+                recovered,
+                [{
+                    "operation": "declared_plaintext_region",
+                    "input_length": len(recovered),
+                    "output_length": len(recovered),
+                    "parameters": {
+                        "role": group["role"],
+                        "declared_layout": DECLARED_PROTOCOL_LAYOUTS[encrypted_protocol]["layout_id"],
+                    },
+                    "validation": "declared_unprotected_region",
+                }],
+                "protocol_declared",
+                None,
+                "declared_plaintext_region",
+                group["ranges"],
+                group["evidence"],
+            )
+        return _publish(
+            result, destination, data, source_sha256, source_ref, candidates, admitted_output_hashes,
+            source_ranges=source_ranges, source_context=source_context,
+            max_artifacts=max_artifacts, source_completeness=source_completeness,
+        )
     elif data:
         destination.parent.mkdir(parents=True, exist_ok=True)
         pending = deque([(data, [], source_basis)])
         seen = {hashlib.sha256(data).hexdigest()}
-        candidates: list[tuple[bytes, list[dict[str, Any]], str, str | None]] = []
-        admitted_output_hashes: dict[str, int] = {}
-        admitted_output_bytes = 0
-
-        def admit_candidate(
-            recovered: bytes,
-            chain: list[dict[str, Any]],
-            basis: str,
-            media_type: str | None,
-            operation: str,
-        ) -> bool:
-            nonlocal admitted_output_bytes
-            if len(candidates) >= max_artifacts:
-                return False
-            output_sha = hashlib.sha256(recovered).hexdigest()
-            if output_sha not in admitted_output_hashes:
-                if admitted_output_bytes + len(recovered) > max_output_bytes:
-                    result["failed_attempts"].append({
-                        "source_ref": source_ref,
-                        "operation": operation,
-                        "reason_code": "TOTAL_OUTPUT_BYTES",
-                    })
-                    return False
-                admitted_output_hashes[output_sha] = len(recovered)
-                admitted_output_bytes += len(recovered)
-            candidates.append((recovered, chain, basis, media_type))
-            return True
 
         while pending and len(candidates) < max_artifacts:
             current, chain, basis = pending.popleft()
@@ -261,60 +535,11 @@ def analyze_recovery(
                     seen.add(digest)
                     pending.append((transformed, next_chain, next_basis))
 
-        staging = Path(tempfile.mkdtemp(prefix=f".{destination.name}.tmp-", dir=destination.parent))
-        try:
-            recovered_dir = staging / "recovered"
-            recovered_dir.mkdir()
-            unique_chains: set[tuple[str, tuple[str, ...]]] = set()
-            artifact_refs: dict[str, str] = {}
-            for recovered, chain, basis, media_type in candidates:
-                operations = tuple(step["operation"] for step in chain)
-                output_sha = hashlib.sha256(recovered).hexdigest()
-                identity = (output_sha, operations)
-                if identity in unique_chains or len(result["recoveries"]) >= max_artifacts:
-                    continue
-                unique_chains.add(identity)
-                recovery_id = f"m08-{source_sha256[:12]}-{len(result['recoveries']):04d}"
-                artifact_ref = artifact_refs.get(output_sha)
-                if artifact_ref is None:
-                    artifact = recovered_dir / f"{recovery_id}.bin"
-                    artifact.write_bytes(recovered)
-                    artifact_ref = artifact.relative_to(staging).as_posix()
-                    artifact_refs[output_sha] = artifact_ref
-                recovery = {
-                    "recovery_id": recovery_id,
-                    "source_ref": source_ref,
-                    "source_range": {"start": 0, "end": len(data)},
-                    "basis": basis,
-                    "transformation_chain": chain,
-                    "output": {"artifact_ref": artifact_ref, "sha256": output_sha, "length": len(recovered), "media_type": media_type},
-                    "completeness": (
-                        "partial" if source_completeness == "partial"
-                        else "complete" if basis in ("validated_magic", "protocol_declared")
-                        else "candidate"
-                    ),
-                    "evidence": ["strict validation completed for every recorded transformation"],
-                }
-                if source_ranges is not None:
-                    recovery["source_ranges"] = source_ranges
-                if source_context is not None:
-                    recovery["source_context"] = source_context
-                result["recoveries"].append(recovery)
-            if result["recoveries"]:
-                result["status"] = "partial" if result["failed_attempts"] or result["skipped_sources"] else "ok"
-            result["metrics"] = {
-                "recovery_count": len(result["recoveries"]),
-                "failed_attempt_count": len(result["failed_attempts"]),
-                "skipped_source_count": len(result["skipped_sources"]),
-                "output_bytes": sum(admitted_output_hashes.values()),
-            }
-            jsonschema.validate(result, json.loads(OUTPUT_SCHEMA.read_text(encoding="utf-8")))
-            (staging / "recovery.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-            staging.replace(destination)
-            return result
-        except Exception:
-            shutil.rmtree(staging, ignore_errors=True)
-            raise
+        return _publish(
+            result, destination, data, source_sha256, source_ref, candidates, admitted_output_hashes,
+            source_ranges=source_ranges, source_context=source_context,
+            max_artifacts=max_artifacts, source_completeness=source_completeness,
+        )
 
     destination.parent.mkdir(parents=True, exist_ok=True)
     staging = Path(tempfile.mkdtemp(prefix=f".{destination.name}.tmp-", dir=destination.parent))

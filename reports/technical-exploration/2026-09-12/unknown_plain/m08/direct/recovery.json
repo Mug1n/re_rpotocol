@@ -1,0 +1,254 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "module": "direct",
+    "artifact_path": "D:\\协议逆向\\data\\derived\\tls13-record-stream.dat",
+    "artifact_sha256": "be1a112a579d96c67ddf478ab38a59b4dab539796657f2a3927a0dc8c46d779b",
+    "record_id": "tls13-record-stream.dat"
+  },
+  "status": "partial",
+  "parameters": {
+    "max_input_bytes": 67108864,
+    "max_depth": 3,
+    "max_output_bytes": 8388608,
+    "max_inflation_ratio": 100.0,
+    "max_artifacts": 32,
+    "min_printable_length": 4,
+    "enabled_decoders": [
+      "utf8",
+      "utf16",
+      "hex",
+      "base64",
+      "gzip",
+      "zlib"
+    ],
+    "source_basis": "strict_candidate",
+    "source_completeness": "complete"
+  },
+  "recoveries": [
+    {
+      "recovery_id": "m08-be1a112a579d-0000",
+      "source_ref": {
+        "module": "direct",
+        "artifact_path": "D:\\协议逆向\\data\\derived\\tls13-record-stream.dat",
+        "artifact_sha256": "be1a112a579d96c67ddf478ab38a59b4dab539796657f2a3927a0dc8c46d779b",
+        "record_id": "tls13-record-stream.dat"
+      },
+      "source_range": {
+        "start": 0,
+        "end": 1346
+      },
+      "basis": "protocol_declared",
+      "transformation_chain": [
+        {
+          "operation": "declared_plaintext_region",
+          "input_length": 45,
+          "output_length": 45,
+          "parameters": {
+            "role": "record_header",
+            "declared_layout": "tls_record_header_5b"
+          },
+          "validation": "declared_unprotected_region"
+        }
+      ],
+      "output": {
+        "artifact_ref": "recovered/m08-be1a112a579d-0000.bin",
+        "sha256": "965f6800d29edf889a73cf96205c4befece2f608809e98307f7774396fc42536",
+        "length": 45,
+        "media_type": null
+      },
+      "completeness": "complete",
+      "evidence": [
+        "declared layout tls_record_header_5b: role record_header, 9 region(s), 45 bytes; the plaintext/protected split is declared by the caller, not inferred from the bytes",
+        "record #0 [0, 5) content_type=0x16 handshake declared_length=233",
+        "record #1 [238, 243) content_type=0x16 handshake declared_length=122",
+        "record #2 [365, 370) content_type=0x14 change_cipher_spec declared_length=1",
+        "record #3 [371, 376) content_type=0x17 application_data declared_length=454",
+        "record #4 [830, 835) content_type=0x14 change_cipher_spec declared_length=1",
+        "record #5 [836, 841) content_type=0x17 application_data declared_length=53",
+        "record #6 [894, 899) content_type=0x17 application_data declared_length=397",
+        "record #7 [1296, 1301) content_type=0x17 application_data declared_length=40",
+        "record #8 [1341, 1346) content_type=0x17 application_data declared_length=134"
+      ],
+      "source_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        },
+        {
+          "start": 238,
+          "end": 243
+        },
+        {
+          "start": 365,
+          "end": 370
+        },
+        {
+          "start": 371,
+          "end": 376
+        },
+        {
+          "start": 830,
+          "end": 835
+        },
+        {
+          "start": 836,
+          "end": 841
+        },
+        {
+          "start": 894,
+          "end": 899
+        },
+        {
+          "start": 1296,
+          "end": 1301
+        },
+        {
+          "start": 1341,
+          "end": 1346
+        }
+      ]
+    },
+    {
+      "recovery_id": "m08-be1a112a579d-0001",
+      "source_ref": {
+        "module": "direct",
+        "artifact_path": "D:\\协议逆向\\data\\derived\\tls13-record-stream.dat",
+        "artifact_sha256": "be1a112a579d96c67ddf478ab38a59b4dab539796657f2a3927a0dc8c46d779b",
+        "record_id": "tls13-record-stream.dat"
+      },
+      "source_range": {
+        "start": 5,
+        "end": 365
+      },
+      "basis": "protocol_declared",
+      "transformation_chain": [
+        {
+          "operation": "declared_plaintext_region",
+          "input_length": 355,
+          "output_length": 355,
+          "parameters": {
+            "role": "handshake_plaintext",
+            "declared_layout": "tls_record_header_5b"
+          },
+          "validation": "declared_unprotected_region"
+        }
+      ],
+      "output": {
+        "artifact_ref": "recovered/m08-be1a112a579d-0001.bin",
+        "sha256": "74e157afe2a9e1eea19778010ee87c7e9abb61a936747136c80a0ccee4a5b409",
+        "length": 355,
+        "media_type": null
+      },
+      "completeness": "complete",
+      "evidence": [
+        "declared layout tls_record_header_5b: role handshake_plaintext, 2 region(s), 355 bytes; the plaintext/protected split is declared by the caller, not inferred from the bytes",
+        "record #0 [5, 238) content_type=0x16 handshake handshake_type=0x01 ClientHello declared_length=233",
+        "record #1 [243, 365) content_type=0x16 handshake handshake_type=0x02 ServerHello declared_length=122"
+      ],
+      "source_ranges": [
+        {
+          "start": 5,
+          "end": 238
+        },
+        {
+          "start": 243,
+          "end": 365
+        }
+      ]
+    },
+    {
+      "recovery_id": "m08-be1a112a579d-0002",
+      "source_ref": {
+        "module": "direct",
+        "artifact_path": "D:\\协议逆向\\data\\derived\\tls13-record-stream.dat",
+        "artifact_sha256": "be1a112a579d96c67ddf478ab38a59b4dab539796657f2a3927a0dc8c46d779b",
+        "record_id": "tls13-record-stream.dat"
+      },
+      "source_range": {
+        "start": 370,
+        "end": 836
+      },
+      "basis": "protocol_declared",
+      "transformation_chain": [
+        {
+          "operation": "declared_plaintext_region",
+          "input_length": 2,
+          "output_length": 2,
+          "parameters": {
+            "role": "change_cipher_spec",
+            "declared_layout": "tls_record_header_5b"
+          },
+          "validation": "declared_unprotected_region"
+        }
+      ],
+      "output": {
+        "artifact_ref": "recovered/m08-be1a112a579d-0002.bin",
+        "sha256": "9dcf97a184f32623d11a73124ceb99a5709b083721e878a16d78f596718ba7b2",
+        "length": 2,
+        "media_type": null
+      },
+      "completeness": "complete",
+      "evidence": [
+        "declared layout tls_record_header_5b: role change_cipher_spec, 2 region(s), 2 bytes; the plaintext/protected split is declared by the caller, not inferred from the bytes",
+        "record #2 [370, 371) content_type=0x14 change_cipher_spec declared_length=1",
+        "record #4 [835, 836) content_type=0x14 change_cipher_spec declared_length=1"
+      ],
+      "source_ranges": [
+        {
+          "start": 370,
+          "end": 371
+        },
+        {
+          "start": 835,
+          "end": 836
+        }
+      ]
+    }
+  ],
+  "failed_attempts": [],
+  "skipped_sources": [
+    {
+      "source_ref": {
+        "module": "direct",
+        "artifact_path": "D:\\协议逆向\\data\\derived\\tls13-record-stream.dat",
+        "artifact_sha256": "be1a112a579d96c67ddf478ab38a59b4dab539796657f2a3927a0dc8c46d779b",
+        "record_id": "tls13-record-stream.dat"
+      },
+      "reason_code": "DECLARED_PROTECTED_REGION",
+      "detail": "5 declared-protected region(s), 1078 bytes, were refused: the payloads past the protection boundary are encrypted and no decryption material was supplied.",
+      "source_ranges": [
+        {
+          "start": 376,
+          "end": 830
+        },
+        {
+          "start": 841,
+          "end": 894
+        },
+        {
+          "start": 899,
+          "end": 1296
+        },
+        {
+          "start": 1301,
+          "end": 1341
+        },
+        {
+          "start": 1346,
+          "end": 1480
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "recovery_count": 3,
+    "failed_attempt_count": 0,
+    "skipped_source_count": 1,
+    "output_bytes": 402
+  },
+  "warnings": [
+    "Successful decoding or decompression does not establish application semantics.",
+    "Declared plaintext regions follow the protocol layout supplied by the caller; the plaintext/protected split is not inferred from the bytes, and protected bytes are refused."
+  ]
+}

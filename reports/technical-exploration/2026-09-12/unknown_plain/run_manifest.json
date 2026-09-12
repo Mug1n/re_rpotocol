@@ -1,0 +1,156 @@
+{
+  "schema_version": "0.1",
+  "run_id": "run-be1a112a579d-unknown-private",
+  "status": "complete",
+  "started_at": "2026-09-11T20:13:20.294255+00:00",
+  "elapsed_seconds": 0.661012,
+  "input": {
+    "path": "D:\\协议逆向\\data\\derived\\tls13-record-stream.dat",
+    "sha256": "be1a112a579d96c67ddf478ab38a59b4dab539796657f2a3927a0dc8c46d779b",
+    "length": 1480
+  },
+  "profile": {
+    "path": "D:\\协议逆向\\profiles\\unknown-private.json",
+    "sha256": "df64befc548b94fd2c0303402db7d1faaac0b49145b12f437afef04613dd76ee",
+    "profile_id": "unknown-private",
+    "schema_version": "0.1"
+  },
+  "environment": {
+    "python": "3.14.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "tshark": {
+      "path": null,
+      "available": false,
+      "version": null
+    }
+  },
+  "stages": [
+    {
+      "stage": "M01",
+      "status": "completed",
+      "elapsed_seconds": 0.003454,
+      "reason": null
+    },
+    {
+      "stage": "M02",
+      "status": "completed",
+      "elapsed_seconds": 0.004728,
+      "reason": null
+    },
+    {
+      "stage": "M03",
+      "status": "completed",
+      "elapsed_seconds": 0.011534,
+      "reason": null
+    },
+    {
+      "stage": "M04",
+      "status": "completed",
+      "elapsed_seconds": 0.019692,
+      "reason": null
+    },
+    {
+      "stage": "M05",
+      "status": "completed",
+      "elapsed_seconds": 0.112919,
+      "reason": null
+    },
+    {
+      "stage": "M06",
+      "status": "completed",
+      "elapsed_seconds": 0.014201,
+      "reason": null
+    },
+    {
+      "stage": "M12",
+      "status": "completed",
+      "elapsed_seconds": 0.404427,
+      "reason": null
+    }
+  ],
+  "artifacts": [
+    {
+      "module": "M01",
+      "instance_id": "input",
+      "path": "D:\\协议逆向\\tmp\\frozen-src\\unknown_plain\\m01\\result.json",
+      "sha256": "d00b51a7420d74e2211a2ea1d0a296c3dc0b8addd21a1dcc7f3bcf6160fd21f0",
+      "length": 950,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {
+        "input_sha256": "be1a112a579d96c67ddf478ab38a59b4dab539796657f2a3927a0dc8c46d779b"
+      }
+    },
+    {
+      "module": "M02",
+      "instance_id": "input",
+      "path": "D:\\协议逆向\\tmp\\frozen-src\\unknown_plain\\m02\\features.json",
+      "sha256": "16ec944c37d31731f0ef7bbcfbf2dd2facd22b518f49eb008d154bb1a69ed7d4",
+      "length": 64134,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M03",
+      "instance_id": "structure",
+      "path": "D:\\协议逆向\\tmp\\frozen-src\\unknown_plain\\m03\\framing.json",
+      "sha256": "9ad1d7603966261ea36c3d26c8f07f6efef315183fd177827ae6dc50c46edd5e",
+      "length": 7746,
+      "schema_version": "0.1",
+      "status": "complete",
+      "scope": {
+        "rule_origin": "automatically_inferred",
+        "source": "input"
+      }
+    },
+    {
+      "module": "M04",
+      "instance_id": "structure",
+      "path": "D:\\协议逆向\\tmp\\frozen-src\\unknown_plain\\m04\\clusters.json",
+      "sha256": "b5abc35b4de1f1b3036d88ed46426aed63b8aac18a3a2cee3a24a901f504e1c1",
+      "length": 4303,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M05",
+      "instance_id": "structure",
+      "path": "D:\\协议逆向\\tmp\\frozen-src\\unknown_plain\\m05\\alignments.json",
+      "sha256": "9dabbecf38c1ce9b203fb2711a81d5c57f45cd9b8197993dfde7ca5123adb5c8",
+      "length": 249701,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M06",
+      "instance_id": "structure",
+      "path": "D:\\协议逆向\\tmp\\frozen-src\\unknown_plain\\m06\\format.json",
+      "sha256": "eec76666c796def72b5d0db72e5f5f0ac958347259d7855af1db2e18fef68c50",
+      "length": 462718,
+      "schema_version": "0.1",
+      "status": "ok",
+      "scope": {}
+    },
+    {
+      "module": "M12",
+      "instance_id": "report",
+      "path": "D:\\协议逆向\\tmp\\frozen-src\\unknown_plain\\m12\\report_manifest.json",
+      "sha256": "18992ff3bd9cb4690338ea08951563ea8a46cfe63ca70e173737a2aa2fb56c83",
+      "length": 19508,
+      "schema_version": "0.1",
+      "status": "partial",
+      "scope": {}
+    }
+  ],
+  "model": {
+    "status": "not_requested"
+  },
+  "limitations": [
+    "Only repeated length-prefixed hypotheses that cover the complete input are accepted automatically.",
+    "Message clusters are statistical groups, not confirmed protocol message types.",
+    "Field candidates and length relations are hypotheses; encrypted, compressed, delimited, or fixed-length formats can correctly remain unframed."
+  ]
+}

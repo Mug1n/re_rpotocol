@@ -122,6 +122,22 @@ def _record(path: Path, *, module: str, instance_id: str, status: str,
     }
 
 
+def _longest_stream_direction(m01_path: Path) -> tuple[Path, str, str]:
+    """The longest complete reassembled direction, as (artifact, stream_id, direction)."""
+    m01_data = _load_json(m01_path)
+    candidates = [
+        (int(direction["length"]), stream, direction)
+        for stream in m01_data.get("streams", [])
+        if stream.get("reassembly_status") == "complete"
+        for direction in stream.get("directions", [])
+        if int(direction.get("length", 0)) > 0 and direction.get("artifact_ref")
+    ]
+    if not candidates:
+        raise ValueError("M01 has no complete reassembled TCP stream direction")
+    _length, stream, direction = max(candidates, key=lambda item: item[0])
+    return m01_path.parent / str(direction["artifact_ref"]), stream["id"], direction["direction"]
+
+
 def _validate_reused_m01(input_path: Path, artifact_path: Path) -> dict[str, Any]:
     artifact = _load_json(artifact_path)
     jsonschema.validate(artifact, _load_json(M01_SCHEMA))
@@ -220,6 +236,8 @@ def run_pipeline(
             add("PAYLOAD_SOURCES", "http", payload_manifest_path, payload_manifest)
 
         if "M08" in selected:
+            m08_config = profile_data.get("m08", {})
+
             def recover_all() -> list[tuple[Path, dict[str, Any], dict[str, Any]]]:
                 recovered: list[tuple[Path, dict[str, Any], dict[str, Any]]] = []
                 if payload_manifest and payload_manifest_path and payload_manifest.get("sources"):
@@ -230,9 +248,19 @@ def run_pipeline(
                             "source_id": item["source_id"], "stream_id": item["stream_id"],
                             "direction": item["direction"]}))
                 else:
+                    recovery_source = source
+                    scope: dict[str, Any] = {"source": "direct_input"}
+                    if m08_config.get("source") == "longest_m01_stream_direction":
+                        assert m01_path is not None
+                        recovery_source, stream_id, direction = _longest_stream_direction(m01_path)
+                        scope = {"source": "longest_m01_stream_direction",
+                                 "stream_id": stream_id, "direction": direction}
                     target = destination / "m08" / "direct"
-                    result = analyze_recovery(source, target)
-                    recovered.append((target / "recovery.json", result, {"source": "direct_input"}))
+                    result = analyze_recovery(
+                        recovery_source, target,
+                        encrypted_protocol=m08_config.get("encrypted_protocol"),
+                    )
+                    recovered.append((target / "recovery.json", result, scope))
                 return recovered
 
             for index, (path, result, scope) in enumerate(execute("M08", recover_all)):
@@ -249,19 +277,8 @@ def run_pipeline(
                 structure_source = payload_manifest_path.parent / first["output"]["artifact_ref"]
             elif structure["source"] == "longest_m01_stream_direction":
                 assert m01_path is not None
-                m01_data = _load_json(m01_path)
-                candidates = [
-                    (int(direction["length"]), stream, direction)
-                    for stream in m01_data.get("streams", [])
-                    if stream.get("reassembly_status") == "complete"
-                    for direction in stream.get("directions", [])
-                    if int(direction.get("length", 0)) > 0 and direction.get("artifact_ref")
-                ]
-                if not candidates:
-                    raise ValueError("M01 has no complete reassembled TCP stream direction for structure inference")
-                _length, stream, direction = max(candidates, key=lambda item: item[0])
-                structure_source = m01_path.parent / str(direction["artifact_ref"])
-                structure_scope.update({"stream_id": stream["id"], "direction": direction["direction"]})
+                structure_source, stream_id, direction = _longest_stream_direction(m01_path)
+                structure_scope.update({"stream_id": stream_id, "direction": direction})
             parameters = dict(structure["parameters"])
             if parameters.get("frame_size") == "source_length":
                 parameters["frame_size"] = structure_source.stat().st_size

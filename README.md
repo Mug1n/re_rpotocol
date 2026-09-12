@@ -125,12 +125,11 @@ python scripts\run_technical_exploration_demo.py `
 ```
 
 - `--dat` 进入 M01--M06、M12：内容探测、特征、自动消息边界、消息组、对齐与字段候选；候选不等于协议语义。
-- `--recovery-input` 进入 M08：仅接受可验证的 UTF-8/UTF-16、Hex、Base64、gzip/zlib 转换链。随仓库提供的 `.dat` 夹具可恢复 Base64→gzip→UTF-8 内容。
+- `--recovery-input` 进入 M08：仅接受可验证的 UTF-8/UTF-16、Hex、Base64、gzip/zlib 转换链。随仓库提供的 `.dat` 夹具可恢复 Base64→gzip→UTF-8 内容。若上游声明输入是 `tls` 这类加密协议，M08 按该协议声明的记录布局切分（铺不满则保持整体拒绝），只恢复协议声明为明文的区域——记录头、保护边界之前的握手明文、`change_cipher_spec` 哑元——受保护区域逐段记入 `DECLARED_PROTECTED_REGION` 并计数；明文/受保护的划分来自声明，不从字节推断。
 - `--capture` 进入 M01、M02、M07、M09、M10、M12：TShark 的协议识别、流量统计和行为候选均附带可追溯证据。
 - 如显式传入 `--invoke-model` 且进程拥有 `DEEPSEEK_API_KEY`，大模型只可基于 M12 的哈希绑定证据产生带引用说明，不能替代解析、解密或真值评分。
 
-没有解密材料的 TLS/SSH/AES 等密文不会被伪装成明文：M08 会明确记录 `ENCRYPTED_WITHOUT_DECRYPTION_MATERIAL`。课程提供的新 `.dat` 可直接替换 `--dat` 后复跑。
->>>>>>> origin/li3
+没有解密材料的 TLS/SSH/AES 等密文不会被伪装成明文：M08 不解密、也不猜测明文，只恢复协议自己声明为不受保护的字节，其余逐段记入 `DECLARED_PROTECTED_REGION`；声明布局铺不满输入时，保持整体拒绝 `ENCRYPTED_WITHOUT_DECRYPTION_MATERIAL`。课程提供的新 `.dat` 可直接替换 `--dat` 后复跑。
 
 ## 核心原则
 
@@ -144,4 +143,4 @@ python scripts\run_technical_exploration_demo.py `
 
 1. 若课程另发指定 DAT，复核封装、协议字段、时间戳、方向和标签条件，并保留与当前冻结自采结果分开的报告。
 2. 在更多独立真实采集上补强 M09～M11；当前 18 个回环样例的指标不能外推为普适准确率。
-3. 由三位真实成员确认姓名、最终贡献比例、PPT 截图与录像；仓库保留待填模板，不编造人工信息。
+3. 姓名与学号已由三位成员本人确认并填入 `docs/submission/00-提交材料索引.md` 与 `01-任务分工说明.md`；最终贡献比例、PPT 截图与录像仍待三位成员现场确认，仓库不编造人工信息。

@@ -18,6 +18,10 @@
       "rule_origin": {"enum": ["protocol_declared", "format_documented", "manual_hypothesis", "automatically_inferred"]}, "parameters": {"type": "object"}
     }},
     "m02": {"type": "object"}, "m04": {"type": "object"}, "m07": {"type": "object"},
+    "m08": {"type": "object", "additionalProperties": false, "properties": {
+      "source": {"enum": ["input", "longest_m01_stream_direction"]},
+      "encrypted_protocol": {"enum": ["tls", "ssh"]}
+    }},
     "m12": {"type": "object", "additionalProperties": false, "properties": {
       "max_evidence": {"type": "integer", "minimum": 1}, "max_input_bytes": {"type": "integer", "minimum": 1}
     }},

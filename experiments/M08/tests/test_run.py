@@ -139,6 +139,60 @@ class RecoveryTests(unittest.TestCase):
         self.assertTrue(any(item["reason_code"] == "ENCRYPTED_WITHOUT_DECRYPTION_MATERIAL" for item in result["skipped_sources"]))
         self.assertNotEqual("ok", result["status"])
 
+    @staticmethod
+    def record(content_type: int, payload: bytes) -> bytes:
+        return bytes([content_type, 0x03, 0x03]) + len(payload).to_bytes(2, "big") + payload
+
+    def test_declared_tls_plaintext_regions_are_recovered_and_ciphertext_refused(self):
+        client_hello = bytes([0x01, 0x00, 0x00, 0x02]) + b"CH"
+        server_hello = bytes([0x02, 0x00, 0x00, 0x02]) + b"SH"
+        stream = (
+            self.record(0x16, client_hello)     # [ 0, 11)  handshake, unprotected
+            + self.record(0x16, server_hello)   # [11, 22)  handshake, unprotected
+            + self.record(0x14, b"\x01")        # [22, 28)  dummy
+            + self.record(0x17, b"\xaa" * 8)    # [28, 41)  protected
+            + self.record(0x17, b"\xbb" * 6)    # [41, 52)  protected
+        )
+        result, output = self.analyze(stream, encrypted_protocol="tls")
+        self.assertEqual("partial", result["status"])
+        by_role = {item["transformation_chain"][0]["parameters"]["role"]: item for item in result["recoveries"]}
+        self.assertEqual({"record_header", "handshake_plaintext", "change_cipher_spec"}, set(by_role))
+        headers = by_role["record_header"]
+        self.assertEqual("declared_plaintext_region", headers["transformation_chain"][0]["operation"])
+        self.assertEqual("protocol_declared", headers["basis"])
+        self.assertEqual("complete", headers["completeness"])
+        self.assertEqual(25, headers["output"]["length"])
+        self.assertEqual([{"start": 0, "end": 5}, {"start": 11, "end": 16}, {"start": 22, "end": 27},
+                          {"start": 28, "end": 33}, {"start": 41, "end": 46}], headers["source_ranges"])
+        handshake = by_role["handshake_plaintext"]
+        self.assertEqual(client_hello + server_hello, (output / handshake["output"]["artifact_ref"]).read_bytes())
+        self.assertEqual([{"start": 5, "end": 11}, {"start": 16, "end": 22}], handshake["source_ranges"])
+        self.assertEqual([{"start": 27, "end": 28}], by_role["change_cipher_spec"]["source_ranges"])
+        self.assertEqual(38, result["metrics"]["output_bytes"])
+        self.assertEqual(1, len(result["skipped_sources"]))
+        refused = result["skipped_sources"][0]
+        self.assertEqual("DECLARED_PROTECTED_REGION", refused["reason_code"])
+        self.assertEqual([{"start": 33, "end": 41}, {"start": 46, "end": 52}], refused["source_ranges"])
+
+    def test_declared_layout_that_does_not_tile_the_input_keeps_the_refusal(self):
+        result, output = self.analyze(self.record(0x17, b"\x01") + b"\x00\x00junk", encrypted_protocol="tls")
+        self.assertEqual([], result["recoveries"])
+        self.assertTrue(any(item["reason_code"] == "ENCRYPTED_WITHOUT_DECRYPTION_MATERIAL" for item in result["skipped_sources"]))
+        self.assertFalse(any(item["reason_code"] == "DECLARED_PROTECTED_REGION" for item in result["skipped_sources"]))
+        self.assertFalse((output / "recovered").exists())
+
+    def test_record_headers_stay_plaintext_when_every_payload_is_protected(self):
+        stream = b"".join(self.record(0x17, bytes([index]) * 4) for index in range(3))
+        result, _ = self.analyze(stream, encrypted_protocol="tls")
+        roles = [item["transformation_chain"][0]["parameters"]["role"] for item in result["recoveries"]]
+        self.assertEqual(["record_header"], roles)
+        self.assertEqual(15, result["recoveries"][0]["output"]["length"])
+        refused = result["skipped_sources"][0]
+        self.assertEqual("DECLARED_PROTECTED_REGION", refused["reason_code"])
+        self.assertEqual(3, len(refused["source_ranges"]))
+        self.assertEqual(12, sum(region["end"] - region["start"] for region in refused["source_ranges"]))
+        self.assertEqual(15, result["metrics"]["output_bytes"])
+
     def test_expected_source_hash_mismatch_leaves_no_output(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

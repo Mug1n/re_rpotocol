@@ -1,5 +1,8 @@
 # 10 minute acceptance demonstration
 
+> **已废弃（保留作历史参照）。** 这是早期的英文版 10 分钟验收演示脚本，其中的 `third_party/Wireshark/`
+> 路径在当前仓库已不存在，命令无法直接复跑。现场演示请使用 [答辩演示脚本.md](答辩演示脚本.md)。
+
 ## Before the audience arrives
 
 Run from the repository root. Confirm Python and the local Git-ignored TShark/Capinfos 4.6.8 installation. Output directories must be new; change the numeric suffix if a rehearsal already created them.

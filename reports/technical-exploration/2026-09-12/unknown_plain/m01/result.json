@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1",
+  "id": "tls13-record-stream-be1a112a579d",
+  "path": "D:\\协议逆向\\data\\derived\\tls13-record-stream.dat",
+  "sha256": "be1a112a579d96c67ddf478ab38a59b4dab539796657f2a3927a0dc8c46d779b",
+  "length": 1480,
+  "format": "raw_bytes",
+  "format_evidence": [
+    {
+      "rule_id": "M01-FMT-NO-KNOWN-MAGIC",
+      "observation": "No validated capture/container signature; filename suffix was not used as proof."
+    }
+  ],
+  "metadata_availability": {
+    "packet_boundaries": false,
+    "network_headers": false,
+    "flow_identity": false,
+    "direction": false,
+    "timestamps": false
+  },
+  "status": "ok",
+  "byte_ranges": [
+    {
+      "start": 0,
+      "end": 1480,
+      "artifact_ref": "payloads/tls13-record-stream-be1a112a579d.bin"
+    }
+  ],
+  "packets": [],
+  "flows": [],
+  "streams": [],
+  "warnings": [
+    "File extension does not define the internal format."
+  ]
+}

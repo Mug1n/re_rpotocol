@@ -1,0 +1,244 @@
+{
+  "schema_version": "0.1",
+  "source": {
+    "id": "tls13-record-stream-be1a112a579d",
+    "path": "D:\\协议逆向\\data\\derived\\tls13-record-stream.dat",
+    "sha256": "be1a112a579d96c67ddf478ab38a59b4dab539796657f2a3927a0dc8c46d779b",
+    "length": 1480
+  },
+  "status": "complete",
+  "rule": "infer",
+  "parameters": {
+    "method": "repeated_length_prefix_search",
+    "candidate_count": 1,
+    "min_frames": 3,
+    "max_header_size": 12,
+    "max_frame_length": 1048576,
+    "selected": {
+      "length_offset": 3,
+      "length_width": 2,
+      "byteorder": "big",
+      "length_mode": "payload",
+      "header_size": 5
+    }
+  },
+  "messages": [
+    {
+      "id": "tls13-record-stream-be1a112a579d-message-000000",
+      "stream_id": "tls13-record-stream-be1a112a579d",
+      "start": 0,
+      "end": 238,
+      "length": 238,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 3,
+            "length_width": 2,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 5
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/tls13-record-stream-be1a112a579d-message-000000.bin"
+    },
+    {
+      "id": "tls13-record-stream-be1a112a579d-message-000001",
+      "stream_id": "tls13-record-stream-be1a112a579d",
+      "start": 238,
+      "end": 365,
+      "length": 127,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 3,
+            "length_width": 2,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 5
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/tls13-record-stream-be1a112a579d-message-000001.bin"
+    },
+    {
+      "id": "tls13-record-stream-be1a112a579d-message-000002",
+      "stream_id": "tls13-record-stream-be1a112a579d",
+      "start": 365,
+      "end": 371,
+      "length": 6,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 3,
+            "length_width": 2,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 5
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/tls13-record-stream-be1a112a579d-message-000002.bin"
+    },
+    {
+      "id": "tls13-record-stream-be1a112a579d-message-000003",
+      "stream_id": "tls13-record-stream-be1a112a579d",
+      "start": 371,
+      "end": 830,
+      "length": 459,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 3,
+            "length_width": 2,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 5
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/tls13-record-stream-be1a112a579d-message-000003.bin"
+    },
+    {
+      "id": "tls13-record-stream-be1a112a579d-message-000004",
+      "stream_id": "tls13-record-stream-be1a112a579d",
+      "start": 830,
+      "end": 836,
+      "length": 6,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 3,
+            "length_width": 2,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 5
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/tls13-record-stream-be1a112a579d-message-000004.bin"
+    },
+    {
+      "id": "tls13-record-stream-be1a112a579d-message-000005",
+      "stream_id": "tls13-record-stream-be1a112a579d",
+      "start": 836,
+      "end": 894,
+      "length": 58,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 3,
+            "length_width": 2,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 5
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/tls13-record-stream-be1a112a579d-message-000005.bin"
+    },
+    {
+      "id": "tls13-record-stream-be1a112a579d-message-000006",
+      "stream_id": "tls13-record-stream-be1a112a579d",
+      "start": 894,
+      "end": 1296,
+      "length": 402,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 3,
+            "length_width": 2,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 5
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/tls13-record-stream-be1a112a579d-message-000006.bin"
+    },
+    {
+      "id": "tls13-record-stream-be1a112a579d-message-000007",
+      "stream_id": "tls13-record-stream-be1a112a579d",
+      "start": 1296,
+      "end": 1341,
+      "length": 45,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 3,
+            "length_width": 2,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 5
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/tls13-record-stream-be1a112a579d-message-000007.bin"
+    },
+    {
+      "id": "tls13-record-stream-be1a112a579d-message-000008",
+      "stream_id": "tls13-record-stream-be1a112a579d",
+      "start": 1341,
+      "end": 1480,
+      "length": 139,
+      "complete": true,
+      "framing_evidence": [
+        {
+          "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+          "selection": {
+            "length_offset": 3,
+            "length_width": 2,
+            "byteorder": "big",
+            "length_mode": "payload",
+            "header_size": 5
+          },
+          "basis": "repeated self-consistent length-prefixed frames cover the complete input"
+        }
+      ],
+      "artifact_ref": "messages/tls13-record-stream-be1a112a579d-message-000008.bin"
+    }
+  ],
+  "unparsed_ranges": [],
+  "diagnostics": [
+    {
+      "rule_id": "M03-INFERRED-LENGTH-PREFIX",
+      "accepted": true,
+      "candidate_count": 1,
+      "selected": {
+        "length_offset": 3,
+        "length_width": 2,
+        "byteorder": "big",
+        "length_mode": "payload",
+        "header_size": 5
+      }
+    }
+  ],
+  "warnings": [
+    "Framing boundaries are hypotheses, not protocol truth.",
+    "Automatic inference accepts only self-consistent repeated length-prefix evidence; other formats remain unframed."
+  ]
+}

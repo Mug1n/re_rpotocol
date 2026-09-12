@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1",
-  "updated_at": "2026-09-09",
-  "total_byte_size": 912979,
+  "updated_at": "2026-09-12",
+  "total_byte_size": 917137,
   "datasets": [
     {
       "dataset_id": "netplier-ndss2021",
@@ -58,7 +58,8 @@
         {"artifact_id": "wireshark-http-brotli", "path": "raw/wireshark-v4.6.0/http-brotli.pcapng", "protocol": "HTTP with Brotli content encoding", "byte_size": 1840, "sha256": "dc3957f2348adc8f148cd776bef9e4bc2b3d062edc1b2aedc7c2a2b92b60b055", "observed_format": "pcapng", "m01_packet_count": 10},
         {"artifact_id": "wireshark-protobuf-default-value", "path": "raw/wireshark-v4.6.0/protobuf_test_default_value.pcapng", "protocol": "Protocol Buffers test protocol", "byte_size": 476, "sha256": "9d195357f92735532ac3cae439373316450d070f6454977c209d95725b818533", "observed_format": "pcapng", "m01_packet_count": 1},
         {"artifact_id": "wireshark-dtn-bpv7-tcpclv4", "path": "raw/wireshark-v4.6.0/dtn_tcpclv4_bpv7_transfer.pcapng", "protocol": "Delay-Tolerant Networking BPv7 over TCPCLv4", "byte_size": 3960, "sha256": "84bc311ead8bcaa77d63cf30f5bb9b4f7292ef3a8b8c51623e69faaae20bc664", "observed_format": "pcapng", "m01_packet_count": 29},
-        {"artifact_id": "wireshark-opcua-signed", "path": "raw/wireshark-v4.6.0/opcua-signed.pcapng", "protocol": "OPC UA signed messages", "byte_size": 597228, "sha256": "a2aaa4a74040dd079de4358131864725f01634bf53477f1a23485f6a0acfc7d2", "observed_format": "pcapng", "m01_packet_count": 98}
+        {"artifact_id": "wireshark-opcua-signed", "path": "raw/wireshark-v4.6.0/opcua-signed.pcapng", "protocol": "OPC UA signed messages", "byte_size": 597228, "sha256": "a2aaa4a74040dd079de4358131864725f01634bf53477f1a23485f6a0acfc7d2", "observed_format": "pcapng", "m01_packet_count": 98},
+        {"artifact_id": "wireshark-tls13-rfc8446", "path": "raw/wireshark-v4.6.0/tls13-rfc8446.pcap", "protocol": "TLS 1.3 (RFC 8446) handshake and encrypted application data", "byte_size": 4158, "sha256": "e24aaedb2912f9ea371f8a1fbd360ccccc0154737aa5e422e206cd8bc0b783aa", "observed_format": "pcap", "m01_packet_count": 13}
       ]
     }
   ]

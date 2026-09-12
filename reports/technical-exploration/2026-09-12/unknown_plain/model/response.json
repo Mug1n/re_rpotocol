@@ -1,0 +1,28 @@
+{
+  "id": "56034b4e-37fd-4f78-8c8a-615f97518baa",
+  "object": "chat.completion",
+  "created": 1789167605,
+  "model": "deepseek-flash",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\"claims\":[{\"text\":\"输入为 raw_bytes，状态 ok，长度 1480 字节；字节特征为 entropy=7.699395449874918 bits/byte、printable_ascii_ratio=0.3290540540540541、zero_ratio=0.04594594594594595。\",\"evidence_ids\":[\"evidence-m01-75b6f5fd44159903\",\"evidence-m02-cf9ba7e4c0f4d550\"]},{\"text\":\"推断规则将 tls13-record-stream-be1a112a579d 划分为 9 条消息，字节范围分别为 [0, 238)、[238, 365)、[365, 371)、[371, 830)、[830, 836)、[836, 894)、[894, 1296)、[1296, 1341)、[1341, 1480)，长度分别为 238、127、6、459、6、58、402、45、139 字节；这些边界为假设而非协议事实。\",\"evidence_ids\":[\"evidence-m03-8b666a401606e4c2\",\"evidence-m03-3dff9ef56f04de2a\",\"evidence-m03-9ceca83ee25859ed\",\"evidence-m03-a3cd70f89d81f6bb\",\"evidence-m03-69c8bac3619abe5f\",\"evidence-m03-d7c39142fd945532\",\"evidence-m03-5d30fec80438ea33\",\"evidence-m03-4e3aea5fcd476a6d\",\"evidence-m03-ca17b71ad4e35a47\"]}]}"
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 12348,
+    "completion_tokens": 359,
+    "total_tokens": 12707,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 12348
+  },
+  "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669"
+}

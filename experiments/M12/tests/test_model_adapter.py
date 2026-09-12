@@ -80,7 +80,8 @@ class DeepSeekAdapterTests(unittest.TestCase):
             self.assertIn("untrusted quoted data", prompt)
 
     def test_unsupported_security_conclusions_are_rejected(self):
-        for text in ("The traffic is malicious.", "The payload was decrypted successfully."):
+        for text in ("The traffic is malicious.", "The payload was decrypted successfully.",
+                     "该负载已成功解密。", "这段流量是恶意的。"):
             with self.subTest(text=text), tempfile.TemporaryDirectory() as temp:
                 output = Path(temp) / "model"
                 with self.assertRaisesRegex(ValueError, "unsupported conclusion"):
@@ -88,6 +89,15 @@ class DeepSeekAdapterTests(unittest.TestCase):
                         "text": text, "evidence_ids": [self.evidence[0]["evidence_id"]],
                     }]))
                 self.assertFalse(output.exists())
+
+    def test_disclaiming_maliciousness_and_missing_decryption_material_are_allowed(self):
+        for text in ("本段证据不涉及恶意性判定。", "没有解密材料，负载不可解密。"):
+            with self.subTest(text=text), tempfile.TemporaryDirectory() as temp:
+                output = Path(temp) / "model"
+                result = self.invoke(output, response([{
+                    "text": text, "evidence_ids": [self.evidence[0]["evidence_id"]],
+                }]))
+                self.assertEqual("invoked", result["status"])
 
     def test_timeout_and_response_limit_leave_no_output(self):
         with tempfile.TemporaryDirectory() as temp:

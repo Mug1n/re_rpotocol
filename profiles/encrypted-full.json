@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.1",
+  "profile_id": "encrypted-full",
+  "description": "Live end-to-end analysis of an encrypted network capture: container probe, byte features, dissector identification, bounded recovery, flow features, behavior rules, conditional classification and evidence report.",
+  "stages": ["M01", "M02", "M07", "M08", "M09", "M10", "M11", "M12"],
+  "reuse": {
+    "m11": "data/acceptance/frozen-20260910/classification/m11-v0.2/run/classification.json"
+  },
+  "classifier": {
+    "classification": "data/acceptance/frozen-20260910/classification/m11-v0.2/run/classification.json"
+  },
+  "m02": {"window_size": 16384, "window_step": 16384},
+  "m07": {"max_observations": 50000},
+  "m08": {"source": "longest_m01_stream_direction", "encrypted_protocol": "tls"},
+  "m12": {"max_evidence": 500},
+  "model": {"name": "deepseek-v4-flash"},
+  "limitations": [
+    "M03-M06 (unknown-structure inference) are deliberately not selected: these captures are already identified standard protocols, and framing the pcap container bytes as application messages would be meaningless rather than informative.",
+    "M02 windows are 16384 bytes so that byte-distribution profiles stay bounded on multi-megabyte captures.",
+    "M08 runs on the longest reassembled direction with the TLS record layout declared; if that direction does not tile under the declared layout, M08 keeps the whole-input refusal instead of a recovery.",
+    "Both samples here do tile: the VPN capture's longest direction is a mid-session TLS stream to port 443 with no handshake in view, so only record headers are recovered there, while the direct TLS 1.3 capture also yields a plaintext ServerHello.",
+    "Only regions RFC 8446 declares unprotected are recovered; protected bytes are refused and counted. Which regions those are is declared to M08, not inferred.",
+    "The reused M11 classifier was trained on controlled HTTP captures; predictions over external encrypted flows are demonstrative and are not a generalization claim."
+  ]
+}

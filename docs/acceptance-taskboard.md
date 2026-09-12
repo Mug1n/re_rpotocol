@@ -28,5 +28,5 @@ Updated: 2026-09-11. Integration branch: `codex/acceptance-integration`.
 ## Remaining non-code signoff
 
 - Three real members must fill names and confirm contribution percentages totaling 100%.
-- C must assemble final PPT/screenshots/video; A/B content is under `docs/delivery/` and `docs/demo-script.md`.
+- C must assemble final PPT/screenshots/video; A/B content is under `docs/delivery/`; 答辩材料（PPT、讲稿、演示脚本）见 `docs/defense/`。
 - If a course-designated DAT exists, run and report it separately before submission.
